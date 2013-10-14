@@ -1,0 +1,64 @@
+﻿@{
+    Layout = null;
+}
+<script type="text/javascript" src="@Url.Content("~/Scripts/Lib/jquery.raty.js")"></script>
+<div id="star" data-pid="@Model[0].ID" data-score="@Model[0].AvgRating"></div>
+<p id="currentlyrated" style="float: left; padding-left: 20px;">
+    Currently rated:  @Model[0].AvgRating by @Model[0].TotalUserRating people;
+</p>
+<script>
+   
+    $('#star').raty({
+        click: function (score, evt) {
+            var anchor = $(evt.currentTarget),
+                //pid = anchor.closest('div').data("pid").val(),
+                pid = anchor.closest('div').data('pid'),
+                url = '@Url.Action("RateProduct", "City")';
+            alert('ID: ' + pid + "\nscore: " + score + "\nevent: " + evt);
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: { rate: score, Cityid: pid },
+                success: function (data) {
+
+                    if (data.success) {
+                        // all went well, here you can say Thank you
+                        
+                        alert('ID: ' + pid + "\nscore: " + data.Avg + "\nevent: ");
+                        $(this).html('<p> Avg: ' + data.Avg + 'by' + data.Total + 'person</p>');
+                        $('#currentlyrated').html('Currently rated:: ' + data.Avg + ' by ' + data.Total + ' persons');
+                    }
+                    else {
+                        // There must be an Exception error, let's show it
+                        alert("Co loi");
+                    }
+                },
+                error: function (err) {
+                    // the call thrown an error
+                    $('.result').text(err);
+                },
+                complete: function () {
+                    $('.star').fadeOut();
+                }
+            });
+        },
+        score: function () {
+            return $(this).attr('data-score');
+        },
+       @* scoreName: function (evt){
+            var
+                anchor = $(evt.currentTarget),
+                pid = anchor.closest('div').data('pid'),
+                url = '@Url.Action("LoadRateProduct", "City")';
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: {Cityid: pid },
+                success: function (data)
+                {
+                    return data.Avg;
+                }
+            });
+        }*@
+    });
+</script>

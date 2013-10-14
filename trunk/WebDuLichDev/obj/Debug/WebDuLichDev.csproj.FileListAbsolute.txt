@@ -1,0 +1,186 @@
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\obj\Debug\WebDuLichDev.csprojResolveAssemblyReference.cache
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\WebDuLichDev.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\WebDuLichDev.pdb
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\Antlr3.Runtime.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.Core.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\EntityFramework.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\Microsoft.Data.Edm.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\Microsoft.Data.OData.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\Newtonsoft.Json.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Net.Http.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Net.Http.Formatting.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Net.Http.WebRequest.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Spatial.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.Helpers.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.Http.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.Http.OData.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.Http.WebHost.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.Mvc.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.Optimization.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.Razor.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.WebPages.Deployment.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.WebPages.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.WebPages.Razor.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\WebGrease.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\WebMatrix.Data.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\WebMatrix.WebData.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\EntityFramework.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\Newtonsoft.Json.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Net.Http.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Net.Http.Formatting.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Net.Http.WebRequest.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.Helpers.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.Http.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.Http.WebHost.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.Mvc.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.Razor.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.WebPages.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.WebPages.Deployment.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.WebPages.Razor.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\WebMatrix.Data.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\WebMatrix.WebData.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.Core.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Web.Http.OData.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\Microsoft.Data.Edm.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\Microsoft.Data.OData.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\System.Spatial.xml
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\de\Microsoft.Data.Edm.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\es\Microsoft.Data.Edm.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\fr\Microsoft.Data.Edm.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\it\Microsoft.Data.Edm.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\ja\Microsoft.Data.Edm.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\ko\Microsoft.Data.Edm.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\ru\Microsoft.Data.Edm.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\de\Microsoft.Data.OData.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\es\Microsoft.Data.OData.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\fr\Microsoft.Data.OData.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\it\Microsoft.Data.OData.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\ja\Microsoft.Data.OData.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\ko\Microsoft.Data.OData.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\ru\Microsoft.Data.OData.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\de\System.Spatial.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\es\System.Spatial.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\fr\System.Spatial.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\it\System.Spatial.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\ja\System.Spatial.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\ko\System.Spatial.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\ru\System.Spatial.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\zh-Hans\System.Spatial.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\obj\Debug\WebDuLichDev.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\obj\Debug\WebDuLichDev.pdb
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\DuLichDLL.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\DuLichDLL.pdb
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\Facebook.dll
+C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\WebDuLichDev\bin\Facebook.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\WebDuLichDev.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\WebDuLichDev.pdb
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\Antlr3.Runtime.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.AspNet.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.Core.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OAuth.Consumer.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OAuth.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OpenId.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\DuLichDLL.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\EntityFramework.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\Facebook.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\Microsoft.Data.Edm.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\Microsoft.Data.OData.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\Microsoft.Web.Infrastructure.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\Microsoft.Web.WebPages.OAuth.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\Newtonsoft.Json.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Net.Http.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Net.Http.Formatting.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Net.Http.WebRequest.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Spatial.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.Helpers.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.Http.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.Http.OData.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.Http.WebHost.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.Mvc.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.Optimization.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.Razor.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.WebPages.Deployment.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.WebPages.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.WebPages.Razor.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\WebGrease.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\WebMatrix.Data.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\WebMatrix.WebData.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\DuLichDLL.pdb
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\Facebook.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\EntityFramework.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\Newtonsoft.Json.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Net.Http.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Net.Http.Formatting.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Net.Http.WebRequest.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.Helpers.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.Http.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.Http.WebHost.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.Mvc.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.Razor.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.WebPages.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.WebPages.Deployment.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.WebPages.Razor.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\WebMatrix.Data.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\Microsoft.Web.WebPages.OAuth.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\WebMatrix.WebData.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.AspNet.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.Core.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OAuth.Consumer.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OAuth.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OpenId.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Web.Http.OData.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\Microsoft.Data.Edm.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\Microsoft.Data.OData.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\System.Spatial.xml
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\de\Microsoft.Data.Edm.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\es\Microsoft.Data.Edm.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\fr\Microsoft.Data.Edm.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\it\Microsoft.Data.Edm.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\ja\Microsoft.Data.Edm.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\ko\Microsoft.Data.Edm.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\ru\Microsoft.Data.Edm.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\de\Microsoft.Data.OData.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\es\Microsoft.Data.OData.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\fr\Microsoft.Data.OData.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\it\Microsoft.Data.OData.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\ja\Microsoft.Data.OData.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\ko\Microsoft.Data.OData.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\ru\Microsoft.Data.OData.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\de\System.Spatial.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\es\System.Spatial.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\fr\System.Spatial.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\it\System.Spatial.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\ja\System.Spatial.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\ko\System.Spatial.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\ru\System.Spatial.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\zh-Hans\System.Spatial.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\bin\zh-Hant\System.Spatial.resources.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\obj\Debug\WebDuLichDev.csprojResolveAssemblyReference.cache
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\obj\Debug\WebDuLichDev.dll
+E:\SOURCE CODE\WebDuLich\WebDuLichDev\obj\Debug\WebDuLichDev.pdb
