@@ -1,0 +1,12 @@
+﻿@model List<DuLichDLL.Model.DL_Place>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if (null != Model)
+{
+    foreach(var item in Model)
+    {<input  type="text" value="@item.Name"/>}
+}
