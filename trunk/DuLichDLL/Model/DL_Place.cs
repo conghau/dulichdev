@@ -42,8 +42,8 @@ namespace DuLichDLL.Model
             get { return _avatar; }
             set { _avatar = value; }
         }
-        private int _avgRating;
-        public int AvgRating
+        private float _avgRating;
+        public float AvgRating
         {
             get { return _avgRating; }
             set { _avgRating = value; }

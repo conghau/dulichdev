@@ -1,10 +1,11 @@
-﻿@{
+﻿@model DuLichDLL.Model.DL_City
+@{
     Layout = null;
 }
 <script type="text/javascript" src="@Url.Content("~/Scripts/Lib/jquery.raty.js")"></script>
-<div id="star" data-pid="@Model[0].ID" data-score="@Model[0].AvgRating"></div>
+<div id="star" data-pid="@Model.ID" data-score="@Model.AvgRating"></div>
 <p id="currentlyrated" style="float: left; padding-left: 20px;">
-    Currently rated:  @Model[0].AvgRating by @Model[0].TotalUserRating people;
+    Currently rated:  @Model.AvgRating by @Model.TotalUserRating people;
 </p>
 <script>
    

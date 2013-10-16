@@ -24,8 +24,8 @@ namespace DuLichDLL.Model
             get { return _cityName; }
             set { _cityName = value; }
         }
-        private int? _avgRating;
-        public int? AvgRating
+        private float? _avgRating;
+        public float? AvgRating
         {
             get { return _avgRating; }
             set { _avgRating = value; }
@@ -56,6 +56,13 @@ namespace DuLichDLL.Model
             get { return _avatar; }
             set { _avatar = value; }
         }
+
+        private string _summary;
+        public string Summary
+        {
+            get { return _summary; }
+            set { _summary = value; }
+        }
     }
     public enum DL_CityColumns
     {
@@ -63,6 +70,7 @@ namespace DuLichDLL.Model
         CountryCode,
         CityName,
         Avatar,
+        Summary,
         AvgRating,
         TotalUserRating,
         TotalPointRating,

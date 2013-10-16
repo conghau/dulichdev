@@ -21,7 +21,8 @@ namespace DuLichDLL.DAL
                 result.CountryCode = Utility.Utility.ObjectToString(row[DL_CityColumns.CountryCode.ToString()].ToString());
                 result.CityName = Utility.Utility.ObjectToString(row[DL_CityColumns.CityName.ToString()].ToString());
                 result.Avatar = Utility.Utility.ObjectToString(row[DL_CityColumns.Avatar.ToString()].ToString());
-                result.AvgRating = Utility.Utility.ObjectToInt(row[DL_CityColumns.AvgRating.ToString()].ToString());
+                result.AvgRating = Utility.Utility.ObjectToFloat(row[DL_CityColumns.AvgRating.ToString()].ToString());
+                result.Summary = Utility.Utility.ObjectToString(row[DL_CityColumns.Summary.ToString()].ToString());
                 result.TotalUserRating = Utility.Utility.ObjectToInt(row[DL_CityColumns.TotalUserRating.ToString()].ToString());
                 result.TotalPointRating = Utility.Utility.ObjectToInt(row[DL_CityColumns.TotalPointRating.ToString()].ToString());
                 result.Status = Utility.Utility.ObjectToInt(row[DL_CityColumns.Status.ToString()].ToString());
@@ -113,7 +114,8 @@ namespace DuLichDLL.DAL
                 cmd.Parameters.Add("@CountryCode", SqlDbType.Char).Value = dL_City.CountryCode;
                 cmd.Parameters.Add("@CityName", SqlDbType.NVarChar).Value = dL_City.CityName;
                 cmd.Parameters.Add("@Avatar", SqlDbType.NVarChar).Value = dL_City.Avatar;
-                cmd.Parameters.Add("@AvgRating", SqlDbType.Int).Value = dL_City.AvgRating;
+                cmd.Parameters.Add("@Summary", SqlDbType.NVarChar).Value = dL_City.Summary;
+                cmd.Parameters.Add("@AvgRating", SqlDbType.Float).Value = dL_City.AvgRating;
                 cmd.Parameters.Add("@TotalUserRate", SqlDbType.Int).Value = dL_City.TotalUserRating;
                 cmd.Parameters.Add("@TotalPointRating", SqlDbType.Int).Value = dL_City.TotalPointRating;
                 cmd.Parameters.Add("@Status", SqlDbType.Int).Value = dL_City.Status;
@@ -154,7 +156,8 @@ namespace DuLichDLL.DAL
                 cmd.Parameters.Add("@CountryCode", SqlDbType.Char).Value = dL_City.CountryCode;
                 cmd.Parameters.Add("@CityName", SqlDbType.NVarChar).Value = dL_City.CityName;
                 cmd.Parameters.Add("@Avatar", SqlDbType.NVarChar).Value = dL_City.Avatar;
-                cmd.Parameters.Add("@AvgRating", SqlDbType.Int).Value = dL_City.AvgRating;
+                cmd.Parameters.Add("@Summary", SqlDbType.NVarChar).Value = dL_City.Summary;
+                cmd.Parameters.Add("@AvgRating", SqlDbType.Float).Value = dL_City.AvgRating;
                 cmd.Parameters.Add("@TotalUserRate", SqlDbType.Int).Value = dL_City.TotalUserRating;
                 cmd.Parameters.Add("@TotalPointRating", SqlDbType.Int).Value = dL_City.TotalPointRating;
                 cmd.Parameters.Add("@Status", SqlDbType.Int).Value = dL_City.Status;
@@ -183,7 +186,8 @@ namespace DuLichDLL.DAL
                 cmd.Parameters.Add("@CountryCode", SqlDbType.Char).Value = dL_City.CountryCode;
                 cmd.Parameters.Add("@CityName", SqlDbType.NVarChar).Value = dL_City.CityName;
                 cmd.Parameters.Add("@Avatar", SqlDbType.NVarChar).Value = dL_City.Avatar;
-                cmd.Parameters.Add("@AvgRating", SqlDbType.Int).Value = dL_City.AvgRating;
+                cmd.Parameters.Add("@Summary", SqlDbType.NVarChar).Value = dL_City.Summary;
+                cmd.Parameters.Add("@AvgRating", SqlDbType.Float).Value = dL_City.AvgRating;
                 cmd.Parameters.Add("@TotalUserRate", SqlDbType.Int).Value = dL_City.TotalUserRating;
                 cmd.Parameters.Add("@TotalPointRating", SqlDbType.Int).Value = dL_City.TotalPointRating;
                 cmd.Parameters.Add("@Status", SqlDbType.Int).Value = dL_City.Status;
@@ -227,7 +231,8 @@ namespace DuLichDLL.DAL
                 cmd.Parameters.Add("@CountryCode", SqlDbType.Char).Value = dL_City.CountryCode;
                 cmd.Parameters.Add("@CityName", SqlDbType.NVarChar).Value = dL_City.CityName;
                 cmd.Parameters.Add("@Avatar", SqlDbType.NVarChar).Value = dL_City.Avatar;
-                cmd.Parameters.Add("@AvgRating", SqlDbType.Int).Value = dL_City.AvgRating;
+                cmd.Parameters.Add("@Summary", SqlDbType.NVarChar).Value = dL_City.Summary;
+                cmd.Parameters.Add("@AvgRating", SqlDbType.Float).Value = dL_City.AvgRating;
                 cmd.Parameters.Add("@TotalUserRating", SqlDbType.Int).Value = dL_City.TotalUserRating;
                 cmd.Parameters.Add("@TotalPointRating", SqlDbType.Int).Value = dL_City.TotalPointRating;
                 cmd.Parameters.Add("@Status", SqlDbType.Int).Value = dL_City.Status;

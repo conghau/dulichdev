@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DuLichDLL.BAL;
 using DuLichDLL.Model;
+using DuLichDLL.Utility;
 
 namespace WebDuLichDev.Controllers
 {
@@ -38,7 +39,7 @@ namespace WebDuLichDev.Controllers
             long userId = 142; // WebSecurity.CurrentUserId;
             bool success = false;
             string error = "";
-            int avg = 0;
+            float avg = 0;
             int total = 0;
             try
             {
@@ -60,12 +61,12 @@ namespace WebDuLichDev.Controllers
                 dlCity = dlCityBal.GetByID(cityId);
                 dlCity.TotalPointRating = dlCity.TotalPointRating + rate;
                 dlCity.TotalUserRating = dlCity.TotalUserRating + 1;
-                dlCity.AvgRating = (int)(dlCity.TotalPointRating / dlCity.TotalUserRating);
+                avg = (float)dlCity.TotalPointRating / (float)dlCity.TotalUserRating;
+                dlCity.AvgRating = avg;
 
                 success = dlCityBal.InsertRating(dlCity, dlCommentCity);
                 //success = db.RegisterProductVote(userId, id, rate);
-                avg=Convert.ToInt32(dlCity.AvgRating);
-                total = Convert.ToInt32(dlCity.TotalUserRating);
+                total =dlCity.TotalUserRating ??0 ;
             }
             catch (System.Exception ex)
             {
@@ -86,7 +87,7 @@ namespace WebDuLichDev.Controllers
             long userId = 142; // WebSecurity.CurrentUserId;
             bool success = false;
             string error = "";
-            int  Avg = 0;
+            float  Avg = 0;
             try
             {
                 DL_CommentCityBAL dlCommentCityBal = new DL_CommentCityBAL();
@@ -111,7 +112,7 @@ namespace WebDuLichDev.Controllers
 
                 //success = dlCityBal.InsertRating(dlCity, dlCommentCity);
                 //success = db.RegisterProductVote(userId, id, rate);
-                Avg = Convert.ToInt32(dlCity.AvgRating);
+                Avg = (float)dlCity.AvgRating;
 
             }
             catch (System.Exception ex)

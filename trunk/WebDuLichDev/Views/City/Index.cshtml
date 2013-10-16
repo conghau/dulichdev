@@ -14,20 +14,20 @@
             <th>avatar </th>
             <th>thanh pho</th>
         </tr>
-       
+       @foreach(var item in Model)
         {
             <tr>
                 <td>
-                    <img src="@ViewBag.pathAvatarCity/@Model[0].Avatar" width ="25px" height="25px"/>
+                    <img src="@ViewBag.pathAvatarCity/@item.Avatar" width ="25px" height="25px"/>
                 </td>
                 <td>
-                    <a href="@Url.Action("Detail", "City", new { ID = Model[0].ID })">@Model[0].CityName</a>
+                    <a href="@Url.Action("Detail", "City", new { ID = item.ID })">@item.CityName</a>
                 </td>
                 <td>
-                    @Model[0].AvgRating
+                    @item.AvgRating
                 </td>
                 <td>
-                    @Html.Partial("~/Views/Shared/_Rate.cshtml",Model);
+                    @Html.Partial("~/Views/Shared/_Rate.cshtml",item);
                     @*<div class="ratting-item" data-pid="@Model[0].ID">
                         @if (Model[0].AvgRating >= 1)
                         {

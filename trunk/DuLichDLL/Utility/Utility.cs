@@ -25,7 +25,6 @@ namespace DuLichDLL.Utility
         public static string[] Fully = { "Delete" };
         public static string connect = string.Empty;
         public static long UserID = 1;
-        public static string[] EmailBCC = { "khoi.vu@travel2pay.com" };
 
         #endregion Parameter
 
