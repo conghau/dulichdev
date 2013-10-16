@@ -43,7 +43,8 @@ namespace WebDuLichDev.Controllers
             long userId = 142; // WebSecurity.CurrentUserId;
             bool success = false;
             string error = "";
-
+            float avg = 0;
+            int total = 0;
             try
             {
                 DL_CommentCityBAL dlCommentCityBal = new DL_CommentCityBAL();
@@ -53,9 +54,9 @@ namespace WebDuLichDev.Controllers
                 DL_CommentCity dlCommentCity = new DL_CommentCity
                 {
                     UserId = userId,
-                    Content ="",
-                    Rating=rate,
-                    Status=0,
+                    Content = "",
+                    Rating = rate,
+                    Status = 0,
                     DL_CityId = cityId,
                     CreatedDate = DateTime.Now,
                     UpdatedDate = DateTime.Now,
@@ -64,11 +65,13 @@ namespace WebDuLichDev.Controllers
                 dlCity = dlCityBal.GetByID(cityId);
                 dlCity.TotalPointRating = dlCity.TotalPointRating + rate;
                 dlCity.TotalUserRating = dlCity.TotalUserRating + 1;
-                dlCity.AvgRating = (int)(dlCity.TotalPointRating / dlCity.TotalUserRating);
+                avg = (float)dlCity.TotalPointRating / (float)dlCity.TotalUserRating;
+                //dlCity.AvgRating = avg;
 
                 success = dlCityBal.InsertRating(dlCity, dlCommentCity);
                 //success = db.RegisterProductVote(userId, id, rate);
-                
+                total = dlCity.TotalUserRating ?? 0;
+                ViewBag.AVG = avg;
             }
             catch (System.Exception ex)
             {
@@ -80,7 +83,7 @@ namespace WebDuLichDev.Controllers
                 error = ex.Message;
             }
 
-            return Json(new { error = error, success = success, pid = cityId }, JsonRequestBehavior.AllowGet);
+            return Json(new { error = error, success = success, pid = cityId, Avg = avg, Total = total }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Detail(long ID)
@@ -98,6 +101,23 @@ namespace WebDuLichDev.Controllers
         {
             return View();
         }
+        public ActionResult Restar(long cityId)
+        {
+            float Avg = 0;
+            DL_CommentCityBAL dlCommentCityBal = new DL_CommentCityBAL();
+            DL_CityBAL dlCityBal = new DL_CityBAL();
+
+            DL_City dlCity = new DL_City();
+
+            dlCity = dlCityBal.GetByID(cityId);
+
+            dlCity.TotalUserRating = dlCity.TotalUserRating;
+            Avg = (float)dlCity.AvgRating;
+
+            return PartialView("~/Views/Shared/_Rate.cshtml", dlCity);
+
+        }
+
 
     }
 }
