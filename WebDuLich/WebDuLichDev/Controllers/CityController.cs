@@ -66,7 +66,7 @@ namespace WebDuLichDev.Controllers
                 dlCity.TotalPointRating = dlCity.TotalPointRating + rate;
                 dlCity.TotalUserRating = dlCity.TotalUserRating + 1;
                 avg = (float)dlCity.TotalPointRating / (float)dlCity.TotalUserRating;
-                //dlCity.AvgRating = avg;
+                dlCity.AvgRating = avg;
 
                 success = dlCityBal.InsertRating(dlCity, dlCommentCity);
                 //success = db.RegisterProductVote(userId, id, rate);
