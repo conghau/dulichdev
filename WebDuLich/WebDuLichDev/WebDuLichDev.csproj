@@ -370,6 +370,10 @@
     <Content Include="Scripts\Lib\bootstrap\img\glyphicons-halflings.png" />
     <Content Include="Scripts\Lib\bootstrap\js\bootstrap.js" />
     <Content Include="Scripts\Lib\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Scripts\Lib\jquery.raty.js" />
+    <Content Include="Scripts\Lib\star-half.png" />
+    <Content Include="Scripts\Lib\star-off.png" />
+    <Content Include="Scripts\Lib\star-on.png" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\rating.js" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -417,6 +421,7 @@
     <Content Include="Views\Shared\_LayoutFilp.cshtml" />
     <Content Include="Views\Shared\p_Header.cshtml" />
     <Content Include="Views\City\AddCity.cshtml" />
+    <Content Include="Views\Shared\_Rate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
