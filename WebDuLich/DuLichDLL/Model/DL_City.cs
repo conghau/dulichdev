@@ -24,8 +24,8 @@ namespace DuLichDLL.Model
             get { return _cityName; }
             set { _cityName = value; }
         }
-        private int? _avgRating;
-        public int? AvgRating
+        private float? _avgRating;
+        public float? AvgRating
         {
             get { return _avgRating; }
             set { _avgRating = value; }
