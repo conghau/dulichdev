@@ -1,6 +1,0 @@
-C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\DuLichDLL\bin\Debug\DuLichDLL.dll.config
-C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\DuLichDLL\bin\Debug\DuLichDLL.dll
-C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\DuLichDLL\bin\Debug\DuLichDLL.pdb
-C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\DuLichDLL\obj\Debug\DuLichDLL.dll
-C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\DuLichDLL\obj\Debug\DuLichDLL.pdb
-C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\DuLichDLL\obj\Debug\DuLichDLL.csprojResolveAssemblyReference.cache
