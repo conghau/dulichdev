@@ -27,7 +27,10 @@
                     @item.AvgRating
                 </td>
                 <td>
-                    @Html.Partial("~/Views/Shared/_Rate.cshtml",item);
+                    
+                        @Html.Partial("~/Views/Shared/_Rate.cshtml",item);
+                   
+                    
                     @*<div class="ratting-item" data-pid="@Model[0].ID">
                         @if (Model[0].AvgRating >= 1)
                         {

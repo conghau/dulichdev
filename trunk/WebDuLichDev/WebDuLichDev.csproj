@@ -295,6 +295,16 @@
     <Content Include="Scripts\Lib\bootstrap\js\bootstrap.min.js" />
     <Content Include="Scripts\Lib\cancel-off.png" />
     <Content Include="Scripts\Lib\cancel-on.png" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\css\jasny-bootstrap-responsive.css" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\css\jasny-bootstrap-responsive.min.css" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\css\jasny-bootstrap.css" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\css\jasny-bootstrap.min.css" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\font\iconic_fill.svg" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\font\iconic_stroke.svg" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\js\jasny-bootstrap.js" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\js\jasny-bootstrap.min.js" />
     <Content Include="Scripts\Lib\star-half.png" />
     <Content Include="Scripts\Lib\star-off.png" />
     <Content Include="Scripts\Lib\star-on.png" />
@@ -344,6 +354,14 @@
     <Content Include="Views\City\Detail.cshtml" />
     <Content Include="Scripts\Lib\img\Thumbs.db" />
     <Content Include="Views\Shared\_Rate.cshtml" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\font\iconic_fill.eot" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\font\iconic_fill.otf" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\font\iconic_fill.ttf" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\font\iconic_fill.woff" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\font\iconic_stroke.eot" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\font\iconic_stroke.otf" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\font\iconic_stroke.ttf" />
+    <Content Include="Scripts\Lib\jasny-bootstrap\font\iconic_stroke.woff" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

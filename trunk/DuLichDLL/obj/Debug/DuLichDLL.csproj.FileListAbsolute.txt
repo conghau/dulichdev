@@ -15,3 +15,9 @@ E:\KHOALUAN\dulichdev\DuLichDLL\bin\Debug\DuLichDLL.pdb
 E:\KHOALUAN\dulichdev\DuLichDLL\obj\Debug\DuLichDLL.csprojResolveAssemblyReference.cache
 E:\KHOALUAN\dulichdev\DuLichDLL\obj\Debug\DuLichDLL.dll
 E:\KHOALUAN\dulichdev\DuLichDLL\obj\Debug\DuLichDLL.pdb
+E:\SOURCE CODE\WebDuLich\dulichdev\DuLichDLL\bin\Debug\DuLichDLL.dll.config
+E:\SOURCE CODE\WebDuLich\dulichdev\DuLichDLL\bin\Debug\DuLichDLL.dll
+E:\SOURCE CODE\WebDuLich\dulichdev\DuLichDLL\bin\Debug\DuLichDLL.pdb
+E:\SOURCE CODE\WebDuLich\dulichdev\DuLichDLL\obj\Debug\DuLichDLL.csprojResolveAssemblyReference.cache
+E:\SOURCE CODE\WebDuLich\dulichdev\DuLichDLL\obj\Debug\DuLichDLL.dll
+E:\SOURCE CODE\WebDuLich\dulichdev\DuLichDLL\obj\Debug\DuLichDLL.pdb

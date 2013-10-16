@@ -67,6 +67,7 @@ namespace WebDuLichDev.Controllers
                 success = dlCityBal.InsertRating(dlCity, dlCommentCity);
                 //success = db.RegisterProductVote(userId, id, rate);
                 total =dlCity.TotalUserRating ??0 ;
+                ViewBag.AVG = avg;
             }
             catch (System.Exception ex)
             {
@@ -132,6 +133,23 @@ namespace WebDuLichDev.Controllers
             DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
             var model = dlPlaceBal.GetListByCity(ID);
             return View(model);
+        }
+        public ActionResult Restar(long cityId)
+
+        {
+            float Avg = 0;
+            DL_CommentCityBAL dlCommentCityBal = new DL_CommentCityBAL();
+            DL_CityBAL dlCityBal = new DL_CityBAL();
+
+            DL_City dlCity = new DL_City();
+
+            dlCity = dlCityBal.GetByID(cityId);
+
+            dlCity.TotalUserRating = dlCity.TotalUserRating;
+            Avg = (float)dlCity.AvgRating;
+
+            return PartialView("~/Views/Shared/_Rate.cshtml", dlCity);
+ 
         }
 
     }
