@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thêm Khách Sạn.
+        /// </summary>
+        internal static string AddHotel {
+            get {
+                return ResourceManager.GetString("AddHotel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ảnh đại diện.
         /// </summary>
         internal static string Avatar {
@@ -75,6 +84,33 @@ namespace Resources {
         internal static string City {
             get {
                 return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Khách Sạn.
+        /// </summary>
+        internal static string Hotel {
+            get {
+                return ResourceManager.GetString("Hotel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Địa chỉ khách sạn.
+        /// </summary>
+        internal static string HotelAddress {
+            get {
+                return ResourceManager.GetString("HotelAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tên Khách Sạn.
+        /// </summary>
+        internal static string HotelName {
+            get {
+                return ResourceManager.GetString("HotelName", resourceCulture);
             }
         }
     }
