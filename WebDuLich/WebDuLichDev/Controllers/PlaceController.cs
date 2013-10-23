@@ -22,19 +22,19 @@ namespace WebDuLichDev.Controllers
         public ActionResult NicePlaceByCity(long cityId)
         {
             DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
-            var model = dlPlaceBal.GetListNicePlaceByCity(cityId);
+            var model = dlPlaceBal.GetListNicePlaceByCity(cityId).Take(2).ToList();
             DuLichDLL.Model.DL_Place model1 = new DuLichDLL.Model.DL_Place();
-            model1 = model[0];
-            return View(model1);
+            ViewBag.pages = 1;
+            return View(model);
         }
         [HttpPost]
         public ActionResult NicePlaceByCity(long cityId, int page)
         {
             DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
-            var model = dlPlaceBal.GetListNicePlaceByCity(cityId);
+            var model = dlPlaceBal.GetListNicePlaceByCity(cityId).Take(4).ToList();
             DuLichDLL.Model.DL_Place model1 = new DuLichDLL.Model.DL_Place();
-            model1 = model[page];
-            return View(model1);
+            ViewBag.pages = page;
+            return View(model);
         }
 
         public ActionResult RestaurantsByCity(long cityId)
@@ -51,6 +51,16 @@ namespace WebDuLichDev.Controllers
                 
                 cityId);
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult reLoadPage(long cityId, int page)
+        {
+            DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+            var model = dlPlaceBal.GetListNicePlaceByCity(cityId).Take(4).ToList();
+            DuLichDLL.Model.DL_Place model1 = new DuLichDLL.Model.DL_Place();
+            ViewBag.pages = page;
+            return PartialView("p_niceplace",model);
         }
 
     }

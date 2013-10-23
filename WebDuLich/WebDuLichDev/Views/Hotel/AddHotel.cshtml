@@ -1,0 +1,20 @@
+﻿@model DuLichDLL.Model.DL_Place
+@{
+    ViewBag.Title = @Resources.Language.AddHotel;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Language.AddHotel</h2>
+<form class="form-horizontal" method="post" action="~/Views/Hotel/AddHotel">
+    @B
+    <fieldset>
+        <legend>Legend text</legend>
+        <div class="control-group infoBasic">
+            <label class="control-label" for="hotelName">@Resources.Language.HotelName</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="@Model.Name" name ="@Model.Name" placeholder="@Resources.Language.HotelName ...">
+            </div>
+            <input class="btn" type="submit" value="Submit">
+        </div>
+    </fieldset>
+</form>

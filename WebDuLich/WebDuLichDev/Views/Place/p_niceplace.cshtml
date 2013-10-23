@@ -1,5 +1,48 @@
-﻿@if (null != Model)
-{
-        <input  type="text" value="@Model.Name"/>
-        <input  type="text" value="@Model.AvgRating"/>
-}
+﻿@model  List<DuLichDLL.Model.DL_Place>
+<div id="book">
+    <canvas id="pageflip-canvas"></canvas>
+    <div id="pages">
+        @foreach (var item in Model)
+        {
+            <section>
+                <div>
+                    <h2>@item.Name</h2>
+                    <p>@item.Address</p>
+                    <p>@item.AvgRating</p>
+                </div>
+            </section>
+        }
+    </div>
+</div>
+
+@Scripts.Render("/Content/themes/20Things_PageFlip_Example/example/pageflip.js")
+<script type="text/javascript">
+    $(document).ready(function () {
+        var numclick = 0;
+        // List of all the page elements in the DOM
+        var cityId = $('#cityId').val();
+        var page = $('#pages').val();
+        var book = document.getElementById("book");
+
+        // List of all the page elements in the DOM
+        var pages = book.getElementsByTagName("section");
+        $('#book').click(function () {
+            numclick++;
+            if (numclick >= pages.length - 1) {
+                $('#pages').val(numclick);
+                $.ajax({
+                    type: 'post',
+                    url: "@Url.Action("reLoadPage", "Place")",
+                        data: { cityId: cityId, page: page },
+                    }).done(function (result) {
+                        $('#book').replaceWith(result);
+
+                    });
+                numclick = 0;
+            }
+            });
+
+
+        });
+
+</script>
