@@ -1,15 +1,106 @@
 ﻿@{
     ViewBag.Title = "AddCity";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="./Scripts/Lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 }
+<link rel="stylesheet" href="@Url.Content("~/Content/styles/kendo.common.min.css")">
+<link rel="stylesheet" href="@Url.Content("~/Content/styles/kendo.bootstrap.min.css")">
+<script src="@Url.Content("~/Scripts/KendoJS/jquery.min.js")"></script>
+<script src="@Url.Content("~/Scripts/KendoJS/kendo.all.min.js")"></script>
+
+
+<style>
+    .k-upload-selected {
+        margin: 0;
+    }
+</style>
 
 <h2>AddCity</h2>
 
-<a class="btn sbtn-primary" href="">Link</a>
+<a class="btn btn-primary btn-large" href="">Link</a>
 <button class="btn" type="submit">
     Button
 </button>
+
 <input class="btn" type="button"
     value="Input">
-<input class="btn" type="submit"
+<div class="btn" type="submit"
     value="Submit">
+
+    <div id="Upload">
+        <input id="upload" name="upload" type="file" />
+    </div>
+
+
+    <script>
+        $(function () {
+            $("#upload").kendoUpload({
+                localization: {
+                    remove: "Remove",
+                    uploadSelectedFiles: "Upload"
+                },
+                multiple: true,
+                async: {
+                    autoUpload: false,
+                    saveUrl: "/save",
+                    removeUrl: "/remove"
+                },
+                select: function () {
+                    // The upload button will be created after the event is triggered
+                    // hence the need for a timeout.
+                    setTimeout(function () {
+                        $(".k-upload-selected").insertBefore($(".k-upload-action"))
+                    });
+                }
+            });
+        });
+    </script>
+
+    <br />
+    <input id="cricketerAutoComplete" />
+
+    <div id="example" class="k-content">
+        <div class="demo-section">
+            <h3 class="title">Select Continents</h3>
+            <select id="select">
+             
+                </select>
+        </div>
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            var data = [
+                { text: "Africa", value: "1" },
+                { text: "Europe", value: "2" },
+                { text: "Asia", value: "3" },
+                { text: "North America", value: "4" },
+                { text: "South America", value: "5" },
+                { text: "Antarctica", value: "6" },
+                { text: "Australia", value: "7" }
+            ];
+
+            $("#select").kendoMultiSelect({
+                dataTextField: "text",
+                dataValueField: "value",
+                dataSource:  data,
+                //dataBound: onDataBound,
+                //select: onSelect,
+                //change: onChange,
+                //close: onClose,
+                //open: onOpen,
+                maxSelectedItems: 1
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $("#cricketerAutoComplete").kendoAutoComplete(
+        ["Sachin",
+        "Dhoni",
+        "Saurabh",
+        "Rahul"]);
+    </script>
