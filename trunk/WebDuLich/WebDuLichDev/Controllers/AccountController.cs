@@ -240,7 +240,13 @@ namespace WebDuLichDev.Controllers
                 string loginData = OAuthWebSecurity.SerializeProviderUserId(result.Provider, result.ProviderUserId);
                 ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
                 ViewBag.ReturnUrl = returnUrl;
-                return View("ExternalLoginConfirmation", new RegisterExternalLoginModel { UserName = result.UserName, ExternalLoginData = loginData });
+                return View("ExternalLoginConfirmation", new RegisterExternalLoginModel
+                {
+                    UserName = result.UserName,
+                    ExternalLoginData = loginData,
+                    FullName = result.ExtraData["name"],
+                    Link = result.ExtraData["link"]
+                });
             }
         }
 
@@ -270,7 +276,14 @@ namespace WebDuLichDev.Controllers
                     if (user == null)
                     {
                         // Insert name into the profile table
-                        db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
+                        UserProfile newUser = db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
+
+                        db.ExternalUsers.Add(new ExternalUserInformation
+                        {
+                            UserId = newUser.UserId,
+                            FullName = model.FullName,
+                            Link = model.Link
+                        });
                         db.SaveChanges();
 
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);

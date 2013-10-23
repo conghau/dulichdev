@@ -17,6 +17,7 @@ namespace WebDuLichDev.Models
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<ExternalUserInformation> ExternalUsers { get; set; }
     }
 
     [Table("UserProfile")]
@@ -35,6 +36,12 @@ namespace WebDuLichDev.Models
         public string UserName { get; set; }
 
         public string ExternalLoginData { get; set; }
+
+        [Display(Name = "Full name")]
+        public string FullName { get; set; }
+
+        [Display(Name = "Personal page link")]
+        public string Link { get; set; }
     }
 
     public class LocalPasswordModel
@@ -94,5 +101,15 @@ namespace WebDuLichDev.Models
         public string Provider { get; set; }
         public string ProviderDisplayName { get; set; }
         public string ProviderUserId { get; set; }
+    }
+
+    [Table("ExtraUserInformation")]
+    public class ExternalUserInformation
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public string FullName { get; set; }
+        public string Link { get; set; }
+        public bool? Verified { get; set; }
     }
 }
