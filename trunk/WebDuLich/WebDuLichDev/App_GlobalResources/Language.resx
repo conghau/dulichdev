@@ -117,10 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Thêm</value>
+  </data>
+  <data name="AddHotel" xml:space="preserve">
+    <value>Thêm Khách Sạn</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
   <data name="Avatar" xml:space="preserve">
     <value>Ảnh đại diện</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Huỷ</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>Thành phố</value>
+  </data>
+  <data name="Hotel" xml:space="preserve">
+    <value>Khách Sạn</value>
+  </data>
+  <data name="HotelAddress" xml:space="preserve">
+    <value>Địa chỉ khách sạn</value>
+  </data>
+  <data name="HotelName" xml:space="preserve">
+    <value>Tên Khách Sạn</value>
+  </data>
+  <data name="Place" xml:space="preserve">
+    <value>Địa điểm</value>
+  </data>
+  <data name="PlaceName" xml:space="preserve">
+    <value>Tên địa điểm</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Hoàn thành</value>
   </data>
 </root>

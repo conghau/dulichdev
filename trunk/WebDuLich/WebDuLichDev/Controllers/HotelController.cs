@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DuLichDLL.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,5 +17,16 @@ namespace WebDuLichDev.Controllers
             return View();
         }
 
+        public ActionResult AddHotel()
+        {
+            DL_Place dlPlace = new DL_Place();
+            return View(dlPlace);
+        }
+
+        [HttpPost]
+        public ActionResult AddHotel(DL_Place data)
+        {
+            return View(data);
+        }
     }
 }

@@ -1,0 +1,113 @@
+﻿@model DuLichDLL.Model.DL_Place
+@{
+    ViewBag.Title = "AddPlace";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddPlace</h2>
+@using (Html.BeginForm("AddPlace", "Place", FormMethod.Post, new { @class = "well ", @id ="frmAddPlace" }))
+{
+    <div class="control-group">
+        <label class="control-label" for="input01">@Resources.Language.PlaceName</label>
+        @Html.TextBoxFor(m => m.Name, new { id = "placeName", placeholder = "Place name ..." })
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="input01">@Resources.Language.Address</label>
+        @Html.TextBoxFor(m => m.Address, new { id = "Address", placeholder = "Address..." })
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="input01">@Resources.Language.City</label>
+        @Html.DropDownListFor(m => m.DL_CityId, WebDuLichDev.WebUtility.WebDuLichData.ListCity, new { id = "drop_CityList", @class = "DLL kendoDropDownList city" })
+    </div>
+    <div class="control-group">
+        <input id="upload" name="fileUpload" type="file" />
+        <input id="Avatar" name ="Avatar" value="" type="hidden"/>
+        <div id="imgPhoto"></div>
+    </div>
+    <div class="form-actions">
+        <input class="btn btn-primary" id="btnSubmit" type="button" value="@Resources.Language.Submit" />
+        <input class="btn" id="btnCancel" type="button" value="@Resources.Language.Cancel" />
+    </div>  
+    
+    
+    <script>
+
+        $(document).ready(function () {
+
+            $("#upload").kendoUpload({
+                async: {
+                    saveUrl: "/Place/UploadImage",
+                    removeUrl: "/Place/RemoveImage",
+                    autoUpload: true,
+                },
+                select: onSelect,
+                upload: onUpload,
+                success: onUploadSuccess
+            });
+
+            $('#btnSubmit').click(function () {
+
+                $('#frmAddPlace').submit();
+            });
+
+            $('#btnCancel').click(function () {
+
+            });
+        });
+        function onSelect(e) {
+            var files = e.files;
+
+            // Check the extension of each file and abort the upload if it is not .jpg ,.png ,.bmp
+            $.each(files, function () {
+                //alert(this.extension);
+                if ((this.extension == ".jpg") || (this.extension == ".png") || (this.extension == ".bmp")) {
+                    return true;
+                }
+                else {
+                    alert("it is not .jpg ,.png ,.bmp"); e.preventDefault();
+                }
+            });
+        }
+        function onUpload(e) {
+            var files = e.files;
+
+            // Check the extension of each file and abort the upload if it is not .jpg ,.png ,.bmp
+            $.each(files, function () {
+                if ((this.extension == ".jpg") || (this.extension == ".png") || (this.extension == ".bmp")) {
+                    return true;
+                }
+                else {
+                    alert("it is not .jpg ,.png ,.bmp");
+                    e.preventDefault();
+                }
+            });
+        }
+        function onProgress(e) {
+            // Array with information about the uploaded files
+            var files = e.files;
+
+            console.log(e.percentComplete);
+        }
+        function onUploadSuccess(e) {
+            var files = e.files;
+
+            if (e.operation == "upload") {
+                $.each(files, function () {
+                    $('#Avatar').val(this.name);
+                    $('#imgPhoto').append("<img src=/Data/Images/place/" + this.name + " height =80 width=80 id="+this.name+" />");
+                    
+                });
+            }
+
+            if (e.operation == "remove") {
+                $.each(files, function () {
+                    $('#Avatar').val('');
+                    $('div#imgPhoto > img').remove();
+                });     
+            }
+        }
+
+       
+
+    </script>
+}
