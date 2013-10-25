@@ -118,6 +118,11 @@ namespace WebDuLichDev.Controllers
             return PartialView("~/Views/Shared/_Rate.cshtml", dlCity);
 
         }
+        public ActionResult AddNewCity(DL_City dataRequestCity)
+        {
+            return View(dataRequestCity);
+        }
+
         public ActionResult UploadAvatarCity(IEnumerable<HttpPostedFileBase> attachments, int cityId)
         {
             DL_CommentCityBAL dlCommentCityBal = new DL_CommentCityBAL();
