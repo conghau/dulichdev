@@ -81,6 +81,8 @@
     });
 
     $('#btnCancel').click(function () {
+        
+        
 
     });
 </script>
@@ -98,7 +100,7 @@
             },
             multiple: false,
             async: {
-                autoUpload: true,
+                autoUpload: false,
                 saveUrl: "/save",
                 removeUrl: "/remove"
             },
@@ -108,9 +110,51 @@
                 setTimeout(function () {
                     $(".k-upload-selected").insertBefore($(".k-upload-action"))
                 });
-            }
+
+            },
+           
+            upload: onUpload,
+            success: onUploadSuccess
         });
     });
+    function onUpload(e) {
+        var files = e.files;
+
+        // Check the extension of each file and abort the upload if it is not .jpg ,.png ,.bmp
+        $.each(files, function () {
+            if ((this.extension == ".jpg") || (this.extension == ".png") || (this.extension == ".bmp")) {
+                return true;
+            }
+            else {
+                alert("it is not .jpg ,.png ,.bmp");
+                e.preventDefault();
+            }
+        });
+    }
+    function onProgress(e) {
+        // Array with information about the uploaded files
+        var files = e.files;
+
+        console.log(e.percentComplete);
+    }
+    function onUploadSuccess(e) {
+        var files = e.files;
+
+        if (e.operation == "upload") {
+            $.each(files, function () {
+                $('#Avatar').val(this.name);
+                $('#imgPhoto').append("<img src=/Data/Images/place/" + this.name + " height =80 width=80 id=" + this.name + " />");
+
+            });
+        }
+
+        if (e.operation == "remove") {
+            $.each(files, function () {
+                $('#Avatar').val('');
+                $('div#imgPhoto > img').remove();
+            });
+        }
+    }
 </script>
 
 
