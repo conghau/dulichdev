@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DuLichDLL.Model.DL_City
+@{
     ViewBag.Title = "AddCity";
     Layout = "~/Views/Shared/_Layout.cshtml";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,91 +17,186 @@
         margin: 0;
     }
 </style>
-
 <h2>AddCity</h2>
 
-<a class="btn btn-primary btn-large" href="">Link</a>
-<button class="btn" type="submit">
-    Button
-</button>
-
-<input class="btn" type="button"
-    value="Input" />
-<div class="btn" type="submit"
-    value="Submit">
-</div>
-    <div id="Upload" class="demo-section">
-        <input id="upload" name="upload" type="file" />
-    </div>
-
-
-    <script>
-        $(function () {
-            $("#upload").kendoUpload({
-                localization: {
-                    remove: "Remove",
-                    uploadSelectedFiles: "Upload"
-                },
-                multiple: true,
-                async: {
-                    autoUpload: false,
-                    saveUrl: "/save",
-                    removeUrl: "/remove"
-                },
-                select: function () {
-                    // The upload button will be created after the event is triggered
-                    // hence the need for a timeout.
-                    setTimeout(function () {
-                        $(".k-upload-selected").insertBefore($(".k-upload-action"))
-                    });
-                }
-            });
-        });
-    </script>
-
-    <br />
-    <input id="cricketerAutoComplete" />
-
-    <div id="example" class="k-content">
-        <div class="demo-section">
-            <h3 class="title">Select Continents</h3>
+@using (Html.BeginForm("AddCity", "City", FormMethod.Post, new { @class = "Add_City ", @id = "frmAddCity" }))
+{
+    <div class="control-group">
+        <label class="control-label" for="input01">@Resources.Language.City</label>
+        <div id="choose_city" class="k-content">
             <select id="select">
-             
-                </select>
+            </select>
         </div>
-
     </div>
+    <div class="control-group">
+        <label class="control-label" for="input01">@Resources.Language.Avatar</label>
+        <input id="upload" name="upload" type="file" />
+        <input id="Avatar" name="Avatar" value="" type="hidden" />
+        <div id="imgPhoto"></div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="input01">@Resources.Language.Culture</label>
+        <div id="content_city" class="k-content">
+            <textarea id="editor" rows="5" cols="20" style="width: 50%; height: 400px">                  
+                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
+                </textarea>
+        </div>
+    </div>
+    <div class="form-actions">
+        <input class="btn btn-primary" id="btnSubmit" type="button" value="@Resources.Language.Submit" />
+        <input class="btn" id="btnCancel" type="button" value="@Resources.Language.Cancel" />
+    </div>  
 
-    <script>
-        $(document).ready(function () {
+   
+    
+}
 
-            var data = [
-                { text: "Africa", value: "1" },
-                { text: "Europe", value: "2" },
-                { text: "Asia", value: "3" },
-                { text: "North America", value: "4" },
-                { text: "South America", value: "5" },
-                { text: "Antarctica", value: "6" },
-                { text: "Australia", value: "7" }
-            ];
+ 
 
-            $("#select").kendoMultiSelect({
-                dataTextField: "text",
-                dataValueField: "value",
-                dataSource:  data,
-                //dataBound: onDataBound,
-                //select: onSelect,
-                //change: onChange,
-                //close: onClose,
-                //open: onOpen,
-                maxSelectedItems: 1
-            });
+<script>
+    $(document).ready(function () {
+        // create Editor from textarea HTML element with default set of tools
+        $("#editor").kendoEditor({
+
+
+            tools: ["bold", "italic", "underline", "justifyLeft", "justifyCenter", "justifyRight",
+                "justifyFull", "insertUnorderedList", "insertOrderedList", "indent", "outdent", "viewHtml", "insertHtml"
+            ],
+            insertHtml: [
+                   { text: "Chữ ký:", value: "<p>Regards,<br /> By...,<br /></a></p>" }]
+        })
+
+    });
+
+</script>
+
+
+
+<script>
+    $('#btnSubmit').click(function () {
+
+        $('#frmAddPlace').submit();
+    });
+
+    $('#btnCancel').click(function () {
+
+    });
+</script>
+
+
+
+
+
+<script>
+    $(function () {
+        $("#upload").kendoUpload({
+            localization: {
+                remove: "Remove",
+                uploadSelectedFiles: "Upload"
+            },
+            multiple: false,
+            async: {
+                autoUpload: true,
+                saveUrl: "/save",
+                removeUrl: "/remove"
+            },
+            select: function () {
+                // The upload button will be created after the event is triggered
+                // hence the need for a timeout.
+                setTimeout(function () {
+                    $(".k-upload-selected").insertBefore($(".k-upload-action"))
+                });
+            }
         });
-    </script>
-    <script type="text/javascript">
-        $("#cricketerAutoComplete").kendoAutoComplete(
-        ["Sachin",
-        "Dhoni",
-        "Saurabh",
-        "Rahul"]);
-    </script>
+    });
+</script>
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+
+        var data = [
+            { text: "An Giang", value: "1" },
+            { text: "Bà Rịa - Vũng Tàu", value: "2" },
+            { text: "Bắc Giang", value: "3" },
+            { text: "Bắc Kạn", value: "4" },
+            { text: "Bạc Liêu", value: "5" },
+            { text: "Bắc Ninh", value: "6" },
+            { text: "Bến Tre", value: "7" },
+            { text: "Bình Định", value: "8" },
+            { text: "Bình Dương", value: "9" },
+            { text: "Bình Phước", value: "10" },
+            { text: "Bình Thuận", value: "11" },
+            { text: "Cà Mau", value: "12" },
+            { text: "Cao Bằng", value: "13" },
+            { text: "Đắk Lắk", value: "14" },
+            { text: "Đắk Nông", value: "15" },
+            { text: "Điện Biên", value: "16" },
+            { text: "Đồng Nai", value: "17" },
+            { text: "Đồng Tháp", value: "18" },
+            { text: "Gia Lai", value: "19" },
+            { text: "Hà Giang", value: "20" },
+            { text: "Hà Nam", value: "21" },
+            { text: "Hà Tĩnh", value: "22" },
+            { text: "Hải Dương", value: "23" },
+            { text: "Hậu Giang", value: "" },
+            { text: "Hòa Bình", value: "" },
+            { text: "Hưng Yên", value: "" },
+            { text: "Khánh Hòa", value: "" },
+            { text: "Kiên Giang", value: "" },
+            { text: "Kon Tum", value: "" },
+            { text: "Lai Châu", value: "" },
+            { text: "Lâm Đồng", value: "" },
+            { text: "Lạng Sơn", value: "" },
+            { text: "Lào Cai", value: "" },
+            { text: "Long An", value: "" },
+            { text: "Nam Định", value: "" },
+            { text: "Nghệ An", value: "" },
+            { text: "Ninh Bình", value: "" },
+            { text: "Ninh Thuận", value: "" },
+            { text: "Phú Thọ", value: "" },
+            { text: "Quảng Bình", value: "" },
+            { text: "Quảng Nam", value: "" },
+            { text: "Quảng Ngãi", value: "" },
+            { text: "Quảng Ninh", value: "" },
+            { text: "Quảng Trị", value: "" },
+            { text: "Sóc Trăng", value: "" },
+            { text: "Sơn La", value: "" },
+            { text: "Tây Ninh", value: "" },
+            { text: "Thái Bình", value: "" },
+            { text: "Thái Nguyên", value: "" },
+            { text: "Thanh Hóa", value: "" },
+            { text: "Thừa Thiên - Huế", value: "" },
+            { text: "Tiền Giang", value: "" },
+            { text: "Trà Vinh", value: "" },
+            { text: "Tuyên Quang", value: "" },
+            { text: "Vĩnh Long", value: "" },
+
+            { text: "Vĩnh Phúc", value: "" },
+            { text: "Yên Bái", value: "" },
+            { text: "Phú Yên", value: "" },
+            { text: "Cần Thơ", value: "" },
+            { text: "Đà Nẵng", value: "" },
+            { text: "Hải Phòng", value: "" },
+            { text: "Hà Nội", value: "" },
+            { text: "TP Hồ Chí Minh", value: "" },
+
+        ];
+
+        $("#select").kendoMultiSelect({
+            dataTextField: "text",
+            dataValueField: "value",
+            dataSource: data,
+            //dataBound: onDataBound,
+            //select: onSelect,
+            //change: onChange,
+            //close: onClose,
+            //open: onOpen,
+            maxSelectedItems: 1
+        });
+    });
+
+
