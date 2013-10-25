@@ -1,52 +1,60 @@
 body, h2, p {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-	background-color: #444;
-	color: #333;
-	font-family: Helvetica, sans-serif;
+    background-color: #444;
+    color: #333;
+    font-family: Helvetica, sans-serif;
 }
 
 #book {
-	background: url("book.png") no-repeat;
-	position: absolute;
-	width: 830px;
-	height: 260px;
-	left: 50%;
-	top: 50%;
-	margin-left: -400px;
-	margin-top: -125px;
+    background: url("book.png") no-repeat;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: -32%;
+    top: 50%;
+    margin-top: -125px;
 }
 
-#pages section {
-	background: url("paper.png") no-repeat;
-	display: block;
-	width: 400px;
-	height: 250px;
-	position: absolute;
-	left: 415px;
-	top: 5px;
-	overflow: hidden;
+#pages {
+    height: 500px;
+    left: 32px;
+    position: absolute;
+    top: 10px;
+    width: 1600px;
 }
-	#pages section>div {
-		display: block;
-		width: 400px;
-		height: 250px;
-		font-size: 12px;
-	}
-	#pages section p,
-	#pages section h2 {
-		padding: 3px 35px;
-		line-height: 1.4em;
-		text-align: justify;
-	}
-	#pages section h2{
-		margin: 15px 0 10px;
-	}
+
+    #pages section {
+        background: url("right-page-paper.jpg") no-repeat scroll 0 0 #FFFFFF;
+        height: 500px;
+        margin-left: 799px;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+    }
+
+        #pages section > div {
+            height: 440px;
+            padding: 35px 45px;
+            position: absolute;
+            width: 715px;
+        }
+
+        #pages section p,
+        #pages section h2 {
+            padding: 3px 35px;
+            line-height: 1.4em;
+            text-align: justify;
+        }
+
+        #pages section h2 {
+            margin: 15px 0 10px;
+        }
 
 #pageflip-canvas {
-	position: absolute;
-	z-index: 100;
+    position: absolute;
+    z-index: 100;
 }
