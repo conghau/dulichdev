@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DuLichDLL.BAL;
 using DuLichDLL.Model;
+using System.IO;
 
 namespace WebDuLichDev.Controllers
 {
@@ -117,7 +118,45 @@ namespace WebDuLichDev.Controllers
             return PartialView("~/Views/Shared/_Rate.cshtml", dlCity);
 
         }
+        public ActionResult UploadAvatarCity(IEnumerable<HttpPostedFileBase> attachments, int cityId)
+        {
+            DL_CommentCityBAL dlCommentCityBal = new DL_CommentCityBAL();
+            DL_CityBAL dlCityBal = new DL_CityBAL();
 
+            DL_City dlCity = new DL_City();
+
+            dlCity = dlCityBal.GetByID(cityId);
+            var id =dlCity;
+
+            //var filemap1 = System.IO.Directory.GetFiles(Server.MapPath("~/Content/Audio"));
+            var serserPath = Server.MapPath("~/Data/Avatar/City");
+            //foreach (var pathFile in filemap1)
+            //{
+            if (System.IO.File.Exists(serserPath + id.Avatar))
+                System.IO.File.Delete(serserPath + id.Avatar);
+            // The Name of the Upload component is "attachments" 
+            foreach (var file in attachments)
+            {
+                // Some browsers send file names with full path. We only care about the file name.
+
+
+                var fileName = id.CityName + Path.GetExtension(file.FileName);
+                //if (Path.GetExtension(file.FileName) != ".*")
+                //    return Content("Khong dung dinh dang");
+                var destinationPath = Path.Combine(Server.MapPath("~/Data/Avatar/City"), fileName);
+
+                file.SaveAs(destinationPath);
+
+               // dlCityBal.Update(
+               
+            }
+
+            // Return an empty string to signify success      
+
+            return Content("");
+            //A return View();
+        }
+ 
 
     }
 }
