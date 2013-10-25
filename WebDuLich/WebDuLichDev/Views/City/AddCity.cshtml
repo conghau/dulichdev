@@ -15,20 +15,22 @@
 <style>
     .k-upload-selected {
         margin: 0;
+        
     }
+   
 </style>
 <h2>AddCity</h2>
 
 @using (Html.BeginForm("AddCity", "City", FormMethod.Post, new { @class = "Add_City ", @id = "frmAddCity" }))
 {
-    <div class="control-group">
+    <div class="control-group" style="width:50%">
         <label class="control-label" for="input01">@Resources.Language.City</label>
-        <div id="choose_city" class="k-content">
+        <div id="choose_city" class="k-content" >
             <select id="select">
             </select>
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group" style="width:50%">
         <label class="control-label" for="input01">@Resources.Language.Avatar</label>
         <input id="upload" name="upload" type="file" />
         <input id="Avatar" name="Avatar" value="" type="hidden" />
@@ -37,12 +39,12 @@
     <div class="control-group">
         <label class="control-label" for="input01">@Resources.Language.Culture</label>
         <div id="content_city" class="k-content">
-            <textarea id="editor" rows="5" cols="20" style="width: 50%; height: 400px">                  
+            <textarea id="editor" rows="5" cols="20" style="width:50%; height: 400px">                  
                     &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
                 </textarea>
         </div>
     </div>
-    <div class="form-actions">
+    <div class="form-actions" style="width:50%">
         <input class="btn btn-primary" id="btnSubmit" type="button" value="@Resources.Language.Submit" />
         <input class="btn" id="btnCancel" type="button" value="@Resources.Language.Cancel" />
     </div>  
