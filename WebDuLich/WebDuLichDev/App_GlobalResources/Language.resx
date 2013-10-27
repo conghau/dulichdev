@@ -129,11 +129,23 @@
   <data name="Avatar" xml:space="preserve">
     <value>Ảnh đại diện</value>
   </data>
+  <data name="BasicInfo" xml:space="preserve">
+    <value>Thông tin cơ bản</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Huỷ</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>Thành phố</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
+  <data name="DetailInfo" xml:space="preserve">
+    <value>Thông tin chi tiết</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Lịch sử</value>
   </data>
   <data name="Hotel" xml:space="preserve">
     <value>Khách Sạn</value>
@@ -144,6 +156,18 @@
   <data name="HotelName" xml:space="preserve">
     <value>Tên Khách Sạn</value>
   </data>
+  <data name="ImagePlace" xml:space="preserve">
+    <value>Hình ảnh</value>
+  </data>
+  <data name="Introduce" xml:space="preserve">
+    <value>Giới thiệu</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Ghi chú</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Mở</value>
+  </data>
   <data name="Place" xml:space="preserve">
     <value>Địa điểm</value>
   </data>
@@ -152,5 +176,8 @@
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Hoàn thành</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Giờ</value>
   </data>
 </root>

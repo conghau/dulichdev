@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thông tin cơ bản.
+        /// </summary>
+        internal static string BasicInfo {
+            get {
+                return ResourceManager.GetString("BasicInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Huỷ.
         /// </summary>
         internal static string Cancel {
@@ -111,6 +120,33 @@ namespace Resources {
         internal static string City {
             get {
                 return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đóng.
+        /// </summary>
+        internal static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thông tin chi tiết.
+        /// </summary>
+        internal static string DetailInfo {
+            get {
+                return ResourceManager.GetString("DetailInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lịch sử.
+        /// </summary>
+        internal static string History {
+            get {
+                return ResourceManager.GetString("History", resourceCulture);
             }
         }
         
@@ -142,6 +178,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hình ảnh.
+        /// </summary>
+        internal static string ImagePlace {
+            get {
+                return ResourceManager.GetString("ImagePlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Giới thiệu.
+        /// </summary>
+        internal static string Introduce {
+            get {
+                return ResourceManager.GetString("Introduce", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ghi chú.
+        /// </summary>
+        internal static string Note {
+            get {
+                return ResourceManager.GetString("Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mở.
+        /// </summary>
+        internal static string Open {
+            get {
+                return ResourceManager.GetString("Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Địa điểm.
         /// </summary>
         internal static string Place {
@@ -165,6 +237,15 @@ namespace Resources {
         internal static string Submit {
             get {
                 return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Giờ.
+        /// </summary>
+        internal static string Time {
+            get {
+                return ResourceManager.GetString("Time", resourceCulture);
             }
         }
     }
