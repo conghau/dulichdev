@@ -281,6 +281,15 @@ namespace DuLichDLL.DAL
                 cmd.Parameters.Add("@TotalPointRating", SqlDbType.Char).Value = dL_Place.TotalPointRating;
                 cmd.Parameters.Add("@CreatedBy", SqlDbType.BigInt).Value = dL_Place.CreatedBy;
                 cmd.Parameters.Add("@Status", SqlDbType.Int).Value = dL_Place.Status;
+                SqlParameterCollection parameterValues = cmd.Parameters;
+                foreach (SqlParameter parameter in parameterValues)
+                {
+                    if ((parameter.Direction != ParameterDirection.Output) && (parameter.Direction != ParameterDirection.ReturnValue))
+                    {
+                        if (parameter.Value == null)
+                            parameter.Value = DBNull.Value;
+                    }
+                }
                 id = Utility.Utility.ObjectToLong(cmd.ExecuteScalar());
                 return id;
             }
@@ -455,6 +464,53 @@ namespace DuLichDLL.DAL
             catch (Exception ex)
             {
                 throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceDAL: Delete"));
+            }
+        }
+
+        public bool InsertNicePlace(DL_Place dlPlace, DL_NicePlaceInfoDetail dlNicePlaceDetail, List<DL_ImagePlace> dlImagePlace)
+        {
+            SqlConnection cnn = null;
+            SqlTransaction tran = null;
+            bool result = false;
+            try
+            {
+                DL_NicePlaceInfoDetailDAL dlNicePlaceDetailDAL = new DL_NicePlaceInfoDetailDAL();
+                DL_ImagePlaceDAL dlImageDAL = new DL_ImagePlaceDAL();
+                long placeId = 0;
+                cnn = DataProvider.OpenConnection();
+                tran = cnn.BeginTransaction();
+
+                //insert Place
+                placeId = Insert(dlPlace, cnn, tran);
+
+                //set DLPlaceID for NicePlaceInfo
+                dlNicePlaceDetail.DL_PlaceId = placeId;
+                //insert NicePlaceInfo
+                dlNicePlaceDetailDAL.Insert(dlNicePlaceDetail, cnn, tran);
+
+                //insert ImagePlace
+                for (int index = 0; index < dlImagePlace.Count; index++)
+                {
+                    dlImagePlace[index].DL_PlaceID = placeId;
+                    dlImageDAL.Insert(dlImagePlace[index], cnn, tran);
+                }
+
+                tran.Commit();
+                return result = true;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+                
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceDAL: InsertNicePlace"));
+            }
+            finally
+            {
+                tran.Dispose();
+                cnn.Close();
             }
         }
     }

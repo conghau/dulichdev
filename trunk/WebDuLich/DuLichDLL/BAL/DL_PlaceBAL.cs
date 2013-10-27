@@ -202,5 +202,26 @@ namespace DuLichDLL.BAL
                 throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceBAL: Delete"));
             }
         }
+
+        public bool InsertNicePlace(DL_Place dlPlace, DL_NicePlaceInfoDetail dlNicePlaceDetail, List<DL_ImagePlace> dlImagePlace)
+        {
+            try
+            {
+                DL_PlaceDAL dL_PlaceDAL = new DL_PlaceDAL();
+                return dL_PlaceDAL.InsertNicePlace(dlPlace, dlNicePlaceDetail, dlImagePlace);
+            }
+            catch (DataAccessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (BusinessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceBAL: InsertNicePlace"));
+            }
+        }
     }
 }
