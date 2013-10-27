@@ -208,6 +208,7 @@
     <Compile Include="Models\AccountModels.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\NicePlace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebUtility\HtmlHelper.cs" />
     <Compile Include="WebUtility\WebDLData.cs" />

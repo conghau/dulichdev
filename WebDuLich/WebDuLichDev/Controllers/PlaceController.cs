@@ -7,6 +7,7 @@ using DuLichDLL.BAL;
 using DuLichDLL.Model;
 using System.IO;
 using DuLichDLL.TOOLS;
+using WebDuLichDev.Models;
 
 namespace WebDuLichDev.Controllers
 {
@@ -68,17 +69,25 @@ namespace WebDuLichDev.Controllers
 
         public ActionResult AddPlace()
         {
-            DL_Place dlPlace = new DL_Place();
-            return View(dlPlace);
+            NicePlace model = new NicePlace();
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult AddPlace(DL_Place dataRequest, string[] imagePlace)
+        public ActionResult AddPlace(NicePlace dataRequest, string[] imagePlace)
         {
             DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+            List<DL_ImagePlace> listImagePlace = new List<DL_ImagePlace>();
+            for(int index =0; index < imagePlace.Count(); index++)
+            {
+                DL_ImagePlace temp = new DL_ImagePlace();
+                temp.LinkImage = imagePlace[index];
+                listImagePlace.Add(temp);
+            }
 
-            dataRequest.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
-            dlPlaceBal.Insert(dataRequest);           
+            dataRequest.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
+            dlPlaceBal.InsertNicePlace(dataRequest.dlPlace, dataRequest.dlNicePlaceInfoDetail, listImagePlace);
+            //dlPlaceBal.Insert(dataRequest);           
             return View(dataRequest);
         }
 

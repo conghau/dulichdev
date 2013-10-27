@@ -147,6 +147,15 @@ namespace DuLichDLL.DAL
                 cmd.Parameters.Add("@DL_PlaceID", SqlDbType.BigInt).Value = dL_ImagePlace.DL_PlaceID;
                 cmd.Parameters.Add("@LinkImage", SqlDbType.NVarChar).Value = dL_ImagePlace.LinkImage;
                 cmd.Parameters.Add("@Status", SqlDbType.Int).Value = dL_ImagePlace.Status;
+                SqlParameterCollection parameterValues = cmd.Parameters;
+                foreach (SqlParameter parameter in parameterValues)
+                {
+                    if ((parameter.Direction != ParameterDirection.Output) && (parameter.Direction != ParameterDirection.ReturnValue))
+                    {
+                        if (parameter.Value == null)
+                            parameter.Value = DBNull.Value;
+                    }
+                }
                 id = Utility.Utility.ObjectToLong(cmd.ExecuteScalar());
                 return id;
             }
