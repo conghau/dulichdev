@@ -1,12 +1,12 @@
 ﻿@model DuLichDLL.Model.DL_Place
-@{DuLichDLL.Model.DL_c}
+
 @{
     ViewBag.Title = "AddPlace";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>AddPlace</h2>
-@using (Html.BeginForm("AddPlace", "Place", FormMethod.Post, new { @class = "well ", @id = "frmAddPlace" }))
+@using (Html.BeginForm("AddPlace", "Place", FormMethod.Post, new { @class = "well form-horizontal", @id = "frmAddPlace" }))
 {
     <div>
         <ul id="panelbar">
@@ -15,25 +15,30 @@
                 <div>
                     <div class="control-group">
                         <label class="control-label" for="input01">@Resources.Language.PlaceName</label>
-                        @Html.TextBoxFor(m => m.Name, new { id = "placeName", placeholder = "Place name ...", validationMessage = "Please enter {0}" })
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.Name, new { id = "placeName", placeholder = "Place name ...", required = "", validationMessage = "Please enter {0}" })
+                        </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="input01">@Resources.Language.Address</label>
-                        @Html.TextBoxFor(m => m.Address, new { id = "Address", placeholder = "Address..." })
+                        <div class="controls">@Html.TextBoxFor(m => m.Address, new { id = "Address", placeholder = "Address...", required = "", validationMessage = "Please enter {0}" })</div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="input01">@Resources.Language.City</label>
-                        @Html.DropDownListFor(m => m.DL_CityId, WebDuLichDev.WebUtility.WebDuLichData.ListCity, new { id = "drop_CityList", @class = "DLL kendoDropDownList city" })
+                        <div class="controls">@Html.DropDownListFor(m => m.DL_CityId, WebDuLichDev.WebUtility.WebDuLichData.ListCity, new { id = "drop_CityList", @class = "DLL kendoDropDownList city" })</div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="input01">@Resources.Language.Avatar</label>
-                        <input id="uploadAvatar" name="fileUpload" type="file" />
-                        <input id="Avatar" name="Avatar" value="" type="hidden" />
-                        <div id="imgPhotoAvatar">
-                            <div class="row">
-                                <div class="span8">
-                                    <ul class="thumbnails">
-                                    </ul>
+
+                        <div class="controls">
+                            <input id="uploadAvatar" name="fileUpload" type="file" />
+                            <input id="Avatar" name="Avatar" value="" type="hidden" required="" validationmessage="Please upload {0}" />
+                            <div id="imgPhotoAvatar">
+                                <div class="row">
+                                    <div class="span8">
+                                        <ul class="thumbnails">
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -83,14 +88,16 @@
                 <span class="">@Resources.Language.ImagePlace</span>
                 <div class="control-group">
                     <label class="control-label" for="input01">@Resources.Language.ImagePlace</label>
-                    <input id="uploadImage" name="fileUpload" type="file" />
-                    <div id="imageName"> 
-                    </div>
-                    <div id="imgPhotoPlace">
-                        <div class="row">
-                            <div class="span8">
-                                <ul class="thumbnails">
-                                </ul>
+                    <div class="controls">
+                        <input id="uploadImage" name="fileUpload" type="file" />
+                        <div id="imageName">
+                        </div>
+                        <div id="imgPhotoPlace">
+                            <div class="row">
+                                <div class="span8">
+                                    <ul class="thumbnails">
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -129,6 +136,7 @@
                     saveUrl: "/Place/UploadAvatar",
                     removeUrl: "/Place/RemoveAvatar",
                     autoUpload: true,
+                    multiple: false,
                 },
                 select: onSelect,
                 upload: onUpload,
@@ -146,9 +154,19 @@
                 success: onUploadSuccess
             });
 
+            var validator = $("#panelbar").kendoValidator().data("kendoValidator");
             $('#btnSubmit').click(function () {
+                if (validator.validate()) {
+                    alert("Hooray! Your tickets has been booked!")
+                        .removeClass("invalid")
+                        .addClass("valid");
+                    $('#frmAddPlace').submit();
+                } else {
+                    alert("Oops! There is invalid data in the form.")
+                        .removeClass("valid")
+                        .addClass("invalid");
+                }
 
-                $('#frmAddPlace').submit();
             });
 
             $('#btnCancel').click(function () {
@@ -195,17 +213,19 @@
 
             if (e.operation == "upload") {
                 $.each(files, function () {
+                    var name = this.name.replace(' ', '').replace('.', '');
                     $('#Avatar').val(this.name);
                     $('#imgPhotoAvatar > .row > .span8 > .thumbnails').append("<li class='span2' id=" + this.name + " ><a class=thumbnail><img src=/Data/Avatar/place/" + this.name + " alt='' /></a></li>");
-
+                    //$('#uploadAvatar').data('kendoUpload').disable();
                 });
             }
 
             if (e.operation == "remove") {
                 $.each(files, function () {
                     $('#Avatar').val('');
-                    //alert('div#imgPhotoAvatar > .row > .span8 > .thumbnails > li.' + this.name);
-                    $('div#imgPhotoAvatar > .row > .span8 > .thumbnails > li#' + this.name).remove();
+                    var name = this.name.replace(' ', '').replace('.', '');
+                    $('div#imgPhotoAvatar > .row > .span8 > .thumbnails > li').remove();
+                    // $('#uploadAvatar').data('kendoUpload').enable();
                 });
             }
         }
@@ -215,16 +235,18 @@
 
             if (e.operation == "upload") {
                 $.each(files, function () {
-                    $('#imageName').append("<input id="+this.name+" name='imagePlace' value="+this.name+" type= hidden />")
-                    $('#imgPhotoPlace> .row > .span8 > .thumbnails').append("<li class='span2' id=" + this.name + " ><a class=thumbnail><img src=/Data/Images/place/" + this.name + " alt='' /></a></li>");
+                    var name = this.name.replace(' ', '').replace('.', '');
+                    $('#imageName').append("<input id=" + name + " name='imagePlace' value=" + this.name + " type= hidden />")
+                    $('#imgPhotoPlace> .row > .span8 > .thumbnails').append("<li class= 'span2 " + name + "' ><a class=thumbnail><img src=/Data/Images/place/" + this.name + " alt='' /></a></li>");
 
                 });
             }
 
             if (e.operation == "remove") {
                 $.each(files, function () {
-                    $('div#imageName > input#'+this.name).val('');
-                    $('div#imgPhotoPlace > img').remove();
+                    var name = this.name.replace(' ', '').replace('.', '');
+                    $('div#imageName > input#' + name).remove();
+                    $('div#imgPhotoPlace > .row > .span8 > .thumbnails > li').remove('.' + name)
                 });
             }
         }
