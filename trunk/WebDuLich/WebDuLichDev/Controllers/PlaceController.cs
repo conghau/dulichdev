@@ -73,7 +73,7 @@ namespace WebDuLichDev.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddPlace(DL_Place dataRequest)
+        public ActionResult AddPlace(DL_Place dataRequest, string[] imagePlace)
         {
             DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
 
@@ -82,35 +82,47 @@ namespace WebDuLichDev.Controllers
             return View(dataRequest);
         }
 
-        public ActionResult UploadImage(IEnumerable<HttpPostedFileBase> fileUpload)
+        public ActionResult UploadAvatar(IEnumerable<HttpPostedFileBase> fileUpload)
         {
-            var serserPath = Server.MapPath("~/Data/Images/Place/");
-            //foreach (var pathFile in filemap1)
-            //{
-
-            // The Name of the Upload component is "attachments" 
-
+            var serserPath = Server.MapPath("~/Data/Avatar/Place/");        
             foreach (var file in fileUpload)
             {
                 // Some browsers send file names with full path. We only care about the file name.
-
-
                 var fileName = Path.GetFileName(file.FileName);
-                //if (Path.GetExtension(file.FileName) != ".*")
-                //    return Content("Khong dung dinh dang");
-                var destinationPath = Path.Combine(Server.MapPath("~/Data/Images/Place/"), fileName);
+
+                var destinationPath = Path.Combine(serserPath, fileName);
 
                 file.SaveAs(destinationPath);
+            }  
+            return Json(new { status = "OK" }, "text/plain");
 
-                //db.bq_Quiz_UpdateCompanyIcon(quizId, fileName);
-            }
+        }
+        public ActionResult RemoveAvatar(string fileNames)
+        {
+            ProcessWithFiles processfile = new ProcessWithFiles();
+            var destinationPath = Path.Combine(Server.MapPath("~/Data/Avatar/Place/"), fileNames);
 
-            // Return an empty string to signify success      
+            processfile.DeleteFile(destinationPath);
 
             return Json(new { status = "OK" }, "text/plain");
 
         }
 
+        public ActionResult UploadImage(IEnumerable<HttpPostedFileBase> fileUpload)
+        {
+            var serserPath = Server.MapPath("~/Data/Images/Place/");
+            foreach (var file in fileUpload)
+            {
+                // Some browsers send file names with full path. We only care about the file name.
+                var fileName = Path.GetFileName(file.FileName);
+
+                var destinationPath = Path.Combine(Server.MapPath("~/Data/Images/Place/"), fileName);
+
+                file.SaveAs(destinationPath);
+            }
+            return Json(new { status = "OK" }, "text/plain");
+
+        }
         public ActionResult RemoveImage(string fileNames)
         {
             ProcessWithFiles processfile = new ProcessWithFiles();
