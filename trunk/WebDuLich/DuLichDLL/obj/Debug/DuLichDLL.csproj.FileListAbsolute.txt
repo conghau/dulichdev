@@ -7,7 +7,6 @@ C:\Users\CONGHAU\Documents\Visual Studio 2012\Projects\WebDuLich\DuLichDLL\obj\D
 E:\SOURCE CODE\DuLichDev\WebDuLich\DuLichDLL\bin\Debug\DuLichDLL.dll.config
 E:\SOURCE CODE\DuLichDev\WebDuLich\DuLichDLL\bin\Debug\DuLichDLL.dll
 E:\SOURCE CODE\DuLichDev\WebDuLich\DuLichDLL\bin\Debug\DuLichDLL.pdb
-E:\SOURCE CODE\DuLichDev\WebDuLich\DuLichDLL\obj\Debug\DuLichDLL.csprojResolveAssemblyReference.cache
 E:\SOURCE CODE\DuLichDev\WebDuLich\DuLichDLL\obj\Debug\DuLichDLL.dll
 E:\SOURCE CODE\DuLichDev\WebDuLich\DuLichDLL\obj\Debug\DuLichDLL.pdb
 E:\KHOALUAN\dulichdev\WebDuLich\DuLichDLL\bin\Debug\DuLichDLL.dll.config
@@ -16,3 +15,4 @@ E:\KHOALUAN\dulichdev\WebDuLich\DuLichDLL\bin\Debug\DuLichDLL.pdb
 E:\KHOALUAN\dulichdev\WebDuLich\DuLichDLL\obj\Debug\DuLichDLL.csprojResolveAssemblyReference.cache
 E:\KHOALUAN\dulichdev\WebDuLich\DuLichDLL\obj\Debug\DuLichDLL.dll
 E:\KHOALUAN\dulichdev\WebDuLich\DuLichDLL\obj\Debug\DuLichDLL.pdb
+E:\SOURCE CODE\DuLichDev\WebDuLich\DuLichDLL\obj\Debug\DuLichDLL.csprojResolveAssemblyReference.cache

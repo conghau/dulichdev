@@ -12,52 +12,128 @@
 <script src="@Url.Content("~/Scripts/KendoJS/kendo.all.min.js")"></script>
 
 
-<style>
-    .k-upload-selected {
-        margin: 0;
-        
-    }
-   
-</style>
+
 <h2>AddCity</h2>
 
 @using (Html.BeginForm("AddCity", "City", FormMethod.Post, new { @class = "Add_City ", @id = "frmAddCity" }))
 {
-    <div class="control-group" style="width:50%">
+    <div class="control-group" style="width: 50%">
         <label class="control-label" for="input01">@Resources.Language.City</label>
-        <div id="choose_city" class="k-content" >
+        <div id="choose_city" class="k-content">
             <select id="select">
             </select>
         </div>
     </div>
-    <div class="control-group" style="width:50%">
-        <label class="control-label" for="input01">@Resources.Language.Avatar</label>
-        <input id="upload" name="upload" type="file" />
-        <input id="Avatar" name="Avatar" value="" type="hidden" />
-        <div id="imgPhoto"></div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="input01">@Resources.Language.Culture</label>
-        <div id="content_city" class="k-content">
-            <textarea id="editor" rows="5" cols="20" style="width:50%; height: 400px">                  
+    <div>
+        <ul id="panelbar">
+            <li class="k-state-active">
+                <span class="k-link k-state-selected">@Resources.Language.BasicInfo</span>
+                <div>
+                    <div class="control-group">
+                        <label class="control-label" for="input01">@Resources.Language.Avatar</label>
+                        <div class="controls">
+                            <input id="uploadAvatar" name="fileUpload" type="file" />
+                            <input id="Avatar" name="dlPlace.Avatar" value="" type="hidden" required="" validationmessage="Please upload {0}" />
+                            <div id="imgPhotoAvatar">
+                                <div class="row">
+                                    <div class="span8">
+                                        <ul class="thumbnails">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="input01">@Resources.Language.Introduce</label>
+                        <div id="content_city" class="k-content">
+                            <textarea id="editor" rows="5" cols="25" style="width: 70%; height: 400px">                  
                     &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
                 </textarea>
-        </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <span class="">@Resources.Language.DetailInfo</span>
+                <div id="tabstrip">
+                    <ul>
+                        <li class="k-state-active">@Resources.Language.History</li>
+                        <li>@Resources.Language.Nature</li>
+                        <li>@Resources.Language.Social</li>
+                        <li>@Resources.Language.Administrative</li>
+                        <li>@Resources.Language.Economy</li>
+                        <li>@Resources.Language.Travel</li>
+                    </ul>
+                    <div>
+                        <div class="k-content">
+                            <textarea class="editor" name="dlCityInfoDetail.History" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
+                </textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="k-content">
+                            <textarea class="editor" name="dlCityInfoDetail.Nature" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
+                </textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="k-content">
+                            <textarea class="editor" name="dlCityInfoDetail.Social" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
+                </textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="k-content">
+                            <textarea class="editor" name="dlCityInfoDetail.Administrative" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
+                </textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="k-content">
+                            <textarea class="editor" name="dlCityInfoDetail.Economy" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
+                </textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="k-content">
+                            <textarea class="editor" name="dlCityInfoDetail.Travel" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
+                </textarea>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
     </div>
-    <div class="form-actions" style="width:50%">
+  
+    <div class="form-actions" style="width: 50%">
         <input class="btn btn-primary" id="btnSubmit" type="button" value="@Resources.Language.Submit" />
         <input class="btn" id="btnCancel" type="button" value="@Resources.Language.Cancel" />
     </div>  
-
-   
-    
 }
 
- 
+
 
 <script>
     $(document).ready(function () {
+
         // create Editor from textarea HTML element with default set of tools
+        $(".editor").kendoEditor({
+
+
+            tools: ["bold", "italic", "underline", "justifyLeft", "justifyCenter", "justifyRight",
+                "justifyFull", "insertUnorderedList", "insertOrderedList", "indent", "outdent", "viewHtml"
+            ],
+            
+        });
         $("#editor").kendoEditor({
 
 
@@ -66,8 +142,43 @@
             ],
             insertHtml: [
                    { text: "Chữ ký:", value: "<p>Regards,<br /> By...,<br /></a></p>" }]
-        })
+        });
+        $("#panelbar").kendoPanelBar({
+            expandMode: "multiple",
+            animation: {
+                collapse: {
+                    duration: 1000,
+                    effects: "fadeOut"
+                },
+                expand: {
+                    duration: 500,
+                    effects: "expandVertical fadeIn"
+                }
 
+            }
+            
+        });
+
+        $("#tabstrip").kendoTabStrip({
+            animation: {
+                open: {
+                    effects: ["expandVertical ", "fadeIn"]
+                }
+                
+            }
+
+        });
+      
+        var validator = $("#panelbar").kendoValidator().data("kendoValidator");
+
+        $('#btnSubmit').click(function () {
+            if (validator.validate()) {
+                $('#frmAddPlace').submit();
+            } else {
+                alert("Oops! There is invalid data in the form.");
+            }
+
+        });
     });
 
 </script>
@@ -75,10 +186,7 @@
 
 
 <script>
-    $('#btnSubmit').click(function () {
-
-        $('#frmAddPlace').submit();
-    });
+   
 
     $('#btnCancel').click(function () {
         
@@ -93,7 +201,7 @@
 
 <script>
     $(function () {
-        $("#upload").kendoUpload({
+        $("#uploadAvatar").kendoUpload({
             localization: {
                 remove: "Remove",
                 uploadSelectedFiles: "Upload"
@@ -112,7 +220,7 @@
                 });
 
             },
-           
+            select: onSelect,
             upload: onUpload,
             success: onUploadSuccess
         });
@@ -154,6 +262,20 @@
                 $('div#imgPhoto > img').remove();
             });
         }
+    }
+    function onSelect(e) {
+        var files = e.files;
+
+        // Check the extension of each file and abort the upload if it is not .jpg ,.png ,.bmp
+        $.each(files, function () {
+            //alert(this.extension);
+            if ((this.extension == ".jpg") || (this.extension == ".png") || (this.extension == ".bmp")) {
+                return true;
+            }
+            else {
+                alert("it is not .jpg ,.png ,.bmp"); e.preventDefault();
+            }
+        });
     }
 </script>
 
