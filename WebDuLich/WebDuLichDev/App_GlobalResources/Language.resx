@@ -126,6 +126,9 @@
   <data name="Address" xml:space="preserve">
     <value>Địa chỉ</value>
   </data>
+  <data name="Administrative" xml:space="preserve">
+    <value>Hành chính</value>
+  </data>
   <data name="Avatar" xml:space="preserve">
     <value>Ảnh đại diện</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="DetailInfo" xml:space="preserve">
     <value>Thông tin chi tiết</value>
+  </data>
+  <data name="Economy" xml:space="preserve">
+    <value>Kinh tế</value>
   </data>
   <data name="History" xml:space="preserve">
     <value>Lịch sử</value>
@@ -162,6 +168,9 @@
   <data name="Introduce" xml:space="preserve">
     <value>Giới thiệu</value>
   </data>
+  <data name="Nature" xml:space="preserve">
+    <value>Tự nhiên</value>
+  </data>
   <data name="Note" xml:space="preserve">
     <value>Ghi chú</value>
   </data>
@@ -174,10 +183,16 @@
   <data name="PlaceName" xml:space="preserve">
     <value>Tên địa điểm</value>
   </data>
+  <data name="Social" xml:space="preserve">
+    <value>Xã hội</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>Hoàn thành</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>Giờ</value>
+  </data>
+  <data name="Travel" xml:space="preserve">
+    <value>Du lịch</value>
   </data>
 </root>
