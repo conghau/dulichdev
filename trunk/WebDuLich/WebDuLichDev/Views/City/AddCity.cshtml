@@ -33,7 +33,7 @@
                         <label class="control-label" for="input01">@Resources.Language.Avatar</label>
                         <div class="controls">
                             <input id="uploadAvatar" name="fileUpload" type="file" />
-                            <input id="Avatar" name="dlPlace.Avatar" value="" type="hidden" required="" validationmessage="Please upload {0}" />
+                            <input id="Avatar" name="dlCity.Avatar" value="" type="hidden" required="" validationmessage="Please upload {0}" />
                             <div id="imgPhotoAvatar">
                                 <div class="row">
                                     <div class="span8">
@@ -47,7 +47,7 @@
                     <div class="control-group">
                         <label class="control-label" for="input01">@Resources.Language.Introduce</label>
                         <div id="content_city" class="k-content">
-                            <textarea id="editor" rows="5" cols="25" style="width: 70%; height: 400px">                  
+                            <textarea id="editor" rows="5" cols="20" style="width: 100%; height: 400px">                  
                     &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
                 </textarea>
                         </div>
@@ -68,42 +68,42 @@
                     </ul>
                     <div>
                         <div class="k-content">
-                            <textarea class="editor" name="dlCityInfoDetail.History" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                            <textarea class="editor" id="History" rows="5" cols="20" style="width: 100%; height: 400px">                  
                     &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
                 </textarea>
                         </div>
                     </div>
                     <div>
                         <div class="k-content">
-                            <textarea class="editor" name="dlCityInfoDetail.Nature" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                            <textarea class="editor" id="Nature" rows="5" cols="20" style="width: 100%; height: 400px">                  
                     &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
                 </textarea>
                         </div>
                     </div>
                     <div>
                         <div class="k-content">
-                            <textarea class="editor" name="dlCityInfoDetail.Social" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                            <textarea class="editor" id="Social" rows="5" cols="20" style="width: 100%; height: 400px">                  
                     &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
                 </textarea>
                         </div>
                     </div>
                     <div>
                         <div class="k-content">
-                            <textarea class="editor" name="dlCityInfoDetail.Administrative" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                            <textarea class="editor" id="Administrative" rows="5" cols="20" style="width: 100%; height: 400px">                  
                     &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
                 </textarea>
                         </div>
                     </div>
                     <div>
                         <div class="k-content">
-                            <textarea class="editor" name="dlCityInfoDetail.Economy" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                            <textarea class="editor" id="Economy" rows="5" cols="20" style="width: 100%; height: 400px">                  
                     &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
                 </textarea>
                         </div>
                     </div>
                     <div>
                         <div class="k-content">
-                            <textarea class="editor" name="dlCityInfoDetail.Travel" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                            <textarea class="editor" id="Travel" rows="5" cols="20" style="width: 100%; height: 400px">                  
                     &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
                 </textarea>
                         </div>
@@ -117,7 +117,9 @@
     <div class="form-actions" style="width: 50%">
         <input class="btn btn-primary" id="btnSubmit" type="button" value="@Resources.Language.Submit" />
         <input class="btn" id="btnCancel" type="button" value="@Resources.Language.Cancel" />
-    </div>  
+    </div> 
+     
+    <p>@ViewBag.CityNew</p>
 }
 
 
@@ -128,15 +130,16 @@
         // create Editor from textarea HTML element with default set of tools
         $(".editor").kendoEditor({
 
-
+            encoded: false,
             tools: ["bold", "italic", "underline", "justifyLeft", "justifyCenter", "justifyRight",
                 "justifyFull", "insertUnorderedList", "insertOrderedList", "indent", "outdent", "viewHtml"
             ],
+           
             
         });
         $("#editor").kendoEditor({
 
-
+            encoded: false,
             tools: ["bold", "italic", "underline", "justifyLeft", "justifyCenter", "justifyRight",
                 "justifyFull", "insertUnorderedList", "insertOrderedList", "indent", "outdent", "viewHtml", "insertHtml"
             ],
@@ -172,8 +175,15 @@
         var validator = $("#panelbar").kendoValidator().data("kendoValidator");
 
         $('#btnSubmit').click(function () {
+            //var editor = $("#editor").data("kendoEditor");
+            var e2 = $("#Travel").data("kendoEditor");
+            var e1 = $("#History").data("kendoEditor");
+            //alert(editor.encodedValue());
+            alert(e1.encodedValue() + " ed 2" + e2.encodedValue());
             if (validator.validate()) {
                 $('#frmAddPlace').submit();
+                
+               
             } else {
                 alert("Oops! There is invalid data in the form.");
             }
@@ -187,7 +197,14 @@
 
 <script>
    
-
+    function htmlEncode(value) {
+        if (value) {
+            return jQuery('<div />').text(value).html();
+        } else {
+            return '';
+        }
+    }
+     // logs "<p>foo</p>"
     $('#btnCancel').click(function () {
         
         
@@ -209,8 +226,8 @@
             multiple: false,
             async: {
                 autoUpload: false,
-                saveUrl: "/save",
-                removeUrl: "/remove"
+                saveUrl: '@Url.Action("UploadAvatarCity","City",new {cityId=4})',
+                removeUrl: '@Url.Action("RemoveAvatarCity","City",new {cityId=4})'
             },
             select: function () {
                 // The upload button will be created after the event is triggered
@@ -251,7 +268,7 @@
         if (e.operation == "upload") {
             $.each(files, function () {
                 $('#Avatar').val(this.name);
-                $('#imgPhoto').append("<img src=/Data/Images/place/" + this.name + " height =80 width=80 id=" + this.name + " />");
+                $('#imgPhotoAvatar > .row > .span8 > .thumbnails').append("<li class='span2' id=" + this.name + " ><a class=thumbnail><img src=/Data/Avatar/City/" + this.name + " alt='' /></a></li>");
 
             });
         }
@@ -259,7 +276,7 @@
         if (e.operation == "remove") {
             $.each(files, function () {
                 $('#Avatar').val('');
-                $('div#imgPhoto > img').remove();
+                $('div#imgPhotoAvatar > .row > .span8 > .thumbnails > li').remove();
             });
         }
     }
@@ -358,13 +375,36 @@
             dataTextField: "text",
             dataValueField: "value",
             dataSource: data,
+            placeholder: "Select City...",
             //dataBound: onDataBound,
-            //select: onSelect,
-            //change: onChange,
-            //close: onClose,
+            select: onSelectCity,
+            //change: onChangeCity,
+            close: onCloseCity,
             //open: onOpen,
             maxSelectedItems: 1
         });
     });
+    function onSelectCity(e) {
+        var dataItem = this.dataSource.view()[e.item.index()];
+        $.ajax({
+            url: '@Url.Content("/City/SetCityID")',
+            data: { cityID: dataItem.value },
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                alert("Da set");
+                // ...
+            },
+            error: function () {
+                // ...
+            }
+        });
+       
+        //alert("City" + dataItem.text + " " + dataItem.value);
+    }
+    function onCloseCity(e) {
+        //var dataItem = this.dataSource.view()[e.item.index()];
 
+       // alert("City change to");
+    }
 </script>
