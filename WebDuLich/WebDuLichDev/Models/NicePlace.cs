@@ -12,4 +12,9 @@ namespace WebDuLichDev.Models
         public DL_Place dlPlace { get; set; }
         public DL_NicePlaceInfoDetail dlNicePlaceInfoDetail {get;set;}
     }
+    public class EncodeModel
+    {
+        [AllowHtml]
+        public string Editor { get; set; }
+    }
 }

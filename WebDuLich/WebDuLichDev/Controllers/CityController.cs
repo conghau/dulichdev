@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using DuLichDLL.BAL;
 using DuLichDLL.Model;
 using System.IO;
+using DuLichDLL.TOOLS;
+using WebDuLichDev.Models;
 
 namespace WebDuLichDev.Controllers
 {
@@ -102,6 +104,11 @@ namespace WebDuLichDev.Controllers
         {
             return View();
         }
+        public ActionResult SetCityID(long cityID)
+        {
+            ViewBag.CityNew = cityID;
+            return Redirect("././");
+        }
         public ActionResult Restar(long cityId)
         {
             float Avg = 0;
@@ -120,10 +127,19 @@ namespace WebDuLichDev.Controllers
         }
         public ActionResult AddNewCity(DL_City dataRequestCity)
         {
+
             return View(dataRequestCity);
         }
 
-        public ActionResult UploadAvatarCity(IEnumerable<HttpPostedFileBase> attachments, int cityId)
+        public ActionResult SomeAction(EncodeModel myModel)
+        {
+            var Editor = myModel.Editor;
+            Editor = Server.HtmlDecode(Editor);
+            //Save to db, etc.
+            return View(myModel);
+        }
+
+        public ActionResult UploadAvatarCity(IEnumerable<HttpPostedFileBase> fileUpload, int cityId)
         {
             DL_CommentCityBAL dlCommentCityBal = new DL_CommentCityBAL();
             DL_CityBAL dlCityBal = new DL_CityBAL();
@@ -133,35 +149,30 @@ namespace WebDuLichDev.Controllers
             dlCity = dlCityBal.GetByID(cityId);
             var id =dlCity;
 
-            //var filemap1 = System.IO.Directory.GetFiles(Server.MapPath("~/Content/Audio"));
-            var serserPath = Server.MapPath("~/Data/Avatar/City");
-            //foreach (var pathFile in filemap1)
-            //{
-            if (System.IO.File.Exists(serserPath + id.Avatar))
-                System.IO.File.Delete(serserPath + id.Avatar);
-            // The Name of the Upload component is "attachments" 
-            foreach (var file in attachments)
+            var serserPath = Server.MapPath("~/Data/Avatar/City/");
+            if (System.IO.File.Exists(serserPath + fileUpload)) //Xóa file có trước nếu đã có trong csdl. Việc up là duy nhất
+                System.IO.File.Delete(serserPath + fileUpload);
+            foreach (var file in fileUpload)
             {
                 // Some browsers send file names with full path. We only care about the file name.
+                var fileName = Path.GetFileName(file.FileName);
 
-
-                var fileName = id.CityName + Path.GetExtension(file.FileName);
-                //if (Path.GetExtension(file.FileName) != ".*")
-                //    return Content("Khong dung dinh dang");
-                var destinationPath = Path.Combine(Server.MapPath("~/Data/Avatar/City"), fileName);
+                var destinationPath = Path.Combine(serserPath, fileName);
 
                 file.SaveAs(destinationPath);
-
-               // dlCityBal.Update(
-               
             }
-
-            // Return an empty string to signify success      
-
-            return Content("");
-            //A return View();
+            return Json(new { status = "OK" }, "text/plain");
         }
- 
 
+        public ActionResult RemoveAvatarCity(string fileNames, int cityId)
+        {
+            ProcessWithFiles processfile = new ProcessWithFiles();
+            var destinationPath = Path.Combine(Server.MapPath("~/Data/Avatar/City/"), fileNames);
+
+            processfile.DeleteFile(destinationPath);
+
+            return Json(new { status = "OK" }, "text/plain");
+
+        }
     }
 }
