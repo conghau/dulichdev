@@ -15,4 +15,3 @@ E:\KHOALUAN\dulichdev\WebDuLich\DuLichDLL\bin\Debug\DuLichDLL.pdb
 E:\KHOALUAN\dulichdev\WebDuLich\DuLichDLL\obj\Debug\DuLichDLL.csprojResolveAssemblyReference.cache
 E:\KHOALUAN\dulichdev\WebDuLich\DuLichDLL\obj\Debug\DuLichDLL.dll
 E:\KHOALUAN\dulichdev\WebDuLich\DuLichDLL\obj\Debug\DuLichDLL.pdb
-E:\SOURCE CODE\DuLichDev\WebDuLich\DuLichDLL\obj\Debug\DuLichDLL.csprojResolveAssemblyReference.cache

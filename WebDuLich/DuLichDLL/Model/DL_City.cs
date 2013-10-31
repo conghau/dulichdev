@@ -58,7 +58,7 @@ namespace DuLichDLL.Model
         }
 
         private string _summary;
-
+        
         public string Summary
         {
             get { return _summary; }
@@ -84,6 +84,7 @@ namespace DuLichDLL.Model
         p_DL_City_Update,
         p_DL_City_Get_List,
         p_DL_City_Get_ByID,
+        p_DL_City_UpdateContent,
 
     }
 }

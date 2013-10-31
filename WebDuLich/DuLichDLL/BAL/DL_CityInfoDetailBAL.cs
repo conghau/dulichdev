@@ -12,12 +12,12 @@ namespace DuLichDLL.BAL
 {
 public class DL_CityInfoDetailBAL
 {
-public DL_CityInfoDetail GetByID(long ID)
+public DL_CityInfoDetail GetByCityID(long cityID)
 {
 try
 {
 DL_CityInfoDetailDAL dL_CityInfoDetailDAL = new DL_CityInfoDetailDAL();
-return dL_CityInfoDetailDAL.GetByID(ID);
+return dL_CityInfoDetailDAL.GetByCityID(cityID);
 }
 catch (DataAccessException ex)
 {
@@ -29,7 +29,7 @@ throw new BusinessException(ex.Message);
 }
 catch (Exception ex)
 {
-throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_CityInfoDetailBAL: GetByID"));
+throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_CityInfoDetailBAL: GetByCityID"));
 }
 }
 public List<DL_CityInfoDetail> GetList()

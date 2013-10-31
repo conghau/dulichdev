@@ -88,7 +88,7 @@ namespace DuLichDLL.Model
         p_DL_CityInfoDetail_Delete,
         p_DL_CityInfoDetail_Update,
         p_DL_CityInfoDetail_Get_List,
-        p_DL_CityInfoDetail_Get_ByID,
+        p_DL_CityInfoDetail_Get_ByCityID,
 
     }
 }

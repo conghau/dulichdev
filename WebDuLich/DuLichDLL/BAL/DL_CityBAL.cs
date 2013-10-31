@@ -134,5 +134,26 @@ namespace DuLichDLL.BAL
                 throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_CityBAL: InsertRating"));
             }
         }
+        public bool UpdateCity(DL_City dlCity, DL_CityInfoDetail dlCityInfo)
+        {
+            try
+            {
+                bool result = false;
+                DL_CityDAL dL_CityDAL = new DL_CityDAL();
+                return result = dL_CityDAL.UpdateCity(dlCity, dlCityInfo);
+            }
+            catch (DataAccessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (BusinessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_CityBAL: UpdateCity"));
+            }
+        }
     }
 }

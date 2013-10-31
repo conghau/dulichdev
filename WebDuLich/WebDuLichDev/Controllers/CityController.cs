@@ -100,15 +100,33 @@ namespace WebDuLichDev.Controllers
             return View(model);
         }
 
-        public ActionResult AddCity()
+
+
+        public ActionResult AddCity(long id)
         {
-            return View();
+            DL_CityBAL dlCityBal = new DL_CityBAL();
+            DL_CityInfoDetailBAL dlCityInfoBAL = new DL_CityInfoDetailBAL();
+            CityInfo model = new CityInfo();
+
+
+            model.dlCity = dlCityBal.GetByID(id);
+            
+            model.dlCityInfoDetail = dlCityInfoBAL.GetByCityID(id);
+            //model.dlCityInfoDetail.Economy = HttpUtility.HtmlDecode(model.dlCityInfoDetail.Economy);
+
+            return View(model);
         }
-        //[HttpPost]
-        //public ActionResult AddCity()
-        //{
-        //    return View();
-        //}
+        [HttpPost]
+        public ActionResult AddCity(CityInfo cityinfo)
+        {
+            DL_CityBAL dlCityBal = new DL_CityBAL();
+
+            cityinfo.dlCityInfoDetail.DL_CityId = cityinfo.dlCity.ID;
+
+            dlCityBal.UpdateCity(cityinfo.dlCity, cityinfo.dlCityInfoDetail);
+
+            return View(cityinfo);
+        }
         public ActionResult SetCityID(long cityID)
         {
             ViewBag.CityNew = cityID;

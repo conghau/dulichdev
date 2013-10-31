@@ -42,15 +42,15 @@ results.Add(ConvertOneRow(item));
 }
 return results;
 }
-public DL_CityInfoDetail GetByID(long ID)
+public DL_CityInfoDetail GetByCityID(long cityID)
 {
 SqlConnection cnn = null;
 try
 {
  cnn = DataProvider.OpenConnection();
-SqlCommand cmd = new SqlCommand(DL_CityInfoDetailProcedure.p_DL_CityInfoDetail_Get_ByID.ToString(), cnn);
+SqlCommand cmd = new SqlCommand(DL_CityInfoDetailProcedure.p_DL_CityInfoDetail_Get_ByCityID.ToString(), cnn);
 cmd.CommandType = CommandType.StoredProcedure;
-cmd.Parameters.Add("@ID", SqlDbType.BigInt).Value = ID;
+cmd.Parameters.Add("@DL_CityId", SqlDbType.BigInt).Value = cityID;
 DataTable dt = new DataTable();
 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 adapter.Fill(dt);
@@ -68,7 +68,7 @@ throw new DataAccessException(ex.Message) ;
 }
 catch (Exception ex)
 {
-throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_CityInfoDetailDAL: GetByID"));
+throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_CityInfoDetailDAL: GetByCityID"));
 }
 finally
 {
