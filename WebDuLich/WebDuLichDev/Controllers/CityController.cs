@@ -104,6 +104,11 @@ namespace WebDuLichDev.Controllers
         {
             return View();
         }
+        //[HttpPost]
+        //public ActionResult AddCity()
+        //{
+        //    return View();
+        //}
         public ActionResult SetCityID(long cityID)
         {
             ViewBag.CityNew = cityID;
@@ -131,13 +136,13 @@ namespace WebDuLichDev.Controllers
             return View(dataRequestCity);
         }
 
-        public ActionResult SomeAction(EncodeModel myModel)
-        {
-            var Editor = myModel.Editor;
-            Editor = Server.HtmlDecode(Editor);
-            //Save to db, etc.
-            return View(myModel);
-        }
+        //public ActionResult SomeAction(City myModel)
+        //{
+        //    var Editor = myModel.Editor;
+        //    Editor = Server.HtmlDecode(Editor);
+        //    //Save to db, etc.
+        //    return View(myModel);
+        //}
 
         public ActionResult UploadAvatarCity(IEnumerable<HttpPostedFileBase> fileUpload, int cityId)
         {
