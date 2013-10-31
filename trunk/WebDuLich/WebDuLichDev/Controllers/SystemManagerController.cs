@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DuLichDLL.BAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,7 +18,9 @@ namespace WebDuLichDev.Controllers
         }
         public ActionResult CityManager()
         {
-            return View();
+            DL_CityBAL dlcityBal=new DL_CityBAL();
+            var model = dlcityBal.GetList();
+            return View(model);
         }
 
 

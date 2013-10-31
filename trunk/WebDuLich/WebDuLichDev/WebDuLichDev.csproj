@@ -201,6 +201,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="Controllers\PlaceController.cs" />
+    <Compile Include="Controllers\SystemManagerController.cs" />
     <Compile Include="Controllers\userController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -578,6 +579,7 @@
     <Content Include="Views\Shared\_Rate.cshtml" />
     <Content Include="Views\Hotel\AddHotel.cshtml" />
     <Content Include="Views\Place\AddPlace.cshtml" />
+    <Content Include="Views\SystemManager\CityManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

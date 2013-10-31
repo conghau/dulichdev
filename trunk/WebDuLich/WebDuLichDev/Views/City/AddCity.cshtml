@@ -1,15 +1,10 @@
-﻿@model DuLichDLL.Model.DL_City
+﻿@model WebDuLichDev.Models.CityInfo
 @{
     ViewBag.Title = "AddCity";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="./Scripts/Lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+   
 }
-<link rel="stylesheet" href="@Url.Content("~/Content/styles/kendo.common.min.css")">
-<link rel="stylesheet" href="@Url.Content("~/Content/styles/kendo.bootstrap.min.css")">
-<script src="@Url.Content("~/Scripts/KendoJS/jquery.min.js")"></script>
-<script src="@Url.Content("~/Scripts/KendoJS/kendo.all.min.js")"></script>
+
 
 
 
@@ -17,13 +12,14 @@
 
 @using (Html.BeginForm("AddCity", "City", FormMethod.Post, new { @class = "Add_City ", @id = "frmAddCity" }))
 {
+    <input name="dlCity.ID" value="@Model.dlCity.ID" type="hidden" />
     <div class="control-group" style="width: 50%">
         <label class="control-label" for="input01">@Resources.Language.City</label>
-        <div id="choose_city" class="k-content">
-            <select id="select">
-            </select>
+        <div class="controls">
+            @Html.TextBoxFor(m => m.dlCity.CityName)
         </div>
     </div>
+  
     <div>
         <ul id="panelbar">
             <li class="k-state-active">
@@ -33,11 +29,15 @@
                         <label class="control-label" for="input01">@Resources.Language.Avatar</label>
                         <div class="controls">
                             <input id="uploadAvatar" name="fileUpload" type="file" />
-                            <input id="Avatar" name="dlCity.Avatar" value="" type="hidden" required="" validationmessage="Please upload {0}" />
+                            <input id="Avatar" name="dlCity.Avatar" value="@Model.dlCity.Avatar" type="hidden" required="" validationmessage="Please upload {0}" />
                             <div id="imgPhotoAvatar">
                                 <div class="row">
                                     <div class="span8">
                                         <ul class="thumbnails">
+                                            @if (null != Model && Model.dlCity != null)
+                                            {      
+                                                @:<li class="span2" id="@Model.dlCity.Avatar"><a class=thumbnail><img src="/Data/Avatar/City/@Model.dlCity.Avatar" alt='' /></a></li>
+                                            }
                                         </ul>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                         <label class="control-label" for="input01">@Resources.Language.Introduce</label>
                         <div id="content_city" class="k-content">
                             <textarea id="editor" name="dlCity.Summary" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
+                   @HttpUtility.HtmlDecode(Model.dlCity.Summary);      
                 </textarea>
                         </div>
                     </div>
@@ -69,42 +69,42 @@
                     <div>
                         <div class="k-content">
                             <textarea class="editor" id="History" name="dlCityInfoDetail.History" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
+                   @HttpUtility.HtmlDecode(Model.dlCityInfoDetail.History   )   
                 </textarea>
                         </div>
                     </div>
                     <div>
                         <div class="k-content">
                             <textarea class="editor" id="Nature" name="dlCityInfoDetail.Nature" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
+                    @HttpUtility.HtmlDecode(Model.dlCityInfoDetail.Nature   )  
                 </textarea>
                         </div>
                     </div>
                     <div>
                         <div class="k-content">
                             <textarea class="editor" id="Social" name="dlCityInfoDetail.Social" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
+                   @HttpUtility.HtmlDecode(Model.dlCityInfoDetail.Social )    
                 </textarea>
                         </div>
                     </div>
                     <div>
                         <div class="k-content">
                             <textarea class="editor" id="Administrative" name="dlCityInfoDetail.Administrative" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
+                     @HttpUtility.HtmlDecode(Model.dlCityInfoDetail.Administrative   )   
                 </textarea>
                         </div>
                     </div>
                     <div>
                         <div class="k-content">
                             <textarea class="editor" id="Economy" name="dlCityInfoDetail.Economy" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
+                   @HttpUtility.HtmlDecode(Model.dlCityInfoDetail.Economy)
                 </textarea>
                         </div>
                     </div>
                     <div>
                         <div class="k-content">
                             <textarea class="editor" id="Travel" name="dlCityInfoDetail.Travel" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
+                     @HttpUtility.HtmlDecode(Model.dlCityInfoDetail.Travel)      
                 </textarea>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
         <input class="btn" id="btnCancel" type="button" value="@Resources.Language.Cancel" />
     </div> 
      
-    <p>@ViewBag.CityNew</p>
+    
 }
 
 
@@ -129,8 +129,8 @@
 
         // create Editor from textarea HTML element with default set of tools
         $(".editor").kendoEditor({
-
-            encoded: false,
+           
+            encoded:true,
             tools: ["bold", "italic", "underline", "justifyLeft", "justifyCenter", "justifyRight",
                 "justifyFull", "insertUnorderedList", "insertOrderedList", "indent", "outdent", "viewHtml"
             ],
@@ -139,7 +139,8 @@
         });
         $("#editor").kendoEditor({
 
-            encoded: false,
+            encoded: true,
+            
             tools: ["bold", "italic", "underline", "justifyLeft", "justifyCenter", "justifyRight",
                 "justifyFull", "insertUnorderedList", "insertOrderedList", "indent", "outdent", "viewHtml", "insertHtml"
             ],
@@ -176,12 +177,12 @@
 
         $('#btnSubmit').click(function () {
             //var editor = $("#editor").data("kendoEditor");
-            var e2 = $("#Travel").data("kendoEditor");
-            var e1 = $("#History").data("kendoEditor");
+            //var e2 = $("#Travel").data("kendoEditor");
+            //var e1 = $("#History").data("kendoEditor");
             //alert(editor.encodedValue());
-            alert(e1.encodedValue() + " ed 2" + e2.encodedValue());
+            //alert(e1.encodedValue() + " ed 2" + e2.encodedValue());
             if (validator.validate()) {
-                $('#frmAddPlace').submit();
+                $('#frmAddCity').submit();
                 
                
             } else {
@@ -200,6 +201,13 @@
     function htmlEncode(value) {
         if (value) {
             return jQuery('<div />').text(value).html();
+        } else {
+            return '';
+        }
+    }
+    function htmlDecode(value) {
+        if (value) {
+            return $('<div />').html(value).text();
         } else {
             return '';
         }

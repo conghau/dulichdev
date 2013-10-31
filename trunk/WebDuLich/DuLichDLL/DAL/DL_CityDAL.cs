@@ -334,6 +334,47 @@ namespace DuLichDLL.DAL
             }
         }
 
+
+      
+        public long UpdateContent(DL_City dL_City, SqlConnection cnn, SqlTransaction tran)
+        {
+            try
+            {
+                long id = 0;
+                SqlCommand cmd = new SqlCommand(DL_CityProcedure.p_DL_City_UpdateContent.ToString(), cnn, tran);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@ID", SqlDbType.BigInt).Value = dL_City.ID;
+                cmd.Parameters.Add("@CountryCode", SqlDbType.Char).Value = dL_City.CountryCode;
+                cmd.Parameters.Add("@CityName", SqlDbType.NVarChar).Value = dL_City.CityName;
+                cmd.Parameters.Add("@Avatar", SqlDbType.NVarChar).Value = dL_City.Avatar;
+                cmd.Parameters.Add("@Summary", SqlDbType.NVarChar).Value = dL_City.Summary;
+                cmd.Parameters.Add("@Status", SqlDbType.Int).Value = dL_City.Status;
+                SqlParameterCollection parameterValues = cmd.Parameters;
+                int i = 0;
+                foreach (SqlParameter parameter in parameterValues)
+                {
+                    if ((parameter.Direction != ParameterDirection.Output) && (parameter.Direction != ParameterDirection.ReturnValue))
+                    {
+                        if (parameter.Value == null)
+                            parameter.Value = DBNull.Value;
+                        i++;
+                    }
+                }
+                object result = cmd.ExecuteScalar();
+                if (result != null)
+                    id = Utility.Utility.ObjectToLong(result.ToString());
+                return id;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_CityDAL: UpdateContent"));
+            }
+        }
+
         public bool InsertRating(DL_City dlCity, DL_CommentCity dlCommentCity)
         {
             SqlConnection cnn = null;
@@ -356,6 +397,36 @@ namespace DuLichDLL.DAL
             catch (Exception ex)
             {
                 throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_CityDAL: InsertRating"));
+            }
+            finally
+            {
+                tran.Dispose();
+                cnn.Close();
+            }
+        }
+        public bool UpdateCity(DL_City dlCity, DL_CityInfoDetail dlCityInfo)
+        {
+            SqlConnection cnn = null;
+            SqlTransaction tran = null;
+            bool result = false;
+            try
+            {
+                
+                DL_CityInfoDetailDAL dlCityInfoDAL = new DL_CityInfoDetailDAL();
+                cnn = DataProvider.OpenConnection();
+                tran = cnn.BeginTransaction();
+                UpdateContent(dlCity, cnn, tran);
+                dlCityInfoDAL.Update(dlCityInfo, cnn, tran);
+                tran.Commit();
+                return result = true;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_CityDAL: UpdateCity"));
             }
             finally
             {
