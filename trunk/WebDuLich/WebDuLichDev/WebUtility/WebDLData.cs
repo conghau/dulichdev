@@ -30,5 +30,31 @@ namespace WebDuLichDev.WebUtility
                 return listCity;
             }
         }
+
+        public static string PathAvatarDefault
+        {
+            get
+            {
+                string pathAvatarDefault;
+                M_SystemSetting_Config mSystemSetting = new M_SystemSetting_Config();
+                M_SystemSettingBAL mSystemSettingBal = new M_SystemSettingBAL();
+
+                mSystemSetting = mSystemSettingBal.GetSystemSetting();
+                pathAvatarDefault = mSystemSetting.AVATAR_DEFAULT;
+
+                return pathAvatarDefault;
+            }
+
+        }
+
+        //private void SetPath()
+        //{
+        //    M_SystemSetting_Config mSystemSetting = new M_SystemSetting_Config();
+        //    M_SystemSettingBAL mSystemSettingBal = new M_SystemSettingBAL();
+
+        //    mSystemSetting = mSystemSettingBal.GetSystemSetting();
+        //    pathAvatarCity = mSystemSetting.PATH_AVATAR_CITY;
+        //    pathImageCity = mSystemSetting.PATH_IMAGE_CITY;
+        //}
     }
 }

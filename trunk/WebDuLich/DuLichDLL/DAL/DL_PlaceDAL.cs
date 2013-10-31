@@ -485,14 +485,19 @@ namespace DuLichDLL.DAL
 
                 //set DLPlaceID for NicePlaceInfo
                 dlNicePlaceDetail.DL_PlaceId = placeId;
+                dlNicePlaceDetail.Staus = 0;
                 //insert NicePlaceInfo
                 dlNicePlaceDetailDAL.Insert(dlNicePlaceDetail, cnn, tran);
 
                 //insert ImagePlace
-                for (int index = 0; index < dlImagePlace.Count; index++)
+                if(null != dlImagePlace)
                 {
-                    dlImagePlace[index].DL_PlaceID = placeId;
-                    dlImageDAL.Insert(dlImagePlace[index], cnn, tran);
+                    for (int index = 0; index < dlImagePlace.Count; index++)
+                    {
+                        dlImagePlace[index].DL_PlaceID = placeId;
+                        dlImagePlace[index].Status = 0;
+                        dlImageDAL.Insert(dlImagePlace[index], cnn, tran);
+                    }
                 }
 
                 tran.Commit();

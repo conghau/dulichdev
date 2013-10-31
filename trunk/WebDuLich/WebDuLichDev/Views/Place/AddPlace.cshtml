@@ -5,8 +5,7 @@
 }
 
 <h2>AddPlace</h2>
-@using (Html.BeginForm("AddPlace", "Place", FormMethod.Post, new { @class = "well form-horizontal", @id = "frmAddPlace" }))
-{
+<form id="frmAddPlace" class="well form-horizontal" method="post" action="/Place/AddPlace">
     <div>
         <ul id="panelbar">
             <li class="k-state-active">
@@ -31,11 +30,16 @@
 
                         <div class="controls">
                             <input id="uploadAvatar" name="fileUpload" type="file" />
-                            <input id="Avatar" name="dlPlace.Avatar" value="" type="hidden" required="" validationmessage="Please upload {0}" />
+                            @Html.TextBoxFor(m => m.dlPlace.Avatar, new { id = "Avatar", type = "hidden", required = "", validationmessage = "Please upload {0}" })
+                            @*<input id="Avatar" name="dlPlace.Avatar" value="" type="hidden" required="" validationmessage="Please upload {0}" />*@
                             <div id="imgPhotoAvatar">
                                 <div class="row">
                                     <div class="span8">
                                         <ul class="thumbnails">
+                                            @if (null != Model && Model.dlPlace != null)
+                                            {      
+                                                @:<li class="span2" id="@Model.dlPlace.Avatar"><a class=thumbnail><img src="/Data/Avatar/place/@Model.dlPlace.Avatar" alt='' /></a></li>
+                                            }
                                         </ul>
                                     </div>
                                 </div>
@@ -90,11 +94,25 @@
                     <div class="controls">
                         <input id="uploadImage" name="fileUpload" type="file" />
                         <div id="imageName">
+                            @if (null != Model && Model.listImageCity != null)
+                            {
+                                foreach (var item in Model.listImageCity)
+                                {     
+                                    <input id="@item.LinkImage" class="imagePlace" value="@item.LinkImage" type="hidden"/>
+                                }
+                            }
                         </div>
                         <div id="imgPhotoPlace">
                             <div class="row">
                                 <div class="span8">
                                     <ul class="thumbnails">
+                                        @if (null != Model && Model.listImageCity != null)
+                                        {
+                                            foreach (var item in Model.listImageCity)
+                                            {     
+                                            @:<li class="span2" id="@item.LinkImage"><a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" alt='' /></a></li>
+                                            }
+                                        }
                                     </ul>
                                 </div>
                             </div>
@@ -107,9 +125,7 @@
     <div class="form-actions">
         <input class="btn btn-primary" id="btnSubmit" type="button" value="@Resources.Language.Submit" />
         <input class="btn" id="btnCancel" type="button" value="@Resources.Language.Cancel" />
-    </div>  
-    
-    
+    </div>
     <script>
 
         $(document).ready(function () {
@@ -247,4 +263,4 @@
 
 
     </script>
-}
+</form>
