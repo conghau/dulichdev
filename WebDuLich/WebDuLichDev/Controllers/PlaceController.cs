@@ -78,15 +78,19 @@ namespace WebDuLichDev.Controllers
         {
             DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
             List<DL_ImagePlace> listImagePlace = new List<DL_ImagePlace>();
-            for(int index =0; index < imagePlace.Count(); index++)
+            if(null != imagePlace)
             {
-                DL_ImagePlace temp = new DL_ImagePlace();
-                temp.LinkImage = imagePlace[index];
-                listImagePlace.Add(temp);
+                for (int index = 0; index < imagePlace.Count(); index++)
+                {
+                    DL_ImagePlace temp = new DL_ImagePlace();
+                    temp.LinkImage = imagePlace[index];
+                    listImagePlace.Add(temp);
+                }
             }
+            dataRequest.listImageCity = listImagePlace;
 
             dataRequest.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
-            dlPlaceBal.InsertNicePlace(dataRequest.dlPlace, dataRequest.dlNicePlaceInfoDetail, listImagePlace);
+            dlPlaceBal.InsertNicePlace(dataRequest.dlPlace, dataRequest.dlNicePlaceInfoDetail, dataRequest.listImageCity);
             //dlPlaceBal.Insert(dataRequest);           
             return View(dataRequest);
         }
