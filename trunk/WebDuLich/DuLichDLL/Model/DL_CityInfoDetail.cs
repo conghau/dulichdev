@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.Mvc;
 namespace DuLichDLL.Model
 {
     public class DL_CityInfoDetail
@@ -19,6 +20,7 @@ namespace DuLichDLL.Model
             set { _dL_CityId = value; }
         }
         private string _history;
+        [AllowHtml]
         public string History
         {
             get { return _history; }

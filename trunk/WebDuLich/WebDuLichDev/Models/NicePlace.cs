@@ -13,9 +13,11 @@ namespace WebDuLichDev.Models
         public DL_NicePlaceInfoDetail dlNicePlaceInfoDetail { get; set; }
         public List<DL_ImagePlace> listImageCity { get; set; }
     }
-    public class EncodeModel
+    public class City
     {
         [AllowHtml]
-        public string Editor { get; set; }
+        public DL_City dlCity { get; set; }
+        public DL_CityInfoDetail dlCityInfoDetail { get; set; }
+      
     }
 }
