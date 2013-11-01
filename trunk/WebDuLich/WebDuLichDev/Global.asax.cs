@@ -14,6 +14,9 @@ namespace WebDuLichDev
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        public static int pageDefault = 1;
+        public static int pageSizeDefault = 10;
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

@@ -8,6 +8,7 @@ using DuLichDLL.Model;
 using System.IO;
 using DuLichDLL.TOOLS;
 using WebDuLichDev.Models;
+using WebDuLichDev.WebUtility;
 
 namespace WebDuLichDev.Controllers
 {
@@ -18,8 +19,36 @@ namespace WebDuLichDev.Controllers
 
         public ActionResult Index()
         {
+            vm_Pagination pagination = new vm_Pagination{
+                Page = MvcApplication.pageDefault,
+                PageSize = MvcApplication.pageSizeDefault,
+                OrderBy = DL_PlaceColumns.CreatedDate.ToString(),
+                OrderDirection ="DESC",
+
+            };
+            long totalRecords=0;
+
             DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
-            var model = dlPlaceBAL.GetList();
+            var model = dlPlaceBAL.GetListWithFilter(0,"",0,pagination.Page.Value, pagination.PageSize.Value,pagination.OrderBy,pagination.OrderDirection, out totalRecords);
+
+            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
+
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Index(vm_Pagination pagination)
+        {
+
+            long totalRecords = 0;
+
+            DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
+            var model = dlPlaceBAL.GetListWithFilter(0, "", 0, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
+
+            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
+
+
             return View(model);
         }
 
@@ -78,7 +107,7 @@ namespace WebDuLichDev.Controllers
         {
             DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
             List<DL_ImagePlace> listImagePlace = new List<DL_ImagePlace>();
-            if(null != imagePlace)
+            if (null != imagePlace)
             {
                 for (int index = 0; index < imagePlace.Count(); index++)
                 {
@@ -97,7 +126,7 @@ namespace WebDuLichDev.Controllers
 
         public ActionResult UploadAvatar(IEnumerable<HttpPostedFileBase> fileUpload)
         {
-            var serserPath = Server.MapPath("~/Data/Avatar/Place/");        
+            var serserPath = Server.MapPath("~/Data/Avatar/Place/");
             foreach (var file in fileUpload)
             {
                 // Some browsers send file names with full path. We only care about the file name.
@@ -106,7 +135,7 @@ namespace WebDuLichDev.Controllers
                 var destinationPath = Path.Combine(serserPath, fileName);
 
                 file.SaveAs(destinationPath);
-            }  
+            }
             return Json(new { status = "OK" }, "text/plain");
 
         }

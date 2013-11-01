@@ -121,11 +121,7 @@ namespace DuLichDLL.BAL
             try
             {
                 DL_PlaceDAL dL_PlaceDAL = new DL_PlaceDAL();
-                //System.Diagnostics.Stopwatch stop = new System.Diagnostics.Stopwatch();
-               // stop.Start();
-               var result = dL_PlaceDAL.GetList();
-               //stop.Stop();
-               //long tm = stop.ElapsedMilliseconds;
+                var result = dL_PlaceDAL.GetList();
                 return result;
 
             }
@@ -142,6 +138,30 @@ namespace DuLichDLL.BAL
                 throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceBAL: GetList"));
             }
         }
+
+        public List<DL_Place> GetListWithFilter(long cityId, string placeName, long placeType, int page, int pageSize, string orderBy, string orderDirection, out long totalRecords)
+        {
+            try
+            {
+                DL_PlaceDAL dL_PlaceDAL = new DL_PlaceDAL();
+                var result = dL_PlaceDAL.GetListWithFilter(cityId, placeName, placeType, page, pageSize ,orderBy,orderDirection, out totalRecords);
+                return result;
+
+            }
+            catch (DataAccessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (BusinessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceBAL: GetListWithFilter"));
+            }
+        }
+
         public long Insert(DL_Place dL_Place)
         {
             try

@@ -58,10 +58,17 @@
                         <li>@Resources.Language.Note</li>
                     </ul>
                     <div>
-                        <div class="k-content">
-                            <textarea class="editor" name="dlNicePlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
-                </textarea>
+                        <div class="k-content">                 
+                   @if(null != Model && Model.dlNicePlaceInfoDetail != null)
+                   { 
+                       <textarea class="editor" name="dlNicePlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">@HttpUtility.HtmlDecode(Model.dlNicePlaceInfoDetail.Info)</textarea>
+                   }
+                   else
+                   {
+                       <textarea class="editor" name="dlNicePlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">&lt;p&gt;Please input some detail about this city:&lt;/p&gt;</textarea>
+                   
+                   }
+
                         </div>
                     </div>
                     <div>
@@ -98,7 +105,7 @@
                             {
                                 foreach (var item in Model.listImageCity)
                                 {     
-                                    <input id="@item.LinkImage" class="imagePlace" value="@item.LinkImage" type="hidden"/>
+                                <input id="@item.LinkImage" class="imagePlace" value="@item.LinkImage" type="hidden"/>
                                 }
                             }
                         </div>
@@ -142,6 +149,7 @@
             });
 
             $(".editor").kendoEditor({
+
                 tools: ["bold", "italic", "underline", "justifyLeft", "justifyCenter", "justifyRight",
                     "justifyFull", "insertUnorderedList", "insertOrderedList", "indent", "outdent", "viewHtml"],
 

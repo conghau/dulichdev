@@ -105,6 +105,46 @@ namespace DuLichDLL.DAL
                 cnn.Close();
             }
         }
+
+        public List<DL_Place> GetListWithFilter(long cityId, string placeName, long placeType, int page, int pageSize, string orderBy, string orderDirection, out long totalRecords)
+        {
+            SqlConnection cnn = null;
+            try
+            {
+                cnn = DataProvider.OpenConnection();
+                SqlCommand cmd = new SqlCommand(DL_PlaceProcedure.p_DL_Place_Get_List_WithFilter.ToString(), cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@CityID", SqlDbType.BigInt).Value = cityId;
+                cmd.Parameters.Add("@PlaceName", SqlDbType.NVarChar).Value = placeName;
+                cmd.Parameters.Add("@PlaceType", SqlDbType.BigInt).Value = placeType;
+                cmd.Parameters.Add("@OrderBy", SqlDbType.NVarChar).Value = orderBy;
+                cmd.Parameters.Add("@OrderDirection", SqlDbType.NVarChar).Value = orderDirection;
+                cmd.Parameters.Add("@Page", SqlDbType.BigInt).Value = page;
+                cmd.Parameters.Add("@PageSize", SqlDbType.BigInt).Value = pageSize;
+                SqlParameter totalRecord = cmd.Parameters.Add("@TotalRecords", SqlDbType.BigInt);
+                totalRecord.Direction = ParameterDirection.Output;
+  
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dt);
+                var results = GetDataObject(dt);
+                totalRecords = Utility.Utility.ObjectToLong(totalRecord.Value);
+                return results;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceDAL: GetListWithFilter"));
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+
         public List<DL_Place> GetListByCity(long cityId)
         {
             SqlConnection cnn = null;

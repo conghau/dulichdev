@@ -150,6 +150,9 @@
   <data name="Economy" xml:space="preserve">
     <value>Kinh tế</value>
   </data>
+  <data name="First" xml:space="preserve">
+    <value>Đầu</value>
+  </data>
   <data name="History" xml:space="preserve">
     <value>Lịch sử</value>
   </data>
@@ -168,8 +171,14 @@
   <data name="Introduce" xml:space="preserve">
     <value>Giới thiệu</value>
   </data>
+  <data name="Last" xml:space="preserve">
+    <value>Cuối</value>
+  </data>
   <data name="Nature" xml:space="preserve">
     <value>Tự nhiên</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Tiếp</value>
   </data>
   <data name="Note" xml:space="preserve">
     <value>Ghi chú</value>
@@ -182,6 +191,12 @@
   </data>
   <data name="PlaceName" xml:space="preserve">
     <value>Tên địa điểm</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Lùi</value>
+  </data>
+  <data name="Rows" xml:space="preserve">
+    <value>Hàng</value>
   </data>
   <data name="Social" xml:space="preserve">
     <value>Xã hội</value>
