@@ -155,5 +155,28 @@ namespace DuLichDLL.BAL
                 throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_CityBAL: UpdateCity"));
             }
         }
+        public List<DL_City> GetListWithFilter(string countryCode, string cityName, int page, int pageSize, string orderBy, string orderDirection, out long totalRecords)
+
+        {
+            try
+            {
+                DL_CityDAL dL_CityDAL = new DL_CityDAL();
+                var result = dL_CityDAL.GetListWithFilter(countryCode, cityName, page, pageSize, orderBy, orderDirection, out totalRecords);
+                return result;
+
+            }
+            catch (DataAccessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (BusinessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_CityBAL: GetListWithFilter"));
+            }
+        }
     }
 }
