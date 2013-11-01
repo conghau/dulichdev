@@ -117,8 +117,8 @@ namespace DuLichDLL.DAL
                 cmd.Parameters.Add("@CityID", SqlDbType.BigInt).Value = cityId;
                 cmd.Parameters.Add("@PlaceName", SqlDbType.NVarChar).Value = placeName;
                 cmd.Parameters.Add("@PlaceType", SqlDbType.BigInt).Value = placeType;
-                cmd.Parameters.Add("@OrderBy", SqlDbType.NVarChar).Value = orderBy;
-                cmd.Parameters.Add("@OrderDirection", SqlDbType.NVarChar).Value = orderDirection;
+                cmd.Parameters.Add("@OrderBy", SqlDbType.NVarChar).Value = orderBy ?? string.Empty;
+                cmd.Parameters.Add("@OrderDirection", SqlDbType.NVarChar).Value = orderDirection ?? string.Empty;
                 cmd.Parameters.Add("@Page", SqlDbType.BigInt).Value = page;
                 cmd.Parameters.Add("@PageSize", SqlDbType.BigInt).Value = pageSize;
                 SqlParameter totalRecord = cmd.Parameters.Add("@TotalRecords", SqlDbType.BigInt);
