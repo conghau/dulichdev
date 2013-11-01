@@ -6,20 +6,49 @@
 
 <h2>LIST PLACE</h2>
 <form id="frmMain" method="post" action="#">
-@if (null != Model)
-{
-     var pageSize = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.PageSize.ToString()].ToString());
-    var pageNum = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.PageNum.ToString()].ToString());
-    var page = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.Page.ToString()].ToString());
+    @if (null != Model)
+    {
+        var pageSize = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.PageSize.ToString()].ToString());
+        var pageNum = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.PageNum.ToString()].ToString());
+        var page = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.Page.ToString()].ToString());
 
-    <input type="hidden" value="@ViewData["OrderBy"]" name="orderBy" id="orderBy" />
-    <input type="hidden" value="@ViewData["OrderDirection"]" name="orderDirection"id="orderDirection" />
+        <input type="hidden" value="@ViewData["OrderBy"]" name="orderBy" id="orderBy" />
+        <input type="hidden" value="@ViewData["OrderDirection"]" name="orderDirection"id="orderDirection" />
     
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <button class="btn btn-primary"> Add new</button>
-        </div>
-        @foreach (var item in Model)
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <input type="button" class="btn btn-primary" id="btnAddNew" value="@Resources.Language.Add"/>
+            </div>
+            <table class="table table-striped">
+                <tr>
+                    <th>#</th>
+                    <th>@Resources.Language.Avatar</th>
+                    <th>@Resources.Language.PlaceName</th>
+                    <th>ABV rating</th>
+                </tr>
+                @{int i = 0;}
+                @foreach (var item in Model)
+                {   
+                    <tr>
+                        <td>
+                             @((page - 1) * pageSize + i + 1)
+                        </td>
+                        <td>
+                            <a class="thumbnail">
+                                <img src="/Data/Avatar/place/@item.Avatar" alt='' height="50px" width="50px"/></a>
+                        </td>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.AvgRating
+                        </td>
+
+                    </tr>
+                    i++;
+                }
+            </table>
+            @*        @foreach (var item in Model)
         { 
             <div class="row-fluid">
                 <div class="span10">
@@ -39,13 +68,24 @@
                     <button class="btn">Edit</button>
                 </div>
             </div>
-        }
-    </div>
-     <table>
+            
+        }*@
+        </div>
+        <table>
             <tr>
                 @Html.Partial("p_Pagination", null, ViewData)
             </tr>
         </table>
-}
+    }
 
+    <script type="text/javascript">
+        $(document).ready(function(){
+        
+            $('#btnAddNew').click(function () {
+
+                var url = "@Url.Action("AddPlace", "Place")";
+                location.href = url;
+            });
+        });
+    </script>
 </form>

@@ -32,7 +32,8 @@ namespace WebDuLichDev.Controllers
             var model = dlPlaceBAL.GetListWithFilter(0,"",0,pagination.Page.Value, pagination.PageSize.Value,pagination.OrderBy,pagination.OrderDirection, out totalRecords);
 
             common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
-
+            ViewData["OrderBy"] = pagination.OrderBy;
+            ViewData["OrderDirection"] = pagination.OrderDirection;
 
             return View(model);
         }
@@ -47,7 +48,8 @@ namespace WebDuLichDev.Controllers
             var model = dlPlaceBAL.GetListWithFilter(0, "", 0, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
 
             common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
-
+            ViewData["OrderBy"] = pagination.OrderBy;
+            ViewData["OrderDirection"] = pagination.OrderDirection;
 
             return View(model);
         }
