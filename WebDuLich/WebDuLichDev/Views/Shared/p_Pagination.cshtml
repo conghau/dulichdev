@@ -17,7 +17,6 @@
             { 
             <a style="text-decoration: none;">@ViewData["WebDuLichDev.Enum.PageInfo"]</a>
             }
-
             if (pageNum > 1)
             { 
             <li class="first"><a href="javascript:paging(1,@pageNum)" >@Resources.Language.First</a></li>
@@ -68,7 +67,7 @@
                             {
             <li class="active"><a href="javascript:paging(@i,@pageNum)">@i</a></li>
 
-            }
+                            }
                             else
                             { 
             <li><a href="javascript:paging(@i,@pageNum)">@i</a> </li>
