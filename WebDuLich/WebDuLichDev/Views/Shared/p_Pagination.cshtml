@@ -1,0 +1,101 @@
+﻿@{var pageSize = int.Parse(ViewData["PageSize"].ToString());
+  var pageNum = int.Parse(ViewData["PageNum"].ToString());
+  var page = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.Page.ToString()].ToString());
+}
+<div class="floatLeft">
+    <label for="psize" style="display: inline">
+        @Resources.Language.Rows</label>
+    <input name="pageSize" id="pageSize" type="text" style="text-align: center;width:40px" class="Number"
+        value="@ViewData[WebDuLichDev.Enum.PageInfo.PageSize.ToString()]" /></div>
+<div class="breadcums">
+    @if (ViewData[WebDuLichDev.Enum.PageInfo.TotalRecord.ToString()] != null && ViewData[WebDuLichDev.Enum.PageInfo.PageInfo.ToString()] != null)
+    {
+        if ((long)ViewData[WebDuLichDev.Enum.PageInfo.TotalRecord.ToString()] != 0)
+        { 
+        <a style="text-decoration: none;">@ViewData["WebDuLichDev.Enum.PageInfo"]</a>
+        }
+
+        if (pageNum > 1)
+        {
+        <input type="hidden" value="@page" id="Page" name="page" />
+        <a href="javascript:paging(1,@pageNum)" class="first">@Resources.Language.First</a>
+        
+            var previous = page - 1;
+        
+        <a href="javascript:paging(@previous,@pageNum)"
+        class="pre">@Resources.Language.Previous</a>
+     
+        if (pageNum <= 5)
+        {
+            for (int i = 1; i <= pageNum; i++)
+            {
+                if (i == page)
+                {
+        <a href="javascript:paging(@i,@pageNum)" class="active">@i</a>
+          
+                }
+                else
+                { 
+        <a href="javascript:paging(@i,@pageNum)">@i</a> 
+                }
+            }
+        }
+        else
+        {
+            if (page <= 3)
+            {
+                for (int i = 1; i <= 5; i++)
+                {
+                    if (i == page)
+                    {
+        <a href="javascript:paging(@i,@pageNum)" class="active">@i</a>
+      
+                    }
+                    else
+                    { 
+        <a href="javascript:paging(@i,@pageNum)">@i</a> 
+                    }
+                }  
+        <span>...</span> 
+            }
+            else if (page >= pageNum - 2)
+            {  
+        <span>...</span>
+                for (int i = pageNum - 4; i <= pageNum; i++)
+                {
+                    if (i == page)
+                    {
+        <a href="javascript:paging(@i,@pageNum)" class="active">@i</a>
+       
+                    }
+                    else
+                    { 
+        <a href="javascript:paging(@i,@pageNum)">@i</a> 
+                    }
+                }
+            }
+            else
+            { 
+        <span>...</span>  
+                for (int i = page - 2; i <= page + 2; i++)
+                {
+                    if (i == page)
+                    { 
+        <a href="javascript:paging(@i ,@pageNum)" class="active">
+            @i</a> 
+                    }
+                    else
+                    { <a href="javascript:paging(@i,@pageNum)">@i</a>
+                    }
+                }  
+        <span>...</span> 
+            }
+        }
+        var next = page + 1;
+       
+        <a href="javascript:paging(@next,@pageNum)" class="next">@Resources.Language.Next
+        </a><a href="javascript:paging(@pageNum,@pageNum)"
+            class="last">@Resources.Language.Last</a>
+        }
+    }
+</div>

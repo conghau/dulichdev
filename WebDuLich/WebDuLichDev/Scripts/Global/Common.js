@@ -38,7 +38,7 @@ $(function () {
     $(".DDL").kendoDropDownList();
     $(".CBB").kendoComboBox();
 
-    $(".DateTime").filter_inputDateTime(DateTimeFormat);
+    //$(".DateTime").filter_inputDateTime(DateTimeFormat);
     $(".DateTimeKendo").filter_inputDateTime(DateTimeFormat); //DateTimeFormat get from session and set in master page
     $(".DateTimeKendo").kendoDatePicker({
         format: DateTimeFormat
@@ -49,7 +49,7 @@ $(function () {
         decimals: 0
     });
 
-    var message = '@T2PEF.Utility.Utility.Phrase(T2pSecurity.LanguageCode, T2PEF.Utility.Utility.ObjectToString(ViewData[WebMonitor.Enum.PageInfo.Message.ToString()]))';
+    var message = 'DULICHDLL.Utility.Utility.ObjectToString(ViewData[WebDuLichDev.Enum.PageInfo.Message.ToString()])';
     if (message != '') {
         if (message.indexOf('ERR') >= 0 || message.indexOf('VAL') >= 0) {
             $('#messageBox').addClass('errorBox');

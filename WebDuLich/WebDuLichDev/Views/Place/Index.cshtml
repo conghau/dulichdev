@@ -1,8 +1,20 @@
 ﻿@model List<DuLichDLL.Model.DL_Place>
-<h2>LIST PLACE</h2>
+@{
+    ViewBag.Title = "AddPlace";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
+<h2>LIST PLACE</h2>
+<form id="frmMain" method="post" action="#">
 @if (null != Model)
 {
+     var pageSize = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.PageSize.ToString()].ToString());
+    var pageNum = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.PageNum.ToString()].ToString());
+    var page = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.Page.ToString()].ToString());
+
+    <input type="hidden" value="@ViewData["OrderBy"]" name="orderBy" id="orderBy" />
+    <input type="hidden" value="@ViewData["OrderDirection"]" name="orderDirection"id="orderDirection" />
+    
     <div class="container-fluid">
         <div class="row-fluid">
             <button class="btn btn-primary"> Add new</button>
@@ -29,4 +41,11 @@
             </div>
         }
     </div>
+     <table>
+            <tr>
+                @Html.Partial("p_Pagination", null, ViewData)
+            </tr>
+        </table>
 }
+
+</form>
