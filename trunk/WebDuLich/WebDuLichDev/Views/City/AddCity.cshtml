@@ -16,7 +16,7 @@
     <div class="control-group" style="width: 50%">
         <label class="control-label" for="input01">@Resources.Language.City</label>
         <div class="controls">
-            @Html.TextBoxFor(m => m.dlCity.CityName)
+            @Html.TextBoxFor(m => m.dlCity.CityName,new { @readonly = true })
         </div>
     </div>
   
@@ -116,7 +116,7 @@
   
     <div class="form-actions" style="width: 50%">
         <input class="btn btn-primary" id="btnSubmit" type="button" value="@Resources.Language.Submit" />
-        <input class="btn" id="btnCancel" type="button" value="@Resources.Language.Cancel" />
+        <input class="btn" id="btnBack" type="button" value="Về Trang Danh Sách" />
     </div> 
      
     
@@ -213,8 +213,8 @@
         }
     }
      // logs "<p>foo</p>"
-    $('#btnCancel').click(function () {
-        
+    $('#btnBack').click(function () {
+        location.href='@Url.Action("CityManager", "SystemManager")';      
         
 
     });
