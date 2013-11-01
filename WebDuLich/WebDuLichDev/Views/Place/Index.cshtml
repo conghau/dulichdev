@@ -17,7 +17,7 @@
     
         <div class="container-fluid">
             <div class="row-fluid">
-                <input type="button" class="btn btn-primary" id="btnAddNew" value="@Resources.Language.Add"/>
+                <input type="button" class="btn btn-primary btn-large" id="btnAddNew" value="@Resources.Language.Add"/>
             </div>
             <table class="table table-striped">
                 <tr>
@@ -25,6 +25,7 @@
                     <th>@Resources.Language.Avatar</th>
                     <th>@Resources.Language.PlaceName</th>
                     <th>ABV rating</th>
+                    <th></th>
                 </tr>
                 @{int i = 0;}
                 @foreach (var item in Model)
@@ -43,7 +44,9 @@
                         <td>
                             @item.AvgRating
                         </td>
-
+                        <td>
+                            <i class="icon-search"></i>
+                        </td>
                     </tr>
                     i++;
                 }
@@ -71,11 +74,8 @@
             
         }*@
         </div>
-        <table>
-            <tr>
-                @Html.Partial("p_Pagination", null, ViewData)
-            </tr>
-        </table>
+        <div> @Html.Partial("p_Pagination", null, ViewData)</div>
+               
     }
 
     <script type="text/javascript">
