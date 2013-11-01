@@ -16,6 +16,8 @@ namespace WebDuLichDev
     {
         public static int pageDefault = 1;
         public static int pageSizeDefault = 10;
+        //them vo day ne :P
+        public static string countryCode = "VN";
 
         protected void Application_Start()
         {

@@ -148,32 +148,17 @@ namespace WebDuLichDev.Controllers
             return PartialView("~/Views/Shared/_Rate.cshtml", dlCity);
 
         }
-        public ActionResult AddNewCity(DL_City dataRequestCity)
-        {
-
-            return View(dataRequestCity);
-        }
-
-        //public ActionResult SomeAction(City myModel)
-        //{
-        //    var Editor = myModel.Editor;
-        //    Editor = Server.HtmlDecode(Editor);
-        //    //Save to db, etc.
-        //    return View(myModel);
-        //}
+       
 
         public ActionResult UploadAvatarCity(IEnumerable<HttpPostedFileBase> fileUpload, int cityId)
         {
-            DL_CommentCityBAL dlCommentCityBal = new DL_CommentCityBAL();
-            DL_CityBAL dlCityBal = new DL_CityBAL();
+          
+          
 
-            DL_City dlCity = new DL_City();
-
-            dlCity = dlCityBal.GetByID(cityId);
-            var id =dlCity;
+            DL_City dlCity = new DL_City();         
 
             var serserPath = Server.MapPath("~/Data/Avatar/City/");
-            if (System.IO.File.Exists(serserPath + fileUpload)) //Xóa file có trước nếu đã có trong csdl. Việc up là duy nhất
+            if (System.IO.File.Exists(serserPath + dlCity.Avatar)) //Xóa file có trước nếu đã có trong csdl. Việc up là duy nhất
                 System.IO.File.Delete(serserPath + fileUpload);
             foreach (var file in fileUpload)
             {
