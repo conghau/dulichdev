@@ -6,6 +6,9 @@
 
 <h2>LIST PLACE</h2>
 <form id="frmMain" method="post" action="#">
+    <div class="form-inline">
+        @Html.Partial("p_Search",new WebDuLichDev.Models.vm_Search())
+    </div>
     @if (null != Model)
     {
         var pageSize = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.PageSize.ToString()].ToString());

@@ -212,6 +212,7 @@
     </Compile>
     <Compile Include="Models\NicePlace.cs" />
     <Compile Include="Models\vm_pagination.cs" />
+    <Compile Include="Models\vm_Search.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebUtility\common.cs" />
     <Compile Include="WebUtility\HtmlHelper.cs" />
@@ -584,6 +585,7 @@
     <Content Include="Views\Place\AddPlace.cshtml" />
     <Content Include="Views\SystemManager\CityManager.cshtml" />
     <Content Include="Views\Shared\p_Pagination.cshtml" />
+    <Content Include="Views\Place\p_Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

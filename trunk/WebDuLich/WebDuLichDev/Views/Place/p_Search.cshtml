@@ -1,0 +1,22 @@
+﻿@model WebDuLichDev.Models.vm_Search
+@{Layout = null;}
+
+
+    <div class="control-group">
+        <label class="control-label" for="input01">@Resources.Language.PlaceName</label>
+        <div class="controls">
+            @Html.TextBoxFor(m => m.placename, new { placeholder = "Place name ..." })
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="input01">@Resources.Language.Address</label>
+        <div class="controls">
+            @Html.TextBoxFor(m => m.address, new { placeholder = "Place name ..." })
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="input01">@Resources.Language.City</label>
+        <div class="controls">@Html.DropDownListFor(m => m.cityId, WebDuLichDev.WebUtility.WebDuLichData.ListCity, new { id = "drop_CityList", @class = "DLL kendoDropDownList city" })</div>
+    </div>
+    <button type="submit" class="btn">Search</button>
+

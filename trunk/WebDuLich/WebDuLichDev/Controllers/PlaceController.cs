@@ -29,7 +29,7 @@ namespace WebDuLichDev.Controllers
             long totalRecords=0;
 
             DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
-            var model = dlPlaceBAL.GetListWithFilter(0,"",0,pagination.Page.Value, pagination.PageSize.Value,pagination.OrderBy,pagination.OrderDirection, out totalRecords);
+            var model = dlPlaceBAL.GetListWithFilter(0,"","",0,pagination.Page.Value, pagination.PageSize.Value,pagination.OrderBy,pagination.OrderDirection, out totalRecords);
 
             common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
             ViewData["OrderBy"] = pagination.OrderBy;
@@ -39,13 +39,13 @@ namespace WebDuLichDev.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(vm_Pagination pagination)
+        public ActionResult Index(vm_Pagination pagination, vm_Search dataSearch)
         {
 
             long totalRecords = 0;
 
             DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
-            var model = dlPlaceBAL.GetListWithFilter(0, "",0, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
+            var model = dlPlaceBAL.GetListWithFilter(dataSearch.cityId ??0, dataSearch.placename ?? "",dataSearch.address ?? "",0, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
 
             common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
             ViewData["OrderBy"] = pagination.OrderBy;
