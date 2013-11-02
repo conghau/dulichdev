@@ -106,7 +106,7 @@ namespace DuLichDLL.DAL
             }
         }
 
-        public List<DL_Place> GetListWithFilter(long cityId, string placeName, long placeType, int page, int pageSize, string orderBy, string orderDirection, out long totalRecords)
+        public List<DL_Place> GetListWithFilter(long cityId, string placeName,string address, long placeType, int page, int pageSize, string orderBy, string orderDirection, out long totalRecords)
         {
             SqlConnection cnn = null;
             try
@@ -116,6 +116,7 @@ namespace DuLichDLL.DAL
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@CityID", SqlDbType.BigInt).Value = cityId;
                 cmd.Parameters.Add("@PlaceName", SqlDbType.NVarChar).Value = placeName;
+                cmd.Parameters.Add("@Address", SqlDbType.NVarChar).Value = address;
                 cmd.Parameters.Add("@PlaceType", SqlDbType.BigInt).Value = placeType;
                 cmd.Parameters.Add("@OrderBy", SqlDbType.NVarChar).Value = orderBy ?? string.Empty;
                 cmd.Parameters.Add("@OrderDirection", SqlDbType.NVarChar).Value = orderDirection ?? string.Empty;
