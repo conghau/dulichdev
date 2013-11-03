@@ -24,11 +24,36 @@ namespace WebDuLichDev.Controllers
 
         public ActionResult AddHotel(long ID)
         {
-            DL_HotelPlaceInfoDetailBAL hotelInfoBal = new DL_HotelPlaceInfoDetailBAL();
 
-            var model = hotelInfoBal.GetByDLPlaceID(ID);
+            ViewBag.NewPlaceID = ID;
+            return View();
             
-            return View(model);
+           
+        }
+        [HttpPost]
+        public ActionResult AddHotel(HotelInfo hotelinfo, string[] imagePlace)
+        {
+            DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+            List<DL_ImagePlace> listdlImangePlace = new List<DL_ImagePlace>();
+            if (null != imagePlace)
+            {
+                for (int index = 0; index < imagePlace.Count(); index++)
+                {
+                    DL_ImagePlace temp = new DL_ImagePlace();
+                    temp.LinkImage = imagePlace[index];
+                    listdlImangePlace.Add(temp);
+                }
+            }
+            hotelinfo.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
+            hotelinfo.listImagePlace = listdlImangePlace;
+            hotelinfo.dlPlace.TotalPointRating = "0";
+            hotelinfo.dlPlace.TotalUserRating = "0";
+            dlPlaceBal.InsertHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, hotelinfo.listImagePlace);
+            return Redirect("./UpdateHotel/" + hotelinfo.dlPlace.ID);
+
+            
+
+
         }
         public ActionResult UpdateHotel(long ID)
         {
@@ -65,15 +90,11 @@ namespace WebDuLichDev.Controllers
             }
             hotelinfo.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
             hotelinfo.listImagePlace = listdlImangePlace;
-            dlPlaceBal.UpdateHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, hotelinfo.listImagePlace);
+            dlPlaceBal.InsertHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, hotelinfo.listImagePlace);
             return View(hotelinfo);
         }
 
-        [HttpPost]
-        public ActionResult AddHotel(DL_Place data)
-        {
-            return View(data);
-        }
+        
         public ActionResult UploadImage(IEnumerable<HttpPostedFileBase> fileUpload)
         {
             var serserPath = Server.MapPath("~/Data/Images/Place/");

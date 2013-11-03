@@ -698,5 +698,57 @@ namespace DuLichDLL.DAL
                 cnn.Close();
             }
         }
+        public bool InsertHotel(DL_Place dlPlace, DL_HotelPlaceInfoDetail dlHotelPlaceInfoDetail, List<DL_ImagePlace> dlImagePlace)
+        {
+            SqlConnection cnn = null;
+            SqlTransaction tran = null;
+            bool result = false;
+            try
+            {
+                DL_HotelPlaceInfoDetailDAL dlHotelPlaceInfoDetailDAL = new DL_HotelPlaceInfoDetailDAL();
+                DL_ImagePlaceDAL dlImageDAL = new DL_ImagePlaceDAL();
+                long placeId = 0;
+                cnn = DataProvider.OpenConnection();
+                tran = cnn.BeginTransaction();
+
+                //update Place
+                placeId = Insert(dlPlace, cnn, tran);
+
+                //set DLPlaceID for NicePlaceInfo
+                dlHotelPlaceInfoDetail.DL_PlaceId = placeId;
+                //dlDHotelPlaceInfoDetail.Staus = 0;
+                //updapte NicePlaceInfo
+                dlHotelPlaceInfoDetailDAL.Insert(dlHotelPlaceInfoDetail, cnn, tran);
+
+                //update ImagePlace
+                if (null != dlImagePlace)
+                {
+                    for (int index = 0; index < dlImagePlace.Count; index++)
+                    {
+                        dlImagePlace[index].DL_PlaceID = placeId;
+                        dlImagePlace[index].Status = 0;
+                        dlImageDAL.Insert(dlImagePlace[index], cnn, tran);
+                    }
+                }
+
+                tran.Commit();
+                return result = true;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceDAL: InsertHotel 3 parameter"));
+            }
+            finally
+            {
+                tran.Dispose();
+                cnn.Close();
+            }
+        }
+       
     }
 }
