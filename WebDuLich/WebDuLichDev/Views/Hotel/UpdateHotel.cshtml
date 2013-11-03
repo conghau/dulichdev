@@ -66,13 +66,12 @@
                         </div>
                     </div>
                     <div>
-                        <div class="control-group">
+                        <div class="control-label">
                             @Html.LabelFor(model => model.dlHotelPlaceInfoDetail.RoomType)
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.dlHotelPlaceInfoDetail.RoomType, new { Name = "hotelinfo.dlHotelPlaceInfoDetail.RoomType" })
-                            </div>
                         </div>
-
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.dlHotelPlaceInfoDetail.RoomType, new { Name = "hotelinfo.dlHotelPlaceInfoDetail.RoomType" })
+                        </div>
                         <div class="control-label">
                             @Html.LabelFor(model => model.dlHotelPlaceInfoDetail.OpenCloseTime)
                         </div>
@@ -80,7 +79,15 @@
                             @Html.TextBoxFor(model => model.dlHotelPlaceInfoDetail.OpenCloseTime, new { Name = "hotelinfo.dlHotelPlaceInfoDetail.OpenCloseTime" })
                             @Html.ValidationMessageFor(model => model.dlHotelPlaceInfoDetail.OpenCloseTime)
                         </div>
+                        @* <div class="demo-section" style="width: 500px;">
 
+                <label for="start">Start time:</label>
+                <input id="start" value="8:00 AM" />
+
+                <label for="end" style="margin-left:3em">End time:</label>
+                <input id="end" value="8:30 AM"/>
+
+            </div>*@
                         <div class="control-label">
                             @Html.LabelFor(model => model.dlHotelPlaceInfoDetail.Price)
                         </div>
@@ -181,11 +188,14 @@
                             <div class="row">
                                 <div class="span8">
                                     <ul class="thumbnails">
+                                        <div id="container">
+                                            <span id="target" title="Click chuot vao hinh de chon xoa"></span>
+                                        </div>
                                         @if (null != Model && Model.listImagePlace != null)
                                         {
                                             foreach (var item in Model.listImagePlace)
                                             {     
-                                            @:<li class="span2" id="@item.LinkImage"><a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" alt='' /></a></li>
+                                            @:<li class="span2" id="@item.LinkImage"><a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" alt='' ondblclick="onclickpicture()"  onmousemove="onfocuspicture()" /></a></li>
                                             }
                                         }
                                     </ul>
@@ -201,10 +211,43 @@
         <input class="btn btn-primary" id="btnSubmit" type="button" value="@Resources.Language.Submit" />
         <input class="btn" id="btnCancel" type="button" value="@Resources.Language.Cancel" />
     </div>
+    <div id="dialog"></div>
+   
+    
+@*            <style scoped>
+                #example .k-timepicker {
+                    vertical-align: middle;
+                }
+
+                #example h3 {
+                    clear: both;
+                }
+
+                #example .code-sample {
+                    width: 60%;
+                    float:left;
+                    margin-bottom: 20px;
+                }
+
+                #example .output {
+                    width: 24%;
+                    margin-left: 4%;
+                    float:left;
+                }
+                
+            </style>**@
+  
+          
+      
 
     <script>
 
         $(document).ready(function () {
+
+            $("#item.LinkImage").kendoTooltip({
+                showOn: "click"
+            });
+
             $("#panelbar").kendoPanelBar({
                 expandMode: "multiple"
             });
@@ -271,7 +314,62 @@
             $('#btnCancel').click(function () {
 
             });
+
+
+            ////DateTime Picker
+            //function startChange() {
+            //function startChange() {
+            //    var startTime = start.value();
+
+            //    if (startTime) {
+            //        startTime = new Date(startTime);
+
+            //        end.max(startTime);
+
+            //        startTime.setMinutes(startTime.getMinutes() + this.options.interval);
+
+            //        end.min(startTime);
+            //        end.value(startTime);
+            //    }
+            //}
+
+            ////init start timepicker
+            //var start = $("#start").kendoTimePicker({
+            //    change: startChange
+            //}).data("kendoTimePicker");
+
+            ////init end timepicker
+            //var end = $("#end").kendoTimePicker().data("kendoTimePicker");
+
+            ////define min/max range
+            //start.min("8:00 AM");
+            //start.max("6:00 PM");
+
+            ////define min/max range
+            //end.min("8:00 AM");
+            //end.max("7:30 AM");
         });
+        function onclickpicture(e) {        
+         
+            var r=confirm("Are you sure you want to delte this image");
+            if (r==true)
+            {
+            //User Pressed okay. Delete
+
+            }
+            else
+            {
+            //user pressed cancel. Do nothing
+            }
+           
+             
+        }
+        function onfocuspicture(e) {
+            var tooltip = $("#container").kendoTooltip({position: "center"}).data("kendoTooltip");
+            tooltip.show($("#target"));
+            
+        }
+
         function onSelect(e) {
             var files = e.files;
 
