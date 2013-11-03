@@ -335,7 +335,7 @@ namespace DuLichDLL.DAL
         }
 
 
-      
+
         public long UpdateContent(DL_City dL_City, SqlConnection cnn, SqlTransaction tran)
         {
             try
@@ -411,7 +411,7 @@ namespace DuLichDLL.DAL
             bool result = false;
             try
             {
-                
+
                 DL_CityInfoDetailDAL dlCityInfoDAL = new DL_CityInfoDetailDAL();
                 cnn = DataProvider.OpenConnection();
                 tran = cnn.BeginTransaction();

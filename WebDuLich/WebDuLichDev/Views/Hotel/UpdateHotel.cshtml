@@ -1,0 +1,364 @@
+﻿@model WebDuLichDev.Models.HotelInfo
+
+@{
+    ViewBag.Title = "UpdateHotel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UpdateHotel</h2>
+
+<form id="frmUpdateHotel" class="well form-horizontal" method="post" action="/Hotel/UpdateHotel">
+    <input name="hotelinfo.dlPlace.ID" value="@Model.dlHotelPlaceInfoDetail.DL_PlaceId" type="hidden" />
+    <div>
+
+        <ul id="panelbar">
+            <li class="k-state-active">
+                <span class="k-link k-state-selected">@Resources.Language.BasicInfo</span>
+                <div class="tabstrip">
+                    <ul>
+                        <li class="k-state-active">@Resources.Language.Introduce</li>
+                        <li>@Resources.Language.DetailInfo</li>
+                        <li>@Resources.Language.Note</li>
+                    </ul>
+                    <div>
+                        <div class="control-group">
+                            <label class="control-label" for="input01">@Resources.Language.PlaceName</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.dlPlace.Name, new { Name = "hotelinfo.dlPlace.Name" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="input01">@Resources.Language.Address</label>
+                            <div class="controls">@Html.TextBoxFor(model => model.dlPlace.Address, new { id = "Address", placeholder = "Address...", required = "", validationMessage = "Please enter {0}", Name = "hotelinfo.dlPlace.Address" })</div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="input01">@Resources.Language.City</label>
+                            <div class="controls">@Html.DropDownListFor(model => model.dlPlace.DL_CityId, WebDuLichDev.WebUtility.WebDuLichData.ListCity, new { Name = "hotelinfo.dlPlace.DL_CityId", id = "drop_CityList", @class = "DLL kendoDropDownList city" })</div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="input01">@Resources.Language.Avatar</label>
+
+                            <div class="controls">
+                                <input id="uploadAvatar" name="fileUpload" type="file" />
+                                @Html.TextBoxFor(model => model.dlPlace.Avatar, new { Name = "hotelinfo.dlPlace.Avatar", id = "Avatar", type = "hidden", required = "", validationmessage = "Please upload {0}" })
+                                <div id="imgPhotoAvatar">
+                                    <div class="row">
+                                        <div class="span8">
+                                            <ul class="thumbnails">
+                                                @if (null != Model && Model.dlPlace != null)
+                                                {      
+                                                    @:<li class="span2" id="@Model.dlPlace.Avatar"><a class=thumbnail><img src="/Data/Avatar/place/@Model.dlPlace.Avatar" alt='' /></a></li>
+                                            }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div class="k-content">
+                                <textarea class="editor" name="hotelinfo.dlHotelPlaceInfoDetail.Note" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                    @HttpUtility.HtmlDecode(Model.dlHotelPlaceInfoDetail.Note)       
+                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="control-group">
+                            @Html.LabelFor(model => model.dlHotelPlaceInfoDetail.RoomType)
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.dlHotelPlaceInfoDetail.RoomType, new { Name = "hotelinfo.dlHotelPlaceInfoDetail.RoomType" })
+                            </div>
+                        </div>
+
+                        <div class="control-label">
+                            @Html.LabelFor(model => model.dlHotelPlaceInfoDetail.OpenCloseTime)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.dlHotelPlaceInfoDetail.OpenCloseTime, new { Name = "hotelinfo.dlHotelPlaceInfoDetail.OpenCloseTime" })
+                            @Html.ValidationMessageFor(model => model.dlHotelPlaceInfoDetail.OpenCloseTime)
+                        </div>
+
+                        <div class="control-label">
+                            @Html.LabelFor(model => model.dlHotelPlaceInfoDetail.Price)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.dlHotelPlaceInfoDetail.Price, new { Name = "hotelinfo.dlHotelPlaceInfoDetail.Price" })
+                            @Html.ValidationMessageFor(model => model.dlHotelPlaceInfoDetail.Price)
+                        </div>
+
+                        <div class="control-label">
+                            @Html.LabelFor(model => model.dlHotelPlaceInfoDetail.PayType)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.dlHotelPlaceInfoDetail.PayType, new { Name = "hotelinfo.dlHotelPlaceInfoDetail.PayType" })
+                            @Html.ValidationMessageFor(model => model.dlHotelPlaceInfoDetail.PayType)
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <span class="">@Resources.Language.DetailInfo - @Resources.Language.Services - @Resources.Language.Contact</span>
+                <div class="tabstrip">
+                    <ul>
+                        <li class="k-state-active">@Resources.Language.DetailInfo</li>
+                        <li>@Resources.Language.Services</li>
+                        <li>@Resources.Language.Contact</li>
+                    </ul>
+                    <div>
+                        <div class="k-content">
+                            @if (null != Model && Model.dlHotelPlaceInfoDetail.Info != null)
+                            { 
+                                <textarea class="editor" name="hotelinfo.dlHotelPlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">@HttpUtility.HtmlDecode(Model.dlHotelPlaceInfoDetail.Info)</textarea>
+                            }
+                            else
+                            {
+                                <textarea class="editor" name="hotelinfo.dlHotelPlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">&lt;p&gt;Please input some detail about this city:&lt;/p&gt;</textarea>
+                   
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <div class="k-content">
+                            <textarea class="editor" name="hotelinfo.dlHotelPlaceInfoDetail.Service" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                   @HttpUtility.HtmlDecode(Model.dlHotelPlaceInfoDetail.Service)     
+                </textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="control-label">
+                            @Html.LabelFor(model => model.dlHotelPlaceInfoDetail.MobiPhone)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.dlHotelPlaceInfoDetail.MobiPhone, new { Name = "hotelinfo.dlHotelPlaceInfoDetail.MobiPhone" })
+                            @Html.ValidationMessageFor(model => model.dlHotelPlaceInfoDetail.MobiPhone)
+                        </div>
+
+                        <div class="control-label">
+                            @Html.LabelFor(model => model.dlHotelPlaceInfoDetail.HomePhone)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.dlHotelPlaceInfoDetail.HomePhone, new { Name = "hotelinfo.dlHotelPlaceInfoDetail.HomePhone" })
+                            @Html.ValidationMessageFor(model => model.dlHotelPlaceInfoDetail.HomePhone)
+                        </div>
+
+                        <div class="control-label">
+                            @Html.LabelFor(model => model.dlHotelPlaceInfoDetail.Fax)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.dlHotelPlaceInfoDetail.Fax, new { Name = "hotelinfo.dlHotelPlaceInfoDetail.Fax" })
+                            @Html.ValidationMessageFor(model => model.dlHotelPlaceInfoDetail.Fax)
+                        </div>
+
+                        <div class="control-label">
+                            @Html.LabelFor(model => model.dlHotelPlaceInfoDetail.Email)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.dlHotelPlaceInfoDetail.Email, new { Name = "hotelinfo.dlHotelPlaceInfoDetail.Email" })
+                            @Html.ValidationMessageFor(model => model.dlHotelPlaceInfoDetail.Email)
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <span class="">@Resources.Language.ImagePlace</span>
+                <div class="control-group">
+                    <label class="control-label" for="input01">@Resources.Language.ImagePlace</label>
+                    <div class="controls">
+                        <input id="uploadImage" name="fileUpload" type="file" />
+                        <div id="imageName">
+                            @if (null != Model && Model.listImagePlace != null)
+                            {
+                                foreach (var item in Model.listImagePlace)
+                                {     
+                                <input id="@item.LinkImage" class="imagePlace" value="@item.LinkImage" type="hidden"/>
+                                }
+                            }
+                        </div>
+                        <div id="imgPhotoPlace">
+                            <div class="row">
+                                <div class="span8">
+                                    <ul class="thumbnails">
+                                        @if (null != Model && Model.listImagePlace != null)
+                                        {
+                                            foreach (var item in Model.listImagePlace)
+                                            {     
+                                            @:<li class="span2" id="@item.LinkImage"><a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" alt='' /></a></li>
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="form-actions">
+        <input class="btn btn-primary" id="btnSubmit" type="button" value="@Resources.Language.Submit" />
+        <input class="btn" id="btnCancel" type="button" value="@Resources.Language.Cancel" />
+    </div>
+
+    <script>
+
+        $(document).ready(function () {
+            $("#panelbar").kendoPanelBar({
+                expandMode: "multiple"
+            });
+
+            $(".tabstrip").kendoTabStrip({
+                animation: {
+                    open: {
+                        effects: "fadeIn"
+                    }
+                }
+            });
+
+            $(".editor").kendoEditor({
+
+                tools: ["bold", "italic", "underline", "justifyLeft", "justifyCenter", "justifyRight",
+                    "justifyFull", "insertUnorderedList", "insertOrderedList", "indent", "outdent", "viewHtml"],
+
+            });
+
+            $("#uploadAvatar").kendoUpload({
+                localization: {
+                    remove: "Remove",
+                    uploadSelectedFiles: "Upload"
+                },
+                async: {
+                    //saveUrl: "/Place/UploadAvatar",
+                    //removeUrl: "/Place/RemoveAvatar",
+                    saveUrl: '@Url.Action("UploadAvatar", "Hotel", new { ID = Model.dlPlace.ID })',
+                    removeUrl: '@Url.Action("RemoveAvatar", "Hotel", new { ID = Model.dlPlace.ID })',
+                    autoUpload: false,
+                    multiple: false,
+                },
+                select: onSelect,
+                upload: onUpload,
+                success: onUploadAvatarSuccess
+            });
+
+            $("#uploadImage").kendoUpload({
+                localization: {
+                    remove: "Remove",
+                    uploadSelectedFiles: "Upload"
+                },
+                async: {
+                    saveUrl: '@Url.Action("UploadImage", "Hotel")',
+                    removeUrl: '@Url.Action("RemoveImage", "Hotel")',
+                    autoUpload: false,
+                },
+                select: onSelect,
+                upload: onUpload,
+                success: onUploadSuccess
+            });
+
+            var validator = $("#panelbar").kendoValidator().data("kendoValidator");
+            $('#btnSubmit').click(function () {
+                $('#frmUpdateHotel').submit();
+                //if (validator.validate()) {
+
+                //} else {
+                //    alert("Oops! There is invalid data in the form.");
+                //}
+
+            });
+
+            $('#btnCancel').click(function () {
+
+            });
+        });
+        function onSelect(e) {
+            var files = e.files;
+
+            // Check the extension of each file and abort the upload if it is not .jpg ,.png ,.bmp
+            $.each(files, function () {
+                //alert(this.extension);
+                if ((this.extension == ".jpg") || (this.extension == ".png") || (this.extension == ".bmp")) {
+                    return true;
+                }
+                else {
+                    alert("it is not .jpg ,.png ,.bmp"); e.preventDefault();
+                }
+            });
+        }
+        function onUpload(e) {
+            var files = e.files;
+
+            // Check the extension of each file and abort the upload if it is not .jpg ,.png ,.bmp
+            $.each(files, function () {
+                if ((this.extension == ".jpg") || (this.extension == ".png") || (this.extension == ".bmp")) {
+                    return true;
+                }
+                else {
+                    alert("it is not .jpg ,.png ,.bmp");
+                    e.preventDefault();
+                }
+            });
+        }
+        function onProgress(e) {
+            // Array with information about the uploaded files
+            var files = e.files;
+
+            console.log(e.percentComplete);
+        }
+
+        function onUploadAvatarSuccess(e) {
+            var files = e.files;
+
+            if (e.operation == "upload") {
+                $.each(files, function () {
+                    var name = this.name.replace(' ', '').replace('.', '');
+                    $('#Avatar').val(this.name);
+                    $('#imgPhotoAvatar > .row > .span8 > .thumbnails').append("<li class='span2' id=" + this.name + " ><a class=thumbnail><img src=/Data/Avatar/place/" + this.name + " alt='' /></a></li>");
+                    //$('#uploadAvatar').data('kendoUpload').disable();
+                });
+            }
+
+            if (e.operation == "remove") {
+                $.each(files, function () {
+                    $('#Avatar').val('');
+                    var name = this.name.replace(' ', '').replace('.', '');
+                    $('div#imgPhotoAvatar > .row > .span8 > .thumbnails > li').remove();
+                    // $('#uploadAvatar').data('kendoUpload').enable();
+                });
+            }
+        }
+
+        function onUploadSuccess(e) {
+            var files = e.files;
+
+            if (e.operation == "upload") {
+                $.each(files, function () {
+                    var name = this.name.replace(' ', '').replace('.', '');
+                    $('#imageName').append("<input id=" + name + " name='imagePlace' value=" + this.name + " type= hidden />")
+                    $('#imgPhotoPlace> .row > .span8 > .thumbnails').append("<li class= 'span2 " + name + "' ><a class=thumbnail><img src=/Data/Images/place/" + this.name + " alt='' /></a></li>");
+
+                });
+            }
+
+            if (e.operation == "remove") {
+                $.each(files, function () {
+                    var name = this.name.replace(' ', '').replace('.', '');
+                    $('div#imageName > input#' + name).remove();
+                    $('div#imgPhotoPlace > .row > .span8 > .thumbnails > li').remove('.' + name)
+                });
+            }
+        }
+
+
+    </script>
+</form>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

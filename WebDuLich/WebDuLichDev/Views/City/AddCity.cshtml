@@ -234,8 +234,8 @@
             multiple: false,
             async: {
                 autoUpload: false,
-                saveUrl: '@Url.Action("UploadAvatarCity","City",new {cityId=4})',
-                removeUrl: '@Url.Action("RemoveAvatarCity","City",new {cityId=4})'
+                saveUrl: '@Url.Action("UploadAvatarCity","City",new {cityId=Model.dlCity.ID})',
+                removeUrl: '@Url.Action("RemoveAvatarCity","City",new {cityId=Model.dlCity.ID})'
             },
             select: function () {
                 // The upload button will be created after the event is triggered
