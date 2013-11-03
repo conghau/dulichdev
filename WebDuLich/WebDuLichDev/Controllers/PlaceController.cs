@@ -19,18 +19,18 @@ namespace WebDuLichDev.Controllers
 
         public ActionResult Index()
         {
-            vm_Pagination pagination = new vm_Pagination{
+            vm_Pagination pagination = new vm_Pagination
+            {
                 Page = MvcApplication.pageDefault,
                 PageSize = MvcApplication.pageSizeDefault,
                 OrderBy = DL_PlaceColumns.CreatedDate.ToString(),
-                OrderDirection ="DESC",
+                OrderDirection = "DESC",
 
             };
-            long totalRecords=0;
+            long totalRecords = 0;
 
             DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
             var model = dlPlaceBAL.GetListWithFilter(0,"","",0,pagination.Page.Value, pagination.PageSize.Value,pagination.OrderBy,pagination.OrderDirection, out totalRecords);
-
             common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
             ViewData["OrderBy"] = pagination.OrderBy;
             ViewData["OrderDirection"] = pagination.OrderDirection;
@@ -46,7 +46,6 @@ namespace WebDuLichDev.Controllers
 
             DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
             var model = dlPlaceBAL.GetListWithFilter(dataSearch.cityId ??0, dataSearch.placename ?? "",dataSearch.address ?? "",0, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
-
             common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
             ViewData["OrderBy"] = pagination.OrderBy;
             ViewData["OrderDirection"] = pagination.OrderDirection;
