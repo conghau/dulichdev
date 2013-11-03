@@ -43,8 +43,8 @@ namespace DuLichDLL.Model
 
     public enum DL_PlaceTypeId
     {
-        Restaurants =1,
-        Hotels =2,
-        Places =3,
+        Restaurants = 1,
+        Hotels = 2,
+        Places = 3,
     }
 }

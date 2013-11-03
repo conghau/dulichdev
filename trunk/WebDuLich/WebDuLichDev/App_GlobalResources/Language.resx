@@ -144,6 +144,9 @@
   <data name="Close" xml:space="preserve">
     <value>Đóng</value>
   </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Liên hệ</value>
+  </data>
   <data name="DetailInfo" xml:space="preserve">
     <value>Thông tin chi tiết</value>
   </data>
@@ -197,6 +200,9 @@
   </data>
   <data name="Rows" xml:space="preserve">
     <value>Hàng</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>Dịch vụ</value>
   </data>
   <data name="Social" xml:space="preserve">
     <value>Xã hội</value>

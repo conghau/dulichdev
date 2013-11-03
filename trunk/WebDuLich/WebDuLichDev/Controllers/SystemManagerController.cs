@@ -44,7 +44,7 @@ namespace WebDuLichDev.Controllers
 
             return View(model);
         }
-       
+
 
         [HttpPost]
         public ActionResult CityManager(vm_Pagination pagination, string city_search)
@@ -53,7 +53,7 @@ namespace WebDuLichDev.Controllers
             long totalRecords = 0;
 
             DL_CityBAL dlCityBAL = new DL_CityBAL();
-            var model = dlCityBAL.GetListWithFilter("",city_search, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
+            var model = dlCityBAL.GetListWithFilter("", city_search, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
 
             common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
             ViewData["OrderBy"] = pagination.OrderBy;
@@ -61,6 +61,6 @@ namespace WebDuLichDev.Controllers
 
             return View(model);
         }
-        
+
     }
 }

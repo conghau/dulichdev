@@ -119,7 +119,7 @@ namespace DuLichDLL.BAL
             {
                 bool result = false;
                 DL_CityDAL dL_CityDAL = new DL_CityDAL();
-                return result = dL_CityDAL.InsertRating(dlCity,dlCommentCity);
+                return result = dL_CityDAL.InsertRating(dlCity, dlCommentCity);
             }
             catch (DataAccessException ex)
             {
@@ -156,7 +156,6 @@ namespace DuLichDLL.BAL
             }
         }
         public List<DL_City> GetListWithFilter(string countryCode, string cityName, int page, int pageSize, string orderBy, string orderDirection, out long totalRecords)
-
         {
             try
             {

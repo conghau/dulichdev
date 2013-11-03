@@ -18,6 +18,12 @@ namespace WebDuLichDev.Models
 
         public DL_City dlCity { get; set; }
         public DL_CityInfoDetail dlCityInfoDetail { get; set; }
-      
+
+    }
+    public class HotelInfo
+    {
+        public DL_Place dlPlace { get; set; }
+        public DL_HotelPlaceInfoDetail dlHotelPlaceInfoDetail { get; set; }
+        public List<DL_ImagePlace> listImagePlace { get; set; }
     }
 }

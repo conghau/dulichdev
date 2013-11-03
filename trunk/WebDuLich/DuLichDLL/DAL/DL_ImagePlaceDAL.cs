@@ -71,6 +71,35 @@ namespace DuLichDLL.DAL
                 cnn.Close();
             }
         }
+        public List<DL_ImagePlace> GetByDLPlaceID(long DLPlaceID)
+        {
+            SqlConnection cnn = null;
+            try
+            {
+                cnn = DataProvider.OpenConnection();
+                SqlCommand cmd = new SqlCommand(DL_ImagePlaceProcedure.p_DL_ImagePlace_Get_ByDL_PlaceID.ToString(), cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@DL_PlaceID", SqlDbType.BigInt).Value = DLPlaceID;
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dt);
+                List<DL_ImagePlace> results = GetDataObject(dt);
+                DL_ImagePlace dL_ImagePlace = new DL_ImagePlace();
+                return results;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_ImagePlaceDAL: GetByID"));
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
         public List<DL_ImagePlace> GetList()
         {
             SqlConnection cnn = null;
@@ -136,7 +165,7 @@ namespace DuLichDLL.DAL
             {
                 cnn.Close();
             }
-        }
+        }        
         public long Insert(DL_ImagePlace dL_ImagePlace, SqlConnection cnn, SqlTransaction tran)
         {
             long id = 0;

@@ -22,7 +22,6 @@ namespace WebDuLichDev.Controllers
         {
             M_SystemSetting_Config mSystemSetting = new M_SystemSetting_Config();
             M_SystemSettingBAL mSystemSettingBal = new M_SystemSettingBAL();
-
             mSystemSetting = mSystemSettingBal.GetSystemSetting();
             pathAvatarCity = mSystemSetting.PATH_AVATAR_CITY;
             pathImageCity = mSystemSetting.PATH_IMAGE_CITY;
@@ -110,7 +109,7 @@ namespace WebDuLichDev.Controllers
 
 
             model.dlCity = dlCityBal.GetByID(id);
-            
+
             model.dlCityInfoDetail = dlCityInfoBAL.GetByCityID(id);
             //model.dlCityInfoDetail.Economy = HttpUtility.HtmlDecode(model.dlCityInfoDetail.Economy);
 
@@ -148,14 +147,14 @@ namespace WebDuLichDev.Controllers
             return PartialView("~/Views/Shared/_Rate.cshtml", dlCity);
 
         }
-       
+
 
         public ActionResult UploadAvatarCity(IEnumerable<HttpPostedFileBase> fileUpload, int cityId)
         {
-          
-          
 
-            DL_City dlCity = new DL_City();         
+
+
+            DL_City dlCity = new DL_City();
 
             var serserPath = Server.MapPath("~/Data/Avatar/City/");
             if (System.IO.File.Exists(serserPath + dlCity.Avatar)) //Xóa file có trước nếu đã có trong csdl. Việc up là duy nhất

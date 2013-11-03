@@ -124,7 +124,7 @@ namespace DuLichDLL.DAL
                 cmd.Parameters.Add("@PageSize", SqlDbType.BigInt).Value = pageSize;
                 SqlParameter totalRecord = cmd.Parameters.Add("@TotalRecords", SqlDbType.BigInt);
                 totalRecord.Direction = ParameterDirection.Output;
-  
+
                 DataTable dt = new DataTable();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
@@ -531,7 +531,7 @@ namespace DuLichDLL.DAL
                 dlNicePlaceDetailDAL.Insert(dlNicePlaceDetail, cnn, tran);
 
                 //insert ImagePlace
-                if(null != dlImagePlace)
+                if (null != dlImagePlace)
                 {
                     for (int index = 0; index < dlImagePlace.Count; index++)
                     {
@@ -547,11 +547,150 @@ namespace DuLichDLL.DAL
             catch (DataAccessException ex)
             {
                 throw new DataAccessException(ex.Message);
-                
+
             }
             catch (Exception ex)
             {
                 throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceDAL: InsertNicePlace"));
+            }
+            finally
+            {
+                tran.Dispose();
+                cnn.Close();
+            }
+        }
+        public long Update_Hotel(DL_Place dL_Place, SqlConnection cnn, SqlTransaction tran)
+        {
+
+            try
+            {
+                long id = 0;
+                cnn = DataProvider.OpenConnection();
+                SqlCommand cmd = new SqlCommand(DL_PlaceProcedure.p_DL_Place_Update_Hotel.ToString(), cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@ID", SqlDbType.BigInt).Value = dL_Place.ID;
+                cmd.Parameters.Add("@DL_CityId", SqlDbType.BigInt).Value = dL_Place.DL_CityId;
+                cmd.Parameters.Add("@DL_PlaceTypeId", SqlDbType.BigInt).Value = dL_Place.DL_PlaceTypeId;
+                cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = dL_Place.Name;
+                cmd.Parameters.Add("@Address", SqlDbType.NVarChar).Value = dL_Place.Address;
+                cmd.Parameters.Add("@Avatar", SqlDbType.NVarChar).Value = dL_Place.Avatar;
+                SqlParameterCollection parameterValues = cmd.Parameters;
+                int i = 0;
+                foreach (SqlParameter parameter in parameterValues)
+                {
+                    if ((parameter.Direction != ParameterDirection.Output) && (parameter.Direction != ParameterDirection.ReturnValue))
+                    {
+                        if (parameter.Value == null)
+                            parameter.Value = DBNull.Value;
+                        i++;
+                    }
+                }
+                object result = cmd.ExecuteScalar();
+                if (result != null)
+                    id = Utility.Utility.ObjectToLong(result.ToString());
+                return id;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceDAL: Update_Hotel"));
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+        public long Update_Hotel(DL_Place dL_Place)
+        {
+            SqlConnection cnn = null;
+            try
+            {
+                long id = 0;
+                cnn = DataProvider.OpenConnection();
+                SqlCommand cmd = new SqlCommand(DL_PlaceProcedure.p_DL_Place_Update_Hotel.ToString(), cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@ID", SqlDbType.BigInt).Value = dL_Place.ID;
+                cmd.Parameters.Add("@DL_CityId", SqlDbType.BigInt).Value = dL_Place.DL_CityId;
+                cmd.Parameters.Add("@DL_PlaceTypeId", SqlDbType.BigInt).Value = dL_Place.DL_PlaceTypeId;
+                cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = dL_Place.Name;
+                cmd.Parameters.Add("@Address", SqlDbType.NVarChar).Value = dL_Place.Address;
+                cmd.Parameters.Add("@Avatar", SqlDbType.NVarChar).Value = dL_Place.Avatar;
+                SqlParameterCollection parameterValues = cmd.Parameters;
+                int i = 0;
+                foreach (SqlParameter parameter in parameterValues)
+                {
+                    if ((parameter.Direction != ParameterDirection.Output) && (parameter.Direction != ParameterDirection.ReturnValue))
+                    {
+                        if (parameter.Value == null)
+                            parameter.Value = DBNull.Value;
+                        i++;
+                    }
+                }
+                object result = cmd.ExecuteScalar();
+                if (result != null)
+                    id = Utility.Utility.ObjectToLong(result.ToString());
+                return id;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceDAL: Update_Hotel"));
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+        public bool UpdateHotel(DL_Place dlPlace, DL_HotelPlaceInfoDetail dlHotelPlaceInfoDetail, List<DL_ImagePlace> dlImagePlace)
+        {
+            SqlConnection cnn = null;
+            SqlTransaction tran = null;
+            bool result = false;
+            try
+            {
+                DL_HotelPlaceInfoDetailDAL dlHotelPlaceInfoDetailDAL = new DL_HotelPlaceInfoDetailDAL();
+                DL_ImagePlaceDAL dlImageDAL = new DL_ImagePlaceDAL();
+                long placeId = 0;
+                cnn = DataProvider.OpenConnection();
+                tran = cnn.BeginTransaction();
+
+                //update Place
+                placeId = Update_Hotel(dlPlace, cnn, tran);
+                
+                //set DLPlaceID for NicePlaceInfo
+               // dlHotelPlaceInfoDetail.DL_PlaceId = dlPlace.ID;
+                //dlDHotelPlaceInfoDetail.Staus = 0;
+                //updapte NicePlaceInfo
+                dlHotelPlaceInfoDetailDAL.Update(dlHotelPlaceInfoDetail, cnn, tran);
+
+                //update ImagePlace
+                if (null != dlImagePlace)
+                {
+                    for (int index = 0; index < dlImagePlace.Count; index++)
+                    {
+                        dlImagePlace[index].DL_PlaceID = dlPlace.ID;
+                        dlImagePlace[index].Status = 0;
+                        dlImageDAL.Insert(dlImagePlace[index], cnn, tran);
+                    }
+                }
+
+                tran.Commit();
+                return result = true;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceDAL: UpdateHotel 3 parameter"));
             }
             finally
             {
