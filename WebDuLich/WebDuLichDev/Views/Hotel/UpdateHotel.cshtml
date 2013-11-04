@@ -175,17 +175,17 @@
                     <label class="control-label" for="input01">@Resources.Language.ImagePlace</label>
                     <div class="controls">
                         <input id="uploadImage" name="fileUpload" type="file" />
-                        <div id="imageName">
+                        @*<div id="imageName">
                             @if (null != Model && Model.listImagePlace != null)
                             {
                                int i=10;
                                 foreach (var item in Model.listImagePlace)
                                 {     
-                                <input id="@i" class="imagePlace" value="@item.LinkImage" type="hidden"/>
+                                <input id="@Model.listImagePlace[i].ID" class="imagePlace" value="@item.LinkImage" type="hidden"/>
                                     i++;  
                                 }
                             }
-                        </div>
+                        </div>*@
                         <div id="imgPhotoPlace">
                             <div class="row">
                                 <div class="span8">
@@ -197,10 +197,14 @@
                                         </li>                                        
                                         @if (null != Model && Model.listImagePlace != null)
                                         {
-                                            int i = 10;
+                                            int i = 0;
                                             foreach (var item in Model.listImagePlace)
                                             {     
-                                            @:<li class="span2" id="@i"><a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" id="@i" alt='' ondblclick="onclickpicture(this.id)" onmousemove="onfocuspicture()" /></a></li>
+                                            @:<li class="span2" id="@i">
+                                                <a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" id="@i" alt='' ondblclick="onclickpicture(this.id)" onmousemove="onfocuspicture()" /></a>
+                                            <input name="hotelinfo.listImagePlace[@i].LinkImage" class="imagePlace" value="@item.LinkImage" type="hidden"/>
+                                            <input name="hotelinfo.listImagePlace[@i].ID" class="imagePlace" value="@item.ID" type="hidden"/>
+                                              @:</li>
                                             i++;
                                             }
                                         }
