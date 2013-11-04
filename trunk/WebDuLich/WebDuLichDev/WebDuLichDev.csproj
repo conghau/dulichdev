@@ -586,6 +586,9 @@
     <Content Include="Views\SystemManager\CityManager.cshtml" />
     <Content Include="Views\Shared\p_Pagination.cshtml" />
     <Content Include="Views\Place\p_Search.cshtml" />
+    <Content Include="Views\Place\ListNicePlace.cshtml" />
+    <Content Include="Views\Place\ListHotel.cshtml" />
+    <Content Include="Views\Place\UpdateNicePlace.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
