@@ -7,6 +7,6 @@ namespace WebDuLichDev.Utility
 {
     public class HtmlHelper
     {
-
+        public static string[]A ;
     }
 }
