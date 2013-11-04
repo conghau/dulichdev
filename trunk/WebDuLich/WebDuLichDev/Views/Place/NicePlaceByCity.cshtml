@@ -4,10 +4,19 @@
     Layout = "~/Views/Shared/_LayoutFilp.cshtml";
 }
 <form method="post" action="#" id="frmMain">
+    @{var pageSize = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.PageSize.ToString()].ToString());
+      var pageNum = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.PageNum.ToString()].ToString());
+      var page = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.Page.ToString()].ToString()); }
+
+    <input type="hidden" value="@ViewData["OrderBy"]" name="orderBy" id="orderBy" />
+    <input type="hidden" value="@ViewData["OrderDirection"]" name="orderDirection"id="orderDirection" />
     <input type="hidden" value="@ViewBag.pages" name ="page" id="pages"/>
     <input type="hidden" value="@Model[0].DL_CityId" name ="cityId" id="cityId"/>
-    
-        @Html.Partial("p_niceplace", Model)
+
+    @Html.Partial("p_niceplace", Model)
+    <div>
+        <a id="pressNext"><i class="icon-forward"></i></a>
+    </div>
 </form>
 <!-- The JavaScript -->
 
