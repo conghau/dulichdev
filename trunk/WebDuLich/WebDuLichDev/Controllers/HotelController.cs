@@ -90,7 +90,7 @@ namespace WebDuLichDev.Controllers
             }
             hotelinfo.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
             hotelinfo.listImagePlace = listdlImangePlace;
-            dlPlaceBal.InsertHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, hotelinfo.listImagePlace);
+            dlPlaceBal.UpdateHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, hotelinfo.listImagePlace);
             return View(hotelinfo);
         }
 
