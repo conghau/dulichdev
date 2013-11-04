@@ -106,8 +106,5 @@ namespace DuLichDLL.Model
         p_DL_Place_Get_RestaurantByCityID,
         p_DL_Place_Get_HotelByCityID,
         p_DL_Place_Get_List_WithFilter,
-        p_DL_Place_Update_Hotel,
-        p_DL_Place_UpdateHotel
-
     }
 }
