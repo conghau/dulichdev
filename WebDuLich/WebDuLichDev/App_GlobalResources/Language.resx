@@ -138,6 +138,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Huỷ</value>
   </data>
+  <data name="ChooseCity" xml:space="preserve">
+    <value>Chọn thành phố</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>Thành phố</value>
   </data>
