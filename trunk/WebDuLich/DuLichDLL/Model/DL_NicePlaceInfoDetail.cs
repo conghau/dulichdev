@@ -73,6 +73,7 @@ namespace DuLichDLL.Model
         p_DL_NicePlaceInfoDetail_Update,
         p_DL_NicePlaceInfoDetail_Get_List,
         p_DL_NicePlaceInfoDetail_Get_ByID,
+        p_DL_NicePlaceInfoDetail_Get_ByPlaceID,
 
     }
 }
