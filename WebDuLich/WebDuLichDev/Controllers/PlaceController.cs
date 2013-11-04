@@ -17,7 +17,7 @@ namespace WebDuLichDev.Controllers
         //
         // GET: /Place/
 
-        public ActionResult Index()
+        public ActionResult ListNicePlace()
         {
             vm_Pagination pagination = new vm_Pagination
             {
@@ -30,7 +30,7 @@ namespace WebDuLichDev.Controllers
             long totalRecords = 0;
 
             DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
-            var model = dlPlaceBAL.GetListWithFilter(0,"","",0,pagination.Page.Value, pagination.PageSize.Value,pagination.OrderBy,pagination.OrderDirection, out totalRecords);
+            var model = dlPlaceBAL.GetListWithFilter(0, "", "", 0, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
             common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
             ViewData["OrderBy"] = pagination.OrderBy;
             ViewData["OrderDirection"] = pagination.OrderDirection;
@@ -39,13 +39,13 @@ namespace WebDuLichDev.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(vm_Pagination pagination, vm_Search dataSearch)
+        public ActionResult ListNicePlace(vm_Pagination pagination, vm_Search dataSearch)
         {
 
             long totalRecords = 0;
 
             DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
-            var model = dlPlaceBAL.GetListWithFilter(dataSearch.cityId ??0, dataSearch.placename ?? "",dataSearch.address ?? "",0, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
+            var model = dlPlaceBAL.GetListWithFilter(dataSearch.cityId ?? 0, dataSearch.placename ?? "", dataSearch.address ?? "", 0, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
             common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
             ViewData["OrderBy"] = pagination.OrderBy;
             ViewData["OrderDirection"] = pagination.OrderDirection;
@@ -56,9 +56,21 @@ namespace WebDuLichDev.Controllers
         public ActionResult NicePlaceByCity(long cityId)
         {
             DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
-            var model = dlPlaceBal.GetListNicePlaceByCity(cityId).Take(2).ToList();
-            DuLichDLL.Model.DL_Place model1 = new DuLichDLL.Model.DL_Place();
-            ViewBag.pages = 1;
+            long totalRecords = 0;
+            vm_Pagination pagination = new vm_Pagination
+            {
+                Page = MvcApplication.pageDefault,
+                PageSize = MvcApplication.pageSizeDefault,
+                OrderBy = DL_PlaceColumns.CreatedDate.ToString(),
+                OrderDirection = "DESC",
+
+            };
+
+            var model = dlPlaceBal.GetListWithFilter(cityId,"","",(long)DL_PlaceTypeId.Places,pagination.Page.Value,pagination.PageSize.Value,pagination.OrderBy,pagination.OrderDirection,out totalRecords);
+            //DuLichDLL.Model.DL_Place model1 = new DuLichDLL.Model.DL_Place();
+            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
+            ViewData["OrderBy"] = pagination.OrderBy;
+            ViewData["OrderDirection"] = pagination.OrderDirection;
             return View(model);
         }
         [HttpPost]
@@ -78,28 +90,35 @@ namespace WebDuLichDev.Controllers
             return View();
         }
 
-        public ActionResult HotelByCity(long cityId)
-        {
-            DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
-            var model = dlPlaceBal.GetListHotelByCity(
-
-                cityId);
-            return View();
-        }
-
         [HttpPost]
-        public ActionResult reLoadPage(long cityId, int page)
+        public ActionResult reLoadPage(long cityId, vm_Pagination pagination)
         {
             DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
-            var model = dlPlaceBal.GetListNicePlaceByCity(cityId).Take(4).ToList();
-            DuLichDLL.Model.DL_Place model1 = new DuLichDLL.Model.DL_Place();
-            ViewBag.pages = page;
+            long totalRecords = 0;
+            //var model = dlPlaceBal.GetListNicePlaceByCity(cityId).Take(4).ToList();
+            var model = dlPlaceBal.GetListWithFilter(cityId, "", "", (long)DL_PlaceTypeId.Places, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
+            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
+            ViewData["OrderBy"] = pagination.OrderBy;
+            ViewData["OrderDirection"] = pagination.OrderDirection;
+            //DuLichDLL.Model.DL_Place model1 = new DuLichDLL.Model.DL_Place();
             return PartialView("p_niceplace", model);
         }
 
         public ActionResult AddPlace()
         {
             NicePlace model = new NicePlace();
+            return View(model);
+        }
+
+        public ActionResult UpdateNicePlace(long dlPlaceId)
+        {
+            DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+            DL_NicePlaceInfoDetailBAL dlNicePlaceDetailBal = new DL_NicePlaceInfoDetailBAL();
+            DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
+            NicePlace model = new NicePlace();
+            model.dlPlace = dlPlaceBal.GetByID(dlPlaceId);
+            model.listImageCity = dlImagePlaceBal.GetByDLPlaceID(dlPlaceId);
+            model.dlNicePlaceInfoDetail = dlNicePlaceDetailBal.GetByPlaceId(dlPlaceId);
             return View(model);
         }
 
@@ -177,5 +196,65 @@ namespace WebDuLichDev.Controllers
 
         }
 
+        #region
+        public ActionResult ListHotel()
+        {
+            vm_Pagination pagination = new vm_Pagination
+            {
+                Page = MvcApplication.pageDefault,
+                PageSize = MvcApplication.pageSizeDefault,
+                OrderBy = DL_PlaceColumns.CreatedDate.ToString(),
+                OrderDirection = "DESC",
+
+            };
+            long totalRecords = 0;
+
+            DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
+            var model = dlPlaceBAL.GetListWithFilter(0, "", "", (long)DL_PlaceTypeId.Hotels, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
+
+            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
+            ViewData["OrderBy"] = pagination.OrderBy;
+            ViewData["OrderDirection"] = pagination.OrderDirection;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ListHotel(vm_Pagination pagination, vm_Search dataSearch)
+        {
+            long totalRecords = 0;
+
+            DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
+            var model = dlPlaceBAL.GetListWithFilter(0, "", "", (long)DL_PlaceTypeId.Hotels, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
+
+            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
+            ViewData["OrderBy"] = pagination.OrderBy;
+            ViewData["OrderDirection"] = pagination.OrderDirection;
+
+            return View(model);
+        }
+
+
+        public ActionResult HotelByCity(long cityId)
+        {
+            DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+            var model = dlPlaceBal.GetListHotelByCity(
+
+                cityId);
+            return View();
+        }
+
+        public ActionResult AddHotel()
+        {
+            DL_Place dlPlace = new DL_Place();
+            return View(dlPlace);
+        }
+
+        [HttpPost]
+        public ActionResult AddHotel(DL_Place data)
+        {
+            return View(data);
+        }
+        #endregion
     }
 }
