@@ -26,10 +26,11 @@
 
         // List of all the page elements in the DOM
         var pages = book.getElementsByTagName("section");
-        $('#book').click(function () {
+        $('#pages').click(function () {
             numclick++;
+            alert(numclick);
             if (numclick >= pages.length - 1) {
-                $('#pages').val(numclick);
+                //$('#pages').val(numclick);
                 $.ajax({
                     type: 'post',
                     url: "@Url.Action("reLoadPage", "Place")",
