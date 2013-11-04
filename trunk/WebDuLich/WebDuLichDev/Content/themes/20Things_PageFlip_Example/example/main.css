@@ -12,35 +12,36 @@ body {
 #book {
     background: url("book.png") no-repeat;
     position: absolute;
-    width: 100%;
+    width: 1440px;
     height: 100%;
-    left: -32%;
-    top: 50%;
+    left: 0%;
+    top: 30%;
     margin-top: -125px;
+    margin-left: -600px;
 }
 
 #pages {
-    height: 500px;
-    left: 32px;
+    height: 576px;
+    left: 127px;
     position: absolute;
     top: 10px;
-    width: 1600px;
+    width: 688px;
 }
 
     #pages section {
-        background: url("right-page-paper.jpg") no-repeat scroll 0 0 #FFFFFF;
-        height: 500px;
-        margin-left: 799px;
+        background: url("paper.jpg") no-repeat scroll 0 0 #FFFFFF;
+        height: 576px;
+        margin-left: 600px;
         overflow: hidden;
         position: absolute;
         top: 0;
     }
 
         #pages section > div {
-            height: 440px;
+            height: 576px;
             padding: 35px 45px;
             position: absolute;
-            width: 715px;
+            width: 688px;
         }
 
         #pages section p,
