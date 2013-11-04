@@ -17,7 +17,7 @@ namespace WebDuLichDev.WebUtility
                 DL_CityBAL dlCityBal = new DL_CityBAL();
                 List<SelectListItem> listCity = new List<SelectListItem>();
 
-                listCity.Add(new SelectListItem { Text = "", Value = "-1" });
+                listCity.Add(new SelectListItem { Text = Resources.Language.ChooseCity +"...", Value = "-1" });
 
                 var dlCity = dlCityBal.GetList();
 
