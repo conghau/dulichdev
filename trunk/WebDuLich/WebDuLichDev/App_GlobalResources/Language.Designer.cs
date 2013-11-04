@@ -124,6 +124,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chọn thành phố.
+        /// </summary>
+        internal static string ChooseCity {
+            get {
+                return ResourceManager.GetString("ChooseCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thành phố.
         /// </summary>
         internal static string City {
