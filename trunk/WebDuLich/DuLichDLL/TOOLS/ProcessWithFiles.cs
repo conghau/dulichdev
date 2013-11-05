@@ -20,7 +20,7 @@ namespace DuLichDLL.TOOLS
                     System.IO.File.Delete(filepath);
                     return true;
                 }
-                catch (System.IO.IOException e)
+                catch (System.IO.IOException)
                 {
                     return false;
                 }
