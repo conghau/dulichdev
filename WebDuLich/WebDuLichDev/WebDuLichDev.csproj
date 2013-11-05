@@ -589,6 +589,8 @@
     <Content Include="Views\Place\ListNicePlace.cshtml" />
     <Content Include="Views\Place\ListHotel.cshtml" />
     <Content Include="Views\Place\UpdateNicePlace.cshtml" />
+    <Content Include="Views\Hotel\UpdateHotel.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

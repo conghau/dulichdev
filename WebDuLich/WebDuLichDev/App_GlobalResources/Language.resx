@@ -156,6 +156,12 @@
   <data name="Economy" xml:space="preserve">
     <value>Kinh tế</value>
   </data>
+  <data name="ERR_Insert" xml:space="preserve">
+    <value>Thêm mới thất bại</value>
+  </data>
+  <data name="ERR_Update" xml:space="preserve">
+    <value>Cập nhập thất bại</value>
+  </data>
   <data name="First" xml:space="preserve">
     <value>Đầu</value>
   </data>
@@ -212,6 +218,12 @@
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Hoàn thành</value>
+  </data>
+  <data name="SUC_Insert" xml:space="preserve">
+    <value>Thêm mới thành công</value>
+  </data>
+  <data name="SUC_Update" xml:space="preserve">
+    <value>Cập nhập thành công</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>Giờ</value>

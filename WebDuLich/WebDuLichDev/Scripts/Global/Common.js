@@ -35,14 +35,14 @@
 })(jQuery);
 
 $(function () {
-    $(".DDL").kendoDropDownList();
-    $(".CBB").kendoComboBox();
+    //$(".DDL").kendoDropDownList();
+    //$(".CBB").kendoComboBox();
 
     //$(".DateTime").filter_inputDateTime(DateTimeFormat);
-    $(".DateTimeKendo").filter_inputDateTime(DateTimeFormat); //DateTimeFormat get from session and set in master page
-    $(".DateTimeKendo").kendoDatePicker({
-        format: DateTimeFormat
-    });
+    //$(".DateTimeKendo").filter_inputDateTime(DateTimeFormat); //DateTimeFormat get from session and set in master page
+    //$(".DateTimeKendo").kendoDatePicker({
+    //    format: DateTimeFormat
+    //});
     $(".Numberic").kendoNumericTextBox();
     $(".NumbericINT").kendoNumericTextBox({
         format: "#",
@@ -52,10 +52,10 @@ $(function () {
     var message = 'DULICHDLL.Utility.Utility.ObjectToString(ViewData[WebDuLichDev.Enum.PageInfo.Message.ToString()])';
     if (message != '') {
         if (message.indexOf('ERR') >= 0 || message.indexOf('VAL') >= 0) {
-            $('#messageBox').addClass('errorBox');
+            $('#messageBox').addClass('alert-error');
         }
         else {
-            $('#messageBox').addClass('successBox');
+            $('#messageBox').addClass('alert-success');
         }
         $('#messageBox').css('display', '');
     }
