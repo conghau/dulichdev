@@ -100,15 +100,15 @@
                     <label class="control-label" for="input01">@Resources.Language.ImagePlace</label>
                     <div class="controls">
                         <input id="uploadImage" name="fileUpload" type="file" />
-                        <div id="imageName">
+                        @*<div id="imageName">
                             @if (null != Model && Model.listImageCity != null)
                             {
                                 foreach (var item in Model.listImageCity)
                                 {     
-                                <input id="@item.LinkImage" class="imagePlace" value="@item.LinkImage" type="hidden"/>
+                                
                                 }
                             }
-                        </div>
+                        </div>*@
                         <div id="imgPhotoPlace">
                             <div class="row">
                                 <div class="span8">
@@ -117,7 +117,9 @@
                                         {
                                             foreach (var item in Model.listImageCity)
                                             {     
-                                            @:<li class="span2" id="@item.LinkImage"><a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" alt='' /></a></li>
+                                            @:<li class="span2 @item.LinkImage"><a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" alt='' /></a>
+                                                <input id="@item.LinkImage" class="imagePlace" value="@item.LinkImage" type="hidden"/>
+                                              @:</li>
                                             }
                                         }
                                     </ul>
@@ -264,7 +266,7 @@
             if (e.operation == "remove") {
                 $.each(files, function () {
                     var name = this.name.replace(' ', '').replace('.', '');
-                    $('div#imageName > input#' + name).remove();
+                   // $('div#imageName > input#' + name).remove();
                     $('div#imgPhotoPlace > .row > .span8 > .thumbnails > li').remove('.' + name)
                 });
             }

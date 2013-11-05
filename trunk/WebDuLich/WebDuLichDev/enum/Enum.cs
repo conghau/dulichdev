@@ -19,4 +19,13 @@ namespace WebDuLichDev.Enum
         Action,
         Previous
     }
+
+    public enum ResultMessage
+    {
+        SUC_Insert,
+        SUC_Update,
+        ERR_Insert,
+        ERR_Update,
+
+    }
 }

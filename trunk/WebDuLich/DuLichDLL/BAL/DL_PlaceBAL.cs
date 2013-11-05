@@ -303,5 +303,26 @@ namespace DuLichDLL.BAL
                 throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceBAL: InsertHotel 3 parameter"));
             }
         }
+
+        public bool UpdateNicePlace(DL_Place dlPlace, DL_NicePlaceInfoDetail dlNicePlaceInfoDetail, List<DL_ImagePlace> dlImagePlace)
+        {
+            try
+            {
+                DL_PlaceDAL dL_PlaceDAL = new DL_PlaceDAL();
+                return dL_PlaceDAL.UpdateNicePlace(dlPlace, dlNicePlaceInfoDetail, dlImagePlace);
+            }
+            catch (DataAccessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (BusinessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceBAL: UpdateNicePlace"));
+            }
+        }
     }
 }

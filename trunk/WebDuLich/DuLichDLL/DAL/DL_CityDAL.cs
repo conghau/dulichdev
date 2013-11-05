@@ -388,7 +388,8 @@ namespace DuLichDLL.DAL
                 Update(dlCity, cnn, tran);
                 dlCmCityDAL.Insert(dlCommentCity, cnn, tran);
                 tran.Commit();
-                return result = true;
+                result = true;
+                return result;
             }
             catch (DataAccessException ex)
             {
@@ -418,7 +419,8 @@ namespace DuLichDLL.DAL
                 UpdateContent(dlCity, cnn, tran);
                 dlCityInfoDAL.Update(dlCityInfo, cnn, tran);
                 tran.Commit();
-                return result = true;
+                result = true;
+                return result;
             }
             catch (DataAccessException ex)
             {

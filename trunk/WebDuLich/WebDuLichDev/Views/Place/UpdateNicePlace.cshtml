@@ -4,8 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AddPlace</h2>
-<form id="frmAddPlace" class="well form-horizontal" method="post" action="/Place/AddPlace">
+<h2>Update</h2>
+<form id="frmMain" class="well form-horizontal" method="post" action="/Place/UpdateNicePlace">
     <div>
         <ul id="panelbar">
             <li class="k-state-active">
@@ -14,6 +14,7 @@
                     <div class="control-group">
                         <label class="control-label" for="input01">@Resources.Language.PlaceName</label>
                         <div class="controls">
+                            @Html.TextBoxFor(m => m.dlPlace.ID, new {type="hidden"})
                             @Html.TextBoxFor(m => m.dlPlace.Name, new { id = "placeName", placeholder = "Place name ...", required = "", validationMessage = "Please enter {0}" })
                         </div>
                     </div>
@@ -51,6 +52,7 @@
             <li>
                 <span class="">@Resources.Language.DetailInfo</span>
                 <div id="tabstrip">
+                    @Html.TextBoxFor(m => m.dlNicePlaceInfoDetail.ID, new { type="hidden" })
                     <ul>
                         <li class="k-state-active">@Resources.Language.Introduce</li>
                         <li>@Resources.Language.History</li>
@@ -115,17 +117,25 @@
                                     <ul class="thumbnails">
                                         @if (null != Model && Model.listImageCity != null)
                                         {
+                                            int i =0;
                                             foreach (var item in Model.listImageCity)
-                                            {    
-                                            @:<li class="span3" id="@item.LinkImage.Replace(".", "")">
+                                            {   
+                                                var name =  item.LinkImage.Replace(" ","").Replace(".","");
+                                            @:<li class="span3 @name">
                                                 <div class="thumbnail">
-                                                     <div class="caption"><a class="btn .btn-small" href="#"><img src=""/></a></div>
+                                                     <div class="caption"><a  onclick="deleteImage('@name')"><img src="/Content/themes/custom/Image/Delete.png" 
+                                                          style="margin-top:-6px; margin-bottom:-6px"
+                                                            onmouseover="this.src='/Content/themes/custom/Image/Delete-highlight.png';"
+                                                            onmouseout="this.src='/Content/themes/custom/Image/Delete.png'" /></a></div>
                                                 
-                                                    <img src="/Data/Images/place/@item.LinkImage" alt='' />
-                                                     <input id="@item.LinkImage.Replace(".", "")" class="imagePlace" value="@item.LinkImage" type="hidden"/>
+                                                    <img src="/Data/Images/place/@item.LinkImage" alt='' /> 
                                                     </div>
+                                            <input id="@name" class="imagePlace" value="@item.LinkImage" type="hidden"/>
+                                            <input name="listIdImagePresent" value="@item.ID" type="hidden"/>                                     
                                                 @:</li>
-                                             }
+                                                i++;
+                                                                                     
+                                            }
                                         }
                                     </ul>
                                 </div>
@@ -143,6 +153,9 @@
     <script>
 
         $(document).ready(function () {
+
+            var elementInsertImage = '';
+            
             $("#panelbar").kendoPanelBar({
                 expandMode: "single"
             });
@@ -186,9 +199,18 @@
             });
 
             var validator = $("#panelbar").kendoValidator().data("kendoValidator");
+
+
+            //$('.deleteImage').click(function () {
+            //    alert("xoa nhe");
+
+            //});
+
+            
+
             $('#btnSubmit').click(function () {
                 if (validator.validate()) {
-                    $('#frmAddPlace').submit();
+                    $('#frmMain').submit();
                 } else {
                     alert("Oops! There is invalid data in the form.");
                 }
@@ -199,6 +221,20 @@
 
             });
         });
+
+        function deleteImage(e) {
+            //var id = e.replace(".", "");
+            var removeUrl = "/Place/RemoveImage";
+            var value = $('input#' + e).val();
+            $.ajax({
+                type: 'post',
+                url: "@Url.Action("removeImage", "Place")",
+                data: { fileNames: value },
+             }).done(function (result) {
+             });
+            $('div#imgPhotoPlace > .row > .span8 > .thumbnails > li').remove('.' + e);
+        }
+
         function onSelect(e) {
             var files = e.files;
 
@@ -258,13 +294,15 @@
 
         function onUploadSuccess(e) {
             var files = e.files;
-
-            if (e.operation == "upload") {
+             if (e.operation == "upload") {
                 $.each(files, function () {
-                    var name = this.name.replace(' ', '').replace('.', '');
-                    $('#imageName').append("<input id=" + name + " name='imagePlace' value=" + this.name + " type= hidden />")
-                    $('#imgPhotoPlace> .row > .span8 > .thumbnails').append("<li class= 'span2 " + name + "' ><a class=thumbnail><img src=/Data/Images/place/" + this.name + " alt='' /></a></li>");
-
+                    var names = this.name.replace(' ', '').replace('.', '');
+                    var element = "<li class='span3 " + names + "'><div class=thumbnail ><div class=caption > <a  onclick=deleteImage('" + names + "')> <img src=/Content/themes/custom/Image/Delete.png ; onmouseout=this.src='@Url.Content("~/Content/themes/custom/Image/Delete.png")'; onmouseover=this.src='@Url.Content("~/Content/themes/custom/Image/Delete-highlight.png")'; /></a></div> <img src=/Data/Images/place/" + this.name + " /></div><input id=" + names + " name=listImageAddNew value=" + this.name + " type=hidden /></li>";
+           
+                    //$('#imageName').append("<input id=" + name + " name='imagePlace' value=" + this.name + " type= hidden />")
+                    //$('#imgPhotoPlace> .row > .span8 > .thumbnails').append("<li class= 'span2 " + name + "' ><a class=thumbnail><img src=/Data/Images/place/" + this.name + " alt='' /></a></li>");
+                    //$('#imgPhotoPlace> .row > .span8 > .thumbnails').append("<li class=span3 id=" + name + "><div class=thumbnail ><div class=caption > <a  onclick=deleteImage("+ name +")> <img src="+'/Content/themes/custom/Image/Delete.png" onmouseout="this.src =//Content//themes//custom//Image//Delete.png" onmouseover="this.src=//Content//themes//custom//Image//Delete-highlight.png";  /></a></div> <img src=/Data/Images/place/"' + this.name +" /></div><input id=" + name + " name=dataRequest.listImageCity[].LinkImage class=imagePlace value=" + name + " type=hidden /></li>");
+                    $('#imgPhotoPlace> .row > .span8 > .thumbnails').append(element);
                 });
             }
 

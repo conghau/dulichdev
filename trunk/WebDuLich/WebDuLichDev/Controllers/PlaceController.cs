@@ -9,6 +9,8 @@ using System.IO;
 using DuLichDLL.TOOLS;
 using WebDuLichDev.Models;
 using WebDuLichDev.WebUtility;
+using DuLichDLL.ExceptionType;
+using WebDuLichDev.Enum;
 
 namespace WebDuLichDev.Controllers
 {
@@ -16,6 +18,7 @@ namespace WebDuLichDev.Controllers
     {
         //
         // GET: /Place/
+        private static List<DL_ImagePlace> listImagePlaceOld = new List<DL_ImagePlace>();
 
         public ActionResult ListNicePlace()
         {
@@ -109,19 +112,6 @@ namespace WebDuLichDev.Controllers
             NicePlace model = new NicePlace();
             return View(model);
         }
-
-        public ActionResult UpdateNicePlace(long dlPlaceId)
-        {
-            DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
-            DL_NicePlaceInfoDetailBAL dlNicePlaceDetailBal = new DL_NicePlaceInfoDetailBAL();
-            DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
-            NicePlace model = new NicePlace();
-            model.dlPlace = dlPlaceBal.GetByID(dlPlaceId);
-            model.listImageCity = dlImagePlaceBal.GetByDLPlaceID(dlPlaceId);
-            model.dlNicePlaceInfoDetail = dlNicePlaceDetailBal.GetByPlaceId(dlPlaceId);
-            return View(model);
-        }
-
         [HttpPost]
         public ActionResult AddPlace(NicePlace dataRequest, string[] imagePlace)
         {
@@ -143,6 +133,77 @@ namespace WebDuLichDev.Controllers
             //dlPlaceBal.Insert(dataRequest);           
             return View(dataRequest);
         }
+
+        public ActionResult UpdateNicePlace(long dlPlaceId)
+        {
+            DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+            DL_NicePlaceInfoDetailBAL dlNicePlaceDetailBal = new DL_NicePlaceInfoDetailBAL();
+            DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
+            NicePlace model = new NicePlace();
+            model.dlPlace = dlPlaceBal.GetByID(dlPlaceId);
+            model.listImageCity = dlImagePlaceBal.GetByDLPlaceID(dlPlaceId);
+            model.dlNicePlaceInfoDetail = dlNicePlaceDetailBal.GetByPlaceId(dlPlaceId);
+            listImagePlaceOld = model.listImageCity;
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateNicePlace(NicePlace dataRequest, long[] listIdImagePresent, string[] listImageAddNew)
+        {
+            try
+            {
+                bool result = false;
+                DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+                DL_NicePlaceInfoDetailBAL dlNicePlaceDetailBal = new DL_NicePlaceInfoDetailBAL();
+                DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
+
+                var listImageDeleted = listImagePlaceOld.Select(m => m.ID).ToArray().Except(listIdImagePresent).ToArray();
+                
+                //update status image
+                /////////////////
+
+                List<DL_ImagePlace> listImagePlaceNew = new List<DL_ImagePlace>();
+                if (null != listImageAddNew)
+                {
+                    for (int index = 0; index < listImageAddNew.Count(); index++)
+                    {
+                        DL_ImagePlace temp = new DL_ImagePlace();
+                        temp.DL_PlaceID = dataRequest.dlPlace.ID;
+                        temp.LinkImage = listImageAddNew[index];
+                        temp.Status = 0;
+                        listImagePlaceNew.Add(temp);
+                    }
+                }
+
+                result = dlPlaceBal.UpdateNicePlace(dataRequest.dlPlace, dataRequest.dlNicePlaceInfoDetail, listImagePlaceNew);
+
+                if (true == result)
+                {
+                    TempData["Message"] = ResultMessage.SUC_Update;
+                    return RedirectToAction("ListNicePlace");
+                }
+                else
+                {
+                    TempData["Message"] = ResultMessage.ERR_Update;
+                    return RedirectToAction("ListNicePlace");
+                }
+
+            }
+            catch (DataAccessException ex)
+            {
+                TempData[PageInfo.Message.ToString()] = ex.Message;
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                //LogBAL.LogEx("BLM_ERR_Common", ex);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return RedirectToAction("Error", "Home");
+            }
+
+           // return View();
+        }
+     
 
         public ActionResult UploadAvatar(IEnumerable<HttpPostedFileBase> fileUpload)
         {
