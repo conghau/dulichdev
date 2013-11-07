@@ -139,12 +139,12 @@ namespace DuLichDLL.BAL
             }
         }
 
-        public List<DL_Place> GetListWithFilter(long cityId, string placeName,string address, long placeType, int page, int pageSize, string orderBy, string orderDirection, out long totalRecords)
+        public List<DL_Place> GetListWithFilter(long cityId, string placeName, string address, long placeType, int page, int pageSize, string orderBy, string orderDirection, out long totalRecords)
         {
             try
             {
                 DL_PlaceDAL dL_PlaceDAL = new DL_PlaceDAL();
-                var result = dL_PlaceDAL.GetListWithFilter(cityId, placeName,address, placeType, page, pageSize ,orderBy,orderDirection, out totalRecords);
+                var result = dL_PlaceDAL.GetListWithFilter(cityId, placeName, address, placeType, page, pageSize, orderBy, orderDirection, out totalRecords);
                 return result;
 
             }

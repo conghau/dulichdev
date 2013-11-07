@@ -76,6 +76,7 @@ namespace DuLichDLL.DAL
             SqlConnection cnn = null;
             try
             {
+              
                 cnn = DataProvider.OpenConnection();
                 SqlCommand cmd = new SqlCommand(DL_ImagePlaceProcedure.p_DL_ImagePlace_Get_ByDL_PlaceID.ToString(), cnn);
                 cmd.CommandType = CommandType.StoredProcedure;

@@ -64,6 +64,7 @@
     <Compile Include="BAL\DL_NicePlaceInfoDetailBAL.cs" />
     <Compile Include="BAL\DL_PlaceBAL.cs" />
     <Compile Include="BAL\DL_PlaceTypeBAL.cs" />
+    <Compile Include="BAL\DL_RestaurantInfoDetailBAL.cs" />
     <Compile Include="BAL\M_SystemSettingBAL.cs" />
     <Compile Include="DAL\A_AssignedPermissionDAL.cs" />
     <Compile Include="DAL\A_FunctionDAL.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="DAL\DL_NicePlaceInfoDetailDAL.cs" />
     <Compile Include="DAL\DL_PlaceDAL.cs" />
     <Compile Include="DAL\DL_PlaceTypeDAL.cs" />
+    <Compile Include="DAL\DL_RestaurantInfoDetailDAL.cs" />
     <Compile Include="DAL\M_SystemSettingDAL.cs" />
     <Compile Include="Enum\Exception.cs" />
     <Compile Include="ExceptionType\BusinessException.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="Model\DL_NicePlaceInfoDetail.cs" />
     <Compile Include="Model\DL_Place.cs" />
     <Compile Include="Model\DL_PlaceType.cs" />
+    <Compile Include="Model\DL_RestaurantInfoDetail.cs" />
     <Compile Include="Model\M_SystemSetting.cs" />
     <Compile Include="Model\M_SystemSetting_Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
