@@ -10,6 +10,7 @@ using DuLichDLL.TOOLS;
 using WebDuLichDev.WebUtility;
 using System.IO;
 
+
 namespace WebDuLichDev.Controllers
 {
     public class HotelController : Controller
@@ -27,8 +28,8 @@ namespace WebDuLichDev.Controllers
 
             ViewBag.NewPlaceID = ID;
             return View();
-            
-           
+
+
         }
         [HttpPost]
         public ActionResult AddHotel(HotelInfo hotelinfo, string[] imagePlace)
@@ -51,7 +52,7 @@ namespace WebDuLichDev.Controllers
             dlPlaceBal.InsertHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, hotelinfo.listImagePlace);
             return Redirect("./UpdateHotel/" + hotelinfo.dlPlace.ID);
 
-            
+
 
 
         }
@@ -64,7 +65,7 @@ namespace WebDuLichDev.Controllers
             List<DL_ImagePlace> listdlImangePlace = new List<DL_ImagePlace>();
             hotelinfo.dlHotelPlaceInfoDetail = hotelInfoBal.GetByDLPlaceID(ID);
             hotelinfo.dlPlace = dlPlaceBal.GetByID(ID);
-            listdlImangePlace=dlImagePlaceBal.GetByDLPlaceID(ID);
+            listdlImangePlace = dlImagePlaceBal.GetByDLPlaceID(ID);
             hotelinfo.listImagePlace = listdlImangePlace;
             var model = hotelinfo;
 
@@ -75,26 +76,38 @@ namespace WebDuLichDev.Controllers
         {
             //DL_HotelPlaceInfoDetailBAL hotelInfoBal = new DL_HotelPlaceInfoDetailBAL();
 
-         
+
             //DL_HotelPlaceInfoDetailBAL hotelInfoBal = new DL_HotelPlaceInfoDetailBAL();
             DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
             List<DL_ImagePlace> listdlImangePlace = new List<DL_ImagePlace>();
+            List<DL_ImagePlace> listdlImangePlaceTemp = new List<DL_ImagePlace>();
+            List<DL_ImagePlace> listdlImangePlaceTempNew = new List<DL_ImagePlace>();
+            DL_ImagePlaceBAL dlImageBal = new DL_ImagePlaceBAL();
             if (null != imagePlace)
             {
                 for (int index = 0; index < imagePlace.Count(); index++)
                 {
                     DL_ImagePlace temp = new DL_ImagePlace();
                     temp.LinkImage = imagePlace[index];
-                    listdlImangePlace.Add(temp);
+                    listdlImangePlaceTempNew.Add(temp);
+                }
+            }
+            listdlImangePlace = dlImageBal.GetByDLPlaceID(hotelinfo.dlPlace.ID);
+            foreach (var i in hotelinfo.listImagePlace)
+            {
+                if (i.Status == 1)
+                    dlImageBal.Update(i);
+                else
+                {
+                    i.Status = 0;
+                    dlImageBal.Update(i);
                 }
             }
             hotelinfo.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
-            hotelinfo.listImagePlace = listdlImangePlace;
-            dlPlaceBal.UpdateHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, hotelinfo.listImagePlace);
+            dlPlaceBal.UpdateHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, listdlImangePlaceTempNew);
             return View(hotelinfo);
         }
 
-        
         public ActionResult UploadImage(IEnumerable<HttpPostedFileBase> fileUpload)
         {
             var serserPath = Server.MapPath("~/Data/Images/Place/");

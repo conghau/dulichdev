@@ -26,4 +26,10 @@ namespace WebDuLichDev.Models
         public DL_HotelPlaceInfoDetail dlHotelPlaceInfoDetail { get; set; }
         public List<DL_ImagePlace> listImagePlace { get; set; }
     }
+    public class RestaurantInfo
+    {
+        public DL_Place dlPlace { get; set; }
+        public DL_RestaurantInfoDetail dlRestaurantInfoDetail { get; set; }
+        public List<DL_ImagePlace> listImagePlace { get; set; }
+    }
 }
