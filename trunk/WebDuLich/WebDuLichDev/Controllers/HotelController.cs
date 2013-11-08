@@ -103,8 +103,8 @@ namespace WebDuLichDev.Controllers
                     dlImageBal.Update(i);
                 }
             }
-            hotelinfo.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
-            dlPlaceBal.UpdateHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, listdlImangePlaceTempNew);
+            hotelinfo.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Hotels;
+            dlPlaceBal.UpdateRestaurant(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, listdlImangePlaceTempNew);
             return View(hotelinfo);
         }
 

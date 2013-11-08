@@ -175,24 +175,16 @@
                     <label class="control-label" for="input01">@Resources.Language.ImagePlace</label>
                     <div class="controls">
                         <input id="uploadImage" name="fileUpload" type="file" />
-                        @*<div id="imageName">
-                            @if (null != Model && Model.listImagePlace != null)
-                            {
-                               int i=10;
-                                foreach (var item in Model.listImagePlace)
-                                {     
-                                <input id="@Model.listImagePlace[i].ID" class="imagePlace" value="@item.LinkImage" type="hidden"/>
-                                    i++;  
-                                }
-                            }
-                        </div>*@
+                        <div id="imageName">
+                            
+                        </div>
                         <div id="imgPhotoPlace">
                             <div class="row">
                                 <div class="span8">
                                     <ul class="thumbnails">
                                         <li>
                                             <div id="container">
-                                            <span id="target" title="DoubleClick vao hinh de chon xoa"></span>
+                                            <span id="target" title="DoubleClick vào hình để chọn xóa hình!"></span>
                                             </div>
                                         </li>                                        
                                         @if (null != Model && Model.listImagePlace != null)
@@ -201,10 +193,11 @@
                                             foreach (var item in Model.listImagePlace)
                                             {     
                                             @:<li class="span2" id="@i">
-                                                <a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" id="@i" alt='' ondblclick="onclickpicture(this.id)" onmousemove="onfocuspicture()" /></a>
-                                            <input name="hotelinfo.listImagePlace[@i].LinkImage" class="imagePlace" value="@item.LinkImage" type="hidden"/>
-                                            <input name="hotelinfo.listImagePlace[@i].ID" class="imagePlace" value="@item.ID" type="hidden"/>
-                                              @:</li>
+                                            <a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" id="@i" alt='' ondblclick="onclickpicture(this.id)" onmousemove="onfocuspicture()" /></a>                           
+                                            <input  name="hotelinfo.listImagePlace[@i].LinkImage" class="imagePlace" value="@item.LinkImage" type="hidden"/>
+                                            <input  name="hotelinfo.listImagePlace[@i].ID" class="imagePlace" value="@item.ID" type="hidden"/>
+                                            <input  name="hotelinfo.listImagePlace[@i].DL_PlaceID" class="imagePlace" value="@item.DL_PlaceID" type="hidden"/>
+                                            @:</li>
                                             i++;
                                             }
                                         }
@@ -322,7 +315,7 @@
             });
 
             $('#btnCancel').click(function () {
-
+                $('#frmUpdateHotel')[0].reset();
             });
 
 
@@ -363,9 +356,13 @@
             var r=confirm("Confirm: Delete this Image(?)");
             if (r==true)
             {      
-                $('div#imageName > input#' + id).remove();
-                $('div#imgPhotoPlace > .row > .span8 > .thumbnails >.span2').remove('#' + id)
-                //$('div#imgPhotoPlace > .row > .span8 > .thumbnails > .span2 >.thumbnail >img').remove('#' + id)
+                //$('div#imageName > input#' + id).hide();
+                //$('div#imgPhotoPlace > .row > .span8 > .thumbnails >.span2').addClass('#' + id) = "hidden";
+                $('div#imgPhotoPlace > .row > .span8 > .thumbnails >[id="' + id + '"]').hide();
+                $('div#imgPhotoPlace > .row > .span8 > .thumbnails >[id="' + id + '"]').append('<input  name="hotelinfo.listImagePlace[' + id + '].Status" class="imagePlace" value="1" type="hidden"/>');
+                //$('div#imgPhotoPlace > .row > .span8 > .thumbnails > .span2 >.thumbnail >.img').hide('#' + id);
+          
+                //$('img').visible('#'+id)='hidden';
             }
             else
             {
@@ -467,6 +464,3 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
