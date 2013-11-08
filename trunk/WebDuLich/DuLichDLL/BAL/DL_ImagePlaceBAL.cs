@@ -112,12 +112,12 @@ namespace DuLichDLL.BAL
                 throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_ImagePlaceBAL: Update"));
             }
         }
-        public long Delete(long ID, long userID)
+        public long Delete(long ID)
         {
             try
             {
                 DL_ImagePlaceDAL dL_ImagePlaceDAL = new DL_ImagePlaceDAL();
-                return dL_ImagePlaceDAL.Delete(ID, userID);
+                return dL_ImagePlaceDAL.Delete(ID);
             }
             catch (DataAccessException ex)
             {

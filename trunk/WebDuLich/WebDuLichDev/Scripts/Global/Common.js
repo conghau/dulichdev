@@ -36,7 +36,7 @@
 
 $(function () {
     //$(".DDL").kendoDropDownList();
-    //$(".CBB").kendoComboBox();
+    $(".CBB").kendoComboBox();
 
     //$(".DateTime").filter_inputDateTime(DateTimeFormat);
     //$(".DateTimeKendo").filter_inputDateTime(DateTimeFormat); //DateTimeFormat get from session and set in master page

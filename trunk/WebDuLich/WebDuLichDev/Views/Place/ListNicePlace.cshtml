@@ -5,26 +5,19 @@
 }
 
 <h2>LIST PLACE</h2>
-@if (TempData["Message"] != null)
-{
-    @*<div class="notification attention png_bg">
-        <a href="#" class="close">
-            <img src="~/Content/themes/custom/Image/Delete.png" title="@Resources.Language.Close"
-                alt="close" /></a>
-        <div>
-            @WebDuLichDev.WebUtility.common.GetResourceValue(TempData["Message"].ToString())
-        </div>
-    </div>*@
-    
-    <div id="messageBox" class="alert ">
-        <a class="close" data-dismiss="alert">×</a>
-        @WebDuLichDev.WebUtility.common.GetResourceValue(TempData["Message"].ToString())
-    </div>
-}
+
 <form id="frmMain" method="post" action="#">
     <div class="form-inline">
         @Html.Partial("p_Search", new WebDuLichDev.Models.vm_Search())
     </div>
+
+    @if (TempData["Message"] != null)
+    {
+        <div id="messageBox" class="alert ">
+            <a class="close" data-dismiss="alert">×</a>
+            @WebDuLichDev.WebUtility.common.GetResourceValue(TempData["Message"].ToString())
+        </div>
+    }
     @if (null != Model)
     {
         var pageSize = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.PageSize.ToString()].ToString());
@@ -34,11 +27,11 @@
         <input type="hidden" value="@ViewData["OrderBy"]" name="orderBy" id="orderBy" />
         <input type="hidden" value="@ViewData["OrderDirection"]" name="orderDirection"id="orderDirection" />
     
-        <div class="container-fluid">
+        <div class="well container-fluid">
             <div class="row-fluid">
                 <input type="button" class="btn btn-primary btn-large" id="btnAddNew" value="@Resources.Language.Add"/>
             </div>
-            <table class="table table-striped">
+            <table class="table table-striped table-bordered table-condensed">
                 <tr>
                     <th>#</th>
                     <th>@Resources.Language.Avatar</th>
@@ -55,7 +48,7 @@
                         </td>
                         <td>
                             <a class="thumbnail">
-                                <img src="/Data/Avatar/place/@item.Avatar" alt='' height="50px" width="50px"/></a>
+                                <img src="/Data/Avatar/place/@item.Avatar" alt='' height="100" width="100"/></a>
                         </td>
                         <td>
                             @item.Name
@@ -63,8 +56,18 @@
                         <td>
                             @item.AvgRating
                         </td>
-                        <td>
-                            <a href="@Url.Action("UpdateNicePlace", "Place", new { dlPlaceId = item.ID })"><i class="icon-search"></i></a>
+                        <td style="text-align: center; width: 30px">
+                            @*<a href="@Url.Action("UpdateNicePlace", "Place", new { dlPlaceId = item.ID })"><i class="icon-search"></i></a>*@
+                            <a href="@Url.Action("UpdateNicePlace", "Place", new { dlPlaceId = item.ID })" >
+                                <img src="/Content/themes/custom/Image/Edit-Light.png" width="24" height="24" alt="Chinh sua"
+                                    onmouseover="this.src='/Content/themes/custom/Image/Edit-Dark.png';"
+                                    onmouseout="this.src='/Content/themes/custom/Image/Edit-Light.png'" /></a>
+                        </td>
+                        <td style="text-align: center; width: 30px">
+                            <a href="@Url.Action("DeleteNicePlace", "Place", new { dlPlaceId = item.ID })" >
+                                <img src="/Content/themes/custom/Image/Delete-Light.png" width="24" height="24"
+                                    onmouseover="this.src='/Content/themes/custom/Image/Delete-Dark.png';"
+                                    onmouseout="this.src='/Content/themes/custom/Image/Delete-Light.png'" /></a>
                         </td>
                     </tr>
                     i++;
@@ -104,6 +107,10 @@
 
                 var url = "@Url.Action("AddPlace", "Place")";
                 location.href = url;
+            });
+
+            $('#btnSearch').click(function () {
+                $('#Page').val(1);
             });
         });
     </script>
