@@ -17,7 +17,7 @@ namespace WebDuLichDev.Controllers
 {
     public class HotelController : Controller
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(HotelController));
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(HotelController).Name);
         string version = "Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString() + " ";
 
 
