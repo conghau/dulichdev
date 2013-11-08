@@ -216,17 +216,29 @@ namespace WebDuLichDev.Controllers
                 DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
                 DL_NicePlaceInfoDetailBAL dlNicePlaceDetailBal = new DL_NicePlaceInfoDetailBAL();
                 DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
-
-                var listImageDeleted = listImagePlaceOld.Select(m => m.ID).ToArray().Except(listIdImagePresent).ToArray();
-
+                //long[] listImageDeleted = new long[]{};
                 //update status image
-                for (int index = 0; index < listImageDeleted.Count(); index++)
-                    dlImagePlaceBal.Delete(listImageDeleted[index]);
-                /////////////////
+                if (null != listImagePlaceOld)
+                {
+                    if (listIdImagePresent != null)
+                    { 
+                        var listImageDeleted = listImagePlaceOld.Select(m => m.ID).ToArray().Except(listIdImagePresent).ToArray();
+                        if (null != listImageDeleted)
+                            for (int index = 0; index < listImageDeleted.Count(); index++)
+                                dlImagePlaceBal.Delete(listImageDeleted[index]);
+                    }
+                    if (listIdImagePresent == null)
+                    {
+                        for (int index = 0; index < listImagePlaceOld.Count(); index++)
+                        {
+                            dlImagePlaceBal.Delete(listImagePlaceOld[index].ID);
+                        }
+                    }
+                }
 
                 List<DL_ImagePlace> listImagePlaceNew = new List<DL_ImagePlace>();
                 if (null != listImageAddNew)
-                {
+                { 
                     for (int index = 0; index < listImageAddNew.Count(); index++)
                     {
                         DL_ImagePlace temp = new DL_ImagePlace();
