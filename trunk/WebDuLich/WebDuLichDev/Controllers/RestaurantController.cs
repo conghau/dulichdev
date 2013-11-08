@@ -18,7 +18,7 @@ namespace WebDuLichDev.Controllers
     public class RestaurantController : Controller
     {
 
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(PlaceController));
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(RestaurantController).Name);
         string version = "Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString() + " ";
         
         //
