@@ -234,4 +234,10 @@
   <data name="Menu" xml:space="preserve">
     <value>Thực Đơn</value>
   </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Nhà hàng</value>
+  </data>
+  <data name="RestaurantName" xml:space="preserve">
+    <value>Tên nhà hàng</value>
+  </data>
 </root>

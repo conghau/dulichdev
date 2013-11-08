@@ -24,23 +24,39 @@ namespace WebDuLichDev.Controllers
 
         public ActionResult ListNicePlace()
         {
-            vm_Pagination pagination = new vm_Pagination
+            try
             {
-                Page = MvcApplication.pageDefault,
-                PageSize = MvcApplication.pageSizeDefault,
-                OrderBy = DL_PlaceColumns.CreatedDate.ToString(),
-                OrderDirection = "DESC",
+                vm_Pagination pagination = new vm_Pagination
+                {
+                    Page = MvcApplication.pageDefault,
+                    PageSize = MvcApplication.pageSizeDefault,
+                    OrderBy = DL_PlaceColumns.CreatedDate.ToString(),
+                    OrderDirection = "DESC",
 
-            };
-            long totalRecords = 0;
+                };
+                long totalRecords = 0;
 
-            DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
-            var model = dlPlaceBAL.GetListWithFilter(0, "", "", 0, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
-            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
-            ViewData["OrderBy"] = pagination.OrderBy;
-            ViewData["OrderDirection"] = pagination.OrderDirection;
+                DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
+                var model = dlPlaceBAL.GetListWithFilter(0, "", "", 0, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
+                common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
+                ViewData["OrderBy"] = pagination.OrderBy;
+                ViewData["OrderDirection"] = pagination.OrderDirection;
 
-            return View(model);
+                return View(model);
+            }
+            catch (BusinessException bx)
+            {
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                //LogBAL.LogEx("BLM_ERR_Common", ex);
+                log.Error(ex.Message);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         [HttpPost]
@@ -71,7 +87,7 @@ namespace WebDuLichDev.Controllers
 
             };
 
-            var model = dlPlaceBal.GetListWithFilter(cityId,"","",(long)DL_PlaceTypeId.Places,pagination.Page.Value,pagination.PageSize.Value,pagination.OrderBy,pagination.OrderDirection,out totalRecords);
+            var model = dlPlaceBal.GetListWithFilter(cityId, "", "", (long)DL_PlaceTypeId.Places, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
             //DuLichDLL.Model.DL_Place model1 = new DuLichDLL.Model.DL_Place();
             common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
             ViewData["OrderBy"] = pagination.OrderBy;
@@ -119,6 +135,7 @@ namespace WebDuLichDev.Controllers
         {
             try
             {
+                bool result = false;
                 DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
                 List<DL_ImagePlace> listImagePlace = new List<DL_ImagePlace>();
                 if (null != imagePlace)
@@ -133,9 +150,18 @@ namespace WebDuLichDev.Controllers
                 dataRequest.listImageCity = listImagePlace;
 
                 dataRequest.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
-                dlPlaceBal.InsertNicePlace(dataRequest.dlPlace, dataRequest.dlNicePlaceInfoDetail, dataRequest.listImageCity);
+                result = dlPlaceBal.InsertNicePlace(dataRequest.dlPlace, dataRequest.dlNicePlaceInfoDetail, dataRequest.listImageCity);
                 //dlPlaceBal.Insert(dataRequest);           
-                return View(dataRequest);
+                if (true == result)
+                {
+                    TempData["Message"] = ResultMessage.SUC_Insert;
+                    return RedirectToAction("ListNicePlace");
+                }
+                else
+                {
+                    TempData["Message"] = ResultMessage.ERR_Insert;
+                    return RedirectToAction("ListNicePlace");
+                }
             }
             catch (BusinessException bx)
             {
@@ -154,15 +180,31 @@ namespace WebDuLichDev.Controllers
 
         public ActionResult UpdateNicePlace(long dlPlaceId)
         {
-            DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
-            DL_NicePlaceInfoDetailBAL dlNicePlaceDetailBal = new DL_NicePlaceInfoDetailBAL();
-            DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
-            NicePlace model = new NicePlace();
-            model.dlPlace = dlPlaceBal.GetByID(dlPlaceId);
-            model.listImageCity = dlImagePlaceBal.GetByDLPlaceID(dlPlaceId);
-            model.dlNicePlaceInfoDetail = dlNicePlaceDetailBal.GetByPlaceId(dlPlaceId);
-            listImagePlaceOld = model.listImageCity;
-            return View(model);
+            try
+            {
+                DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+                DL_NicePlaceInfoDetailBAL dlNicePlaceDetailBal = new DL_NicePlaceInfoDetailBAL();
+                DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
+                NicePlace model = new NicePlace();
+                model.dlPlace = dlPlaceBal.GetByID(dlPlaceId);
+                model.listImageCity = dlImagePlaceBal.GetByDLPlaceID(dlPlaceId);
+                model.dlNicePlaceInfoDetail = dlNicePlaceDetailBal.GetByPlaceId(dlPlaceId);
+                listImagePlaceOld = model.listImageCity;
+                return View(model);
+            }
+            catch (BusinessException bx)
+            {
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                //LogBAL.LogEx("BLM_ERR_Common", ex);
+                log.Error(ex.Message);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         [HttpPost]
@@ -176,7 +218,7 @@ namespace WebDuLichDev.Controllers
                 DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
 
                 var listImageDeleted = listImagePlaceOld.Select(m => m.ID).ToArray().Except(listIdImagePresent).ToArray();
-                
+
                 //update status image
                 for (int index = 0; index < listImageDeleted.Count(); index++)
                     dlImagePlaceBal.Delete(listImageDeleted[index]);
@@ -223,11 +265,11 @@ namespace WebDuLichDev.Controllers
                 return RedirectToAction("Error", "Home");
             }
 
-           // return View();
+            // return View();
         }
-     
+
         #region
-        
+
         #endregion
     }
 }

@@ -206,6 +206,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="Controllers\PlaceController.cs" />
+    <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\SystemManagerController.cs" />
     <Compile Include="Controllers\userController.cs" />
     <Compile Include="enum\Enum.cs" />
@@ -595,12 +596,15 @@
     <Content Include="Views\Place\AddPlace.cshtml" />
     <Content Include="Views\SystemManager\CityManager.cshtml" />
     <Content Include="Views\Shared\p_Pagination.cshtml" />
-    <Content Include="Views\Place\p_Search.cshtml" />
+    <Content Include="Views\Shared\p_Search.cshtml" />
     <Content Include="Views\Place\ListNicePlace.cshtml" />
-    <Content Include="Views\Place\ListHotel.cshtml" />
+    <Content Include="Views\Hotel\ListHotel.cshtml" />
     <Content Include="Views\Place\UpdateNicePlace.cshtml" />
     <Content Include="Views\Hotel\UpdateHotel.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Restaurant\AddRestaurant.cshtml" />
+    <Content Include="Views\Restaurant\UpdateRestaurant.cshtml" />
+    <Content Include="Views\Restaurant\ListRestaurant.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
