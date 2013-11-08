@@ -201,6 +201,7 @@ namespace WebDuLichDev.Controllers
                     }
                 }
                 //listdlImangePlace = dlImageBal.GetByDLPlaceID(restaurantinfo.dlPlace.ID);
+                restaurantinfo.dlRestaurantInfoDetail.DL_PlaceId = restaurantinfo.dlPlace.ID;
                 if (restaurantinfo.listImagePlace != null)
                 {
                     foreach (var i in restaurantinfo.listImagePlace)

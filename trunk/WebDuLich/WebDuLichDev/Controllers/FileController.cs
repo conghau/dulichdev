@@ -13,21 +13,21 @@ namespace WebDuLichDev.Controllers
     {
 
 
-        public ActionResult UploadAvatarPlace(IEnumerable<HttpPostedFileBase> fileUpload)
-        {
-            var serserPath = Server.MapPath("~/Data/Avatar/Place/");
-            foreach (var file in fileUpload)
-            {
-                // Some browsers send file names with full path. We only care about the file name.
-                var fileName = Path.GetFileName(file.FileName);
+        //public ActionResult UploadAvatarPlace(IEnumerable<HttpPostedFileBase> fileUpload)
+        //{
+        //    var serserPath = Server.MapPath("~/Data/Avatar/Place/");
+        //    foreach (var file in fileUpload)
+        //    {
+        //        // Some browsers send file names with full path. We only care about the file name.
+        //        var fileName = Path.GetFileName(file.FileName);
 
-                var destinationPath = Path.Combine(serserPath, fileName);
+        //        var destinationPath = Path.Combine(serserPath, fileName);
 
-                file.SaveAs(destinationPath);
-            }
-            return Json(new { status = "OK" }, "text/plain");
+        //        file.SaveAs(destinationPath);
+        //    }
+        //    return Json(new { status = "OK" }, "text/plain");
 
-        }
+        //}
         public ActionResult RemoveAvatarPlace(string fileNames)
         {
             ProcessWithFiles processfile = new ProcessWithFiles();

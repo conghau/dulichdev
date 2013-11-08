@@ -6,9 +6,7 @@
 <h2>AddHotel</h2>
 <h2>AddHotel</h2>
 <form id="frmAddHotel" class="well form-horizontal" method="post" action="/Hotel/AddHotel">
-    <input name="hotelinfo.dlPlace.ID" value="@ViewBag.NewPlaceID" type="hidden" />
     <div>
-
         <ul id="panelbar">
             <li class="k-state-active">
                 <span class="k-link k-state-selected">@Resources.Language.BasicInfo</span>
@@ -209,8 +207,8 @@
                 async: {
                     //saveUrl: "/Place/UploadAvatar",
                     //removeUrl: "/Place/RemoveAvatar",
-                    saveUrl: '@Url.Action("UploadAvatarPlace", "file", new { ID = @ViewBag.NewPlaceID })',
-                    removeUrl: '@Url.Action("RemoveAvatarPlace", "file", new { ID = @ViewBag.NewPlaceID })',
+                    saveUrl: '@Url.Action("UploadAvatarPlace", "File", new { ID = @ViewBag.NewPlaceID })',
+                    removeUrl: '@Url.Action("RemoveAvatarPlace", "File", new { ID = @ViewBag.NewPlaceID })',
                     autoUpload: false,
                     multiple: false,
                 },
@@ -225,8 +223,8 @@
                     uploadSelectedFiles: "Upload"
                 },
                 async: {
-                    saveUrl: '@Url.Action("UploadImagePlace", "file")',
-                    removeUrl: '@Url.Action("RemoveImagePlace", "file")',
+                    saveUrl: '@Url.Action("UploadImagePlace", "File")',
+                    removeUrl: '@Url.Action("RemoveImagePlace", "File")',
                     autoUpload: false,
                 },
                 select: onSelect,
@@ -291,7 +289,7 @@
                 $.each(files, function () {
                     var name = this.name.replace(' ', '').replace('.', '');
                     $('#Avatar').val(this.name);
-                    $('#imgPhotoAvatar > .row > .span8 > .thumbnails').append("<li class='span2' id=" + this.name + " ><a class=thumbnail><img src=/Data/Avatar/place/" + this.name + " alt='' /></a></li>");
+                    $('#imgPhotoAvatar > .row > .span8 > .thumbnails').append("<li class='span2' id=" + this.name + " ><a class=thumbnail><img src=/Data/Avatar/Place/" + this.name + " alt='' /></a></li>");
                     //$('#uploadAvatar').data('kendoUpload').disable();
                 });
             }
