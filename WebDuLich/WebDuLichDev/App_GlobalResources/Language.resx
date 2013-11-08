@@ -231,4 +231,7 @@
   <data name="Travel" xml:space="preserve">
     <value>Du lịch</value>
   </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Thực Đơn</value>
+  </data>
 </root>

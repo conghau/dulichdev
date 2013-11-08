@@ -1,12 +1,15 @@
-﻿@{
-    ViewBag.Title = "AddHotel";
+﻿
+@model WebDuLichDev.Models.RestaurantInfo
+
+@{
+    ViewBag.Title = "UpdateRestaurant";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AddHotel</h2>
-<h2>AddHotel</h2>
-<form id="frmAddHotel" class="well form-horizontal" method="post" action="/Hotel/AddHotel">
-    <input name="hotelinfo.dlPlace.ID" value="@ViewBag.NewPlaceID" type="hidden" />
+<h2>UpdateHotel</h2>
+
+<form id="frmUpdateRestaurant" class="well form-horizontal" method="post" action="/Restaurant/UpdateRestaurant">
+    <input name="restaurantinfo.dlPlace.ID" value="@Model.dlRestaurantInfoDetail.DL_PlaceId" type="hidden" />
     <div>
 
         <ul id="panelbar">
@@ -22,31 +25,31 @@
                         <div class="control-group">
                             <label class="control-label" for="input01">@Resources.Language.PlaceName</label>
                             <div class="controls">
-                                @Html.TextBox("hotelinfo.dlPlace.Name")                               
+                                @Html.TextBoxFor(model => model.dlPlace.Name, new { Name = "restaurantinfo.dlPlace.Name" })
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="input01">@Resources.Language.Address</label>
-                            <div class="controls">
-                                @Html.TextBox("hotelinfo.dlPlace.Address")
-                            </div>
+                            <div class="controls">@Html.TextBoxFor(model => model.dlPlace.Address, new { id = "Address", placeholder = "Address...", required = "", validationMessage = "Please enter {0}", Name = "restaurantinfo.dlPlace.Address" })</div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="input01">@Resources.Language.City</label>
-                            <div class="controls">                            
-                            @Html.DropDownList("hotelinfo.dlPlace.DL_CityId", WebDuLichDev.WebUtility.WebDuLichData.ListCity, new { id = "drop_CityList", @class = "DLL kendoDropDownList city" })
-                                </div>
-                        </div>                        
-                         <div class="control-group">
+                            <div class="controls">@Html.DropDownListFor(model => model.dlPlace.DL_CityId, WebDuLichDev.WebUtility.WebDuLichData.ListCity, new { Name = "restaurantinfo.dlPlace.DL_CityId", id = "drop_CityList", @class = "DLL kendoDropDownList city" })</div>
+                        </div>
+                        <div class="control-group">
                             <label class="control-label" for="input01">@Resources.Language.Avatar</label>
-                           <div class="controls">
+
+                            <div class="controls">
                                 <input id="uploadAvatar" name="fileUpload" type="file" />
-                                @Html.TextBox("hotelinfo.dlPlace.Avatar", "", new { id = "Avatar", type = "hidden", required = "", validationmessage = "Please upload {0}" })
+                                @Html.TextBoxFor(model => model.dlPlace.Avatar, new { Name = "restaurantinfo.dlPlace.Avatar", id = "Avatar", type = "hidden", required = "", validationmessage = "Please upload {0}" })
                                 <div id="imgPhotoAvatar">
                                     <div class="row">
                                         <div class="span8">
                                             <ul class="thumbnails">
-                                               
+                                                @if (null != Model && Model.dlPlace != null)
+                                                {      
+                                                    @:<li class="span2" id="@Model.dlPlace.Avatar"><a class=thumbnail><img src="/Data/Avatar/place/@Model.dlPlace.Avatar" alt='' /></a></li>
+                                            }
                                             </ul>
                                         </div>
                                     </div>
@@ -55,96 +58,74 @@
                         </div>
                     </div>
                     <div>
+                        <div class="k-content">
+                            <textarea class="editor" name="restaurantinfo.dlRestaurantInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">
+                                @HttpUtility.HtmlDecode(Model.dlRestaurantInfoDetail.Info)</textarea>
+                        </div>
+                    </div>
+                    <div>
                         <div>
                             <div class="k-content">
-                                <textarea class="editor" name="hotelinfo.dlHotelPlaceInfoDetail.Note" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                  Press any Key       
+                                <textarea class="editor" name="restaurantinfo.dlRestaurantInfoDetail.Note" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                    @HttpUtility.HtmlDecode(Model.dlRestaurantInfoDetail.Note)       
                 </textarea>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="control-label">
-                            @Html.Label("RoomType")
-                            </div>
-                            <div class="controls">
-                                @Html.TextBox("hotelinfo.dlHotelPlaceInfoDetail.RoomType")
-                            </div>                       
-                        <div class="control-label">
-                            @Html.Label("OpenCloseTime")
-                        </div>
-                        <div class="controls">
-                            @Html.TextBox("hotelinfo.dlHotelPlaceInfoDetail.OpenCloseTime")                           
-                        </div>
-
-                        <div class="control-label">
-                            @Html.Label("Price")
-                        </div>
-                        <div class="controls">
-                            @Html.TextBox("hotelinfo.dlHotelPlaceInfoDetail.Price")                            
-                        </div>
-                        <div class="control-label">
-                            @Html.Label("PayType")
-                        </div>
-                        <div class="controls">
-                            @Html.TextBox("hotelinfo.dlHotelPlaceInfoDetail.PayType")                           
-                        </div>
-                        </div>
                 </div>
             </li>
             <li>
-                <span class="">@Resources.Language.DetailInfo - @Resources.Language.Services - @Resources.Language.Contact</span>
+                <span class="">@Resources.Language.Menu - @Resources.Language.Contact</span>
                 <div class="tabstrip">
                     <ul>
-                        <li class="k-state-active">@Resources.Language.DetailInfo</li>
-                        <li>@Resources.Language.Services</li>
+                        <li class="k-state-active">@Resources.Language.Menu</li>
                         <li>@Resources.Language.Contact</li>
-                    </ul>
-                    <div>
-                        <div class="k-content">        
-                           
-                                <textarea class="editor" name="hotelinfo.dlHotelPlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">&lt;p&gt;Please input some detail about this city:&lt;/p&gt;</textarea>
-                   
-                        </div>
-                    </div>
+                    </ul>                    
                     <div>
                         <div class="k-content">
-                            <textarea class="editor" name="hotelinfo.dlHotelPlaceInfoDetail.Service" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                   Press any Key     
+                            <textarea class="editor" name="restaurantinfo.dlRestaurantInfoDetail.Service" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                   @HttpUtility.HtmlDecode(Model.dlRestaurantInfoDetail.Menu)     
                 </textarea>
                         </div>
                     </div>
                     <div>
                         <div class="control-label">
-                            @Html.Label("MobiPhone")
+                            @Html.LabelFor(model => model.dlRestaurantInfoDetail.MobiPhone)
                         </div>
                         <div class="controls">
-                            @Html.TextBox("hotelinfo.dlHotelPlaceInfoDetail.MobiPhone")
-                           
+                            @Html.TextBoxFor(model => model.dlRestaurantInfoDetail.MobiPhone, new { Name = "restaurantinfo.dlRestaurantInfoDetail.MobiPhone" })
+                            @Html.ValidationMessageFor(model => model.dlRestaurantInfoDetail.MobiPhone)
                         </div>
 
                         <div class="control-label">
-                            @Html.Label("HomePhone")
+                            @Html.LabelFor(model => model.dlRestaurantInfoDetail.HomePhone)
                         </div>
                         <div class="controls">
-                            @Html.TextBox("hotelinfo.dlHotelPlaceInfoDetail.HomePhone")
-                            
+                            @Html.TextBoxFor(model => model.dlRestaurantInfoDetail.HomePhone, new { Name = "restaurantinfo.dlRestaurantInfoDetail.HomePhone" })
+                            @Html.ValidationMessageFor(model => model.dlRestaurantInfoDetail.HomePhone)
                         </div>
 
                         <div class="control-label">
-                            @Html.Label("Fax")
+                            @Html.LabelFor(model => model.dlRestaurantInfoDetail.Fax)
                         </div>
                         <div class="controls">
-                            @Html.TextBox("hotelinfo.dlHotelPlaceInfoDetail.Fax")
-                           
+                            @Html.TextBoxFor(model => model.dlRestaurantInfoDetail.Fax, new { Name = "restaurantinfo.dlRestaurantInfoDetail.Fax" })
+                            @Html.ValidationMessageFor(model => model.dlRestaurantInfoDetail.Fax)
                         </div>
 
                         <div class="control-label">
-                            @Html.Label("Email")
+                            @Html.LabelFor(model => model.dlRestaurantInfoDetail.Email)
                         </div>
                         <div class="controls">
-                            @Html.TextBox("hotelinfo.dlHotelPlaceInfoDetail.Email")
-                           
+                            @Html.TextBoxFor(model => model.dlRestaurantInfoDetail.Email, new { Name = "restaurantinfo.dlRestaurantInfoDetail.Email" })
+                            @Html.ValidationMessageFor(model => model.dlRestaurantInfoDetail.Email)
+                        </div>
+                        <div class="control-label">
+                            @Html.LabelFor(model => model.dlRestaurantInfoDetail.Website)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.dlRestaurantInfoDetail.Website, new { Name = "restaurantinfo.dlRestaurantInfoDetail.Website" })
+                            @Html.ValidationMessageFor(model => model.dlRestaurantInfoDetail.Email)
                         </div>
                     </div>
                 </div>
@@ -155,15 +136,32 @@
                     <label class="control-label" for="input01">@Resources.Language.ImagePlace</label>
                     <div class="controls">
                         <input id="uploadImage" name="fileUpload" type="file" />
-                        <div id="imageName">                            
+                        <div id="imageName">
+                            
                         </div>
                         <div id="imgPhotoPlace">
                             <div class="row">
                                 <div class="span8">
                                     <ul class="thumbnails">
                                         <li>
-                                            <input class="imagePlace" value="LinkImage" type="hidden"/>
-                                        </li>
+                                            <div id="container">
+                                            <span id="target" title="DoubleClick vào hình để chọn xóa hình!"></span>
+                                            </div>
+                                        </li>                                        
+                                        @if (null != Model && Model.listImagePlace != null)
+                                        {
+                                            int i = 0;
+                                            foreach (var item in Model.listImagePlace)
+                                            {     
+                                            @:<li class="span2" id="@i">
+                                            <a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" id="@i" alt='' ondblclick="onclickpicture(this.id)" onmousemove="onfocuspicture()" /></a>                           
+                                            <input  name="restaurantinfo.listImagePlace[@i].LinkImage" class="imagePlace" value="@item.LinkImage" type="hidden"/>
+                                            <input  name="restaurantinfo.listImagePlace[@i].ID" class="imagePlace" value="@item.ID" type="hidden"/>
+                                            <input  name="restaurantinfo.listImagePlace[@i].DL_PlaceID" class="imagePlace" value="@item.DL_PlaceID" type="hidden"/>
+                                            @:</li>
+                                            i++;
+                                            }
+                                        }
                                     </ul>
                                 </div>
                             </div>
@@ -172,16 +170,48 @@
                 </div>
             </li>
         </ul>
-                    
     </div>
     <div class="form-actions">
         <input class="btn btn-primary" id="btnSubmit" type="button" value="@Resources.Language.Submit" />
         <input class="btn" id="btnCancel" type="button" value="@Resources.Language.Cancel" />
     </div>
+    <div id="dialog"></div>
+   
+    
+@*            <style scoped>
+                #example .k-timepicker {
+                    vertical-align: middle;
+                }
+
+                #example h3 {
+                    clear: both;
+                }
+
+                #example .code-sample {
+                    width: 60%;
+                    float:left;
+                    margin-bottom: 20px;
+                }
+
+                #example .output {
+                    width: 24%;
+                    margin-left: 4%;
+                    float:left;
+                }
+                
+            </style>**@
+  
+          
+      
 
     <script>
 
         $(document).ready(function () {
+
+            $("#item.LinkImage").kendoTooltip({
+                showOn: "click"
+            });
+
             $("#panelbar").kendoPanelBar({
                 expandMode: "multiple"
             });
@@ -209,8 +239,8 @@
                 async: {
                     //saveUrl: "/Place/UploadAvatar",
                     //removeUrl: "/Place/RemoveAvatar",
-                    saveUrl: '@Url.Action("UploadAvatarPlace", "file", new { ID = @ViewBag.NewPlaceID })',
-                    removeUrl: '@Url.Action("RemoveAvatarPlace", "file", new { ID = @ViewBag.NewPlaceID })',
+                    saveUrl: '@Url.Action("UploadAvatarPlace", "file", new { ID = Model.dlPlace.ID })',
+                    removeUrl: '@Url.Action("RemoveAvatarPlace", "file", new { ID = Model.dlPlace.ID })',
                     autoUpload: false,
                     multiple: false,
                 },
@@ -236,7 +266,7 @@
 
             var validator = $("#panelbar").kendoValidator().data("kendoValidator");
             $('#btnSubmit').click(function () {
-                $('#frmAddHotel').submit();
+                $('#frmUpdateRestaurant').submit();
                 //if (validator.validate()) {
 
                 //} else {
@@ -246,9 +276,68 @@
             });
 
             $('#btnCancel').click(function () {
-                $('#frmAddHotel')[0].reset();
+                $('#frmUpdateRestaurant')[0].reset();
             });
+
+
+            ////DateTime Picker
+            //function startChange() {
+            //function startChange() {
+            //    var startTime = start.value();
+
+            //    if (startTime) {
+            //        startTime = new Date(startTime);
+
+            //        end.max(startTime);
+
+            //        startTime.setMinutes(startTime.getMinutes() + this.options.interval);
+
+            //        end.min(startTime);
+            //        end.value(startTime);
+            //    }
+            //}
+
+            ////init start timepicker
+            //var start = $("#start").kendoTimePicker({
+            //    change: startChange
+            //}).data("kendoTimePicker");
+
+            ////init end timepicker
+            //var end = $("#end").kendoTimePicker().data("kendoTimePicker");
+
+            ////define min/max range
+            //start.min("8:00 AM");
+            //start.max("6:00 PM");
+
+            ////define min/max range
+            //end.min("8:00 AM");
+            //end.max("7:30 AM");
         });
+        function onclickpicture(id) {
+            var r=confirm("Confirm: Delete this Image(?)");
+            if (r==true)
+            {      
+                //$('div#imageName > input#' + id).hide();
+                //$('div#imgPhotoPlace > .row > .span8 > .thumbnails >.span2').addClass('#' + id) = "hidden";
+                $('div#imgPhotoPlace > .row > .span8 > .thumbnails >[id="' + id + '"]').hide();
+                $('div#imgPhotoPlace > .row > .span8 > .thumbnails >[id="' + id + '"]').append('<input  name="restaurantinfo.listImagePlace[' + id + '].Status" class="imagePlace" value="1" type="hidden"/>');
+                //$('div#imgPhotoPlace > .row > .span8 > .thumbnails > .span2 >.thumbnail >.img').hide('#' + id);
+          
+                //$('img').visible('#'+id)='hidden';
+            }
+            else
+            {
+            //user pressed cancel. Do nothing
+            }
+           
+             
+        }
+        function onfocuspicture(e) {
+            var tooltip = $("#container").kendoTooltip({position: "center"}).data("kendoTooltip");
+            tooltip.show($("#target"));
+            
+        }
+
         function onSelect(e) {
             var files = e.files;
 
@@ -335,3 +424,4 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
