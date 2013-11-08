@@ -51,12 +51,13 @@ $(function () {
 
     var message = 'DULICHDLL.Utility.Utility.ObjectToString(ViewData[WebDuLichDev.Enum.PageInfo.Message.ToString()])';
     if (message != '') {
-        if (message.indexOf('ERR') >= 0 || message.indexOf('VAL') >= 0) {
-            $('#messageBox').addClass('alert-error');
+        if (message.indexOf('SUC') >= 0) {
+            $('#messageBox').addClass('alert-errosuccess');
         }
         else {
-            $('#messageBox').addClass('alert-success');
+            $('#messageBox').addClass('alert-error');
         }
+
         $('#messageBox').css('display', '');
     }
     else {
