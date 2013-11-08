@@ -276,7 +276,7 @@ namespace DuLichDLL.DAL
                 throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_ImagePlaceDAL: Update"));
             }
         }
-        public long Delete(long ID, long userID)
+        public long Delete(long ID)
         {
             SqlConnection cnn = null;
             try
@@ -286,18 +286,6 @@ namespace DuLichDLL.DAL
                 SqlCommand cmd = new SqlCommand(DL_ImagePlaceProcedure.p_DL_ImagePlace_Delete.ToString(), cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@ID", SqlDbType.BigInt).Value = ID;
-                cmd.Parameters.Add("@UpdatedBy", SqlDbType.BigInt).Value = userID;
-                SqlParameterCollection parameterValues = cmd.Parameters;
-                int i = 0;
-                foreach (SqlParameter parameter in parameterValues)
-                {
-                    if ((parameter.Direction != ParameterDirection.Output) && (parameter.Direction != ParameterDirection.ReturnValue))
-                    {
-                        if (parameter.Value == null)
-                            parameter.Value = DBNull.Value;
-                        i++;
-                    }
-                }
                 object result = cmd.ExecuteScalar();
                 if (result != null)
                     id = Utility.Utility.ObjectToLong(result.ToString());

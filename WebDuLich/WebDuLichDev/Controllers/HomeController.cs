@@ -28,5 +28,10 @@ namespace WebDuLichDev.Controllers
 
             return View();
         }
+
+        public ActionResult Error()
+        {
+            return View();
+        }
     }
 }

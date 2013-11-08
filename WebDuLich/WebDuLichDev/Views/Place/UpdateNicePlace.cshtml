@@ -14,13 +14,13 @@
                     <div class="control-group">
                         <label class="control-label" for="input01">@Resources.Language.PlaceName</label>
                         <div class="controls">
-                            @Html.TextBoxFor(m => m.dlPlace.ID, new {type="hidden"})
-                            @Html.TextBoxFor(m => m.dlPlace.Name, new { id = "placeName", placeholder = "Place name ...", required = "", validationMessage = "Please enter {0}" })
+                            @Html.TextBoxFor(m => m.dlPlace.ID, new { type = "hidden" })
+                            @Html.TextBoxFor(m => m.dlPlace.Name, new { id = "placeName", placeholder = "tên địa điểm ...", required = "", validationMessage = "Please enter {0}" })
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="input01">@Resources.Language.Address</label>
-                        <div class="controls">@Html.TextBoxFor(m => m.dlPlace.Address, new { id = "Address", placeholder = "Address...", required = "", validationMessage = "Please enter {0}" })</div>
+                        <div class="controls">@Html.TextBoxFor(m => m.dlPlace.Address, new { id = "Address", placeholder = "Địa chỉ...", required = "", validationMessage = "Please enter {0}" })</div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="input01">@Resources.Language.City</label>
@@ -52,7 +52,7 @@
             <li>
                 <span class="">@Resources.Language.DetailInfo</span>
                 <div id="tabstrip">
-                    @Html.TextBoxFor(m => m.dlNicePlaceInfoDetail.ID, new { type="hidden" })
+                    @Html.TextBoxFor(m => m.dlNicePlaceInfoDetail.ID, new { type = "hidden" })
                     <ul>
                         <li class="k-state-active">@Resources.Language.Introduce</li>
                         <li>@Resources.Language.History</li>
@@ -75,23 +75,41 @@
                     </div>
                     <div>
                         <div class="k-content">
-                            <textarea class="editor" name="dlNicePlaceInfoDetail.History" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
-                </textarea>
+                            @if (null != Model && Model.dlNicePlaceInfoDetail != null)
+                            { 
+                                <textarea class="editor" name="dlNicePlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">@HttpUtility.HtmlDecode(Model.dlNicePlaceInfoDetail.History)</textarea>
+                            }
+                            else
+                            {
+                                <textarea class="editor" name="dlNicePlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">&lt;p&gt;Please input some detail about this city:&lt;/p&gt;</textarea>
+                   
+                            }
                         </div>
                     </div>
                     <div>
                         <div class="k-content">
-                            <textarea class="editor" name="dlNicePlaceInfoDetail.OpenCloseTime" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
-                </textarea>
+                            @if (null != Model && Model.dlNicePlaceInfoDetail != null)
+                            { 
+                                <textarea class="editor" name="dlNicePlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">@HttpUtility.HtmlDecode(Model.dlNicePlaceInfoDetail.OpenCloseTime)</textarea>
+                            }
+                            else
+                            {
+                                <textarea class="editor" name="dlNicePlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">&lt;p&gt;Please input some detail about this city:&lt;/p&gt;</textarea>
+                   
+                            }
                         </div>
                     </div>
                     <div>
                         <div class="k-content">
-                            <textarea class="editor" name="dlNicePlaceInfoDetail.Note" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                    &lt;p&gt;Please input some detail about this city:&lt;/p&gt;      
-                </textarea>
+                            @if (null != Model && Model.dlNicePlaceInfoDetail != null)
+                            { 
+                                <textarea class="editor" name="dlNicePlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">@HttpUtility.HtmlDecode(Model.dlNicePlaceInfoDetail.Note)</textarea>
+                            }
+                            else
+                            {
+                                <textarea class="editor" name="dlNicePlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">&lt;p&gt;Please input some detail about this city:&lt;/p&gt;</textarea>
+                   
+                            }
                         </div>
                     </div>
                 </div>
@@ -117,12 +135,12 @@
                                     <ul class="thumbnails">
                                         @if (null != Model && Model.listImageCity != null)
                                         {
-                                            int i =0;
+                                            int i = 0;
                                             foreach (var item in Model.listImageCity)
-                                            {   
-                                                var name =  item.LinkImage.Replace(" ","").Replace(".","");
+                                            {
+                                                var name = item.LinkImage.Replace(" ", "").Replace(".", "");
                                             @:<li class="span3 @name">
-                                                <div class="thumbnail">
+<div class="thumbnail">
                                                      <div class="caption"><a  onclick="deleteImage('@name')"><img src="/Content/themes/custom/Image/Delete.png" 
                                                           style="margin-top:-6px; margin-bottom:-6px"
                                                             onmouseover="this.src='/Content/themes/custom/Image/Delete-highlight.png';"
@@ -133,8 +151,8 @@
                                             <input id="@name" class="imagePlace" value="@item.LinkImage" type="hidden"/>
                                             <input name="listIdImagePresent" value="@item.ID" type="hidden"/>                                     
                                                 @:</li>
-                                                i++;
-                                                                                     
+                                                                                        i++;
+
                                             }
                                         }
                                     </ul>
@@ -155,7 +173,7 @@
         $(document).ready(function () {
 
             var elementInsertImage = '';
-            
+
             $("#panelbar").kendoPanelBar({
                 expandMode: "single"
             });
@@ -177,8 +195,8 @@
 
             $("#uploadAvatar").kendoUpload({
                 async: {
-                    saveUrl: "/Place/UploadAvatar",
-                    removeUrl: "/Place/RemoveAvatar",
+                    saveUrl: "/File/UploadAvatarPlace",
+                    removeUrl: "/File/RemoveAvatarPlace",
                     autoUpload: true,
                     multiple: false,
                 },
@@ -189,8 +207,8 @@
 
             $("#uploadImage").kendoUpload({
                 async: {
-                    saveUrl: "/Place/UploadImage",
-                    removeUrl: "/Place/RemoveImage",
+                    saveUrl: "/File/UploadImagePlace",
+                    removeUrl: "/File/RemoveImagePlace",
                     autoUpload: true,
                 },
                 select: onSelect,
@@ -206,7 +224,7 @@
 
             //});
 
-            
+
 
             $('#btnSubmit').click(function () {
                 if (validator.validate()) {
@@ -218,20 +236,21 @@
             });
 
             $('#btnCancel').click(function () {
+                document.location = '@Url.Action("ListNicePlace", "Place")';
 
             });
         });
 
         function deleteImage(e) {
             //var id = e.replace(".", "");
-            var removeUrl = "/Place/RemoveImage";
+            var removeUrl = "/File/RemoveImagePlace";
             var value = $('input#' + e).val();
             $.ajax({
                 type: 'post',
-                url: "@Url.Action("removeImage", "Place")",
+                url: "@Url.Action("RemoveImagePlace", "File")",
                 data: { fileNames: value },
-             }).done(function (result) {
-             });
+            }).done(function (result) {
+            });
             $('div#imgPhotoPlace > .row > .span8 > .thumbnails > li').remove('.' + e);
         }
 
@@ -251,7 +270,7 @@
         }
         function onUpload(e) {
             var files = e.files;
-
+            
             // Check the extension of each file and abort the upload if it is not .jpg ,.png ,.bmp
             $.each(files, function () {
                 if ((this.extension == ".jpg") || (this.extension == ".png") || (this.extension == ".bmp")) {
@@ -272,7 +291,7 @@
 
         function onUploadAvatarSuccess(e) {
             var files = e.files;
-
+            
             if (e.operation == "upload") {
                 $.each(files, function () {
                     var name = this.name.replace(' ', '').replace('.', '');
@@ -293,23 +312,23 @@
         }
 
         function onUploadSuccess(e) {
-            var files = e.files;
-             if (e.operation == "upload") {
-                $.each(files, function () {
-                    var names = this.name.replace(' ', '').replace('.', '');
-                    var element = "<li class='span3 " + names + "'><div class=thumbnail ><div class=caption > <a  onclick=deleteImage('" + names + "')> <img src=/Content/themes/custom/Image/Delete.png ; onmouseout=this.src='@Url.Content("~/Content/themes/custom/Image/Delete.png")'; onmouseover=this.src='@Url.Content("~/Content/themes/custom/Image/Delete-highlight.png")'; /></a></div> <img src=/Data/Images/place/" + this.name + " /></div><input id=" + names + " name=listImageAddNew value=" + this.name + " type=hidden /></li>";
-           
-                    //$('#imageName').append("<input id=" + name + " name='imagePlace' value=" + this.name + " type= hidden />")
-                    //$('#imgPhotoPlace> .row > .span8 > .thumbnails').append("<li class= 'span2 " + name + "' ><a class=thumbnail><img src=/Data/Images/place/" + this.name + " alt='' /></a></li>");
-                    //$('#imgPhotoPlace> .row > .span8 > .thumbnails').append("<li class=span3 id=" + name + "><div class=thumbnail ><div class=caption > <a  onclick=deleteImage("+ name +")> <img src="+'/Content/themes/custom/Image/Delete.png" onmouseout="this.src =//Content//themes//custom//Image//Delete.png" onmouseover="this.src=//Content//themes//custom//Image//Delete-highlight.png";  /></a></div> <img src=/Data/Images/place/"' + this.name +" /></div><input id=" + name + " name=dataRequest.listImageCity[].LinkImage class=imagePlace value=" + name + " type=hidden /></li>");
+            
+            var index = 0;
+            if (e.operation == "upload") {
+                var files = e.response;
+                $.each(files, function () {                  
+                    var name = files.dataname.toString();
+                    var names = name.replace('.', '');
+                    var element = "<li class='span3 " + names + "'><div class=thumbnail ><div class=caption > <a  onclick=deleteImage('" + names + "')> <img src=/Content/themes/custom/Image/Delete.png ; onmouseout=this.src='@Url.Content("~/Content/themes/custom/Image/Delete.png")'; onmouseover=this.src='@Url.Content("~/Content/themes/custom/Image/Delete-highlight.png")'; /></a></div> <img src=/Data/Images/place/" + files.dataname + " /></div><input id=" + names + " name=listImageAddNew value=" + files.dataname + " type=hidden /></li>";
                     $('#imgPhotoPlace> .row > .span8 > .thumbnails').append(element);
+                    e.files[index].name = name;
+                    index++;
                 });
             }
 
             if (e.operation == "remove") {
-                $.each(files, function () {
+                $.each(e.files, function () {
                     var name = this.name.replace(' ', '').replace('.', '');
-                    $('div#imageName > input#' + name).remove();
                     $('div#imgPhotoPlace > .row > .span8 > .thumbnails > li').remove('.' + name)
                 });
             }

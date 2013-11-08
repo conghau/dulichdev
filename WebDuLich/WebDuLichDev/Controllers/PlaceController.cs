@@ -16,6 +16,8 @@ namespace WebDuLichDev.Controllers
 {
     public class PlaceController : Controller
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(PlaceController));
+        string version = "Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString() + " ";
         //
         // GET: /Place/
         private static List<DL_ImagePlace> listImagePlaceOld = new List<DL_ImagePlace>();
@@ -115,23 +117,39 @@ namespace WebDuLichDev.Controllers
         [HttpPost]
         public ActionResult AddPlace(NicePlace dataRequest, string[] imagePlace)
         {
-            DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
-            List<DL_ImagePlace> listImagePlace = new List<DL_ImagePlace>();
-            if (null != imagePlace)
+            try
             {
-                for (int index = 0; index < imagePlace.Count(); index++)
+                DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+                List<DL_ImagePlace> listImagePlace = new List<DL_ImagePlace>();
+                if (null != imagePlace)
                 {
-                    DL_ImagePlace temp = new DL_ImagePlace();
-                    temp.LinkImage = imagePlace[index];
-                    listImagePlace.Add(temp);
+                    for (int index = 0; index < imagePlace.Count(); index++)
+                    {
+                        DL_ImagePlace temp = new DL_ImagePlace();
+                        temp.LinkImage = imagePlace[index];
+                        listImagePlace.Add(temp);
+                    }
                 }
-            }
-            dataRequest.listImageCity = listImagePlace;
+                dataRequest.listImageCity = listImagePlace;
 
-            dataRequest.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
-            dlPlaceBal.InsertNicePlace(dataRequest.dlPlace, dataRequest.dlNicePlaceInfoDetail, dataRequest.listImageCity);
-            //dlPlaceBal.Insert(dataRequest);           
-            return View(dataRequest);
+                dataRequest.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
+                dlPlaceBal.InsertNicePlace(dataRequest.dlPlace, dataRequest.dlNicePlaceInfoDetail, dataRequest.listImageCity);
+                //dlPlaceBal.Insert(dataRequest);           
+                return View(dataRequest);
+            }
+            catch (BusinessException bx)
+            {
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                //LogBAL.LogEx("BLM_ERR_Common", ex);
+                log.Error(ex.Message);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         public ActionResult UpdateNicePlace(long dlPlaceId)
@@ -160,6 +178,8 @@ namespace WebDuLichDev.Controllers
                 var listImageDeleted = listImagePlaceOld.Select(m => m.ID).ToArray().Except(listIdImagePresent).ToArray();
                 
                 //update status image
+                for (int index = 0; index < listImageDeleted.Count(); index++)
+                    dlImagePlaceBal.Delete(listImageDeleted[index]);
                 /////////////////
 
                 List<DL_ImagePlace> listImagePlaceNew = new List<DL_ImagePlace>();
@@ -189,14 +209,16 @@ namespace WebDuLichDev.Controllers
                 }
 
             }
-            catch (DataAccessException ex)
+            catch (BusinessException bx)
             {
-                TempData[PageInfo.Message.ToString()] = ex.Message;
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
                 return RedirectToAction("Error", "Home");
             }
             catch (Exception ex)
             {
                 //LogBAL.LogEx("BLM_ERR_Common", ex);
+                log.Error(ex.Message);
                 TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
                 return RedirectToAction("Error", "Home");
             }
@@ -204,59 +226,6 @@ namespace WebDuLichDev.Controllers
            // return View();
         }
      
-
-        public ActionResult UploadAvatar(IEnumerable<HttpPostedFileBase> fileUpload)
-        {
-            var serserPath = Server.MapPath("~/Data/Avatar/Place/");
-            foreach (var file in fileUpload)
-            {
-                // Some browsers send file names with full path. We only care about the file name.
-                var fileName = Path.GetFileName(file.FileName);
-
-                var destinationPath = Path.Combine(serserPath, fileName);
-
-                file.SaveAs(destinationPath);
-            }
-            return Json(new { status = "OK" }, "text/plain");
-
-        }
-        public ActionResult RemoveAvatar(string fileNames)
-        {
-            ProcessWithFiles processfile = new ProcessWithFiles();
-            var destinationPath = Path.Combine(Server.MapPath("~/Data/Avatar/Place/"), fileNames);
-
-            processfile.DeleteFile(destinationPath);
-
-            return Json(new { status = "OK" }, "text/plain");
-
-        }
-
-        public ActionResult UploadImage(IEnumerable<HttpPostedFileBase> fileUpload)
-        {
-            var serserPath = Server.MapPath("~/Data/Images/Place/");
-            foreach (var file in fileUpload)
-            {
-                // Some browsers send file names with full path. We only care about the file name.
-                var fileName = Path.GetFileName(file.FileName);
-
-                var destinationPath = Path.Combine(Server.MapPath("~/Data/Images/Place/"), fileName);
-
-                file.SaveAs(destinationPath);
-            }
-            return Json(new { status = "OK" }, "text/plain");
-
-        }
-        public ActionResult RemoveImage(string fileNames)
-        {
-            ProcessWithFiles processfile = new ProcessWithFiles();
-            var destinationPath = Path.Combine(Server.MapPath("~/Data/Images/Place/"), fileNames);
-
-            processfile.DeleteFile(destinationPath);
-
-            return Json(new { status = "OK" }, "text/plain");
-
-        }
-
         #region
         public ActionResult ListHotel()
         {

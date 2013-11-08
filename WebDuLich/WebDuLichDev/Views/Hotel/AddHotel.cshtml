@@ -209,8 +209,8 @@
                 async: {
                     //saveUrl: "/Place/UploadAvatar",
                     //removeUrl: "/Place/RemoveAvatar",
-                    saveUrl: '@Url.Action("UploadAvatar", "Hotel", new { ID = @ViewBag.NewPlaceID })',
-                    removeUrl: '@Url.Action("RemoveAvatar", "Hotel", new { ID = @ViewBag.NewPlaceID })',
+                    saveUrl: '@Url.Action("UploadAvatarPlace", "file", new { ID = @ViewBag.NewPlaceID })',
+                    removeUrl: '@Url.Action("RemoveAvatarPlace", "file", new { ID = @ViewBag.NewPlaceID })',
                     autoUpload: false,
                     multiple: false,
                 },
@@ -225,8 +225,8 @@
                     uploadSelectedFiles: "Upload"
                 },
                 async: {
-                    saveUrl: '@Url.Action("UploadImage", "Hotel")',
-                    removeUrl: '@Url.Action("RemoveImage", "Hotel")',
+                    saveUrl: '@Url.Action("UploadImagePlace", "file")',
+                    removeUrl: '@Url.Action("RemoveImagePlace", "file")',
                     autoUpload: false,
                 },
                 select: onSelect,
@@ -335,7 +335,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

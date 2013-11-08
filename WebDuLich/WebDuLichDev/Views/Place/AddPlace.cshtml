@@ -58,16 +58,16 @@
                         <li>@Resources.Language.Note</li>
                     </ul>
                     <div>
-                        <div class="k-content">                 
-                   @if(null != Model && Model.dlNicePlaceInfoDetail != null)
-                   { 
-                       <textarea class="editor" name="dlNicePlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">@HttpUtility.HtmlDecode(Model.dlNicePlaceInfoDetail.Info)</textarea>
-                   }
-                   else
-                   {
-                       <textarea class="editor" name="dlNicePlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">&lt;p&gt;Please input some detail about this city:&lt;/p&gt;</textarea>
+                        <div class="k-content">
+                            @if (null != Model && Model.dlNicePlaceInfoDetail != null)
+                            { 
+                                <textarea class="editor" name="dlNicePlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">@HttpUtility.HtmlDecode(Model.dlNicePlaceInfoDetail.Info)</textarea>
+                            }
+                            else
+                            {
+                                <textarea class="editor" name="dlNicePlaceInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">&lt;p&gt;Please input some detail about this city:&lt;/p&gt;</textarea>
                    
-                   }
+                            }
 
                         </div>
                     </div>
@@ -118,9 +118,9 @@
                                             foreach (var item in Model.listImageCity)
                                             {     
                                             @:<li class="span2 @item.LinkImage"><a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" alt='' /></a>
-                                                <input id="@item.LinkImage" class="imagePlace" value="@item.LinkImage" type="hidden"/>
+<input id="@item.LinkImage" class="imagePlace" value="@item.LinkImage" type="hidden"/>
                                               @:</li>
-                                            }
+                                                                                    }
                                         }
                                     </ul>
                                 </div>
@@ -159,8 +159,8 @@
 
             $("#uploadAvatar").kendoUpload({
                 async: {
-                    saveUrl: "/Place/UploadAvatar",
-                    removeUrl: "/Place/RemoveAvatar",
+                    saveUrl: "/File/UploadAvatarPlace",
+                    removeUrl: "/File/RemoveAvatarPlace",
                     autoUpload: true,
                     multiple: false,
                 },
@@ -171,8 +171,8 @@
 
             $("#uploadImage").kendoUpload({
                 async: {
-                    saveUrl: "/Place/UploadImage",
-                    removeUrl: "/Place/RemoveImage",
+                    saveUrl: "/File/UploadImagePlace",
+                    removeUrl: "/File/RemoveImagePlace",
                     autoUpload: true,
                 },
                 select: onSelect,
@@ -210,7 +210,7 @@
         }
         function onUpload(e) {
             var files = e.files;
-
+            //var newName = new 
             // Check the extension of each file and abort the upload if it is not .jpg ,.png ,.bmp
             $.each(files, function () {
                 if ((this.extension == ".jpg") || (this.extension == ".png") || (this.extension == ".bmp")) {
@@ -252,21 +252,23 @@
         }
 
         function onUploadSuccess(e) {
-            var files = e.files;
 
+            var index = 0;
             if (e.operation == "upload") {
+                var files = e.response;
                 $.each(files, function () {
-                    var name = this.name.replace(' ', '').replace('.', '');
-                    $('#imageName').append("<input id=" + name + " name='imagePlace' value=" + this.name + " type= hidden />")
-                    $('#imgPhotoPlace> .row > .span8 > .thumbnails').append("<li class= 'span2 " + name + "' ><a class=thumbnail><img src=/Data/Images/place/" + this.name + " alt='' /></a></li>");
-
+                    var name = files.dataname.toString();
+                    var names = name.replace('.', '');
+                    var element = "<li class='span3 " + names + "'><div class=thumbnail ><div class=caption > <a  onclick=deleteImage('" + names + "')> <img src=/Content/themes/custom/Image/Delete.png ; onmouseout=this.src='@Url.Content("~/Content/themes/custom/Image/Delete.png")'; onmouseover=this.src='@Url.Content("~/Content/themes/custom/Image/Delete-highlight.png")'; /></a></div> <img src=/Data/Images/place/" + files.dataname + " /></div><input id=" + names + " name=listImageAddNew value=" + files.dataname + " type=hidden /></li>";
+                    $('#imgPhotoPlace> .row > .span8 > .thumbnails').append(element);
+                    e.files[index].name = name;
+                    index++;
                 });
             }
 
             if (e.operation == "remove") {
-                $.each(files, function () {
+                $.each(e.files, function () {
                     var name = this.name.replace(' ', '').replace('.', '');
-                   // $('div#imageName > input#' + name).remove();
                     $('div#imgPhotoPlace > .row > .span8 > .thumbnails > li').remove('.' + name)
                 });
             }
