@@ -8,7 +8,8 @@
 <h2>UpdateHotel</h2>
 
 <form id="frmUpdateHotel" class="well form-horizontal" method="post" action="/Hotel/UpdateHotel">
-    <input name="hotelinfo.dlPlace.ID" value="@Model.dlHotelPlaceInfoDetail.DL_PlaceId" type="hidden" />
+    <input name="hotelinfo.dlPlace.ID" value="@Model.dlPlace.ID" type="hidden" />
+    <input name="hotelinfo.dlHotelPlaceInfoDetail.ID" value="@Model.dlHotelPlaceInfoDetail.ID" type="hidden" />
     <div>
 
         <ul id="panelbar">
@@ -47,7 +48,7 @@
                                             <ul class="thumbnails">
                                                 @if (null != Model && Model.dlPlace != null)
                                                 {      
-                                                    @:<li class="span2" id="@Model.dlPlace.Avatar"><a class=thumbnail><img src="/Data/Avatar/place/@Model.dlPlace.Avatar" alt='' /></a></li>
+                                                    @:<li class="span2" id="@Model.dlPlace.Avatar"><a class=thumbnail><img src="/Data/Avatar/Place/@Model.dlPlace.Avatar" alt='' /></a></li>
                                             }
                                             </ul>
                                         </div>
@@ -419,7 +420,7 @@
                 $.each(files, function () {
                     var name = this.name.replace(' ', '').replace('.', '');
                     $('#Avatar').val(this.name);
-                    $('#imgPhotoAvatar > .row > .span8 > .thumbnails').append("<li class='span2' id=" + this.name + " ><a class=thumbnail><img src=/Data/Avatar/place/" + this.name + " alt='' /></a></li>");
+                    $('#imgPhotoAvatar > .row > .span8 > .thumbnails').append("<li class='span2' id=" + this.name + " ><a class=thumbnail><img src=/Data/Avatar/Place/" + this.name + " alt='' /></a></li>");
                     //$('#uploadAvatar').data('kendoUpload').disable();
                 });
             }

@@ -242,6 +242,7 @@ namespace WebDuLichDev.Controllers
                         }
                     }
                 }
+                hotelinfo.dlHotelPlaceInfoDetail.DL_PlaceId = hotelinfo.dlPlace.ID;
                 hotelinfo.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Hotels;
                 result = dlPlaceBal.UpdateHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, listdlImangePlaceTempNew);
                 if (true == result)

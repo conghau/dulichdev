@@ -9,7 +9,8 @@
 <h2>UpdateHotel</h2>
 
 <form id="frmUpdateRestaurant" class="well form-horizontal" method="post" action="/Restaurant/UpdateRestaurant">
-    <input name="restaurantinfo.dlPlace.ID" value="@Model.dlRestaurantInfoDetail.DL_PlaceId" type="hidden" />
+    <input name="restaurantinfo.dlPlace.ID" value="@Model.dlPlace.ID" type="hidden" />
+    <input name="restaurantinfo.dlRestaurantInfoDetail.ID" value="@Model.dlRestaurantInfoDetail.ID" type="hidden" />
     <div>
 
         <ul id="panelbar">
@@ -48,7 +49,7 @@
                                             <ul class="thumbnails">
                                                 @if (null != Model && Model.dlPlace != null)
                                                 {      
-                                                    @:<li class="span2" id="@Model.dlPlace.Avatar"><a class=thumbnail><img src="/Data/Avatar/place/@Model.dlPlace.Avatar" alt='' /></a></li>
+                                                    @:<li class="span2" id="@Model.dlPlace.Avatar"><a class=thumbnail><img src="/Data/Avatar/Place/@Model.dlPlace.Avatar" alt='' /></a></li>
                                             }
                                             </ul>
                                         </div>
@@ -83,7 +84,7 @@
                     </ul>                    
                     <div>
                         <div class="k-content">
-                            <textarea class="editor" name="restaurantinfo.dlRestaurantInfoDetail.Service" rows="5" cols="20" style="width: 100%; height: 400px">                  
+                            <textarea class="editor" name="restaurantinfo.dlRestaurantInfoDetail.Menu" rows="5" cols="20" style="width: 100%; height: 400px">                  
                    @HttpUtility.HtmlDecode(Model.dlRestaurantInfoDetail.Menu)     
                 </textarea>
                         </div>
@@ -239,8 +240,8 @@
                 async: {
                     //saveUrl: "/Place/UploadAvatar",
                     //removeUrl: "/Place/RemoveAvatar",
-                    saveUrl: '@Url.Action("UploadAvatarPlace", "file", new { ID = Model.dlPlace.ID })',
-                    removeUrl: '@Url.Action("RemoveAvatarPlace", "file", new { ID = Model.dlPlace.ID })',
+                    saveUrl: '@Url.Action("UploadAvatarPlace", "File", new { ID = Model.dlPlace.ID })',
+                    removeUrl: '@Url.Action("RemoveAvatarPlace", "File", new { ID = Model.dlPlace.ID })',
                     autoUpload: false,
                     multiple: false,
                 },
@@ -255,8 +256,8 @@
                     uploadSelectedFiles: "Upload"
                 },
                 async: {
-                    saveUrl: '@Url.Action("UploadImagePlace", "file")',
-                    removeUrl: '@Url.Action("RemoveImagePlace", "file")',
+                    saveUrl: '@Url.Action("UploadImagePlace", "File")',
+                    removeUrl: '@Url.Action("RemoveImagePlace", "File")',
                     autoUpload: false,
                 },
                 select: onSelect,
@@ -380,7 +381,7 @@
                 $.each(files, function () {
                     var name = this.name.replace(' ', '').replace('.', '');
                     $('#Avatar').val(this.name);
-                    $('#imgPhotoAvatar > .row > .span8 > .thumbnails').append("<li class='span2' id=" + this.name + " ><a class=thumbnail><img src=/Data/Avatar/place/" + this.name + " alt='' /></a></li>");
+                    $('#imgPhotoAvatar > .row > .span8 > .thumbnails').append("<li class='span2' id=" + this.name + " ><a class=thumbnail><img src=/Data/Avatar/Place/" + this.name + " alt='' /></a></li>");
                     //$('#uploadAvatar').data('kendoUpload').disable();
                 });
             }
