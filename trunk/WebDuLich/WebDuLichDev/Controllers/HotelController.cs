@@ -228,15 +228,18 @@ namespace WebDuLichDev.Controllers
                         listdlImangePlaceTempNew.Add(temp);
                     }
                 }
-                listdlImangePlace = dlImageBal.GetByDLPlaceID(hotelinfo.dlPlace.ID);
-                foreach (var i in hotelinfo.listImagePlace)
+                //listdlImangePlace = dlImageBal.GetByDLPlaceID(hotelinfo.dlPlace.ID);
+                if (hotelinfo.listImagePlace != null)
                 {
-                    if (i.Status == 1)
-                        dlImageBal.Update(i);
-                    else
+                    foreach (var i in hotelinfo.listImagePlace)
                     {
-                        i.Status = 0;
-                        dlImageBal.Update(i);
+                        if (i.Status == 1)
+                            dlImageBal.Update(i);
+                        else
+                        {
+                            i.Status = 0;
+                            dlImageBal.Update(i);
+                        }
                     }
                 }
                 hotelinfo.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Hotels;

@@ -200,15 +200,18 @@ namespace WebDuLichDev.Controllers
                         listdlImangePlaceTempNew.Add(temp);
                     }
                 }
-                listdlImangePlace = dlImageBal.GetByDLPlaceID(restaurantinfo.dlPlace.ID);
-                foreach (var i in restaurantinfo.listImagePlace)
+                //listdlImangePlace = dlImageBal.GetByDLPlaceID(restaurantinfo.dlPlace.ID);
+                if (restaurantinfo.listImagePlace != null)
                 {
-                    if (i.Status == 1)
-                        dlImageBal.Update(i);
-                    else
+                    foreach (var i in restaurantinfo.listImagePlace)
                     {
-                        i.Status = 0;
-                        dlImageBal.Update(i);
+                        if (i.Status == 1)
+                            dlImageBal.Update(i);
+                        else
+                        {
+                            i.Status = 0;
+                            dlImageBal.Update(i);
+                        }
                     }
                 }
                 restaurantinfo.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Restaurants;
