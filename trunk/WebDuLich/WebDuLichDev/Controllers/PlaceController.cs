@@ -227,64 +227,7 @@ namespace WebDuLichDev.Controllers
         }
      
         #region
-        public ActionResult ListHotel()
-        {
-            vm_Pagination pagination = new vm_Pagination
-            {
-                Page = MvcApplication.pageDefault,
-                PageSize = MvcApplication.pageSizeDefault,
-                OrderBy = DL_PlaceColumns.CreatedDate.ToString(),
-                OrderDirection = "DESC",
-
-            };
-            long totalRecords = 0;
-
-            DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
-            var model = dlPlaceBAL.GetListWithFilter(0, "", "", (long)DL_PlaceTypeId.Hotels, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
-
-            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
-            ViewData["OrderBy"] = pagination.OrderBy;
-            ViewData["OrderDirection"] = pagination.OrderDirection;
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult ListHotel(vm_Pagination pagination, vm_Search dataSearch)
-        {
-            long totalRecords = 0;
-
-            DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
-            var model = dlPlaceBAL.GetListWithFilter(0, "", "", (long)DL_PlaceTypeId.Hotels, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
-
-            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
-            ViewData["OrderBy"] = pagination.OrderBy;
-            ViewData["OrderDirection"] = pagination.OrderDirection;
-
-            return View(model);
-        }
-
-
-        public ActionResult HotelByCity(long cityId)
-        {
-            DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
-            var model = dlPlaceBal.GetListHotelByCity(
-
-                cityId);
-            return View();
-        }
-
-        public ActionResult AddHotel()
-        {
-            DL_Place dlPlace = new DL_Place();
-            return View(dlPlace);
-        }
-
-        [HttpPost]
-        public ActionResult AddHotel(DL_Place data)
-        {
-            return View(data);
-        }
+        
         #endregion
     }
 }
