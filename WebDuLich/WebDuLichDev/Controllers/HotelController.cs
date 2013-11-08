@@ -23,10 +23,71 @@ namespace WebDuLichDev.Controllers
             return View();
         }
 
-        public ActionResult AddHotel(long ID)
+        public ActionResult ListHotel()
+        {
+            vm_Pagination pagination = new vm_Pagination
+            {
+                Page = MvcApplication.pageDefault,
+                PageSize = MvcApplication.pageSizeDefault,
+                OrderBy = DL_PlaceColumns.CreatedDate.ToString(),
+                OrderDirection = "DESC",
+
+            };
+            long totalRecords = 0;
+
+            DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
+            var model = dlPlaceBAL.GetListWithFilter(0, "", "", (long)DL_PlaceTypeId.Hotels, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
+
+            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
+            ViewData["OrderBy"] = pagination.OrderBy;
+            ViewData["OrderDirection"] = pagination.OrderDirection;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ListHotel(vm_Pagination pagination, vm_Search dataSearch)
+        {
+            long totalRecords = 0;
+
+            DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
+            var model = dlPlaceBAL.GetListWithFilter(0, "", "", (long)DL_PlaceTypeId.Hotels, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
+
+            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
+            ViewData["OrderBy"] = pagination.OrderBy;
+            ViewData["OrderDirection"] = pagination.OrderDirection;
+
+            return View(model);
+        }
+
+
+        public ActionResult HotelByCity(long cityId)
+        {
+            vm_Pagination pagination = new vm_Pagination
+            {
+                Page = MvcApplication.pageDefault,
+                PageSize = MvcApplication.pageSizeDefault,
+                OrderBy = DL_PlaceColumns.CreatedDate.ToString(),
+                OrderDirection = "DESC",
+
+            };
+            long totalRecords = 0;
+
+            DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
+            var model = dlPlaceBAL.GetListWithFilter(cityId, "", "", (long)DL_PlaceTypeId.Hotels, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
+
+            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
+            ViewData["OrderBy"] = pagination.OrderBy;
+            ViewData["OrderDirection"] = pagination.OrderDirection;
+
+            return View(model);
+        }
+
+
+        public ActionResult AddHotel()
         {
 
-            ViewBag.NewPlaceID = ID;
+            //ViewBag.NewPlaceID = ID;
             return View();
 
 
@@ -104,66 +165,8 @@ namespace WebDuLichDev.Controllers
                 }
             }
             hotelinfo.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Hotels;
-            dlPlaceBal.UpdateRestaurant(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, listdlImangePlaceTempNew);
+            dlPlaceBal.UpdateHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, listdlImangePlaceTempNew);
             return View(hotelinfo);
         }
-
-        public ActionResult UploadImage(IEnumerable<HttpPostedFileBase> fileUpload)
-        {
-            var serserPath = Server.MapPath("~/Data/Images/Place/");
-            foreach (var file in fileUpload)
-            {
-                // Some browsers send file names with full path. We only care about the file name.
-                var fileName = Path.GetFileName(file.FileName);
-
-                var destinationPath = Path.Combine(Server.MapPath("~/Data/Images/Place/"), fileName);
-
-                file.SaveAs(destinationPath);
-            }
-            return Json(new { status = "OK" }, "text/plain");
-
-        }
-        public ActionResult RemoveImage(string fileNames)
-        {
-            ProcessWithFiles processfile = new ProcessWithFiles();
-            var destinationPath = Path.Combine(Server.MapPath("~/Data/Images/Place/"), fileNames);
-
-            processfile.DeleteFile(destinationPath);
-
-            return Json(new { status = "OK" }, "text/plain");
-
-        }
-        public ActionResult UploadAvatar(IEnumerable<HttpPostedFileBase> fileUpload, int ID)
-        {
-            //HotelInfo hotelinfo = new HotelInfo();
-            DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
-            //hotelinfo.dlPlace = dlPlaceBal.GetByID(ID);
-
-            var serserPath = Server.MapPath("~/Data/Avatar/Place/");
-            if (System.IO.File.Exists(serserPath + dlPlaceBal.GetByID(ID).Avatar)) //Xóa file có trước nếu đã có trong csdl. Việc up là duy nhất
-                System.IO.File.Delete(serserPath + dlPlaceBal.GetByID(ID).Avatar);
-            foreach (var file in fileUpload)
-            {
-                // Some browsers send file names with full path. We only care about the file name.
-                var fileName = Path.GetFileName(file.FileName);
-
-                var destinationPath = Path.Combine(serserPath, fileName);
-
-                file.SaveAs(destinationPath);
-            }
-            return Json(new { status = "OK" }, "text/plain");
-
-        }
-        public ActionResult RemoveAvatar(string fileNames, int cityId)
-        {
-            ProcessWithFiles processfile = new ProcessWithFiles();
-            var destinationPath = Path.Combine(Server.MapPath("~/Data/Avatar/Place/"), fileNames);
-
-            processfile.DeleteFile(destinationPath);
-
-            return Json(new { status = "OK" }, "text/plain");
-
-        }
-
     }
 }
