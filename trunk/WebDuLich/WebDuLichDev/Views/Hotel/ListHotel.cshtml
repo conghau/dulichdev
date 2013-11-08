@@ -11,7 +11,8 @@
     </div>
      @if (TempData["Message"] != null)
     {
-        <div id="messageBox" class="alert ">
+        <input id="messageBoxCode" value="@TempData["Message"].ToString()" type="hidden"/>      
+         <div id="messageBox" class="alert ">
             <a class="close" data-dismiss="alert">×</a>
             @WebDuLichDev.WebUtility.common.GetResourceValue(TempData["Message"].ToString())
         </div>

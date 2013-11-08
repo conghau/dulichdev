@@ -48,14 +48,14 @@ $(function () {
         format: "#",
         decimals: 0
     });
-
-    var message = 'DULICHDLL.Utility.Utility.ObjectToString(ViewData[WebDuLichDev.Enum.PageInfo.Message.ToString()])';
+   // var message = @DuLichDLL.Utility.Utility.ObjectToString(ViewData[WebDuLichDev.Enum.PageInfo.Message.ToString()]);
+    var message = $('#messageBoxCode').val();
     if (message != '') {
-        if (message.indexOf('SUC') >= 0) {
-            $('#messageBox').addClass('alert-success');
+        if (message.indexOf('ERR') >= 0 || message.indexOf('VAL') >= 0) {
+            $('#messageBox').addClass('alert-error');
         }
         else {
-            $('#messageBox').addClass('alert-error');
+            $('#messageBox').addClass('alert-success');
         }
 
         $('#messageBox').css('display', '');
@@ -63,8 +63,6 @@ $(function () {
     else {
         $('#messageBox').css('display', 'none');
     }
-
-
     $(this).find('.itranparent_child').hide();
     $('.dropdown li').hover(
         function () {
