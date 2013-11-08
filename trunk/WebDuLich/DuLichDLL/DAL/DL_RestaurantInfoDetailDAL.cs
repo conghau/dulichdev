@@ -352,7 +352,7 @@ namespace DuLichDLL.DAL
             try
             {
                 cnn = DataProvider.OpenConnection();
-                SqlCommand cmd = new SqlCommand(DL_HotelPlaceInfoDetailProcedure.p_DL_HotelPlaceInfoDetail_Get_By_DL_PlaceId.ToString(), cnn);
+                SqlCommand cmd = new SqlCommand(DL_RestaurantInfoDetailProcedure.p_DL_RestaurantInfoDetail_Get_By_DL_PlaceId.ToString(), cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@DL_PlaceId", SqlDbType.BigInt).Value = DLPlaceID;
                 DataTable dt = new DataTable();
