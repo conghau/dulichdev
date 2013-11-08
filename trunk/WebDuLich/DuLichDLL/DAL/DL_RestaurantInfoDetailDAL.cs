@@ -346,5 +346,38 @@ namespace DuLichDLL.DAL
                 throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_RestaurantInfoDetailDAL: Delete"));
             }
         }
+        public DL_RestaurantInfoDetail GetByDLPlaceID(long DLPlaceID)
+        {
+            SqlConnection cnn = null;
+            try
+            {
+                cnn = DataProvider.OpenConnection();
+                SqlCommand cmd = new SqlCommand(DL_HotelPlaceInfoDetailProcedure.p_DL_HotelPlaceInfoDetail_Get_By_DL_PlaceId.ToString(), cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@DL_PlaceId", SqlDbType.BigInt).Value = DLPlaceID;
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dt);
+                List<DL_RestaurantInfoDetail> results = GetDataObject(dt);
+                DL_RestaurantInfoDetail dL_RestaurantInfoDetail = new DL_RestaurantInfoDetail();
+                if (results.Count > 0)
+                {
+                    dL_RestaurantInfoDetail = results[0];
+                }
+                return dL_RestaurantInfoDetail;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_RestaurantInfoDetail: GetByDLPlaceID"));
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
     }
 }

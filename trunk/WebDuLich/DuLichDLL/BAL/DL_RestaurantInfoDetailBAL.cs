@@ -113,5 +113,25 @@ namespace DuLichDLL.BAL
                 throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_RestaurantInfoDetailBAL: Delete"));
             }
         }
+        public DL_RestaurantInfoDetail GetByDLPlaceID (long DLPlaceID)
+        {
+            try
+            {
+                DL_RestaurantInfoDetailDAL dL_RestaurantInfoDetailDAL = new DL_RestaurantInfoDetailDAL();
+                return dL_RestaurantInfoDetailDAL.GetByDLPlaceID(DLPlaceID);
+            }
+            catch (DataAccessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (BusinessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_RestaurantInfoDetailBAL: GetByDLPlaceID"));
+            }
+        }
     }
 }

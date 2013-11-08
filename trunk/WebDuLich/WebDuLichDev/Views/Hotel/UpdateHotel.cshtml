@@ -278,8 +278,8 @@
                 async: {
                     //saveUrl: "/Place/UploadAvatar",
                     //removeUrl: "/Place/RemoveAvatar",
-                    saveUrl: '@Url.Action("UploadAvatar", "Hotel", new { ID = Model.dlPlace.ID })',
-                    removeUrl: '@Url.Action("RemoveAvatar", "Hotel", new { ID = Model.dlPlace.ID })',
+                    saveUrl: '@Url.Action("UploadAvatarPlace", "file", new { ID = Model.dlPlace.ID })',
+                    removeUrl: '@Url.Action("RemoveAvatarPlace", "file", new { ID = Model.dlPlace.ID })',
                     autoUpload: false,
                     multiple: false,
                 },
@@ -294,8 +294,8 @@
                     uploadSelectedFiles: "Upload"
                 },
                 async: {
-                    saveUrl: '@Url.Action("UploadImage", "Hotel")',
-                    removeUrl: '@Url.Action("RemoveImage", "Hotel")',
+                    saveUrl: '@Url.Action("UploadImagePlace", "file")',
+                    removeUrl: '@Url.Action("RemoveImagePlace", "file")',
                     autoUpload: false,
                 },
                 select: onSelect,

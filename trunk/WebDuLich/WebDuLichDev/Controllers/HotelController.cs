@@ -86,12 +86,10 @@ namespace WebDuLichDev.Controllers
 
         public ActionResult AddHotel()
         {
-
             //ViewBag.NewPlaceID = ID;
             return View();
-
-
         }
+
         [HttpPost]
         public ActionResult AddHotel(HotelInfo hotelinfo, string[] imagePlace)
         {
@@ -106,15 +104,12 @@ namespace WebDuLichDev.Controllers
                     listdlImangePlace.Add(temp);
                 }
             }
-            hotelinfo.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
+            hotelinfo.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Hotels;
             hotelinfo.listImagePlace = listdlImangePlace;
             hotelinfo.dlPlace.TotalPointRating = "0";
             hotelinfo.dlPlace.TotalUserRating = "0";
             dlPlaceBal.InsertHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, hotelinfo.listImagePlace);
             return Redirect("./UpdateHotel/" + hotelinfo.dlPlace.ID);
-
-
-
 
         }
         public ActionResult UpdateHotel(long ID)

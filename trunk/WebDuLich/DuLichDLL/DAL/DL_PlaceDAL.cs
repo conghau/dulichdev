@@ -845,6 +845,110 @@ namespace DuLichDLL.DAL
                 cnn.Close();
             }
         }
-       
+        public bool UpdateRestaurant(DL_Place dlPlace, DL_RestaurantInfoDetail dlRestaurantInfoDetail, List<DL_ImagePlace> dlImagePlace)
+        {
+            SqlConnection cnn = null;
+            SqlTransaction tran = null;
+            bool result = false;
+            try
+            {
+                DL_RestaurantInfoDetailDAL dlRestaurantInfoDetailDAL = new DL_RestaurantInfoDetailDAL();
+                DL_ImagePlaceDAL dlImageDAL = new DL_ImagePlaceDAL();
+                long placeId = 0;
+                cnn = DataProvider.OpenConnection();
+                tran = cnn.BeginTransaction();
+
+                //update Place: Use the same control by Hotel
+                placeId = Update_Hotel(dlPlace, cnn, tran);
+
+                //set DLPlaceID for NicePlaceInfo
+                // dlHotelPlaceInfoDetail.DL_PlaceId = dlPlace.ID;
+                //dlDHotelPlaceInfoDetail.Staus = 0;
+                //updapte NicePlaceInfo
+                dlRestaurantInfoDetailDAL.Update(dlRestaurantInfoDetail, cnn, tran);
+
+                //update ImagePlace
+                if (null != dlImagePlace)
+                {
+                    for (int index = 0; index < dlImagePlace.Count; index++)
+                    {
+                        dlImagePlace[index].DL_PlaceID = dlPlace.ID;
+                        dlImagePlace[index].Status = 0;
+                        dlImageDAL.Insert(dlImagePlace[index], cnn, tran);
+                    }
+                }
+
+                tran.Commit();
+                result = true;
+                return result;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceDAL: UpdateRestaurant 3 parameter"));
+            }
+            finally
+            {
+                tran.Dispose();
+                cnn.Close();
+            }
+        }
+        public bool InsertRestaurant(DL_Place dlPlace, DL_RestaurantInfoDetail dlRestaurantInfoDetail, List<DL_ImagePlace> dlImagePlace)
+        {
+            SqlConnection cnn = null;
+            SqlTransaction tran = null;
+            bool result = false;
+            try
+            {
+                DL_RestaurantInfoDetailDAL dlRestaurantInfoDetailDAL = new DL_RestaurantInfoDetailDAL();
+                DL_ImagePlaceDAL dlImageDAL = new DL_ImagePlaceDAL();
+                long placeId = 0;
+                cnn = DataProvider.OpenConnection();
+                tran = cnn.BeginTransaction();
+
+                //Insert Place
+                placeId = Insert(dlPlace, cnn, tran);
+
+                //set DLPlaceID for NicePlaceInfo
+                dlRestaurantInfoDetail.DL_PlaceId = placeId;
+                //dlDHotelPlaceInfoDetail.Staus = 0;
+                //updapte NicePlaceInfo
+                dlRestaurantInfoDetailDAL.Insert(dlRestaurantInfoDetail, cnn, tran);
+
+                //update ImagePlace
+                if (null != dlImagePlace)
+                {
+                    for (int index = 0; index < dlImagePlace.Count; index++)
+                    {
+                        dlImagePlace[index].DL_PlaceID = placeId;
+                        dlImagePlace[index].Status = 0;
+                        dlImageDAL.Insert(dlImagePlace[index], cnn, tran);
+                    }
+                }
+
+                tran.Commit();
+                result = true;
+                return result;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceDAL: InsertRestaurant 3 parameter"));
+            }
+            finally
+            {
+                tran.Dispose();
+                cnn.Close();
+            }
+        }
+              
     }
 }
