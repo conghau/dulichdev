@@ -52,7 +52,7 @@ $(function () {
     var message = 'DULICHDLL.Utility.Utility.ObjectToString(ViewData[WebDuLichDev.Enum.PageInfo.Message.ToString()])';
     if (message != '') {
         if (message.indexOf('SUC') >= 0) {
-            $('#messageBox').addClass('alert-errosuccess');
+            $('#messageBox').addClass('alert-success');
         }
         else {
             $('#messageBox').addClass('alert-error');
