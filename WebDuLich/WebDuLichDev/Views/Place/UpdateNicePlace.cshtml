@@ -195,7 +195,7 @@
 
             $("#uploadAvatar").kendoUpload({
                 async: {
-                    saveUrl: "/File/UploadAvatarPlace",
+                    saveUrl: "/File/UploadAvatar",
                     removeUrl: "/File/RemoveAvatarPlace",
                     autoUpload: true,
                     multiple: false,
@@ -218,14 +218,6 @@
 
             var validator = $("#panelbar").kendoValidator().data("kendoValidator");
 
-
-            //$('.deleteImage').click(function () {
-            //    alert("xoa nhe");
-
-            //});
-
-
-
             $('#btnSubmit').click(function () {
                 if (validator.validate()) {
                     $('#frmMain').submit();
@@ -242,8 +234,6 @@
         });
 
         function deleteImage(e) {
-            //var id = e.replace(".", "");
-            var removeUrl = "/File/RemoveImagePlace";
             var value = $('input#' + e).val();
             $.ajax({
                 type: 'post',
@@ -290,14 +280,12 @@
         }
 
         function onUploadAvatarSuccess(e) {
-            var files = e.files;
-            
+            var files = e.files;           
             if (e.operation == "upload") {
                 $.each(files, function () {
                     var name = this.name.replace(' ', '').replace('.', '');
                     $('#Avatar').val(this.name);
                     $('#imgPhotoAvatar > .row > .span8 > .thumbnails').append("<li class='span2' id=" + this.name + " ><a class=thumbnail><img src=/Data/Avatar/place/" + this.name + " alt='' /></a></li>");
-                    //$('#uploadAvatar').data('kendoUpload').disable();
                 });
             }
 
