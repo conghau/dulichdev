@@ -247,6 +247,7 @@ namespace WebDuLichDev.Controllers
                 result = dlPlaceBal.UpdateHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, listdlImangePlaceTempNew);
                 if (true == result)
                 {
+                    log.Info("Update Hotel Sucess");
                     TempData["Message"] = ResultMessage.SUC_Update;
                     return RedirectToAction("ListHotel");
                 }
