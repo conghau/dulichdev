@@ -12,22 +12,17 @@ namespace WebDuLichDev.Controllers
     public class FileController : Controller
     {
 
+        public ActionResult UploadAvatar(IEnumerable<HttpPostedFileBase> fileUpload)
+        {
+            foreach (var file in fileUpload)
+            {
+                // Some browsers send file names with full path. We only care about the file name.
+                var fileName = Path.GetFileName(file.FileName);
 
-        //public ActionResult UploadAvatarPlace(IEnumerable<HttpPostedFileBase> fileUpload)
-        //{
-        //    var serserPath = Server.MapPath("~/Data/Avatar/Place/");
-        //    foreach (var file in fileUpload)
-        //    {
-        //        // Some browsers send file names with full path. We only care about the file name.
-        //        var fileName = Path.GetFileName(file.FileName);
-
-        //        var destinationPath = Path.Combine(serserPath, fileName);
-
-        //        file.SaveAs(destinationPath);
-        //    }
-        //    return Json(new { status = "OK" }, "text/plain");
-
-        //}
+                var destinationPath = Path.Combine(Server.MapPath("~/Data/Avatar/Place/"), fileName);
+            }
+            return Json(new { status = "OK" }, "text/plain");
+        }
         public ActionResult RemoveAvatarPlace(string fileNames)
         {
             ProcessWithFiles processfile = new ProcessWithFiles();
@@ -38,6 +33,7 @@ namespace WebDuLichDev.Controllers
             return Json(new { status = "OK" }, "text/plain");
 
         }
+
         public ActionResult UploadAvatarPlace(IEnumerable<HttpPostedFileBase> fileUpload, int ID)
         {
             //HotelInfo hotelinfo = new HotelInfo();
@@ -59,24 +55,24 @@ namespace WebDuLichDev.Controllers
             return Json(new { status = "OK" }, "text/plain");
 
         }
-        
+
 
         public ActionResult UploadImagePlace(IEnumerable<HttpPostedFileBase> fileUpload)
         {
             //var serserPath = Server.MapPath("~/Data/Images/Place/");
-            List<string> listfilenameGuid = new List<string>() ;
-            
+            List<string> listfilenameGuid = new List<string>();
+
             foreach (var file in fileUpload)
             {
                 // Some browsers send file names with full path. We only care about the file name.
                 //var fileName = Path.GetFileName(file.FileName);
-                var fileName =  Guid.NewGuid() + Path.GetExtension(file.FileName);
+                var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
                 var destinationPath = Path.Combine(Server.MapPath("~/Data/Images/Place/"), fileName);
 
                 file.SaveAs(destinationPath);
                 listfilenameGuid.Add(fileName);
             }
-            return Json(new {dataname=listfilenameGuid}, "text/plain");
+            return Json(new { dataname = listfilenameGuid }, "text/plain");
 
         }
         public ActionResult RemoveImagePlace(string fileNames)
