@@ -22,7 +22,7 @@ body {
 
 #pages {
     height: 576px;
-    left: 127px;
+    left: 724px;
     position: absolute;
     top: 10px;
     width: 688px;
@@ -31,7 +31,6 @@ body {
     #pages section {
         background: url("paper.jpg") no-repeat scroll 0 0 #FFFFFF;
         height: 576px;
-        margin-left: 600px;
         overflow: hidden;
         position: absolute;
         top: 0;
@@ -58,4 +57,26 @@ body {
 #pageflip-canvas {
     position: absolute;
     z-index: 100;
+}
+#shadow {
+height: 555px;
+width: 1620px;
+position: absolute;
+right: 20px;
+top: -13px;
+background: url(./images/repeat-x.png) repeat-x;
+}
+#shadow .shadow-left {
+height: 555px;
+width: 37px;
+position: absolute;
+left: -37px;
+background-position: -16px -874px;
+}
+#shadow .shadow-right {
+height: 555px;
+width: 37px;
+position: absolute;
+right: -37px;
+background-position: -72px -874px;
 }

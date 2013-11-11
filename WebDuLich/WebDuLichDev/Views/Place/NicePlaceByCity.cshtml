@@ -1,4 +1,4 @@
-﻿@model List<DuLichDLL.Model.DL_Place>
+﻿@model List<WebDuLichDev.Models.NicePlace>
 @{
     ViewBag.Title = "NicePlaceByCity";
     Layout = "~/Views/Shared/_LayoutFilp.cshtml";
@@ -11,7 +11,7 @@
     <input type="hidden" value="@ViewData["OrderBy"]" name="orderBy" id="orderBy" />
     <input type="hidden" value="@ViewData["OrderDirection"]" name="orderDirection"id="orderDirection" />
     <input type="hidden" value="@ViewBag.pages" name ="page" id="pages"/>
-    <input type="hidden" value="@Model[0].DL_CityId" name ="cityId" id="cityId"/>
+    
 
     @Html.Partial("p_niceplace", Model)
     <div>

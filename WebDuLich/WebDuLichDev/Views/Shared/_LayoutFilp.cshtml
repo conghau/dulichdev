@@ -20,10 +20,8 @@
         @Html.Partial("p_Header")
     </div>
     <div id="body">
-        @RenderSection("featured", required: false)
-        <section>
-            @RenderBody()
-        </section>
+
+        @RenderBody()
     </div>
     <footer>
         <div class="content-wrapper">

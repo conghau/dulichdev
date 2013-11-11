@@ -1,49 +1,59 @@
-﻿@model  List<DuLichDLL.Model.DL_Place>
-<div id="book">
-    <canvas id="pageflip-canvas"></canvas>
-    <div id="pages">
-        @foreach (var item in Model)
-        {
-            <section>
-                <div>
-                    <h2>@item.Name</h2>
-                    <p>@item.Address</p>
-                    <p>@item.AvgRating</p>
-                </div>
-            </section>
-        }
+﻿@model  List<WebDuLichDev.Models.NicePlace>
+@if (Model != null)
+{
+    <div id="book">
+        <canvas id="pageflip-canvas"></canvas>
+        <div id="pages">
+            @foreach (var item in Model)
+            {
+                <section>
+                    <div id="imageBox">
+                       
+                    </div>
+                    <div id="contentPage">
+                        @*<label class="control-label" for="input01">@HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.History)</label>
+                        <label class="control-label" for="input01">@HttpUtility.HtmlEncode(item.dlNicePlaceInfoDetail.Info)</label>*@
+                     @*<   label class="control-label" for="input01">@HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Note)</label>*@
+                        @*<label class="control-label" for="input01">@item.dlNicePlaceInfoDetail.OpenCloseTime</label>*@
+                        <div>
+                           @Html.Raw(HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info))
+                        </div>
+                    </div>
+                </section>
+            }
+        </div>
     </div>
-</div>
 
-@Scripts.Render("/Content/themes/20Things_PageFlip_Example/example/pageflip.js")
-<script type="text/javascript">
-    $(document).ready(function () {
-        var numclick = 0;
-        // List of all the page elements in the DOM
-        var cityId = $('#cityId').val();
-        var page = $('#pages').val();
-        var book = document.getElementById("book");
+    @Scripts.Render("/Content/themes/20Things_PageFlip_Example/example/pageflip.js")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var numclick = 0;
+            // List of all the page elements in the DOM
+            var cityId = $('#cityId').val();
+            var page = $('#pages').val();
+            var book = document.getElementById("book");
 
-        // List of all the page elements in the DOM
-        var pages = book.getElementsByTagName("section");
-        $('#pages').click(function () {
-            numclick++;
-            alert(numclick);
-            if (numclick >= pages.length - 1) {
-                //$('#pages').val(numclick);
-                $.ajax({
-                    type: 'post',
-                    url: "@Url.Action("reLoadPage", "Place")",
+            // List of all the page elements in the DOM
+            var pages = book.getElementsByTagName("section");
+            $('#pages').click(function () {
+                numclick++;
+                alert(numclick);
+                if (numclick >= pages.length - 1) {
+                    //$('#pages').val(numclick);
+                    $.ajax({
+                        type: 'post',
+                        url: "@Url.Action("reLoadPage", "Place")",
                         data: { cityId: cityId, page: page },
                     }).done(function (result) {
                         $('#book').replaceWith(result);
 
                     });
-                numclick = 0;
-            }
+                    numclick = 0;
+                }
             });
 
 
         });
 
-</script>
+    </script>
+}
