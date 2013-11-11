@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 namespace DuLichDLL.Model
 {
+   
     public class DL_RestaurantInfoDetail
     {
         private long _iD;

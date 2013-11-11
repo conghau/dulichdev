@@ -15,6 +15,9 @@
     <div id="contentcity">
         @Model.Summary
     </div>
+    <div>
+         @Html.Partial("_BookShowcase")
+    </div>
     <div id="niceplace">
         <a href="@Url.Action("NicePlaceByCity", "Place", new { cityId = Model.ID })">Nice Place
         </a>
