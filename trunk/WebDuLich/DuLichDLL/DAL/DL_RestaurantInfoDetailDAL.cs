@@ -168,6 +168,17 @@ namespace DuLichDLL.DAL
                 cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = dL_RestaurantInfoDetail.Email;
                 cmd.Parameters.Add("@Website", SqlDbType.NVarChar).Value = dL_RestaurantInfoDetail.Website;
                 cmd.Parameters.Add("@Status", SqlDbType.Int).Value = dL_RestaurantInfoDetail.Status;
+                SqlParameterCollection parameterValues = cmd.Parameters;
+                int i = 0;
+                foreach (SqlParameter parameter in parameterValues)
+                {
+                    if ((parameter.Direction != ParameterDirection.Output) && (parameter.Direction != ParameterDirection.ReturnValue))
+                    {
+                        if (parameter.Value == null)
+                            parameter.Value = DBNull.Value;
+                        i++;
+                    }
+                }
                 id = Utility.Utility.ObjectToLong(cmd.ExecuteScalar());
                 return id;
             }
