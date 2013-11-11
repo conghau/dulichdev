@@ -77,6 +77,9 @@ namespace WebDuLichDev.Controllers
         public ActionResult NicePlaceByCity(long cityId)
         {
             DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+            DL_NicePlaceInfoDetailBAL dlNicePlaceInfoDetailBal = new DL_NicePlaceInfoDetailBAL();
+            DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
+
             long totalRecords = 0;
             vm_Pagination pagination = new vm_Pagination
             {
@@ -87,12 +90,23 @@ namespace WebDuLichDev.Controllers
 
             };
 
-            var model = dlPlaceBal.GetListWithFilter(cityId, "", "", (long)DL_PlaceTypeId.Places, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
-            //DuLichDLL.Model.DL_Place model1 = new DuLichDLL.Model.DL_Place();
-            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
+            var dlPlace = dlPlaceBal.GetListWithFilter(cityId, "", "", (long)DL_PlaceTypeId.Places, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
+
+            var nicePlacePage = new List<NicePlace>();
+            for (int index = 0; index < dlPlace.Count(); index++)
+            {
+                var tmp = new NicePlace();
+                tmp.dlPlace = dlPlace[index];
+                tmp.dlNicePlaceInfoDetail = dlNicePlaceInfoDetailBal.GetByPlaceId(dlPlace[index].ID);
+                tmp.listImageCity = dlImagePlaceBal.GetByDLPlaceID(dlPlace[index].ID);
+                nicePlacePage.Add(tmp);
+
+            }
+                //DuLichDLL.Model.DL_Place model1 = new DuLichDLL.Model.DL_Place();
+                common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
             ViewData["OrderBy"] = pagination.OrderBy;
             ViewData["OrderDirection"] = pagination.OrderDirection;
-            return View(model);
+            return View(nicePlacePage);
         }
         [HttpPost]
         public ActionResult NicePlaceByCity(long cityId, int page)
@@ -150,6 +164,8 @@ namespace WebDuLichDev.Controllers
                 dataRequest.listImageCity = listImagePlace;
 
                 dataRequest.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
+                dataRequest.dlPlace.TotalPointRating = "0";
+                dataRequest.dlPlace.TotalUserRating = "0";
                 result = dlPlaceBal.InsertNicePlace(dataRequest.dlPlace, dataRequest.dlNicePlaceInfoDetail, dataRequest.listImageCity);
                 //dlPlaceBal.Insert(dataRequest);           
                 if (true == result)
