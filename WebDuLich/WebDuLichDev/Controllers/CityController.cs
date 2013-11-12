@@ -95,7 +95,9 @@ namespace WebDuLichDev.Controllers
             SetPath();
             ViewBag.pathAvatarCity = pathAvatarCity;
             ViewBag.pathImageCity = pathImageCity;
+           
             var model = dlCityBal.GetByID(ID);
+            ViewBag.City = model.CityName;
             return View(model);
         }
 
