@@ -23,8 +23,8 @@ namespace WebDuLichDev
             //    consumerSecret: "");
 
             OAuthWebSecurity.RegisterFacebookClient(
-               appId: "598803403510511",
-                appSecret: "b51cdfd239bf3afeaa78e850f8e");
+               appId: "1381367088774409",
+                appSecret: "10f578446278c7d75dfa178942124932");
 
             //OAuthWebSecurity.RegisterGoogleClient();
         }

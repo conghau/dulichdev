@@ -10,11 +10,12 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 //using WebDuLichDev.Filters;
 using WebDuLichDev.Models;
+using WebDuLichDev.Filters;
 
 namespace WebDuLichDev.Controllers
 {
     [Authorize]
-    //[InitializeSimpleMembership]
+    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
@@ -278,12 +279,13 @@ namespace WebDuLichDev.Controllers
                         // Insert name into the profile table
                         UserProfile newUser = db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
 
-                        db.ExternalUsers.Add(new ExternalUserInformation
-                        {
-                            UserId = newUser.UserId,
-                            FullName = model.FullName,
-                            Link = model.Link
-                        });
+                        //db.ExternalUsers.Add(new ExternalUserInformation
+                        //{
+                        //    UserId = newUser.UserId,
+                        //    FullName = model.FullName,
+                        //    Link = model.Link
+                        //});
+                       // db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
                         db.SaveChanges();
 
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);

@@ -33,4 +33,5 @@ namespace WebDuLichDev.Models
         public DL_RestaurantInfoDetail dlRestaurantInfoDetail { get; set; }
         public List<DL_ImagePlace> listImagePlace { get; set; }
     }
+
 }

@@ -25,7 +25,7 @@ namespace DuLichDLL.Utility
         public static string[] Fully = { "Delete" };
         public static string connect = string.Empty;
         public static long UserID = 1;
-        public static string[] EmailBCC = { "khoi.vu@travel2pay.com" };
+        
 
         #endregion Parameter
 
@@ -674,5 +674,87 @@ namespace DuLichDLL.Utility
         }
 
         #endregion Get value by property
+
+        #region Language and Phrase
+        public static Dictionary<string, Dictionary<string, string>> Dictionaries;
+
+
+        public static void InsertPhrase(string phraseCode)
+        {
+            if (phraseCode == "" || phraseCode == String.Empty || phraseCode.Contains(" "))
+                return;
+
+            if ((!phraseCode.Contains("LBL_")) && (!phraseCode.Contains("CNT_")) && (!phraseCode.Contains("BLM_")) && (!phraseCode.Contains("GUI_VAL")) && (!phraseCode.Contains("GUI_INF")) && (!phraseCode.Contains("GUI_CFM")))
+                return;
+
+            //DataClasses1DataContext DB = new DataClasses1DataContext("Data Source=DB-1;Initial Catalog=DSC_ERP;Persist Security Info=True;User ID=dscerp;Password=db1!dscerp");
+        }
+
+
+        public static string Phrase(string languageCode, object phraseCode)
+        {
+            string phrase = Utility.ObjectToString(phraseCode);
+            try
+            {
+                if (phraseCode == null) return String.Empty;
+                if (Dictionaries == null) return String.Empty;
+
+
+
+                languageCode = string.IsNullOrWhiteSpace(languageCode) ? "en-US" : languageCode;
+
+
+               
+                return Dictionaries[languageCode][phrase];//.Replace(" ", "&nbsp;");
+            }
+            catch
+            {
+                return phrase;
+            }
+        }
+
+
+        public static string Phrase(string languageCode, string phraseCode)
+        {
+            try
+            {
+                if (phraseCode == null) return String.Empty;
+                if (Dictionaries == null) return String.Empty;
+
+                languageCode = string.IsNullOrWhiteSpace(languageCode) ? "en-US" : languageCode;
+
+
+                //Utility.InsertPhrase(phraseCode);
+                return Dictionaries[languageCode][phraseCode];//.Replace(" ", "&nbsp;");
+            }
+            catch
+            {
+                return phraseCode;
+            }
+        }
+
+
+        public static string PhraseRef(string referenceGroup, string phraseCode, string languageCode)
+        {
+            try
+            {
+                if (phraseCode == null) return String.Empty;
+                if (Dictionaries == null) return String.Empty;
+
+                phraseCode = "CNT_" + referenceGroup + "_" + phraseCode;
+
+                languageCode = string.IsNullOrWhiteSpace(languageCode) ? "en-US" : languageCode;
+
+                Utility.InsertPhrase(phraseCode);
+                return Dictionaries[languageCode][phraseCode];//.Replace(" ", "&nbsp;");
+            }
+            catch
+            {
+                return phraseCode;
+            }
+        }
+
+
+        #endregion
     }
 }

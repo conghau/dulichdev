@@ -949,6 +949,6 @@ namespace DuLichDLL.DAL
                 cnn.Close();
             }
         }
-              
+
     }
 }
