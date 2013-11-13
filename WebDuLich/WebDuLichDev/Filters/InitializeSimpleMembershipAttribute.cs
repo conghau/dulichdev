@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Threading;
 using System.Web.Mvc;
+using WebDuLichDev.Models;
 using WebMatrix.WebData;
 //using WebDuLichDev.Models;
 

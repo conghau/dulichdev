@@ -210,6 +210,7 @@
     <Compile Include="Controllers\SystemManagerController.cs" />
     <Compile Include="Controllers\userController.cs" />
     <Compile Include="enum\Enum.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -640,7 +641,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>57410</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:62688/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

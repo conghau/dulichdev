@@ -106,6 +106,8 @@ namespace WebDuLichDev.Models
     [Table("ExtraUserInformation")]
     public class ExternalUserInformation
     {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int UserId { get; set; }
         public string FullName { get; set; }
