@@ -126,7 +126,7 @@ namespace WebDuLichDev.Controllers
 
             dlCityBal.UpdateCity(cityinfo.dlCity, cityinfo.dlCityInfoDetail);
 
-            return View(cityinfo);
+            return RedirectToAction("CityManager", "SystemManager");
         }
         public ActionResult SetCityID(long cityID)
         {
