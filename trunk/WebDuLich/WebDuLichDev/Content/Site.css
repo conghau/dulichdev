@@ -13,10 +13,22 @@
     background: url("../Images/heroAccent.png") no-repeat;
 }
 
+
+#header {
+    margin: 0 auto;
+    position: relative;
+    width: 836px;
+}
+
 header .content-wrapper {
     padding-top: 20px;
 }
 
+
+
+#body {
+    margin-top:auto;
+}
 footer {
     clear: both;
     background-color: #e2e2e2;
