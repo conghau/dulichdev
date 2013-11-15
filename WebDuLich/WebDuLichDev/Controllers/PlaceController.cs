@@ -22,6 +22,7 @@ namespace WebDuLichDev.Controllers
         // GET: /Place/
         private static List<DL_ImagePlace> listImagePlaceOld = new List<DL_ImagePlace>();
 
+        [Authorize]
         public ActionResult ListNicePlace()
         {
             try

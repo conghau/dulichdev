@@ -35,6 +35,18 @@
 })(jQuery);
 
 $(function () {
+
+    var currentURL = window.location.href.replace(/#[\w]*/g, '');
+    $('div.navbar-inner ul.nav li a[href="' + currentURL + '"]').parent().addClass('active');
+
+      //    if (!$(e.target).parent().hasClass('active')) {
+
+    //        //$('ul.nav').each(this, function () {
+    //        //    $(this).removeClass('active')
+    //        //})
+    //        $(e.target).parent().removeClass('normal')
+    //        $(e.target).parent().addClass('active')
+    //    }
     //$(".DDL").kendoDropDownList();
     $(".CBB").kendoComboBox();
 
@@ -130,7 +142,8 @@ $(function () {
     });
     //style for odd row in table.
     //$("table.Metro>tr:odd").css("background-color", "#f9f9f9");
-
+    // active menu
+   
 });
 
 function formatConvert(format) {

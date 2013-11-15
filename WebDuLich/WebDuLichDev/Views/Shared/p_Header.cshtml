@@ -1,3 +1,48 @@
 ﻿@{
     Layout = null;
 }
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <ul class="nav pull-right">
+                @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")
+
+            </ul>
+        </div>
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li class="item"><a title="Home" class="nav-icon" href="http://localhost:62688/place/ListNicePlace" onclick="active()"><i class="icon-home"></i>Home</a></li>
+                <li class="item"><a href="http://localhost:62688/place/ListNicePlace" title="niceplace">NicePlace</a></li>
+                <li class="item"><a href="http://localhost:62688/Hotel/ListHotel" title="Hotel">Hotel</a></li>
+                <li class="item"><a href="http://localhost:62688/Restaurant/ListRestaurant" title="Restaurant">Restaurant</a></li>
+                <li class="dropdown item">
+                    <a class="dropdown-toggle"
+                        data-toggle="dropdown"
+                        href="#">Setting
+                    <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="item"><a href="http://localhost:62688/place/ListNicePlace" title="niceplace">NicePlace</a></li>
+                        <li class="item"><a href="http://localhost:62688/Hotel/ListHotel" title="Hotel">Hotel</a></li>
+                        <li class="item"><a href="http://localhost:62688/Restaurant/ListRestaurant" title="Restaurant">Restaurant</a>
+                        
+                    </ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //$(document).on('click', function (e) {
+    //    //function active(e) {
+    //    //    alert(e);
+    //    if (!$(e.target).parent().hasClass('active')) {
+
+    //        //$('ul.nav').each(this, function () {
+    //        //    $(this).removeClass('active')
+    //        //})
+    //        $(e.target).parent().removeClass('normal')
+    //        $(e.target).parent().addClass('active')
+    //    }
+
+    //});
+</script>
