@@ -249,4 +249,13 @@
   <data name="Logout" xml:space="preserve">
     <value>Đăng xuất</value>
   </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Xác Nhận Mật Khẩu</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mật Khẩu</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Tên Tài Khoản</value>
+  </data>
 </root>
