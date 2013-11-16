@@ -13,6 +13,14 @@
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
+      
+        if (!ViewData.ModelState.IsValid)
+        { 
+         <div id="messageBox" class="alert ">
+            <a class="close" data-dismiss="alert">×</a>
+             @Html.ValidationMessage("LoginErr")                   
+        </div>
+        }
         <h1><span class="log-in">Log in</span> or <span class="sign-up">sign up</span></h1>
         <p class="float">
             <label for="login"><i class="icon-user"></i>Username</label>
@@ -21,8 +29,8 @@
         </p>
         <p class="float">
             <label for="password"><i class="icon-lock"></i>Password</label>
-            @*<input type="password" name="LoginModel.Password" placeholder="Password" class="showpassword">*@
-            @Html.TextBoxFor(m=>m.Password,new { placeholder="Password", @class="showpassword"})
+            @*<input type="password" name="Password" placeholder="Password" class="showpassword">*@
+            @Html.PasswordFor(m=>m.Password,new { placeholder="Password", @class="showpassword"})
         </p>
         <p class="clearfix">
             <a href="@Url.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })" class="log-twitter">Log in with Social</a>
