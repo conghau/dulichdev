@@ -132,7 +132,7 @@ namespace WebDuLichDev.Controllers
         //
         // GET: /Account/Manage
 
-        public ActionResult Manage(ManageMessageId? message)
+        public ActionResult Changepassword (ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -140,7 +140,7 @@ namespace WebDuLichDev.Controllers
                 : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-            ViewBag.ReturnUrl = Url.Action("Manage");
+            ViewBag.ReturnUrl = Url.Action("Changepassword");
             return View();
         }
 
@@ -149,11 +149,11 @@ namespace WebDuLichDev.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Manage(LocalPasswordModel model)
+        public ActionResult Changepassword(LocalPasswordModel model)
         {
             bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.HasLocalPassword = hasLocalAccount;
-            ViewBag.ReturnUrl = Url.Action("Manage");
+            ViewBag.ReturnUrl = Url.Action("Changepassword");
             if (hasLocalAccount)
             {
                 if (ModelState.IsValid)
@@ -171,7 +171,7 @@ namespace WebDuLichDev.Controllers
 
                     if (changePasswordSucceeded)
                     {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        return RedirectToAction("Changepassword", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
                     else
                     {
@@ -321,7 +321,7 @@ namespace WebDuLichDev.Controllers
         }
 
         [AllowAnonymous]
-        [ChildActionOnly]
+        //[ChildActionOnly]
         public ActionResult ExternalLoginsList(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
