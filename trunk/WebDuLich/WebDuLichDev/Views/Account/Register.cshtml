@@ -10,28 +10,33 @@
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
-
+    
+     if (!ViewData.ModelState.IsValid)
+        { 
+         <div id="messageBox" class="alert ">
+            <a class="close" data-dismiss="alert">×</a>
+             <p>@Html.ValidationSummary() </p>                  
+        </div>
+        }
     <fieldset>
         <legend>Registration Form</legend>
         <ol>
             <li>
                 @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName, new { @class="input-xlarge",placeholder="UserName..."})
             </li>
             <li>
                 @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password, new { @class = "input-xlarge" })
             </li>
             <li>
                 @Html.LabelFor(m => m.ConfirmPassword)
-                @Html.PasswordFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-xlarge" })
+            </li>
+            <li>
+                <input type="submit" value="Register" class="btn btn-large btn-primary"/>
             </li>
         </ol>
-        <input type="submit" value="Register" />
+        
     </fieldset>
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }
