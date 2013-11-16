@@ -240,4 +240,13 @@
   <data name="RestaurantName" xml:space="preserve">
     <value>Tên nhà hàng</value>
   </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Đổi mật khẩu</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Đăng nhập</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Đăng xuất</value>
+  </data>
 </root>
