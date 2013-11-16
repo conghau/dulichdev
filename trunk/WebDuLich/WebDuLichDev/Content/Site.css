@@ -667,4 +667,19 @@ tr.pager td {
         }
 }
 
+/* Register Form
+    ----------------------------------------------------------*/
 
+.form-register {
+    align-content:center;
+    display: inline-block;
+    background-color:#E1EFBB;
+    text-align:center;
+    width: 100%;
+    position: relative;
+    margin: 60px auto 30px;
+}
+.form-register label {
+    text-align:left;
+    margin-left: 262px;
+}
