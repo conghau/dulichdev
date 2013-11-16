@@ -24,8 +24,8 @@ namespace DuLichDLL.DAL
                 result.Address = Utility.Utility.ObjectToString(row[DL_PlaceColumns.Address.ToString()].ToString());
                 result.Avatar = Utility.Utility.ObjectToString(row[DL_PlaceColumns.Avatar.ToString()].ToString());
                 result.AvgRating = Utility.Utility.ObjectToInt(row[DL_PlaceColumns.AvgRating.ToString()].ToString());
-                result.TotalUserRating = Utility.Utility.ObjectToString(row[DL_PlaceColumns.TotalUserRating.ToString()].ToString());
-                result.TotalPointRating = Utility.Utility.ObjectToString(row[DL_PlaceColumns.TotalPointRating.ToString()].ToString());
+                result.TotalUserRating = Utility.Utility.ObjectToLong(row[DL_PlaceColumns.TotalUserRating.ToString()].ToString());
+                result.TotalPointRating = Utility.Utility.ObjectToLong(row[DL_PlaceColumns.TotalPointRating.ToString()].ToString());
                 result.CreatedDate = Utility.Utility.ObjectToDateTime(row[DL_PlaceColumns.CreatedDate.ToString()].ToString());
                 result.CreatedBy = Utility.Utility.ObjectToLong(row[DL_PlaceColumns.CreatedBy.ToString()].ToString());
                 result.Status = Utility.Utility.ObjectToInt(row[DL_PlaceColumns.Status.ToString()].ToString());
@@ -274,8 +274,8 @@ namespace DuLichDLL.DAL
                 cmd.Parameters.Add("@Address", SqlDbType.NVarChar).Value = dL_Place.Address;
                 cmd.Parameters.Add("@Avatar", SqlDbType.NVarChar).Value = dL_Place.Avatar;
                 cmd.Parameters.Add("@AvgRating", SqlDbType.Int).Value = dL_Place.AvgRating;
-                cmd.Parameters.Add("@TotalUserRating", SqlDbType.Char).Value = dL_Place.TotalUserRating;
-                cmd.Parameters.Add("@TotalPointRating", SqlDbType.Char).Value = dL_Place.TotalPointRating;
+                cmd.Parameters.Add("@TotalUserRating", SqlDbType.BigInt).Value = dL_Place.TotalUserRating;
+                cmd.Parameters.Add("@TotalPointRating", SqlDbType.BigInt).Value = dL_Place.TotalPointRating;
                 cmd.Parameters.Add("@CreatedBy", SqlDbType.BigInt).Value = dL_Place.CreatedBy;
                 cmd.Parameters.Add("@Status", SqlDbType.Int).Value = dL_Place.Status;
                 SqlParameterCollection parameterValues = cmd.Parameters;
@@ -318,8 +318,8 @@ namespace DuLichDLL.DAL
                 cmd.Parameters.Add("@Address", SqlDbType.NVarChar).Value = dL_Place.Address;
                 cmd.Parameters.Add("@Avatar", SqlDbType.NVarChar).Value = dL_Place.Avatar;
                 cmd.Parameters.Add("@AvgRating", SqlDbType.Int).Value = dL_Place.AvgRating;
-                cmd.Parameters.Add("@TotalUserRating", SqlDbType.Char).Value = dL_Place.TotalUserRating;
-                cmd.Parameters.Add("@TotalPointRating", SqlDbType.Char).Value = dL_Place.TotalPointRating;
+                cmd.Parameters.Add("@TotalUserRating", SqlDbType.BigInt).Value = dL_Place.TotalUserRating;
+                cmd.Parameters.Add("@TotalPointRating", SqlDbType.BigInt).Value = dL_Place.TotalPointRating;
                 cmd.Parameters.Add("@CreatedBy", SqlDbType.BigInt).Value = dL_Place.CreatedBy;
                 cmd.Parameters.Add("@Status", SqlDbType.Int).Value = dL_Place.Status;
                 SqlParameterCollection parameterValues = cmd.Parameters;
@@ -359,8 +359,8 @@ namespace DuLichDLL.DAL
                 cmd.Parameters.Add("@Address", SqlDbType.NVarChar).Value = dL_Place.Address;
                 cmd.Parameters.Add("@Avatar", SqlDbType.NVarChar).Value = dL_Place.Avatar;
                 cmd.Parameters.Add("@AvgRating", SqlDbType.Int).Value = dL_Place.AvgRating;
-                cmd.Parameters.Add("@TotalUserRating", SqlDbType.Char).Value = dL_Place.TotalUserRating;
-                cmd.Parameters.Add("@TotalPointRating", SqlDbType.Char).Value = dL_Place.TotalPointRating;
+                cmd.Parameters.Add("@TotalUserRating", SqlDbType.BigInt).Value = dL_Place.TotalUserRating;
+                cmd.Parameters.Add("@TotalPointRating", SqlDbType.BigInt).Value = dL_Place.TotalPointRating;
                 cmd.Parameters.Add("@Status", SqlDbType.Int).Value = dL_Place.Status;
                 SqlParameterCollection parameterValues = cmd.Parameters;
                 int i = 0;
@@ -405,8 +405,8 @@ namespace DuLichDLL.DAL
                 cmd.Parameters.Add("@Address", SqlDbType.NVarChar).Value = dL_Place.Address;
                 cmd.Parameters.Add("@Avatar", SqlDbType.NVarChar).Value = dL_Place.Avatar;
                 cmd.Parameters.Add("@AvgRating", SqlDbType.Int).Value = dL_Place.AvgRating;
-                cmd.Parameters.Add("@TotalUserRating", SqlDbType.Char).Value = dL_Place.TotalUserRating;
-                cmd.Parameters.Add("@TotalPointRating", SqlDbType.Char).Value = dL_Place.TotalPointRating;
+                cmd.Parameters.Add("@TotalUserRating", SqlDbType.BigInt).Value = dL_Place.TotalUserRating;
+                cmd.Parameters.Add("@TotalPointRating", SqlDbType.BigInt).Value = dL_Place.TotalPointRating;
                 cmd.Parameters.Add("@Status", SqlDbType.Int).Value = dL_Place.Status;
                 SqlParameterCollection parameterValues = cmd.Parameters;
                 int i = 0;

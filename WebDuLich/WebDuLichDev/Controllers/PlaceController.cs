@@ -60,6 +60,7 @@ namespace WebDuLichDev.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult ListNicePlace(vm_Pagination pagination, vm_Search dataSearch)
         {
@@ -75,6 +76,7 @@ namespace WebDuLichDev.Controllers
             return View(model);
         }
 
+        [Authorize]
         public ActionResult NicePlaceByCity(long cityId)
         {
             DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
@@ -140,11 +142,14 @@ namespace WebDuLichDev.Controllers
             return PartialView("p_niceplace", model);
         }
 
+        [Authorize]
         public ActionResult AddPlace()
         {
             NicePlace model = new NicePlace();
             return View(model);
         }
+
+        [Authorize]
         [HttpPost]
         public ActionResult AddPlace(NicePlace dataRequest, string[] imagePlace)
         {
@@ -165,8 +170,8 @@ namespace WebDuLichDev.Controllers
                 dataRequest.listImageCity = listImagePlace;
 
                 dataRequest.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
-                dataRequest.dlPlace.TotalPointRating = "0";
-                dataRequest.dlPlace.TotalUserRating = "0";
+                dataRequest.dlPlace.TotalPointRating = 0;
+                dataRequest.dlPlace.TotalUserRating = 0;
                 result = dlPlaceBal.InsertNicePlace(dataRequest.dlPlace, dataRequest.dlNicePlaceInfoDetail, dataRequest.listImageCity);
                 //dlPlaceBal.Insert(dataRequest);           
                 if (true == result)
@@ -195,6 +200,7 @@ namespace WebDuLichDev.Controllers
             }
         }
 
+        [Authorize]
         public ActionResult UpdateNicePlace(long dlPlaceId)
         {
             try
@@ -224,6 +230,7 @@ namespace WebDuLichDev.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult UpdateNicePlace(NicePlace dataRequest, long[] listIdImagePresent, string[] listImageAddNew)
         {

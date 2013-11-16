@@ -11,6 +11,9 @@ using WebMatrix.WebData;
 //using WebDuLichDev.Filters;
 using WebDuLichDev.Models;
 using WebDuLichDev.Filters;
+using DuLichDLL.Utility;
+using WebDuLichDev.WebUtility;
+using DuLichDLL.BAL;
 
 namespace WebDuLichDev.Controllers
 {
@@ -36,9 +39,12 @@ namespace WebDuLichDev.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            if (ModelState.IsValid && WebDuLichSecurity.Login(model.UserName, model.Password, model.RememberMe))
             {
+                webpages_UsersInRolesBAL userInRoleBal = new webpages_UsersInRolesBAL();
+                WebDuLichSecurity.UserIsAdmin = userInRoleBal.UserIsAdmin(WebDuLichSecurity.UserID);
                 return RedirectToLocal(returnUrl);
+               
             }
 
             // If we got this far, something failed, redisplay form
@@ -54,7 +60,7 @@ namespace WebDuLichDev.Controllers
         public ActionResult LogOff()
         {
             WebSecurity.Logout();
-
+            WebDuLichSecurity.UserIsAdmin = false;
             return RedirectToAction("Index", "Home");
         }
 
@@ -285,7 +291,7 @@ namespace WebDuLichDev.Controllers
                         //    FullName = model.FullName,
                         //    Link = model.Link
                         //});
-                       // db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
+                        // db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
                         db.SaveChanges();
 
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
@@ -344,6 +350,7 @@ namespace WebDuLichDev.Controllers
         }
 
         #region Helpers
+
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
@@ -419,4 +426,6 @@ namespace WebDuLichDev.Controllers
         }
         #endregion
     }
+
+
 }
