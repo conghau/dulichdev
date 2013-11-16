@@ -27,8 +27,9 @@ header .content-wrapper {
 
 
 #body {
-    margin-top:auto;
+    margin-top: 150px;
 }
+
 footer {
     clear: both;
     background-color: #e2e2e2;
@@ -501,7 +502,7 @@ tr.pager td {
 /********************
 *   Mobile Styles   *
 ********************/
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 836px) {
 
     /* header
     ----------------------------------------------------------*/
@@ -664,4 +665,6 @@ tr.pager td {
         footer p {
             margin: 0;
         }
-}*/
+}
+
+

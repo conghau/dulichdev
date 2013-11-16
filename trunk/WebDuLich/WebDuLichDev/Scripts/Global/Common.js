@@ -38,6 +38,10 @@ $(function () {
 
     var currentURL = window.location.href.replace(/#[\w]*/g, '');
     $('div.navbar-inner ul.nav li a[href="' + currentURL + '"]').parent().addClass('active');
+    if ($('div.navbar-inner ul.nav li a[href="' + currentURL + '"]').parent().hasClass('dropdown-item'))
+    {
+        $('div.navbar-inner ul.nav li a[href="' + currentURL + '"]').parent().parent().parent().addClass('active');
+    }
 
       //    if (!$(e.target).parent().hasClass('active')) {
 

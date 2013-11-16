@@ -147,8 +147,8 @@ namespace WebDuLichDev.Controllers
                 }
                 hotelinfo.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Hotels;
                 hotelinfo.listImagePlace = listdlImangePlace;
-                hotelinfo.dlPlace.TotalPointRating = "0";
-                hotelinfo.dlPlace.TotalUserRating = "0";
+                hotelinfo.dlPlace.TotalPointRating = 0;
+                hotelinfo.dlPlace.TotalUserRating = 0;
                 dlPlaceBal.InsertHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, hotelinfo.listImagePlace);
                 if (true == result)
                 {

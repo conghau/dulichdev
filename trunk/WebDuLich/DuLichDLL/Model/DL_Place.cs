@@ -48,14 +48,14 @@ namespace DuLichDLL.Model
             get { return _avgRating; }
             set { _avgRating = value; }
         }
-        private string _totalUserRating;
-        public string TotalUserRating
+        private long _totalUserRating;
+        public long TotalUserRating
         {
             get { return _totalUserRating; }
             set { _totalUserRating = value; }
         }
-        private string _totalPointRating;
-        public string TotalPointRating
+        private long _totalPointRating;
+        public long TotalPointRating
         {
             get { return _totalPointRating; }
             set { _totalPointRating = value; }

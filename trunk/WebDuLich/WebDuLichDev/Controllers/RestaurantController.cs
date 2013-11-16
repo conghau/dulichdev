@@ -121,8 +121,8 @@ namespace WebDuLichDev.Controllers
                 }
                 restaurantinfo.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Restaurants;
                 restaurantinfo.listImagePlace = listdlImangePlace;
-                restaurantinfo.dlPlace.TotalPointRating = "0";
-                restaurantinfo.dlPlace.TotalUserRating = "0";
+                restaurantinfo.dlPlace.TotalPointRating = 0;
+                restaurantinfo.dlPlace.TotalUserRating = 0;
                 bool result = dlPlaceBal.InsertRestaurant(restaurantinfo.dlPlace, restaurantinfo.dlRestaurantInfoDetail, restaurantinfo.listImagePlace);
                 if (true == result)
                 {
