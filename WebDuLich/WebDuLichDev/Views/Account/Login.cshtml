@@ -18,23 +18,23 @@
         { 
          <div id="messageBox" class="alert ">
             <a class="close" data-dismiss="alert">×</a>
-             @Html.ValidationMessage("LoginErr")                   
+             <p>@Html.ValidationMessage("LoginErr") </p>                  
         </div>
         }
-        <h1><span class="log-in">Log in</span> or <span class="sign-up">sign up</span></h1>
+        <h1><span class="log-in">@Resources.Language.Login</span></h1>
         <p class="float">
-            <label for="login"><i class="icon-user"></i>Username</label>
+            <label for="login"><i class="icon-user"></i>@Resources.Language.Username</label>
             @*<input type="text" name="LoginModel.UserName" placeholder="Username or email">*@
-            @Html.TextBoxFor(m=>m.UserName,new {placeholder="Username or email"})
+            @Html.TextBoxFor(m=>m.UserName,new {placeholder=@Resources.Language.Username})
         </p>
         <p class="float">
-            <label for="password"><i class="icon-lock"></i>Password</label>
+            <label for="password"><i class="icon-lock"></i>@Resources.Language.Password</label>
             @*<input type="password" name="Password" placeholder="Password" class="showpassword">*@
-            @Html.PasswordFor(m=>m.Password,new { placeholder="Password", @class="showpassword"})
+            @Html.PasswordFor(m=>m.Password,new { placeholder=@Resources.Language.Password, @class="showpassword"})
         </p>
         <p class="clearfix">
             <a href="@Url.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })" class="log-twitter">Log in with Social</a>
-            <input type="submit" name="submit" value="Log in">
+            <input type="submit" name="submit" value="@Resources.Language.Login">
         </p>
     }
     ​​
@@ -82,7 +82,7 @@
             $("<p class='opt'/>").append(
                 $("<input type='checkbox' class='showpasswordcheckbox' id='showPassword' />").click(function () {
                     var change = $(this).is(":checked") ? "text" : "password";
-                    var rep = $("<input placeholder='Password' type='" + change + "' />")
+                    var rep = $("<input placeholder='@Resources.Language.Password' type='" + change + "' />")
                         .attr("id", $input.attr("id"))
                         .attr("name", $input.attr("name"))
                         .attr('class', $input.attr('class'))
@@ -91,7 +91,7 @@
                     $input.remove();
                     $input = rep;
                 })
-            ).append($("<label for='showPassword'/>").text("Show password")).insertAfter($input.parent());
+            ).append($("<label for='showPassword'/>").text('@Resources.Language.Showpassword')).insertAfter($input.parent());
         });
 
         $('#showPassword').click(function () {
