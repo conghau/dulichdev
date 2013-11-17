@@ -439,6 +439,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hiển thị mật khẩu.
+        /// </summary>
+        internal static string Showpassword {
+            get {
+                return ResourceManager.GetString("Showpassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Xã hội.
         /// </summary>
         internal static string Social {

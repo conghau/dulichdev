@@ -264,4 +264,7 @@
   <data name="Captcha" xml:space="preserve">
     <value>Mã Xác Nhận</value>
   </data>
+  <data name="Showpassword" xml:space="preserve">
+    <value>Hiển thị mật khẩu</value>
+  </data>
 </root>
