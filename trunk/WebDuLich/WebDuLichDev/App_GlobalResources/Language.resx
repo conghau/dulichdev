@@ -258,4 +258,10 @@
   <data name="Username" xml:space="preserve">
     <value>Tên Tài Khoản</value>
   </data>
+  <data name="Register" xml:space="preserve">
+    <value>Đăng kí</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>Mã Xác Nhận</value>
+  </data>
 </root>
