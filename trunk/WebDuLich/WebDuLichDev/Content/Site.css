@@ -681,6 +681,16 @@ tr.pager td {
     margin: 0px 248px 30px;
     padding: 15px;
 }
+    .form-register h1 {
+        border-bottom: 2px solid #ff6a00;
+    }
+.form-register h1 .register {
+    color: #ffb347;
+    padding-left: 50px;
+    display: inline-block;
+    
+    text-transform: uppercase;
+}
 /*.form-register label {
     text-align:left;
     margin-left: 262px;
