@@ -94,6 +94,10 @@ namespace WebDuLichDev.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Captcha")]
+        public string Captcha { get; set; }
     }
 
     public class ExternalLogin
@@ -114,4 +118,5 @@ namespace WebDuLichDev.Models
         public string Link { get; set; }
         public bool? Verified { get; set; }
     }
+   
 }
