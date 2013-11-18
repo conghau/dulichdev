@@ -196,7 +196,7 @@
             $("#uploadAvatar").kendoUpload({
                 async: {
                     saveUrl: "/File/UploadAvatar",
-                    removeUrl: "/File/RemoveAvatarPlace",
+                    removeUrl: '@Url.Action("UploadAvatar", "File")',
                     autoUpload: true,
                     multiple: false,
                 },

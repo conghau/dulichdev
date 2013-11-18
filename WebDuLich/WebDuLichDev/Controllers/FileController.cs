@@ -6,10 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebDuLichDev.WebUtility;
 
 namespace WebDuLichDev.Controllers
 {
-    public class FileController : Controller
+    public class FileController : BaseController
     {
 
         public ActionResult UploadAvatar(IEnumerable<HttpPostedFileBase> fileUpload)

@@ -1,5 +1,17 @@
 ﻿@if (Request.IsAuthenticated) {
     <li class="dropdown item">
+         <a class="dropdown-toggle"
+                            data-toggle="dropdown"
+                            href="#">@Resources.Language.Languages
+                    <b class="caret"></b>
+             </a>
+        <ul class="dropdown-menu">
+                            <li class="dropdown-item"><a href="@Url.Action("Language","Home",new {languageCode ="vi-VN"})" ><img src="~/Content/themes/custom/Image/vi-VN-icon.png"/> @Resources.Language.VN</a></li>
+
+                            <li class="dropdown-item"><a href="@Url.Action("Language","Home",new {languageCode ="en-US"})" ><img src="~/Content/themes/custom/Image/en-US-icon.png"/> @Resources.Language.EN</a></li>
+                        </ul>
+    </li>
+    <li class="dropdown item">
                         <a class="dropdown-toggle"
                             data-toggle="dropdown"
                             href="#">@User.Identity.Name
@@ -10,7 +22,7 @@
 
                             <li class="dropdown-item">
                                 @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {@Html.AntiForgeryToken()}
-                                <a href="javascript:document.getElementById('logoutForm').submit()" id="logoff">@Resources.Language.Logout</a>
+                                <a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Language.Logout</a>
 
                             </li>
                         </ul>

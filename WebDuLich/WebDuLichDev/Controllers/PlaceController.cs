@@ -14,7 +14,7 @@ using WebDuLichDev.Enum;
 
 namespace WebDuLichDev.Controllers
 {
-    public class PlaceController : Controller
+    public class PlaceController : BaseController
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(PlaceController).Name);
         string version = "Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString() + " ";

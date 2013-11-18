@@ -6,17 +6,22 @@
         <div id="pages">
             @foreach (var item in Model)
             {
-                <section>
-                    <div id="imageBox">
-                       
+                <section> 
+                    <div class="image-slider" style="padding-left: 5px; padding-right: 5px">
+                        <div class="content" style="height: 200px; width: 100%;">
+                            @foreach (var tmpImg in item.listImageCity)
+                            {
+                                <img src="~/Data/Images/Place/@tmpImg.LinkImage" height="200" class="product-image"/>
+                            }
+                        </div>
                     </div>
-                    <div id="contentPage">
+                    <div id="contentPage" style="height: 200px; width: 100%">
                         @*<label class="control-label" for="input01">@HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.History)</label>
                         <label class="control-label" for="input01">@HttpUtility.HtmlEncode(item.dlNicePlaceInfoDetail.Info)</label>*@
-                     @*<   label class="control-label" for="input01">@HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Note)</label>*@
+                        @*<   label class="control-label" for="input01">@HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Note)</label>*@
                         @*<label class="control-label" for="input01">@item.dlNicePlaceInfoDetail.OpenCloseTime</label>*@
                         <div>
-                           @Html.Raw(HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info))
+                            @Html.Raw(HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info))
                         </div>
                     </div>
                 </section>
@@ -26,7 +31,29 @@
 
     @Scripts.Render("/Content/themes/20Things_PageFlip_Example/example/pageflip.js")
     <script type="text/javascript">
+        (function ($) {
+            $(window).load(function () {
+
+                $(".content").mCustomScrollbar({
+                    scrollInertia: 550,
+                    horizontalScroll: true,
+                    mouseWheelPixels: 116,
+                    autoHideScrollbar: true
+                });
+
+            });
+
+        })(jQuery);
+
         $(document).ready(function () {
+
+            $(".content").mCustomScrollbar({
+                scrollInertia: 550,
+                horizontalScroll: true,
+                mouseWheelPixels: 116,
+                autoHideScrollbar: true
+            });
+
             var numclick = 0;
             // List of all the page elements in the DOM
             var cityId = $('#cityId').val();

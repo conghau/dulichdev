@@ -15,7 +15,7 @@ using DuLichDLL.ExceptionType;
 
 namespace WebDuLichDev.Controllers
 {
-    public class RestaurantController : Controller
+    public class RestaurantController : BaseController
     {
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(RestaurantController).Name);
