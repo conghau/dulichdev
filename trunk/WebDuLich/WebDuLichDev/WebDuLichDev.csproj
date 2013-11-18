@@ -187,10 +187,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Language.vi-VN.designer.cs">
+      <DependentUpon>Language.vi-VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="App_GlobalResources\Language.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Language.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Language.en-US.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.en-US.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -221,6 +231,7 @@
     <Compile Include="Models\vm_pagination.cs" />
     <Compile Include="Models\vm_Search.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebUtility\BaseController.cs" />
     <Compile Include="WebUtility\common.cs" />
     <Compile Include="WebUtility\HtmlHelper.cs" />
     <Compile Include="WebUtility\WebDLData.cs" />
@@ -550,7 +561,7 @@
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Changepassword.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -623,6 +634,18 @@
     <Content Include="App_GlobalResources\Language.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Language.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Language.en-US.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Language.en-US.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Language.vi-VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Language.vi-VN.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <PropertyGroup>

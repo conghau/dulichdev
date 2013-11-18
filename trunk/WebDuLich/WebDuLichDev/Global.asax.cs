@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -29,6 +31,9 @@ namespace WebDuLichDev
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             log4net.Config.XmlConfigurator.Configure();
+
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("vi-VN");
+            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
 
         }
     }

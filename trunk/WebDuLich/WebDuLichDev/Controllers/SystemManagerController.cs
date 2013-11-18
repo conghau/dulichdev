@@ -11,7 +11,7 @@ using WebDuLichDev.WebUtility;
 
 namespace WebDuLichDev.Controllers
 {
-    public class SystemManagerController : Controller
+    public class SystemManagerController : BaseController
     {
         //
         // GET: /SystemManager/

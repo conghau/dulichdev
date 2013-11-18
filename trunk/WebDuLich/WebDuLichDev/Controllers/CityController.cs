@@ -8,10 +8,11 @@ using DuLichDLL.Model;
 using System.IO;
 using DuLichDLL.TOOLS;
 using WebDuLichDev.Models;
+using WebDuLichDev.WebUtility;
 
 namespace WebDuLichDev.Controllers
 {
-    public class CityController : Controller
+    public class CityController : BaseController
     {
         //
         // GET: /City/

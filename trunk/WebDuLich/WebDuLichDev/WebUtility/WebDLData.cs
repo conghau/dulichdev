@@ -7,6 +7,9 @@ using DuLichDLL.BAL;
 using DuLichDLL.Model;
 using DuLichDLL.Utility;
 using WebMatrix.WebData;
+using System.Threading;
+using System.Web.SessionState;
+using System.Globalization;
 
 namespace WebDuLichDev.WebUtility
 {
@@ -66,6 +69,7 @@ namespace WebDuLichDev.WebUtility
     {
         private static string _userId = "UserId";
         private static string _menu = "Menu";
+        private static string _languageCode = "LanguageCode";
         public static bool UserIsAdmin = false;
 
         public static long UserID
@@ -100,6 +104,49 @@ namespace WebDuLichDev.WebUtility
             }
             else
                 return false;
+        }
+
+        public static string LanguageCode
+        {
+            get
+            {
+                return string.IsNullOrWhiteSpace(Utility.ObjectToString(HttpContext.Current.Session[_languageCode])) ? "vi-VN" : Utility.ObjectToString(HttpContext.Current.Session[_languageCode]);
+            }
+            set
+            {
+                HttpContext.Current.Session[_languageCode] = value;
+            }
+        }
+    }
+
+    public class SessionManager
+    {
+        protected HttpSessionState session;
+
+        public SessionManager(HttpSessionState httpSessionState)
+        {
+            session = httpSessionState;
+        }
+
+        public static string LanguageCode
+        {
+            get
+            {
+
+                return Thread.CurrentThread.CurrentUICulture.Name;
+            }
+            set
+            {
+                //
+                // Set the thread's CurrentUICulture.
+                //
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(value);
+                //
+                // Set the thread's CurrentCulture the same as CurrentUICulture.
+                //
+                Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
+            }
+
         }
     }
 }

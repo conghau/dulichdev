@@ -118,162 +118,162 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Add" xml:space="preserve">
-    <value>Thêm</value>
+    <value>Add</value>
   </data>
   <data name="AddHotel" xml:space="preserve">
-    <value>Thêm Khách Sạn</value>
+    <value>Add Hotel</value>
   </data>
   <data name="Address" xml:space="preserve">
-    <value>Địa chỉ</value>
+    <value>Address</value>
   </data>
   <data name="Administrative" xml:space="preserve">
-    <value>Hành chính</value>
+    <value>Administrative</value>
   </data>
   <data name="Avatar" xml:space="preserve">
-    <value>Ảnh đại diện</value>
+    <value>Avatar</value>
   </data>
   <data name="BasicInfo" xml:space="preserve">
-    <value>Thông tin cơ bản</value>
+    <value>Basic Info</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Huỷ</value>
-  </data>
-  <data name="ChooseCity" xml:space="preserve">
-    <value>Chọn thành phố</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>Thành phố</value>
-  </data>
-  <data name="Close" xml:space="preserve">
-    <value>Đóng</value>
-  </data>
-  <data name="Contact" xml:space="preserve">
-    <value>Liên hệ</value>
-  </data>
-  <data name="DetailInfo" xml:space="preserve">
-    <value>Thông tin chi tiết</value>
-  </data>
-  <data name="Economy" xml:space="preserve">
-    <value>Kinh tế</value>
-  </data>
-  <data name="ERR_Insert" xml:space="preserve">
-    <value>Thêm mới thất bại</value>
-  </data>
-  <data name="ERR_Update" xml:space="preserve">
-    <value>Cập nhập thất bại</value>
-  </data>
-  <data name="First" xml:space="preserve">
-    <value>Đầu</value>
-  </data>
-  <data name="History" xml:space="preserve">
-    <value>Lịch sử</value>
-  </data>
-  <data name="Hotel" xml:space="preserve">
-    <value>Khách Sạn</value>
-  </data>
-  <data name="HotelAddress" xml:space="preserve">
-    <value>Địa chỉ khách sạn</value>
-  </data>
-  <data name="HotelName" xml:space="preserve">
-    <value>Tên Khách Sạn</value>
-  </data>
-  <data name="ImagePlace" xml:space="preserve">
-    <value>Hình ảnh</value>
-  </data>
-  <data name="Introduce" xml:space="preserve">
-    <value>Giới thiệu</value>
-  </data>
-  <data name="Last" xml:space="preserve">
-    <value>Cuối</value>
-  </data>
-  <data name="Nature" xml:space="preserve">
-    <value>Tự nhiên</value>
-  </data>
-  <data name="Next" xml:space="preserve">
-    <value>Tiếp</value>
-  </data>
-  <data name="Note" xml:space="preserve">
-    <value>Ghi chú</value>
-  </data>
-  <data name="Open" xml:space="preserve">
-    <value>Mở</value>
-  </data>
-  <data name="Place" xml:space="preserve">
-    <value>Địa điểm</value>
-  </data>
-  <data name="PlaceName" xml:space="preserve">
-    <value>Tên địa điểm</value>
-  </data>
-  <data name="Previous" xml:space="preserve">
-    <value>Lùi</value>
-  </data>
-  <data name="Rows" xml:space="preserve">
-    <value>Hàng</value>
-  </data>
-  <data name="Services" xml:space="preserve">
-    <value>Dịch vụ</value>
-  </data>
-  <data name="Social" xml:space="preserve">
-    <value>Xã hội</value>
-  </data>
-  <data name="Submit" xml:space="preserve">
-    <value>Hoàn thành</value>
-  </data>
-  <data name="SUC_Insert" xml:space="preserve">
-    <value>Thêm mới thành công</value>
-  </data>
-  <data name="SUC_Update" xml:space="preserve">
-    <value>Cập nhập thành công</value>
-  </data>
-  <data name="Time" xml:space="preserve">
-    <value>Giờ</value>
-  </data>
-  <data name="Travel" xml:space="preserve">
-    <value>Du lịch</value>
-  </data>
-  <data name="Menu" xml:space="preserve">
-    <value>Thực Đơn</value>
-  </data>
-  <data name="Restaurant" xml:space="preserve">
-    <value>Nhà hàng</value>
-  </data>
-  <data name="RestaurantName" xml:space="preserve">
-    <value>Tên nhà hàng</value>
-  </data>
-  <data name="ChangePassword" xml:space="preserve">
-    <value>Đổi mật khẩu</value>
-  </data>
-  <data name="Login" xml:space="preserve">
-    <value>Đăng nhập</value>
-  </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Đăng xuất</value>
-  </data>
-  <data name="ConfirmPassword" xml:space="preserve">
-    <value>Xác Nhận Mật Khẩu</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>Mật Khẩu</value>
-  </data>
-  <data name="Username" xml:space="preserve">
-    <value>Tên Tài Khoản</value>
-  </data>
-  <data name="Register" xml:space="preserve">
-    <value>Đăng kí</value>
+    <value>Cancel</value>
   </data>
   <data name="Captcha" xml:space="preserve">
-    <value>Mã Xác Nhận</value>
+    <value>Captcha</value>
   </data>
-  <data name="Showpassword" xml:space="preserve">
-    <value>Hiển thị mật khẩu</value>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="ChooseCity" xml:space="preserve">
+    <value>Choose City</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="DetailInfo" xml:space="preserve">
+    <value>Detail Info</value>
+  </data>
+  <data name="Economy" xml:space="preserve">
+    <value>Economy</value>
   </data>
   <data name="EN" xml:space="preserve">
-    <value>Tiếng Anh</value>
+    <value>English</value>
+  </data>
+  <data name="ERR_Insert" xml:space="preserve">
+    <value>Insert Error</value>
+  </data>
+  <data name="ERR_Update" xml:space="preserve">
+    <value>Update Error</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>First</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Hotel" xml:space="preserve">
+    <value>Hotel</value>
+  </data>
+  <data name="HotelAddress" xml:space="preserve">
+    <value>Hotel Address</value>
+  </data>
+  <data name="HotelName" xml:space="preserve">
+    <value>Hotel Name</value>
+  </data>
+  <data name="ImagePlace" xml:space="preserve">
+    <value>Image Place</value>
+  </data>
+  <data name="Introduce" xml:space="preserve">
+    <value>Introduce</value>
   </data>
   <data name="Languages" xml:space="preserve">
-    <value>Ngôn Ngữ</value>
+    <value>Languages</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Last</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Nature" xml:space="preserve">
+    <value>Nature</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Place" xml:space="preserve">
+    <value>Place</value>
+  </data>
+  <data name="PlaceName" xml:space="preserve">
+    <value>Place Name</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Restaurant</value>
+  </data>
+  <data name="RestaurantName" xml:space="preserve">
+    <value>Restaurant Name</value>
+  </data>
+  <data name="Rows" xml:space="preserve">
+    <value>Rows</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>Services</value>
+  </data>
+  <data name="Showpassword" xml:space="preserve">
+    <value>Show Password</value>
+  </data>
+  <data name="Social" xml:space="preserve">
+    <value>Social</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="SUC_Insert" xml:space="preserve">
+    <value>Insert Success</value>
+  </data>
+  <data name="SUC_Update" xml:space="preserve">
+    <value>Update Success</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Travel" xml:space="preserve">
+    <value>Travel</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
   </data>
   <data name="VN" xml:space="preserve">
-    <value>Tiếng Việt</value>
+    <value>VietNamese</value>
   </data>
 </root>

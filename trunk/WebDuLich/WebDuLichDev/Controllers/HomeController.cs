@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebDuLichDev.WebUtility;
 
 namespace WebDuLichDev.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
@@ -32,6 +33,21 @@ namespace WebDuLichDev.Controllers
         public ActionResult Error()
         {
             return View();
+        }
+
+        public ActionResult Language(string languageCode)
+        {
+            try
+            {
+                string url = Request.UrlReferrer.AbsoluteUri;
+                WebDuLichSecurity.LanguageCode = languageCode;
+                return Redirect(url);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

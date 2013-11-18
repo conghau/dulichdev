@@ -23,7 +23,7 @@ namespace WebDuLichDev.Controllers
 {
     [Authorize]
     [InitializeSimpleMembership]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         //
         // GET: /Account/Login
@@ -181,7 +181,8 @@ namespace WebDuLichDev.Controllers
 
                     if (changePasswordSucceeded)
                     {
-                        return RedirectToAction("Changepassword", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        WebSecurity.Logout();
+                        return RedirectToAction("Login", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
                     else
                     {
