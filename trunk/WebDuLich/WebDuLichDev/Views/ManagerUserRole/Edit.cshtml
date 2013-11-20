@@ -2,13 +2,17 @@
 @{
    
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_pureLayout.cshtml";
 }
-
+<h3 style="color: #DC143C; font-size: 18px; background-color: #f9f9f9; margin-top: 0px;
+    height: 40px; line-height: 2.1em; margin-bottom: 0px; width:600px">
+        <img src="~/Content/themes/custom/Image/User-Manage.png" width="32" />
+        <span>@Resources.Language.AssignUserTo</span> <b style="color:#DC143C"> @ViewBag.RoleName</b>
+</h3>
 <div id="bcgpanels">
-    <h3>RoleName:@ViewBag.RoleName</h3>
-    <div id="panels">
-        <div style="width: 380px;vertical-align: top;">
+    
+    <div class="panels">
+        <div style="height:430px;width: 260px; overflow-y: scroll;">
             @using (Html.BeginForm("AddUser", "ManagerUserRole", FormMethod.Post, new { id = "frmAddUser" }))
             {
                 <input name="roleId" value="@ViewBag.RoleId" type="hidden"/>
@@ -16,7 +20,7 @@
                     <caption>User Not In Role</caption>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
+                        <th>@Resources.Language.Username</th>
                     </tr>
                     @foreach (var item in Model.listUserProfileNotInRole)
                     {
@@ -30,11 +34,23 @@
                 </table> 
             }
         </div>
-        <div id="commands">
-            <div><a href="#" id="btnAddUser" class="k-button">&gt;</a></div>
-            <div><a href="#" id="btnDelUser" class="k-button">&lt;</a></div>
+    </div>
+    <div id="commands">
+        <div>
+            <a href="#" id="btnAddUser">
+                <img src="/Content/themes/custom/Image/Next-Light.png" alt="Add"
+                    onmouseover="this.src='/Content/themes/custom/Image/Next-Dark.png';"
+                    onmouseout="this.src='/Content/themes/custom/Image/Next-Light.png'" /></a>
         </div>
-        <div style="width: 380px;vertical-align: top;">
+        <div>
+            <a href="#" id="btnDelUser">
+                <img src="/Content/themes/custom/Image/Back-Light.png" alt="Del"
+                    onmouseover="this.src='/Content/themes/custom/Image/Back-Dark.png';"
+                    onmouseout="this.src='/Content/themes/custom/Image/Back-Light.png'" /></a>
+        </div>
+    </div>
+    <div class="panels">
+        <div style="height:430px;width: 260px; overflow-y: scroll;">
             @using (Html.BeginForm("DelUser", "ManagerUserRole", FormMethod.Post, new { id = "frmDelUser" }))
             {
                 <input name="roleId" value="@ViewBag.RoleId" type="hidden"/>
@@ -42,7 +58,7 @@
                     <caption>User In Role</caption>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
+                        <th>@Resources.Language.Username</th>
                     </tr>
                     @foreach (var item in Model.listUserProfile)
                     {
@@ -56,13 +72,13 @@
                 </table> 
             }
         </div>
-
     </div>
-    <script type="text/javascript">
+  
+</div>
+  <script type="text/javascript">
         $(document).ready(function () {
 
             $('#btnAddUser').click(function () {
-
                 $('#frmAddUser').submit();
             });
 
@@ -70,9 +86,8 @@
 
                 $('#frmDelUser').submit();
             });
-            $("tr").click(function () {
-                $(this).addClass("selected").siblings().removeClass("selected");
-            });
+            //$("tr").click(function () {
+            //    $(this).addClass("selected").siblings().removeClass("selected");
+            //});
         });
     </script>
-</div>

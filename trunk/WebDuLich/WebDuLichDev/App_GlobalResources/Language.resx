@@ -276,4 +276,7 @@
   <data name="VN" xml:space="preserve">
     <value>Tiếng Việt</value>
   </data>
+  <data name="AssignUserTo" xml:space="preserve">
+    <value>Gán quyền</value>
+  </data>
 </root>

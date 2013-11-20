@@ -7,7 +7,7 @@
 <h2>Manage</h2>
 @if (Model != null)
 {
-    <table>
+    <table class="table table-striped table-bordered table-condensed">
         <tr>
             <th>#</th>
             <th>Role Name</th>
@@ -19,9 +19,29 @@
             <tr>
                 <td></td>
                 <td>@item.RoleName</td>
-                <td>4</td>
-                <td><a href="@Url.Action("Edit", "ManagerUserRole", new {roleId=@item.RoleId })">Edit</a></td>
+                <td>@item.NumberUser</td>
+                <td style="text-align:center"><a href="@Url.Action("Edit", "ManagerUserRole", new { roleId = @item.RoleId })" class="manageUser fancybox.iframe">
+                    <img src="/Content/themes/custom/Image/User-Light.png"
+                        onmouseover="this.src='/Content/themes/custom/Image/User-Dark.png';"
+                        onmouseout="this.src='/Content/themes/custom/Image/User-Light.png'" /></a></td>
             </tr>
         }
     </table>
 }
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        $('.manageUser').fancybox({
+            maxWidth: 600,
+            fitToView: false,
+            width: '600px',
+            height: '530px',
+            autoSize: false,
+            closeClick: false,
+            openEffect: 'none',
+            closeEffect: 'none',
+            padding: 10,
+            afterClose: function () { location.reload(false); }
+        });
+    });
+</script>

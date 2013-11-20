@@ -20,7 +20,7 @@ namespace WebDuLichDev.Controllers
         public ActionResult Manage()
         {
             webpages_RolesBAL wpRolesBAL = new webpages_RolesBAL();
-            var model = wpRolesBAL.GetList();
+            var model = wpRolesBAL.GetListWithCountNumberUser();
             return View(model);
         }
 
