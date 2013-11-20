@@ -108,5 +108,6 @@ namespace DuLichDLL.Model
         p_DL_Place_Get_List_WithFilter,
         p_DL_Place_Update_Hotel,
         p_DL_Place_Update_SomeValue,
+        p_DL_Place_Update_Status,
     }
 }

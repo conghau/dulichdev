@@ -949,6 +949,45 @@ namespace DuLichDLL.DAL
                 cnn.Close();
             }
         }
+        public bool UpdateStatusById(long ID, int status)
+        {
+            SqlConnection cnn = null;
+            try
+            {
+                bool result = false;
+                cnn = DataProvider.OpenConnection();
+                SqlCommand cmd = new SqlCommand(DL_PlaceProcedure.p_DL_Place_Update_Status.ToString(), cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@ID", SqlDbType.BigInt).Value = ID;
+                cmd.Parameters.Add("@Status", SqlDbType.Int).Value = status;
+                SqlParameterCollection parameterValues = cmd.Parameters;
+                int i = 0;
+                foreach (SqlParameter parameter in parameterValues)
+                {
+                    if ((parameter.Direction != ParameterDirection.Output) && (parameter.Direction != ParameterDirection.ReturnValue))
+                    {
+                        if (parameter.Value == null)
+                            parameter.Value = DBNull.Value;
+                        i++;
+                    }
+                }
+                cmd.ExecuteScalar();
+                result = true;
+                return result;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceDAL: UpdateStatusById"));
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
 
     }
 }
