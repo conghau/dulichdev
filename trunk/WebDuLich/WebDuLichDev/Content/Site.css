@@ -32,7 +32,7 @@ header .content-wrapper {
 
 footer {
     clear: both;
-    background-color: #e2e2e2;
+    background-image: url('/Content/themes/footer_beta.png');
     font-size: .8em;
     height: 100px;
 }
