@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 namespace DuLichDLL.Model
 {
-    public class UserProfile
+    public class DLUserProfile
     {
         private int _userId;
         public int UserId
@@ -19,12 +19,12 @@ namespace DuLichDLL.Model
             set { _userName = value; }
         }
     }
-    public enum UserProfileColumns
+    public enum DLUserProfileColumns
     {
         UserId,
         UserName,
     }
-    public enum UserProfileProcedure
+    public enum DLUserProfileProcedure
     {
         p_UserProfile_Insert,
         p_UserProfile_Delete,

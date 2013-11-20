@@ -12,13 +12,13 @@ namespace DuLichDLL.DAL
 {
     public class UserProfileDAL
     {
-        private UserProfile ConvertOneRow(DataRow row)
+        private DLUserProfile ConvertOneRow(DataRow row)
         {
             try
             {
-                UserProfile result = new UserProfile();
-                result.UserId = Utility.Utility.ObjectToInt(row[UserProfileColumns.UserId.ToString()].ToString());
-                result.UserName = Utility.Utility.ObjectToString(row[UserProfileColumns.UserName.ToString()].ToString());
+                DLUserProfile result = new DLUserProfile();
+                result.UserId = Utility.Utility.ObjectToInt(row[DLUserProfileColumns.UserId.ToString()].ToString());
+                result.UserName = Utility.Utility.ObjectToString(row[DLUserProfileColumns.UserName.ToString()].ToString());
                 return result;
             }
             catch (Exception ex)
@@ -26,29 +26,29 @@ namespace DuLichDLL.DAL
                 throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_UserProfileDAL: ConvertOneRow"));
             }
         }
-        private List<UserProfile> GetDataObject(DataTable dt)
+        private List<DLUserProfile> GetDataObject(DataTable dt)
         {
-            List<UserProfile> results = new List<UserProfile>();
+            List<DLUserProfile> results = new List<DLUserProfile>();
             foreach (DataRow item in dt.Rows)
             {
                 results.Add(ConvertOneRow(item));
             }
             return results;
         }
-        public UserProfile GetByID(long ID)
+        public DLUserProfile GetByID(long ID)
         {
             SqlConnection cnn = null;
             try
             {
                 cnn = DataProvider.OpenConnection();
-                SqlCommand cmd = new SqlCommand(UserProfileProcedure.p_UserProfile_Get_ByID.ToString(), cnn);
+                SqlCommand cmd = new SqlCommand(DLUserProfileProcedure.p_UserProfile_Get_ByID.ToString(), cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@ID", SqlDbType.BigInt).Value = ID;
                 DataTable dt = new DataTable();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
-                List<UserProfile> results = GetDataObject(dt);
-                UserProfile userProfile = new UserProfile();
+                List<DLUserProfile> results = GetDataObject(dt);
+                DLUserProfile userProfile = new DLUserProfile();
                 if (results.Count > 0)
                 {
                     userProfile = results[0];
@@ -68,13 +68,13 @@ namespace DuLichDLL.DAL
                 cnn.Close();
             }
         }
-        public List<UserProfile> GetList()
+        public List<DLUserProfile> GetList()
         {
             SqlConnection cnn = null;
             try
             {
                 cnn = DataProvider.OpenConnection();
-                SqlCommand cmd = new SqlCommand(UserProfileProcedure.p_UserProfile_Get_List.ToString(), cnn);
+                SqlCommand cmd = new SqlCommand(DLUserProfileProcedure.p_UserProfile_Get_List.ToString(), cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 DataTable dt = new DataTable();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -95,14 +95,14 @@ namespace DuLichDLL.DAL
                 cnn.Close();
             }
         }
-        public long Insert(UserProfile userProfile)
+        public long Insert(DLUserProfile userProfile)
         {
             long id = 0;
             SqlConnection cnn = null;
             try
             {
                 cnn = DataProvider.OpenConnection();
-                SqlCommand cmd = new SqlCommand(UserProfileProcedure.p_UserProfile_Insert.ToString(), cnn);
+                SqlCommand cmd = new SqlCommand(DLUserProfileProcedure.p_UserProfile_Insert.ToString(), cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = userProfile.UserName;
                 SqlParameterCollection parameterValues = cmd.Parameters;
@@ -132,12 +132,12 @@ namespace DuLichDLL.DAL
                 cnn.Close();
             }
         }
-        public long Insert(UserProfile userProfile, SqlConnection cnn, SqlTransaction tran)
+        public long Insert(DLUserProfile userProfile, SqlConnection cnn, SqlTransaction tran)
         {
             long id = 0;
             try
             {
-                SqlCommand cmd = new SqlCommand(UserProfileProcedure.p_UserProfile_Insert.ToString(), cnn, tran);
+                SqlCommand cmd = new SqlCommand(DLUserProfileProcedure.p_UserProfile_Insert.ToString(), cnn, tran);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = userProfile.UserName;
                 id = Utility.Utility.ObjectToLong(cmd.ExecuteScalar());
@@ -152,14 +152,14 @@ namespace DuLichDLL.DAL
                 throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_UserProfileDAL: Insert"));
             }
         }
-        public long Update(UserProfile userProfile)
+        public long Update(DLUserProfile userProfile)
         {
             SqlConnection cnn = null;
             try
             {
                 long id = 0;
                 cnn = DataProvider.OpenConnection();
-                SqlCommand cmd = new SqlCommand(UserProfileProcedure.p_UserProfile_Update.ToString(), cnn);
+                SqlCommand cmd = new SqlCommand(DLUserProfileProcedure.p_UserProfile_Update.ToString(), cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = userProfile.UserId;
                 cmd.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = userProfile.UserName;
@@ -192,12 +192,12 @@ namespace DuLichDLL.DAL
                 cnn.Close();
             }
         }
-        public long Update(UserProfile userProfile, SqlConnection cnn, SqlTransaction tran)
+        public long Update(DLUserProfile userProfile, SqlConnection cnn, SqlTransaction tran)
         {
             try
             {
                 long id = 0;
-                SqlCommand cmd = new SqlCommand(UserProfileProcedure.p_UserProfile_Update.ToString(), cnn, tran);
+                SqlCommand cmd = new SqlCommand(DLUserProfileProcedure.p_UserProfile_Update.ToString(), cnn, tran);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = userProfile.UserId;
                 cmd.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = userProfile.UserName;
@@ -233,7 +233,7 @@ namespace DuLichDLL.DAL
             {
                 long id = 0;
                 cnn = DataProvider.OpenConnection();
-                SqlCommand cmd = new SqlCommand(UserProfileProcedure.p_UserProfile_Delete.ToString(), cnn);
+                SqlCommand cmd = new SqlCommand(DLUserProfileProcedure.p_UserProfile_Delete.ToString(), cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = ID;
                 cmd.Parameters.Add("@UpdatedBy", SqlDbType.BigInt).Value = userID;
@@ -271,7 +271,7 @@ namespace DuLichDLL.DAL
             try
             {
                 long id = 0;
-                SqlCommand cmd = new SqlCommand(UserProfileProcedure.p_UserProfile_Delete.ToString(), cnn, tran);
+                SqlCommand cmd = new SqlCommand(DLUserProfileProcedure.p_UserProfile_Delete.ToString(), cnn, tran);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = ID;
                 cmd.Parameters.Add("@UpdatedBy", SqlDbType.BigInt).Value = userID;
@@ -301,20 +301,20 @@ namespace DuLichDLL.DAL
             }
         }
 
-        public UserProfile GetByUserName(string userName)
+        public DLUserProfile GetByUserName(string userName)
         {
             SqlConnection cnn = null;
             try
             {
                 cnn = DataProvider.OpenConnection();
-                SqlCommand cmd = new SqlCommand(UserProfileProcedure.p_UserProfile_ByUserName.ToString(), cnn);
+                SqlCommand cmd = new SqlCommand(DLUserProfileProcedure.p_UserProfile_ByUserName.ToString(), cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = userName;
                 DataTable dt = new DataTable();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
-                List<UserProfile> results = GetDataObject(dt);
-                UserProfile userProfile = new UserProfile();
+                List<DLUserProfile> results = GetDataObject(dt);
+                DLUserProfile userProfile = new DLUserProfile();
                 if (results.Count > 0)
                 {
                     userProfile = results[0];

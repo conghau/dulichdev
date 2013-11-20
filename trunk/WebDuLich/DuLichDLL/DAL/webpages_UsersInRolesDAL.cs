@@ -104,6 +104,8 @@ namespace DuLichDLL.DAL
                 cnn = DataProvider.OpenConnection();
                 SqlCommand cmd = new SqlCommand(webpages_UsersInRolesProcedure.p_webpages_UsersInRoles_Insert.ToString(), cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = webpages_UsersInRoles.UserId;
+                cmd.Parameters.Add("@RoleId", SqlDbType.Int).Value = webpages_UsersInRoles.RoleId;
                 SqlParameterCollection parameterValues = cmd.Parameters;
                 int i = 0;
                 foreach (SqlParameter parameter in parameterValues)
@@ -235,7 +237,7 @@ namespace DuLichDLL.DAL
                 throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_webpages_UsersInRolesDAL: Update"));
             }
         }
-        public long Delete(long ID, long userID)
+        public long Delete(long userID)
         {
             SqlConnection cnn = null;
             try
@@ -244,8 +246,7 @@ namespace DuLichDLL.DAL
                 cnn = DataProvider.OpenConnection();
                 SqlCommand cmd = new SqlCommand(webpages_UsersInRolesProcedure.p_webpages_UsersInRoles_Delete.ToString(), cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = ID;
-                cmd.Parameters.Add("@UpdatedBy", SqlDbType.BigInt).Value = userID;
+                cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = userID;                
                 SqlParameterCollection parameterValues = cmd.Parameters;
                 int i = 0;
                 foreach (SqlParameter parameter in parameterValues)
@@ -334,6 +335,46 @@ namespace DuLichDLL.DAL
             catch (Exception ex)
             {
                 throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_webpages_UsersInRolesDAL: UserIsAdmin"));
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+        public long UpdateRoleforUser(webpages_UsersInRoles webpages_UsersInRoles)
+        {
+            SqlConnection cnn = null;
+            try
+            {
+                long id = 0;
+                cnn = DataProvider.OpenConnection();
+                SqlCommand cmd = new SqlCommand(webpages_UsersInRolesProcedure.p_webpages_UsersInRoles_UpdateRoleforUser.ToString(), cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = webpages_UsersInRoles.UserId;
+                cmd.Parameters.Add("@RoleId", SqlDbType.Int).Value = webpages_UsersInRoles.RoleId;
+                SqlParameterCollection parameterValues = cmd.Parameters;
+                int i = 0;
+                foreach (SqlParameter parameter in parameterValues)
+                {
+                    if ((parameter.Direction != ParameterDirection.Output) && (parameter.Direction != ParameterDirection.ReturnValue))
+                    {
+                        if (parameter.Value == null)
+                            parameter.Value = DBNull.Value;
+                        i++;
+                    }
+                }
+                object result = cmd.ExecuteScalar();
+                if (result != null)
+                    id = Utility.Utility.ObjectToLong(result.ToString());
+                return id;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_webpages_UsersInRolesDAL: UpdateRoleforUser"));
             }
             finally
             {
