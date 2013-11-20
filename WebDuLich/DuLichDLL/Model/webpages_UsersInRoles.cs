@@ -32,6 +32,7 @@ namespace DuLichDLL.Model
         p_webpages_UsersInRoles_Get_List,
         p_webpages_UsersInRoles_Get_ByID,
         p_IsAdminByUserId,
+        p_webpages_UsersInRoles_UpdateRoleforUser,
 
     }
 }

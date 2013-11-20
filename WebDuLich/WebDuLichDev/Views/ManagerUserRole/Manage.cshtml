@@ -1,0 +1,27 @@
+﻿@model List<DuLichDLL.Model.webpages_Roles>
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Manage</h2>
+@if (Model != null)
+{
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Role Name</th>
+            <th>Number User</th>
+            <th>Edit</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td></td>
+                <td>@item.RoleName</td>
+                <td>4</td>
+                <td><a href="@Url.Action("Edit", "ManagerUserRole", new {roleId=@item.RoleId })">Edit</a></td>
+            </tr>
+        }
+    </table>
+}

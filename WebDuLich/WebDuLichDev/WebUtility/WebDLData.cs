@@ -63,6 +63,28 @@ namespace WebDuLichDev.WebUtility
         //    pathAvatarCity = mSystemSetting.PATH_AVATAR_CITY;
         //    pathImageCity = mSystemSetting.PATH_IMAGE_CITY;
         //} 
+        public static List<SelectListItem> ListRole
+        {
+            get
+            {
+                webpages_RolesBAL roleBal = new webpages_RolesBAL();
+                List<SelectListItem> listrole = new List<SelectListItem>();
+
+                listrole.Add(new SelectListItem { Text ="...", Value = "-1" });
+
+                var role = roleBal.GetList();
+
+                foreach (var item in role)
+                {
+                    listrole.Add(new SelectListItem
+                    {
+                        Text = item.RoleName,
+                        Value = item.RoleId.ToString(),
+                    });
+                }
+                return listrole;
+            }
+        }
     }
 
     public class WebDuLichSecurity
@@ -149,4 +171,5 @@ namespace WebDuLichDev.WebUtility
 
         }
     }
+    
 }

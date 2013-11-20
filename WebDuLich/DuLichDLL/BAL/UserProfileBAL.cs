@@ -12,7 +12,7 @@ namespace DuLichDLL.BAL
 {
     public class UserProfileBAL
     {
-        public UserProfile GetByID(long ID)
+        public DLUserProfile GetByID(long ID)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace DuLichDLL.BAL
             }
         }
 
-        public UserProfile GetByUserName(string userName)
+        public DLUserProfile GetByUserName(string userName)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace DuLichDLL.BAL
                 throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_UserProfileBAL: GetUserIdByUserName"));
             }
         }
-        public List<UserProfile> GetList()
+        public List<DLUserProfile> GetList()
         {
             try
             {
@@ -73,7 +73,7 @@ namespace DuLichDLL.BAL
                 throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_UserProfileBAL: GetList"));
             }
         }
-        public long Insert(UserProfile userProfile)
+        public long Insert(DLUserProfile userProfile)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace DuLichDLL.BAL
                 throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_UserProfileBAL: Insert"));
             }
         }
-        public long Update(UserProfile userProfile)
+        public long Update(DLUserProfile userProfile)
         {
             try
             {
