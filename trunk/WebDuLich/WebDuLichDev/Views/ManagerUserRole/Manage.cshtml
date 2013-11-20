@@ -7,8 +7,8 @@
 <h2>Manage</h2>
 @if (Model != null)
 {
-    <table class="table table-striped table-bordered table-condensed">
-        <tr>
+    <table class="table table-bordered table-condensed">
+        <tr class="nohover">
             <th>#</th>
             <th>Role Name</th>
             <th>Number User</th>
@@ -28,6 +28,21 @@
         }
     </table>
 }
+<style>
+    body {
+         text-align: center;
+    }   
+    h2 {
+        border-bottom: 2px solid #ff6a00;
+          
+    }
+    tr:hover, tr.selected {
+        background-color: #FFCF8B;
+    }
+    table .nohover{
+    background: #E1EFBB;   
+}
+</style>
 <script type="text/javascript">
     $(document).ready(function () {
         
