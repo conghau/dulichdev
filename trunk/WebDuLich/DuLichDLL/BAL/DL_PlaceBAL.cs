@@ -364,5 +364,25 @@ namespace DuLichDLL.BAL
                 throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceBAL: InsertRestaurant 3 parameter"));
             }
         }
+        public bool UpdateStatusById(long ID, int status)
+        {
+            try
+            {
+                DL_PlaceDAL dL_PlaceDAL = new DL_PlaceDAL();
+                return dL_PlaceDAL.UpdateStatusById(ID,status);
+            }
+            catch (DataAccessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (BusinessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceBAL: UpdateStatusById"));
+            }
+        }
     }
 }
