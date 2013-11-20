@@ -221,6 +221,7 @@
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
+    <Compile Include="Controllers\ManagerUserRoleController.cs" />
     <Compile Include="Controllers\PlaceController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\SystemManagerController.cs" />
@@ -416,6 +417,21 @@
     <Content Include="Scripts\Lib\bootstrap\img\glyphicons-halflings.png" />
     <Content Include="Scripts\Lib\bootstrap\js\bootstrap.js" />
     <Content Include="Scripts\Lib\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Scripts\Lib\FancyBox\lib\jquery-1.9.0.min.js" />
+    <Content Include="Scripts\Lib\FancyBox\lib\jquery.mousewheel-3.0.6.pack.js" />
+    <Content Include="Scripts\Lib\FancyBox\source\blank.gif" />
+    <Content Include="Scripts\Lib\FancyBox\source\fancybox_loading.gif" />
+    <Content Include="Scripts\Lib\FancyBox\source\fancybox_overlay.png" />
+    <Content Include="Scripts\Lib\FancyBox\source\fancybox_sprite.png" />
+    <Content Include="Scripts\Lib\FancyBox\source\helpers\fancybox_buttons.png" />
+    <Content Include="Scripts\Lib\FancyBox\source\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="Scripts\Lib\FancyBox\source\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="Scripts\Lib\FancyBox\source\helpers\jquery.fancybox-media.js" />
+    <Content Include="Scripts\Lib\FancyBox\source\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="Scripts\Lib\FancyBox\source\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="Scripts\Lib\FancyBox\source\jquery.fancybox.css" />
+    <Content Include="Scripts\Lib\FancyBox\source\jquery.fancybox.js" />
+    <Content Include="Scripts\Lib\FancyBox\source\jquery.fancybox.pack.js" />
     <Content Include="Scripts\Lib\jquery.raty.js" />
     <Content Include="Scripts\Lib\star-half.png" />
     <Content Include="Scripts\Lib\star-off.png" />
@@ -623,6 +639,10 @@
     <Content Include="Views\Restaurant\AddRestaurant.cshtml" />
     <Content Include="Views\Restaurant\UpdateRestaurant.cshtml" />
     <Content Include="Views\Restaurant\ListRestaurant.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\ManagerUserRole\Edit.cshtml" />
+    <Content Include="Views\ManagerUserRole\Manage.cshtml" />
+    <Content Include="Views\Shared\_pureLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,11 +18,13 @@ namespace DuLichDLL.Model
             get { return _roleId; }
             set { _roleId = value; }
         }
+
     }
     public enum webpages_UsersInRolesColumns
     {
         UserId,
         RoleId,
+
     }
     public enum webpages_UsersInRolesProcedure
     {

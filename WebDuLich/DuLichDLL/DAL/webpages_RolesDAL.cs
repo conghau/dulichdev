@@ -35,6 +35,31 @@ namespace DuLichDLL.DAL
             }
             return results;
         }
+
+        private webpages_Roles ConvertOneRowWithNumberUser(DataRow row)
+        {
+            try
+            {
+                webpages_Roles result = new webpages_Roles();
+                result.RoleId = Utility.Utility.ObjectToInt(row[webpages_RolesColumns.RoleId.ToString()].ToString());
+                result.RoleName = Utility.Utility.ObjectToString(row[webpages_RolesColumns.RoleName.ToString()].ToString());
+                result.NumberUser = Utility.Utility.ObjectToInt(row[webpages_RolesColumns.NumberUser.ToString()].ToString());
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_webpages_RolesDAL: ConvertOneRowWithNumberUser"));
+            }
+        }
+        private List<webpages_Roles> GetDataObjectWithNumberUser(DataTable dt)
+        {
+            List<webpages_Roles> results = new List<webpages_Roles>();
+            foreach (DataRow item in dt.Rows)
+            {
+                results.Add(ConvertOneRowWithNumberUser(item));
+            }
+            return results;
+        }
         public webpages_Roles GetByID(long ID)
         {
             SqlConnection cnn = null;
@@ -89,6 +114,34 @@ namespace DuLichDLL.DAL
             catch (Exception ex)
             {
                 throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_webpages_RolesDAL: GetList"));
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+
+        public List<webpages_Roles> GetListWithCountNumberUser()
+        {
+            SqlConnection cnn = null;
+            try
+            {
+                cnn = DataProvider.OpenConnection();
+                SqlCommand cmd = new SqlCommand(webpages_RolesProcedure.p_webpages_Roles_CountNumberUser.ToString(), cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dt);
+                var results = GetDataObjectWithNumberUser(dt);
+                return results;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_webpages_RolesDAL: GetListWithCountNumberUser"));
             }
             finally
             {

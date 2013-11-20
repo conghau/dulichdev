@@ -18,11 +18,19 @@ namespace DuLichDLL.Model
             get { return _roleName; }
             set { _roleName = value; }
         }
+        private int _numberUser;
+
+        public int NumberUser
+        {
+            get { return _numberUser; }
+            set { _numberUser = value; }
+        }
     }
     public enum webpages_RolesColumns
     {
         RoleId,
         RoleName,
+        NumberUser,
     }
     public enum webpages_RolesProcedure
     {
@@ -31,6 +39,7 @@ namespace DuLichDLL.Model
         p_webpages_Roles_Update,
         p_webpages_Roles_Get_List,
         p_webpages_Roles_Get_ByID,
+        p_webpages_Roles_CountNumberUser,
 
     }
 

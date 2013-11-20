@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gán quyền.
+        /// </summary>
+        internal static string AssignUserTo {
+            get {
+                return ResourceManager.GetString("AssignUserTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ảnh đại diện.
         /// </summary>
         internal static string Avatar {
