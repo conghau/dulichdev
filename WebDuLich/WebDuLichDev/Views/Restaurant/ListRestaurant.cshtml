@@ -59,14 +59,13 @@
                             @item.AvgRating
                         </td>
                         <td style="text-align: center; width: 30px">
-                            @*<a href="@Url.Action("UpdateNicePlace", "Place", new { dlPlaceId = item.ID })"><i class="icon-search"></i></a>*@
                             <a href="@Url.Action("UpdateRestaurant", "Restaurant", new { ID = item.ID })" >
                                 <img src="/Content/themes/custom/Image/Edit-Light.png" width="24" height="24" alt="Chinh sua"
                                     onmouseover="this.src='/Content/themes/custom/Image/Edit-Dark.png';"
                                     onmouseout="this.src='/Content/themes/custom/Image/Edit-Light.png'" /></a>
                         </td>
                         <td style="text-align: center; width: 30px">
-                            <a href="@Url.Action("DeleleRestaurant", "Restaurant", new { ID = item.ID })" >
+                            <a href="#" class="delete" id="@item.ID" >
                                 <img src="/Content/themes/custom/Image/Delete-Light.png" width="24" height="24"
                                     onmouseover="this.src='/Content/themes/custom/Image/Delete-Dark.png';"
                                     onmouseout="this.src='/Content/themes/custom/Image/Delete-Light.png'" /></a>
@@ -81,6 +80,36 @@
     }
 
     <script type="text/javascript">
+        function fancyConfirm(msg, callbackYes, callbackNo, id_restaurant) {
+            var ret;
+            jQuery.fancybox({
+                'modal': true,
+                'content': "<div style=\"margin:1px;width:240px;text-align:center;\">" + msg +
+                    "<div style=\"margin-top:10px;\"><input id=\"fancyconfirm_cancel\" style=\"margin:3px;padding:0px;" +
+                    "\" type=\"button\" class=\"btn btn-warning btn-large\" value=\"Cancel\"><input id=\"fancyConfirm_ok\" style=\"margin:3px;padding:0px;\" " +
+                    " type=\"button\" class=\"btn btn-success btn-large\" value=\"OK\"></div></div>",
+                'beforeShow': function () {
+                    jQuery("#fancyconfirm_cancel").click(function () {
+                        $.fancybox.close();
+                        callbackNo();
+                    });
+
+                    jQuery("#fancyConfirm_ok").click(function () {
+                        $.fancybox.close();
+                        callbackYes();
+                    });
+                }
+            });
+        }
+        function do_something(string, id_restaurant) {
+            if (string == 'yes') {
+                var url = '/Restaurant/DelRestaurant/' + id_restaurant;
+                location.href = url;
+            }
+            else {
+
+            }
+        }
         $(document).ready(function () {
 
             $('#btnAddNew').click(function () {
@@ -91,6 +120,16 @@
 
             $('#btnSearch').click(function () {
                 $('#Page').val(1);
+            });
+
+            $(".delete").click(function () {
+                fancyConfirm('Bạn chắc chắc muốn xóa?',
+                    function () {
+                        do_something('yes', id_restaurant);
+                    }, function () {
+                        do_something('no', id_restaurant);
+                    },
+                    id_restaurant = $(this).attr('id'));
             });
         });
     </script>
