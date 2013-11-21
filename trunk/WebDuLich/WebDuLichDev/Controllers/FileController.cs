@@ -34,7 +34,18 @@ namespace WebDuLichDev.Controllers
             return Json(new { status = "OK" }, "text/plain");
 
         }
+        private bool IsImage(HttpPostedFileBase file)
+        {
+            if (file.ContentType.Contains("image"))
+            {
+                return true;
+            }
 
+            string[] formats = new string[] { ".jpg", ".png", "bmp" }; // add more if u like...
+
+            // linq from Henrik Stenbæk
+            return formats.Any(item => file.FileName.EndsWith(item, StringComparison.OrdinalIgnoreCase));
+        }
         public ActionResult UploadAvatarPlace(IEnumerable<HttpPostedFileBase> fileUpload, int ID)
         {
             //HotelInfo hotelinfo = new HotelInfo();
@@ -44,16 +55,35 @@ namespace WebDuLichDev.Controllers
             var serserPath = Server.MapPath("~/Data/Avatar/Place/");
             if (System.IO.File.Exists(serserPath + dlPlaceBal.GetByID(ID).Avatar)) //Xóa file có trước nếu đã có trong csdl. Việc up là duy nhất
                 System.IO.File.Delete(serserPath + dlPlaceBal.GetByID(ID).Avatar);
-            foreach (var file in fileUpload)
+
+            Boolean fileOK = false;
+
+            if (null != fileUpload)
             {
-                // Some browsers send file names with full path. We only care about the file name.
-                var fileName = Path.GetFileName(file.FileName);
 
-                var destinationPath = Path.Combine(serserPath, fileName);
-
-                file.SaveAs(destinationPath);
+                foreach (var file in fileUpload)
+                {
+                    fileOK = false;
+                    fileOK = IsImage(file);
+                }
             }
-            return Json(new { status = "OK" }, "text/plain");
+            if (true == fileOK)
+            {
+                foreach (var file in fileUpload)
+                {
+                    // Some browsers send file names with full path. We only care about the file name.
+                    var fileName = Path.GetFileName(file.FileName);
+
+                    var destinationPath = Path.Combine(serserPath, fileName);
+
+                    file.SaveAs(destinationPath);
+                }
+                return Json(new { status = "OK" }, "text/plain");
+            }
+            else
+            {
+                return Json(new { status = "Fail: Not allow file have extension that" }, "text/plain");
+            }
 
         }
 
@@ -62,18 +92,34 @@ namespace WebDuLichDev.Controllers
         {
             //var serserPath = Server.MapPath("~/Data/Images/Place/");
             List<string> listfilenameGuid = new List<string>();
+            Boolean fileOK = false;
 
-            foreach (var file in fileUpload)
+            if (null != fileUpload)
             {
-                // Some browsers send file names with full path. We only care about the file name.
-                //var fileName = Path.GetFileName(file.FileName);
-                var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
-                var destinationPath = Path.Combine(Server.MapPath("~/Data/Images/Place/"), fileName);
 
-                file.SaveAs(destinationPath);
-                listfilenameGuid.Add(fileName);
+                foreach (var file in fileUpload)
+                {
+                    fileOK = false;
+                    fileOK = IsImage(file);
+                }
             }
-            return Json(new { dataname = listfilenameGuid }, "text/plain");
+            if (true == fileOK)
+            {
+                foreach (var file in fileUpload)
+                {
+                    // Some browsers send file names with full path. We only care about the file name.
+                    //var fileName = Path.GetFileName(file.FileName);
+                    var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+                    var destinationPath = Path.Combine(Server.MapPath("~/Data/Images/Place/"), fileName);
+                    file.SaveAs(destinationPath);
+                    listfilenameGuid.Add(fileName);
+                }
+                return Json(new { dataname = listfilenameGuid }, "text/plain");
+            }
+            else
+            {
+                return Json(new { dataname = "Fail: Not allow file have extension that" }, "text/plain");
+            }
 
         }
         public ActionResult RemoveImagePlace(string fileNames)
