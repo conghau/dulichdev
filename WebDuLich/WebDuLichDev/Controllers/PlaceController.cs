@@ -11,6 +11,7 @@ using WebDuLichDev.Models;
 using WebDuLichDev.WebUtility;
 using DuLichDLL.ExceptionType;
 using WebDuLichDev.Enum;
+using System.Text;
 
 namespace WebDuLichDev.Controllers
 {
@@ -105,8 +106,8 @@ namespace WebDuLichDev.Controllers
                 nicePlacePage.Add(tmp);
 
             }
-                //DuLichDLL.Model.DL_Place model1 = new DuLichDLL.Model.DL_Place();
-                common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
+            //DuLichDLL.Model.DL_Place model1 = new DuLichDLL.Model.DL_Place();
+            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
             ViewData["OrderBy"] = pagination.OrderBy;
             ViewData["OrderDirection"] = pagination.OrderDirection;
             return View(nicePlacePage);
@@ -140,6 +141,48 @@ namespace WebDuLichDev.Controllers
             ViewData["OrderDirection"] = pagination.OrderDirection;
             //DuLichDLL.Model.DL_Place model1 = new DuLichDLL.Model.DL_Place();
             return PartialView("p_niceplace", model);
+        }
+
+        [HttpPost]
+        public ActionResult Loaddata(long cityId)
+        {
+            vm_Pagination pagination = new vm_Pagination { OrderBy = DL_PlaceColumns.CreatedDate.ToString(), OrderDirection = "DESC" };
+            DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+            DL_NicePlaceInfoDetailBAL dlNicePlaceInfoDetailBal = new DL_NicePlaceInfoDetailBAL();
+            DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
+
+
+
+
+
+            //var model = dlPlaceBal.GetListNicePlaceByCity(cityId).Take(4).ToList();
+            //var model = dlPlaceBal.GetListWithFilter(1, "", "", (long)DL_PlaceTypeId.Places, page, pagesize, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
+            var dlPlace = dlPlaceBal.GetListNicePlaceByCity(cityId);//.Take(3).ToList();
+            
+            //common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
+            ViewData["OrderBy"] = pagination.OrderBy;
+            ViewData["OrderDirection"] = pagination.OrderDirection;
+            var nicePlacePage = new List<NicePlace>();
+            for (int index = 0; index < dlPlace.Count(); index++)
+            {
+                var tmp = new NicePlace();
+                tmp.dlPlace = dlPlace[index];
+                tmp.dlNicePlaceInfoDetail = dlNicePlaceInfoDetailBal.GetByPlaceId(dlPlace[index].ID);
+                tmp.listImageCity = dlImagePlaceBal.GetByDLPlaceID(dlPlace[index].ID);
+                nicePlacePage.Add(tmp);
+
+            }
+            StringBuilder data = new StringBuilder();
+            data.Append("<article id=foreword></article><article id= what-is-the-internet>");
+            int i = 1;
+            foreach (var item in nicePlacePage)
+            {
+                data.Append("<section class=\"title-html page-" + i + "\"><div class=\"page\"><div class=\"page-title\"><h2>" + item.dlPlace.Name + "</h2></div><div class=\"image1\"><img src=Data\\avatar\\Place\\"+item.dlPlace.Avatar +"/></div><div class=\"left\"><p class=\"drop-cap\">" + item.dlNicePlaceInfoDetail.Info+ item.dlNicePlaceInfoDetail.History + "</p> </div></div></section>");
+                i++;
+            }
+            data.Append("<section class=\" title-html page-" + i + "\"><div class=\"page\"><div class=\"page-title\"><h2></h2></div><div class=\"left\"><p class=\"drop-cap\"></p> </div></div></section>");
+            data.Append("</article>");
+            return Json(data.ToString(), JsonRequestBehavior.AllowGet);
         }
 
         [Authorize]
@@ -245,7 +288,7 @@ namespace WebDuLichDev.Controllers
                 if (null != listImagePlaceOld)
                 {
                     if (listIdImagePresent != null)
-                    { 
+                    {
                         var listImageDeleted = listImagePlaceOld.Select(m => m.ID).ToArray().Except(listIdImagePresent).ToArray();
                         if (null != listImageDeleted)
                             for (int index = 0; index < listImageDeleted.Count(); index++)
@@ -262,7 +305,7 @@ namespace WebDuLichDev.Controllers
 
                 List<DL_ImagePlace> listImagePlaceNew = new List<DL_ImagePlace>();
                 if (null != listImageAddNew)
-                { 
+                {
                     for (int index = 0; index < listImageAddNew.Count(); index++)
                     {
                         DL_ImagePlace temp = new DL_ImagePlace();
