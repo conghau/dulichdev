@@ -78,6 +78,13 @@ namespace DuLichDLL.Model
             get { return _status; }
             set { _status = value; }
         }
+        private string _firstChar;
+
+        public string FirstChar
+        {
+            get { return _firstChar; }
+            set { _firstChar = value; }
+        }
     }
     public enum DL_PlaceColumns
     {
@@ -93,6 +100,7 @@ namespace DuLichDLL.Model
         CreatedDate,
         CreatedBy,
         Status,
+        FirstChar,
     }
     public enum DL_PlaceProcedure
     {
@@ -109,5 +117,10 @@ namespace DuLichDLL.Model
         p_DL_Place_Update_Hotel,
         p_DL_Place_Update_SomeValue,
         p_DL_Place_Update_Status,
+    }
+    public enum DL_PlaceTypeConvert
+    {
+        Default = 0,
+        HasFirstChar =1,
     }
 }

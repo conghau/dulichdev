@@ -749,8 +749,7 @@ TT.navigation.goToPage = function(articleId, pageNumber, fromHistoryChange) {
 
       if (!fromHistoryChange) {
         // Push the current URL to the history
-        TT.history.pushState('/' + TT.locale.getLocaleCodeFromURL() + '?' +
-            TT.cityid + '/' + pageNumber);
+        TT.history.pushState('/' + TT.locale.getLocaleCodeFromURL() +'/' + pageNumber);
       }
 
       // Make sure the bookmark is up to date with the latest navigation
