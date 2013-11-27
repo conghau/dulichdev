@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using Microsoft.Web.WebPages.OAuth;
 //using WebDuLichDev.Models;
-
+using zingme_sdk;
+using DotNetOpenAuth.AspNet.Clients;
+using WebDuLichDev.Controllers;
+using System.Configuration;
 namespace WebDuLichDev
 {
     public static class AuthConfig
@@ -27,6 +30,30 @@ namespace WebDuLichDev
                 appSecret: "10f578446278c7d75dfa178942124932");
 
             //OAuthWebSecurity.RegisterGoogleClient();
+             
+            //Zing Me SDK Config App ID       
+            OAuthWebSecurity.RegisterClient(
+                new ZingController("663270de6faf4149ac73cb5e77374924", "ac2105d2856646e4b70b24db66b53f29", null), "ZingMe", null);
+          
+
+            //OpenAuth.AuthenticationClients.AddGoogle();
+            
         }
+
+        
+      
     }
+    public static class RegisterAuthZing
+        {
+            private static ZME_Environment env = ZME_Environment.DEVELOPMENT;
+            private static string appname = "dulich";
+            private static string apikey = "663270de6faf4149ac73cb5e77374924";
+            private static string secretkey = "ac2105d2856646e4b70b24db66b53f29";
+            
+            public static ZME_Config config()
+            {
+                ZME_Config config1 = new ZME_Config(appname, apikey, secretkey, env);
+                return config1;
+            }
+        }
 }

@@ -34,6 +34,7 @@ namespace WebDuLichDev
 
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("vi-VN");
             Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
+         
 
         }
     }

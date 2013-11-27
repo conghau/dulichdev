@@ -1,6 +1,6 @@
 ﻿@model ICollection<AuthenticationClientData>
 @{
-      @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/base")  
  }
 @if (Model.Count == 0)
@@ -20,9 +20,24 @@ else
         <p>
         @foreach (AuthenticationClientData p in Model)
         {
-            <button type="submit" class="btn btn-primary" name="provider" value="@p.AuthenticationClient.ProviderName" title="Log in using your @p.DisplayName account">@p.DisplayName</button>
+            <button type="submit" class="btn btn-primary" name="provider" value="@p.AuthenticationClient.ProviderName" title="Log in using your @p.DisplayName account">@p.DisplayName</button>           
         }
         </p>
+        
+        
     </fieldset>
     }
+    
 }
+
+
+
+@*    using (Html.BeginForm("ZingMeCallback", "Account"))
+    {
+         @Html.AntiForgeryToken()
+     <p>
+        <button type="submit" name="" value="ZingME" class="btn btn-primary" title="Log in using your ZingME account">
+            ZingME
+        </button>
+            </p>
+    }*@

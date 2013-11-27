@@ -362,7 +362,41 @@ namespace WebDuLichDev.Controllers
 
             // return View();
         }
+        public ActionResult DelNicePlace(long ID)
+        {
+            try
+            {
+                bool result = false;
+                DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+                var status = 1;
+                result = dlPlaceBal.UpdateStatusById(ID, status);
 
+                if (true == result)
+                {
+                    TempData["Message"] = ResultMessage.SUC_Update;
+                    return RedirectToAction("ListNicePlace");
+                }
+                else
+                {
+                    TempData["Message"] = ResultMessage.ERR_Update;
+                    return RedirectToAction("ListNicePlace");
+                }
+            }
+            catch (BusinessException bx)
+            {
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                //LogBAL.LogEx("BLM_ERR_Common", ex);
+                log.Error(ex.Message);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return RedirectToAction("Error", "Home");
+            }
+
+        }
         #region
 
         #endregion
