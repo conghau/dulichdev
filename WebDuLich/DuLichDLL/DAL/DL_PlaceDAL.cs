@@ -12,7 +12,7 @@ namespace DuLichDLL.DAL
 {
     public class DL_PlaceDAL
     {
-        private DL_Place ConvertOneRow(DataRow row)
+        private DL_Place ConvertOneRow(DataRow row, int type)
         {
             try
             {
@@ -29,6 +29,9 @@ namespace DuLichDLL.DAL
                 result.CreatedDate = Utility.Utility.ObjectToDateTime(row[DL_PlaceColumns.CreatedDate.ToString()].ToString());
                 result.CreatedBy = Utility.Utility.ObjectToLong(row[DL_PlaceColumns.CreatedBy.ToString()].ToString());
                 result.Status = Utility.Utility.ObjectToInt(row[DL_PlaceColumns.Status.ToString()].ToString());
+                if(type ==(int) DL_PlaceTypeConvert.HasFirstChar )
+                    result.FirstChar = Utility.Utility.ObjectToString(row[DL_PlaceColumns.FirstChar.ToString()].ToString());
+         
                 return result;
             }
             catch (Exception ex)
@@ -36,12 +39,14 @@ namespace DuLichDLL.DAL
                 throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_DL_PlaceDAL: ConvertOneRow"));
             }
         }
-        private List<DL_Place> GetDataObject(DataTable dt)
+
+
+        private List<DL_Place> GetDataObject(DataTable dt, int typeConvert)
         {
             List<DL_Place> results = new List<DL_Place>();
             foreach (DataRow item in dt.Rows)
             {
-                results.Add(ConvertOneRow(item));
+                results.Add(ConvertOneRow(item,typeConvert));
             }
             return results;
         }
@@ -57,7 +62,7 @@ namespace DuLichDLL.DAL
                 DataTable dt = new DataTable();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
-                List<DL_Place> results = GetDataObject(dt);
+                List<DL_Place> results = GetDataObject(dt,(int)DL_PlaceTypeConvert.Default);
                 DL_Place dL_Place = new DL_Place();
                 if (results.Count > 0)
                 {
@@ -89,7 +94,7 @@ namespace DuLichDLL.DAL
                 DataTable dt = new DataTable();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
-                var results = GetDataObject(dt);
+                var results = GetDataObject(dt, (int)DL_PlaceTypeConvert.Default);
                 return results;
             }
             catch (DataAccessException ex)
@@ -128,7 +133,7 @@ namespace DuLichDLL.DAL
                 DataTable dt = new DataTable();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
-                var results = GetDataObject(dt);
+                var results = GetDataObject(dt, (int)DL_PlaceTypeConvert.Default);
                 totalRecords = Utility.Utility.ObjectToLong(totalRecord.Value);
                 return results;
             }
@@ -158,7 +163,7 @@ namespace DuLichDLL.DAL
                 DataTable dt = new DataTable();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
-                var results = GetDataObject(dt);
+                var results = GetDataObject(dt, (int)DL_PlaceTypeConvert.Default);
                 return results;
             }
             catch (DataAccessException ex)
@@ -187,7 +192,7 @@ namespace DuLichDLL.DAL
                 DataTable dt = new DataTable();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
-                var results = GetDataObject(dt);
+                var results = GetDataObject(dt, (int)DL_PlaceTypeConvert.HasFirstChar);
                 return results;
             }
             catch (DataAccessException ex)
@@ -215,7 +220,7 @@ namespace DuLichDLL.DAL
                 DataTable dt = new DataTable();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
-                var results = GetDataObject(dt);
+                var results = GetDataObject(dt, (int)DL_PlaceTypeConvert.HasFirstChar);
                 return results;
             }
             catch (DataAccessException ex)
@@ -243,7 +248,7 @@ namespace DuLichDLL.DAL
                 DataTable dt = new DataTable();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
-                var results = GetDataObject(dt);
+                var results = GetDataObject(dt, (int)DL_PlaceTypeConvert.HasFirstChar);
                 return results;
             }
             catch (DataAccessException ex)

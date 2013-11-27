@@ -114,13 +114,15 @@ TT.storage.getArticlesFromServer = function() {
   // Get a fresh listing of all disabled articles.
   var disabledArticles = TT.chapternav.getDisabledArticles();
 
-  $.ajax({
-      url: '/Place/Loaddata',
-      data:{cityId:TT.cityid},
-      type:'POST',
-    //contentType: 'text/html;charset=UTF-8',
-    success: function(data) {
-
+  //$.ajax({
+  //    url: '/Place/Loaddata',
+  //    data:{ID:TT.cityid},
+  //    type:'POST',
+  //  //contentType: 'text/html;charset=UTF-8',
+  //  success: function(data) {
+        
+  var data = $('#pages > div');
+  $('#pages > div').remove();
      //var data="<article id=\"foreword\"><section class=\"template-start-7 title-foreword page-1\"><div class=\"page\"><div class=\"page-title\"><h2>Foreword to 20 Things</h2></div><div class=\"image1\"><img src=\"\" data-src=\"css/images/cloud01.png\" /></div><div class=\"left\"><p class=\"drop-cap\">Many of us these days depend on the World Wide Web to bring the world’s information to our fingertips, and put us in touch with people and events across the globe instantaneously.</p></div>\"<div class=\"right\"><p class=\"continuation\">These powerful online experiences are possible thanks to an open web that can be accessed by anyone through a web browser, on any Internet-connected device in the world.</p> </div></div></section><section class=\"template-inner-6 title-foreword page-2\"><div class=\"page\">﻿<div class=\"left\"><p class=\"continuation\">But how do our browsers and the web actually work? How has the World Wide Web evolved into what we know and love today? And what do we need to know to navigate the web safely and efficiently?</p><p>“20 Things I Learned About Browsers and the Web” is a short guide for anyone who’s curious about the basics of browsers and the web.  Here’s what you’ll find here:</p><p>First we’ll look at the Internet, the very backbone that allows the web to exist. We’ll also take a look at how the web is used today, through cloud computing and web apps.</p></div><div class=\"right\"><p>Then, we’ll introduce the building blocks of web pages like HTML and JavaScript, and review how their invention and evolution have changed the websites you visit every day.  We’ll also take a look at the modern browser and how it helps users browse the web more safely and securely.</p><p>Finally, we’ll look ahead to the exciting innovations in browsers and web technologies that we believe will give us all even faster and more immersive online experiences in the future.</p></div></div></section><section class=\"template-inner-7 title-foreword page-3\"><div class=\"page\">﻿<p>Life as citizens of the web can be liberating and empowering, but also deserves some self-education. Just as we’d want to know various basic facts as citizens of our physical neighborhoods -- water safety, key services, local businesses -- it’s increasingly important to understand a similar set of information about our online lives.  That’s the spirit in which we wrote this guide. Many of the examples used to illustrate the features and functionality of the browser often refer back to Chrome, the open-source browser that we know well. We hope you find this guide as enjoyable to read as we did to create.</p><p class=\"continuation\">Happy browsing!</p><div class=\"spacer\" /><p class=\"continuation\"><em>The Google Chrome Team, with many thanks to Christoph Niemann for his illustrations</em></p><p class=\"continuation\"><em>November 2010</em></p></div></section></article><article id=\"what-is-the-internet\"><section class=\"template-start-7 title-what-is-the-internet page-1\"><div class=\"page\"><div class=\"page-title\"><h2>What is the Internet?</h2><h3>or, \"You Say Tomato, I Say TCP/IP\"</h3></div><div class=\"image1\"><img src=\"\" data-src=\"css/images/internet01.png\" /></div> <div class=\"left\"> 	<p class=\"drop-cap\">What is the Internet, exactly? To some of us, the Internet is where we stay in touch with friends, get the news, shop, and play games. To some others, the Internet can mean their local broadband providers, or the underground wires and fiber-optic cables that</p> </div> <div class=\"right\"> 	<p class=\"continuation\">carry data back and forth across cities and oceans. Who is right?</p> 	<p>A helpful place to start is near the Very Beginning: 1974.  That was the year that a few smart computer researchers invented something called the Internet Protocol Suite, or TCP/IP for</p> </div></div></section><section class=\"template-inner-5 title-what-is-the-internet page-2\"><div class=\"page\">﻿<div class=\"left\">	<p class=\"continuation\">short. TCP/IP created a set of rules that allowed computers to “talk” to each other and send information back and forth.</p>	<p>TCP/IP is somewhat like human communication: when we speak to each other, the rules of grammar provide structure to language and ensure that we can understand each other and exchange ideas. Similarly, TCP/IP provides the rules of communication that ensure interconnected devices understand each other so that they can send information back and forth. As that group of interconnected devices grew from one room to many rooms — and then to many buildings, and then to many cities and countries — the Internet was born.</p></div><div class=\"right\"><p>The early creators of the Internet discovered that data and information could be sent more efficiently when broken into smaller chunks, sent separately, and reassembled. Those chunks are called <strong>packets</strong>.  So when you send an email across the Internet, your full email message is broken down into packets, sent to your recipient, and reassembled. The same thing happens when you watch a video on a website like YouTube: the video files are segmented into data packets that can be sent from multiple YouTube servers around the world and reassembled to form the video that you watch through your browser.</p></div></div></section></article>";
       var globalPageCounter = 0;
 
@@ -161,8 +163,8 @@ TT.storage.getArticlesFromServer = function() {
 
       TT.storage.onFindBookmark();
       TT.storage.activateCurrentPageAndSetPageCount();
-    }
-  });
+  //  }
+  //});
 };
 
 

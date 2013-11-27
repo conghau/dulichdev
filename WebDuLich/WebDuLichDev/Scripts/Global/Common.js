@@ -64,6 +64,7 @@ $(function () {
     //    format: "#",
     //    decimals: 0
     //});
+
    // var message = @DuLichDLL.Utility.Utility.ObjectToString(ViewData[WebDuLichDev.Enum.PageInfo.Message.ToString()]);
     var message = $('#messageBoxCode').val();
     if (message != '') {

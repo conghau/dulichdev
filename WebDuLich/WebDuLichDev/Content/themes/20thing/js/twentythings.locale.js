@@ -121,7 +121,6 @@ TT.locale.closeList = function() {
  * @return {string} Locale code string.
  */
 TT.locale.getLocaleCodeFromURL = function() {
-    var host = document.location.host;
     var code = document.location.pathname;
     //var code = document.location.href.replace(host, '');
   return code;

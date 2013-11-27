@@ -5,7 +5,7 @@
 <div class="floatLeft" style="float: left">
     <label for="psize" style="display: inline">
         @Resources.Language.Rows</label>
-    <input name="pageSize" id="pageSize" type="text" style="text-align: center;width:20px" class="Number"
+    <input name="pageSize" id="pageSize" type="text" style="text-align: center;width:20px" class="Numberic" onkeypress="return isNumberKey(event)"
         value="@ViewData[WebDuLichDev.Enum.PageInfo.PageSize.ToString()]" />
 </div>
 <div class="pagination pagination-normal pagination-centered">
@@ -114,5 +114,12 @@
 
         </ul>
     }
-
 </div>
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if ((charCode > 48 && charCode < 57) || charCode == 8)
+            return true;
+        return false;
+    }
+</script>
