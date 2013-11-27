@@ -18,6 +18,7 @@ using System.Drawing;
 using System.IO; 
 using System.Drawing.Drawing2D; 
 using System.Drawing.Text; 
+using zingme_sdk;
 
 namespace WebDuLichDev.Controllers
 {
@@ -220,7 +221,8 @@ namespace WebDuLichDev.Controllers
 
         //
         // POST: /Account/ExternalLogin
-
+        
+       
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -231,10 +233,60 @@ namespace WebDuLichDev.Controllers
 
         //
         // GET: /Account/ExternalLoginCallback
+        [AllowAnonymous]
+        public ActionResult ZingMeCallback()
+        {
+            var random = new Random();
+            long number_ran = random.Next(1, 100000);
+            string state = number_ran.ToString();
+            ZME_Authentication oauth = new ZME_Authentication(WebDuLichDev.RegisterAuthZing.config());
+            string url_old = "http://localhost:62688";
+            Uri uri_old = new Uri(url_old);
+            string uri_new = uri_old.ToString();
+            String url = oauth.getAuthorizedUrl(uri_new, "14103");
+            //oauth.getAccessTokenFromSignedRequest();
+            Response.Redirect(url,true);
+            Response.Flush();
+            if (!Response.IsRequestBeingRedirected)
+            {
+                return RedirectToAction("ZingMeGet");
+            }
+            else
+            {
+                return Content("Redirected");
+                //return RedirectToAction("ZingMeGet");
+                
+            }
+           
 
+           
+
+           
+
+        }
+        [AllowAnonymous]
+        public ActionResult ZingMeGet()
+        {
+            int expires = 0;            
+            string code = Request["code"];
+            ZME_Authentication oauth = new ZME_Authentication(WebDuLichDev.RegisterAuthZing.config());
+            //string code = "UN629rEmcoePHvuxDlVrKq4Vmpb4-QOeJHUGJXFy-7KVAznjNi3d0IDxXM4XqArk9JBTK5dRlJicDuiVJxULBZ9Uyq4Sii4bPbho5H-oc28tL_aKGRp5UrnMoq4tehnWB0hDDG6rkWybQCnGRS-aO7GpycCupFKW91R3Qlp9aJBCQFBCPcwnoY-pmyWdF-I9Ik30sbzZijTheitANdl9Za64t_nOSzdtMIO5J2nAQQVRVm%3D%3D";
+            string access_token = oauth.getAccessTokenFromCode(code, out expires);// cai code = null kia! 
+            //string sync = "Oi3DdT4FiHQTYYTY2Ir-4Man6_YmkrZ39CexI9MAy4I=.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4cGlyZXMiOjcyMDAsImlzc3VlZF9hdCI6MTM4NTQ0MDEwMCwiYWNjZXNzX3Rva2VuIjoiNjYzMjcwZGU2ZmFmNDE0OWFjNzNjYjVlNzczNzQ5MjQuTWpKa056QmxZamc9ZW5LcllnSHVZYmNYOGFfM3BkZ0xLU0d6S2xRX0hnU3JXRzRtcEF2cG5yeDdRckpGaE43NUlnaTdDd2RZU2llaGsxNTZaQ0wxSWRaU1J6dzFxLUdUM2pvRnd3b2RpYUxVbE8yTWh5RVlFR0JmV0JJd3BoZmpKaV9RY0NoR3Q2YkFZRko2cHBDdjA3TS1GUTVwIiwidWlkIjo2OTgxNjA4Mn0=";
+            ZME_Me me = new ZME_Me(WebDuLichDev.RegisterAuthZing.config());
+            
+            //var access_token = oauth.getAccessTokenFromSignedRequest(sync, out expires);
+            string id = "id";
+            string username = "username";
+            string gender = "gender";
+            string dob = "dob";
+            var username_data = me.getInfo(access_token, username);
+            var model = username_data;
+            return View(model);
+        }
         [AllowAnonymous]
         public ActionResult ExternalLoginCallback(string returnUrl)
-        {
+        {           
             AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
             if (!result.IsSuccessful)
             {
@@ -251,6 +303,7 @@ namespace WebDuLichDev.Controllers
                 // If the current user is logged in add the new account
                 OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
                 return RedirectToLocal(returnUrl);
+
             }
             else
             {
@@ -487,8 +540,7 @@ namespace WebDuLichDev.Controllers
                 //render as Jpeg 
                 bmp.Save(mem, System.Drawing.Imaging.ImageFormat.Jpeg); 
                 img = this.File(mem.GetBuffer(), "image/Jpeg"); 
-            } 
- 
+            }  
             return img; 
         }        
     }

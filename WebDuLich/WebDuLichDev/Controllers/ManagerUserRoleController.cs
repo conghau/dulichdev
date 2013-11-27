@@ -21,6 +21,9 @@ namespace WebDuLichDev.Controllers
         {
             webpages_RolesBAL wpRolesBAL = new webpages_RolesBAL();
             var model = wpRolesBAL.GetListWithCountNumberUser();
+            webpages_UsersInRolesBAL wpUserInRolesBAL = new webpages_UsersInRolesBAL();
+            var inrole = wpUserInRolesBAL.GetList();
+            
             return View(model);
         }
 
