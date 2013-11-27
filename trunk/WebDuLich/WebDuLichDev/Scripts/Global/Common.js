@@ -52,18 +52,18 @@ $(function () {
     //        $(e.target).parent().addClass('active')
     //    }
     //$(".DDL").kendoDropDownList();
-    $(".CBB").kendoComboBox();
+    //$(".CBB").kendoComboBox();
 
     //$(".DateTime").filter_inputDateTime(DateTimeFormat);
     //$(".DateTimeKendo").filter_inputDateTime(DateTimeFormat); //DateTimeFormat get from session and set in master page
     //$(".DateTimeKendo").kendoDatePicker({
     //    format: DateTimeFormat
     //});
-    $(".Numberic").kendoNumericTextBox();
-    $(".NumbericINT").kendoNumericTextBox({
-        format: "#",
-        decimals: 0
-    });
+    //$(".Numberic").kendoNumericTextBox();
+    //$(".NumbericINT").kendoNumericTextBox({
+    //    format: "#",
+    //    decimals: 0
+    //});
    // var message = @DuLichDLL.Utility.Utility.ObjectToString(ViewData[WebDuLichDev.Enum.PageInfo.Message.ToString()]);
     var message = $('#messageBoxCode').val();
     if (message != '') {

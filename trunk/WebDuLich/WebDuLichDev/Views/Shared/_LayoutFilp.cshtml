@@ -5,34 +5,129 @@
     <title>@ViewBag.Title - My ASP.NET MVC Application</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Scripts/Lib/bootstrap/css/bootstrap.css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/rating.css")
     @Scripts.Render("~/Scripts/rating.js")
     @Scripts.Render("~/Scripts/jquery-1.8.2.min.js")
-    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/base")
     @Scripts.Render("~/Scripts/Lib/custom-scrollbar/js/minified/jquery.mCustomScrollbar.concat.min.js")
     @RenderSection("scripts", required: false)
-    @Styles.Render("/Content/themes/20Things_PageFlip_Example/example/main.css")
-     @Styles.Render("~/Scripts/Lib/custom-scrollbar/css/jquery.mCustomScrollbar.css")
+    @Styles.Render("~/Content/themes/20Thing/css/main.css")
+
+    <script type="text/javascript">
+        document.write('<link rel="stylesheet" type="text/css" media="all" href="css/hideOnLoad.css" />');
+
+        if (window.location.hash.match('\/')) {
+            window.location = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + window.location.hash.slice(1);
+        }
+
+        var SERVER_VARIABLES = {
+            PAGE: "Page",
+            PAGES: "Pages",
+            THING: "THING",
+            FOREWORD: "FOREWORD",
+            LANG: "en-US",
+            SITE_VERSION: 49,
+            FACEBOOK_MESSAGE: "A fun guidebook from Google on things you've always wanted to know about browsers & the web (but were afraid to ask",
+            FACEBOOK_MESSAGE_SINGLE: "A fun fact I learned today from Google's guidebook to browsers and the web.",
+            TWITTER_MESSAGE: "A fun guidebook from Google on things you've always wanted to know about browsers & the web:",
+            TWITTER_MESSAGE_SINGLE: "A fun fact I learned today from Google's guidebook to browsers and the web: ",
+            BUZZ_MESSAGE: "A fun guidebook from Google on things you've always wanted to know about browsers & the web (but were afraid to ask): http://goo.gl/20things",
+            BUZZ_MESSAGE_SINGLE: "A fun fact I learned today from Google's guidebook to browsers and the web: ",
+            SOLID_BOOK_COLOR: "#5873a0"
+        };
+
+        // Set language for use by Google +1 button.
+        window.___gcfg = { lang: SERVER_VARIABLES.LANG };
+    </script>
 </head>
 <body>
-    <div id="header">
-        @Html.Partial("p_Header")
+    <div id="preloader">
+        <div class="contents">
+            <canvas class="animation"></canvas>
+            <div class="progress">
+                <div class="fill"></div>
+            </div>
+        </div>
     </div>
-    <div id="body">
-        <section>
-        @RenderBody()
+    <header>
+        <nav>
+            <ul>
+                <li class="table-of-things"><a href="/table-of-things">TABLE OF THINGS</a></li>
+                <li class="divider1"></li>
+                <li class="about"><a href="/foreword/1">FOREWORD</a></li>
+                <li class="divider2"></li>
+                <li class="credits"><a href="/credits">CREDITS</a></li>
+                <li class="divider2"></li>
+            </ul>
+        </nav>
 
-        </section>
-    </div>
+        <div id="language-selector">
+            <div id="language-selector-title"><a>VIETNAM (VI)</a></div>
+            <div id="language-selector-list">
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Input type="search" is currently too inconsistent across browsers and platforms -->
+        <input id="search-field" type="text" value="Search Book">
+    </header>
+    @RenderBody()
     <footer>
-        <div class="content-wrapper">
-            <div class="float-left">
-                <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+        <span class="curator">Published by the <a href="http://www.google.com/chrome?brand=CHJN">Google Chrome</a> Team. ©,2010 Google Inc. All Rights Reserved.</span>
+        <div class="right-side">
+            <div class="divider"></div>
+            <div class="sharing">
+                <p>SHARE BOOK</p>
+                <input type="text" class="clipboard-notification" value="http://20thingsilearned.com/" readonly="readonly" />
+                <ul>
+                    <li class="facebook"><a href="http://www.facebook.com/sharer.php?u=http://20thingsilearned.com&amp;t=20%20Things%20I%20learned%20About%20Browsers%20and%20the%20Web" title="Facebook"></a></li>
+                    <li class="twitter"><a href="http://twitter.com/share?original_referer=http://20thingsilearned.com&amp;text=20%20Things%20I%20learned%20About%20Browsers%20and%20the%20Web&amp;url=http://20thingsilearned.com" title="Twitter"></a></li>
+                    <li class="gplus"></li>
+                    <li class="url"><a href="#"></a></li>
+                </ul>
+            </div>
+            <div class="divider"></div>
+            <div class="print">
+                <a href="/en-US/all/print" target="_blank"><span class="icon"></span>PRINT BOOK</a>
+            </div>
+            <div class="divider"></div>
+            <div class="lights-wrapper">
+                <div class="lights">
+                    <a href="#"><span class="icon">LIGHTS</span></a>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="fullscreen-wrapper" style="display: none;">
+                <div class="fullscreen">
+                    <a href="#"><span class="icon"></span>FULL SCREEN</a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <script src="/Content/themes/20Thing/js/twentythings.js"></script>
+    <script src="/Content/themes/20Thing/js/twentythings.preloader.js"></script>
+    <script src="/Content/themes/20Thing/js/twentythings.history.js"></script>
+    <script src="/Content/themes/20Thing/js/twentythings.locale.js"></script>
+    <script src="/Content/themes/20Thing/js/twentythings.storage.js"></script>
+    <script src="/Content/themes/20Thing/js/twentythings.pageflip.js"></script>
+    <script src="/Content/themes/20Thing/js/twentythings.paperstack.js"></script>
+    <script src="/Content/themes/20Thing/js/twentythings.illustration.js"></script>
+    <script src="/Content/themes/20Thing/js/twentythings.navigation.js"></script>
+    <script src="/Content/themes/20Thing/js/twentythings.cache.js"></script>
+    <script src="/Content/themes/20Thing/js/twentythings.search.js"></script>
+    <script src="/Content/themes/20Thing/js/twentythings.chapternav.js"></script>
+    <script src="/Content/themes/20Thing/js/twentythings.sharing.js"></script>
+    <script src="/Content/themes/20Thing/js/twentythings.overlay.js"></script>
+    <script src="/Content/themes/20Thing/js/twentythings.tableofthings.js"></script>
+    <script src="/Content/themes/20Thing/js/twentythings.flipintro.js"></script>
+    <script type="text/javascript">
+        TT.initialize();
+    </script>
 </body>
 </html>

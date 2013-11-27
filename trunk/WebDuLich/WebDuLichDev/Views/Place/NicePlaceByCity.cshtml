@@ -3,19 +3,132 @@
     ViewBag.Title = "NicePlaceByCity";
     Layout = "~/Views/Shared/_LayoutFilp.cshtml";
 }
-<form method="post" action="#" id="frmMain">
-    @{var pageSize = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.PageSize.ToString()].ToString());
-      var pageNum = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.PageNum.ToString()].ToString());
-      var page = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.Page.ToString()].ToString()); }
-
-    <input type="hidden" value="@ViewData["OrderBy"]" name="orderBy" id="orderBy" />
-    <input type="hidden" value="@ViewData["OrderDirection"]" name="orderDirection"id="orderDirection" />
-    <input type="hidden" value="@ViewBag.pages" name ="page" id="pages"/>
-    
-
-    @Html.Partial("p_niceplace", Model)
-    <div>
-        <a id="pressNext"><i class="icon-forward"></i></a>
+<div id="search-dropdown">
+    <div class="fader">
+        <div class="background-top"></div>
+        <div class="background-bottom"></div>
+        <div class="results">
+            <div class="things">
+                <h4><span>Search Book</span></h4>
+                <hr>
+            </div>
+            <div class="keywords">
+                <h4><span>KEYWORDS</span></h4>
+                <hr>
+            </div>
+            <div class="empty">No results found.</div>
+        </div>
     </div>
-</form>
+</div>
+<input type="hidden" id="cityId" name="cityId" value="@Model[0].dlPlace.DL_CityId"/>
+<div id="grey-mask" style="left: 0px;"></div>
+@if (Model != null)
+{
+    <div id="book">
+        <div id="shadow">
+            <div class="shadow-left"></div>
+            <div class="shadow-right"></div>
+        </div>
+        <div id="spine">
+            <div class="spine-top"></div>
+            <div class="spine-bottom"></div>
+        </div>
+        <div id="front-cover-bookmark">
+            <div class="content">
+                <p>What’s a cookie? How do I protect myself on the web? And most importantly: What happens if a truck runs over my laptop?</p>
+                <p>For things you’ve always wanted to know about the web but were afraid to ask, read on.</p>
+                <a class="open-book" href="#">OPEN BOOK</a>
+                <canvas id="flip-intro" width="89" height="69"></canvas>
+            </div>
+        </div>
+        <div id="sharer">
+            <div class="background-top"></div>
+            <div class="background-bottom"></div>
+            <div class="content">
+                <ul>
+                    <li class="facebook">
+                        <a title="Facebook" href="#"></a>
+                    </li>
+                    <li class="twitter">
+                        <a title="Twitter" href="#"></a>
+                    </li>
+                    <li class="gplus"></li>
+                    <li class="print">
+                        <a title="Print Thing" target="_blank" href="/en-US/foreword/print">Print Thing</a>
+                    </li>
+                </ul>
+                <p class="index">THING</p>
+                <p class="instruction">SHARE THING</p>
+            </div>
+        </div>
+        <div id="front-cover">
+            <img src="/Content/themes/20Thing/css/images/front-cover.jpg" width="830" height="520">
+        </div>
+        <div id="back-cover">
+            <img src="/Content/themes/20Thing/css/images/back-cover.jpg" data-src-flipped="/Content/themes/20Thing/css/images/back-cover-flipped.jpg" width="830" height="520">
+        </div>
+        <div id="page-shadow-overlay"></div>
 
+        <div id="pages">
+        </div>
+        <div id="left-page">
+            <img src="/Content/themes/20Thing/css/images/left-page.jpg" data-src-flipped="/Content/themes/20Thing/css/images/left-page-flipped.jpg" width="830" height="520">
+        </div>
+        <div id="right-page">
+            <div id="paperstack">
+                <div class="paper s1"></div>
+                <div class="paper s2"></div>
+                <div class="paper s3"></div>
+                <div class="paper s4"></div>
+                <div class="paper s5"></div>
+                <div class="paper s6"></div>
+                <div class="paper s7"></div>
+                <div class="shadow"></div>
+            </div>
+            <img src="/Content/themes/20Thing/css/images/right-page.jpg" width="830" height="520">
+        </div>
+    </div>
+}
+<nav id="chapter-nav">
+    <ul>											
+				<li class="what-is-the-internet">
+					<a href="/what-is-the-internet" class="cnItem" title="What is the Internet?"  data-title="What is the Internet?" data-subtitle="or, 'You Say Tomato, I Say TCP/IP'" data-article="what-is-the-internet" data-globalstartpage="4" data-globalendpage="6" data-numberofpages="3">
+						<div class="illustration"></div>
+						<span>1</span>
+					</a>
+					<a class="over" href="/what-is-the-internet">
+						<div class="description">
+							<p class="title">What is the Internet?</p>
+							<p class="pagenumber">4-6</p>
+						</div>
+						<div class="small-book">
+							<div class="illustration"></div>
+							<p class="index">1</p>
+						</div>
+					</a>
+				</li>
+        </ul>
+</nav>
+<div id="overlay" style="display: none;">
+    <div class="bookmark" style="left: 674.5px; top: 340px; margin: 0px; display: none;"></div>
+    <div class="print" style="display: none;"></div>
+</div>
+<div id="credits" style="left: 354.5px; top: 85px; margin: 0px;">
+    <div class="header"></div>
+    <div class="people"></div>
+    <hr>
+    <div class="share"></div>
+</div>
+<div id="pagination-prev" class="inactive" style="top: 320px; left: 0px;">
+    <a href="#">
+        <div class="arrow">LOCALE_PREVIOUS_PAGE</div>
+    </a>
+    <div class="page-progress" style="display: none;">
+    </div>
+</div>
+<div id="pagination-next" class="" style="top: 320px; right: auto; left: 996px;">
+    <a href="#">
+        <div class="arrow">LOCALE_NEXT_PAGE</div>
+    </a>
+
+</div>
