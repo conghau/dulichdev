@@ -88,22 +88,28 @@
                 </section>
             </article>
 
-            @{int i = 3;
+            @{int i = 1;
               int index = 0;
               string tempChar = "";
             }
-            <article id="@Model[0].dlPlace.FirstChar">
-                <section class="title-@Model[0].dlPlace.FirstChar page-2">
+            <article id="@Model[0].dlPlace.FirstChar.ToUpper()">
+                <section class="title-@Model[0].dlPlace.FirstChar.ToUpper() page-1">
                     <div class="page">
                         <div class="page-title">
                             <h2>@Model[0].dlPlace.Name</h2>
+                        </div>
+                        <div class="right">
+                            @if (Model[0].listImageCity != null)
+                            {
+                                <a href="@Url.Action("ListImagePlace", "Place", new { placeId = Model[0].dlPlace.ID })" class="listImage fancybox.iframe"> list Images</a>
+                            }
                         </div>
                         <div class="left">
                             <p class="drop-cap">@HttpUtility.HtmlDecode(Model[0].dlNicePlaceInfoDetail.Info)</p>
                         </div>
                     </div>
                 </section>
-            @{tempChar = Model[0].dlPlace.FirstChar;}
+            @{tempChar = Model[0].dlPlace.FirstChar.ToUpper();}
 
 
             @foreach (var item in Model)
@@ -111,45 +117,60 @@
 
                 if (index != 0)
                 {
-                    if (tempChar != item.dlPlace.FirstChar && tempChar != "")
+                    if (tempChar != item.dlPlace.FirstChar.ToUpper() && tempChar != "")
                     {
+                        i = 1;
                         @:</article>
-                        @:<article id="item.dlPlace.FirstChar">
-                            <section class="title-@item.dlPlace.FirstChar page-@i">
+                        @:<article id="@item.dlPlace.FirstChar.ToUpper()">
+                            <section class="title-@item.dlPlace.FirstChar.ToUpper() page-@i">
                                 <div class="page">
                                     <div class="page-title">
                                         <h2>@item.dlPlace.Name</h2>
                                     </div>
+                                    <div class="right">
+                            @if (item.listImageCity != null)
+                            {
+                                <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe"> list Images</a>
+                                <input type="button" id="test" value="test" class="btn"/>
+                               
+                            }
+                        </div>
                                     <div class="left">
                                         <p class="drop-cap">@HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info)</p>
                                     </div>
                                 </div>
                             </section>
-                            tempChar = @item.dlPlace.FirstChar;
-                            i++;
-                    
-                     }
-                     else
-                     {
-                        <section class="title-@item.dlPlace.FirstChar page-@i">
-                                <div class="page">
-                                    <div class="page-title">
-                                        <h2>@item.dlPlace.Name</h2>
-                                    </div>
-                                    <div class="left">
-                                        <p class="drop-cap">@HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info)</p>
-                                    </div>
-                                </div>
-                            </section>
-                         i++;
+                            tempChar = @item.dlPlace.FirstChar.ToUpper();
+
+
                     }
-                            
+                    else
+                    {
+                        i++;
+                        <section class="title-@item.dlPlace.FirstChar.ToUpper() page-@i">
+                                <div class="page">
+                                    <div class="page-title">
+                                        <h2>@item.dlPlace.Name</h2>
+                                    </div>
+                                     <div class="right">
+                            @if (item.listImageCity != null)
+                            {
+                                <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe"> list Images</a>
+                            }
+                        </div>
+                                    <div class="left">
+                                        <p class="drop-cap">@HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info)</p>
+                                    </div>
+                                </div>
+                            </section>
+                    }
+
                 }
 
                 if (index == 0)
                 { index++; }
 
-                
+
             }
         </div>
     </div>
@@ -175,10 +196,10 @@
         @{string tmpChar = "";}
         @foreach (var item in Model)
         {
-            if (tmpChar != @item.dlPlace.FirstChar)
+            if (tmpChar != @item.dlPlace.FirstChar.ToUpper())
             {
-            <li class="@item.dlPlace.FirstChar">
-                <a href="#" class="cnItem" title="@item.dlPlace.FirstChar" data-title="@item.dlPlace.FirstChar" data-subtitle="or, 'You Say Tomato, I Say TCP/IP'" data-article="@item.dlPlace.FirstChar" data-globalstartpage="" data-globalendpage="" data-numberofpages="">
+            <li class="@item.dlPlace.FirstChar.ToUpper()">
+                <a href="#" class="cnItem" title="@item.dlPlace.FirstChar" data-title="@item.dlPlace.FirstChar" data-subtitle="" data-article="@item.dlPlace.FirstChar.ToUpper()" data-globalstartpage="" data-globalendpage="" data-numberofpages="">
                     <div class="illustration"></div>
                     <span>1</span>
                 </a>
@@ -186,7 +207,6 @@
                     <div class="description">
                         <p class="title">@item.dlPlace.FirstChar</p>
                         <p class="pagenumber">
-                            /p>
                     </div>
                     <div class="small-book">
                         <div class="illustration"></div>
@@ -194,7 +214,7 @@
                     </div>
                 </a>
             </li>
-                tmpChar = @item.dlPlace.FirstChar;
+                tmpChar = @item.dlPlace.FirstChar.ToUpper();
             }
 
         }
