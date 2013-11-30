@@ -43,7 +43,7 @@ namespace WebDuLichDev.Controllers
                 common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
                 ViewData["OrderBy"] = pagination.OrderBy;
                 ViewData["OrderDirection"] = pagination.OrderDirection;
-
+                log.Error("Shataskasd");
                 return View(model);
             }
             catch (BusinessException bx)
