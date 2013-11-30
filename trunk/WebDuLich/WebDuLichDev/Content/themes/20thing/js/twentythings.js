@@ -33,7 +33,7 @@ var TT = TT || {};
  * The width of one page (excluding jacket) in the book.
  * @type {number}
  */
-TT.PAGE_WIDTH = 800;
+TT.PAGE_WIDTH = 640;
 
 
 /**
@@ -56,7 +56,7 @@ TT.PAGE_MIN_WIDTH = 836;
  * scrollbars will appear).
  * @type {number}
  */
-TT.PAGE_MIN_HEIGHT = 680;
+TT.PAGE_MIN_HEIGHT = 700;
 
 
 /**
@@ -79,7 +79,7 @@ TT.PAGE_MARGIN_Y = 10;
  * The total width of the book, including jacket.
  * @type {number}
  */
-TT.BOOK_WIDTH = 1660;
+TT.BOOK_WIDTH = 1328;
 
 
 /**
