@@ -43,6 +43,7 @@ namespace WebDuLichDev.Controllers
             ZME_Authentication oauth = new ZME_Authentication(WebDuLichDev.RegisterAuthZing.config());
             string url_old = "http://localhost:62688";
             Uri uri_old = new Uri(url_old);
+          
             string uri_new = uri_old.ToString();
             String url = oauth.getAuthorizedUrl(uri_new, "14103");
 

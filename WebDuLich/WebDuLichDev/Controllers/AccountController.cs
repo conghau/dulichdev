@@ -206,7 +206,7 @@ namespace WebDuLichDev.Controllers
                     try
                     {
                         WebSecurity.CreateAccount(User.Identity.Name, model.NewPassword);
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+                        return RedirectToAction("Changepassword", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
                     catch (Exception)
                     {
