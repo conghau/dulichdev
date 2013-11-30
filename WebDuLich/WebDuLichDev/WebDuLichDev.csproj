@@ -223,11 +223,6 @@
     <Content Include="Content\map2\imap5custom_left.html" />
     <Content Include="Content\map2\imap5custom_right.html" />
     <Content Include="Content\rating.css" />
-    <Content Include="Content\themes\20Things_PageFlip_Example\example\book.png" />
-    <Content Include="Content\themes\20Things_PageFlip_Example\example\index.html" />
-    <Content Include="Content\themes\20Things_PageFlip_Example\example\main.css" />
-    <Content Include="Content\themes\20Things_PageFlip_Example\example\pageflip.js" />
-    <Content Include="Content\themes\20Things_PageFlip_Example\example\paper.png" />
     <Content Include="Content\themes\20thing\css\hideOnLoad.css" />
     <Content Include="Content\themes\20thing\css\images\3d01_clouds.png" />
     <Content Include="Content\themes\20thing\css\images\back-cover-flipped.jpg" />
@@ -408,6 +403,7 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -657,6 +653,7 @@
     <Content Include="Views\ManagerUserRole\Manage.cshtml" />
     <Content Include="Views\Shared\_pureLayout.cshtml" />
     <Content Include="Views\Account\ZingMeGet.cshtml" />
+    <Content Include="Views\Place\ListImagePlace.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
