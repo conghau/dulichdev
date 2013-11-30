@@ -48,8 +48,7 @@ var l = window.location;
 /**
  * Full location string.
  */
-TT.sharing.BASE_URL = l.protocol + '//' + l.hostname + '/' +
-    SERVER_VARIABLES.LANG;
+TT.sharing.BASE_URL = l.protocol + '//' + l.hostname;
 
 
 /**

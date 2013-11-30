@@ -10,13 +10,14 @@
     @Styles.Render("~/Content/rating.css")
     @Scripts.Render("~/Scripts/rating.js")
     @Scripts.Render("~/Scripts/jquery-1.8.2.min.js")
-    @*@Scripts.Render("~/bundles/jquery")*@
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/base")
     @Scripts.Render("~/Scripts/Lib/custom-scrollbar/js/minified/jquery.mCustomScrollbar.concat.min.js")
     @RenderSection("scripts", required: false)
+    <script src="@Url.Content("~/Scripts/jquery.min.js")"></script>
     @Styles.Render("~/Content/themes/20Thing/css/main.css")
-    @Styles.Render("~/Content/themes/20Thing/css/main.css")
-
+    @Scripts.Render("~/Scripts/Lib/FancyBox/source/jquery.fancybox.js")
+    @Styles.Render("~/Scripts/Lib/FancyBox/source/jquery.fancybox.css")
     <script type="text/javascript">
         document.write('<link rel="stylesheet" type="text/css" media="all" href="css/hideOnLoad.css" />');
 
@@ -110,7 +111,27 @@
             </div>
         </div>
     </footer>
-
+    <script type="text/javascript">
+        //function myFunction()
+        //{
+        //    alert('huhu');
+        //}
+        $(function () {
+            //$('#test').click(function () { alert('huhu'); });
+            $('.listImage').fancybox({
+                maxWidth: 600,
+                fitToView: false,
+                width: '600px',
+                height: '530px',
+                autoSize: false,
+                closeClick: false,
+                openEffect: 'none',
+                closeEffect: 'none',
+                padding: 10,
+                //afterClose: function () { location.reload(false); }
+            });
+        });
+    </script>
     <script src="/Content/themes/20Thing/js/twentythings.js"></script>
     <script src="/Content/themes/20Thing/js/twentythings.preloader.js"></script>
     <script src="/Content/themes/20Thing/js/twentythings.history.js"></script>

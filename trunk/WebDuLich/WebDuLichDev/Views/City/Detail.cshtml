@@ -24,12 +24,12 @@
     </div>  
 <script>
     function dosomething() {
-        location.href = '@Url.Action("NicePlaceByCity", "Place", new { cityId = Model.ID })';     
+        location.href = '@Url.Action("NicePlaceByCity", "Place", new { ID = Model.ID })';     
     }
     function dosomething2() {
-        location.href = '@Url.Action("RestaurantsByCity", "Place", new { cityId = Model.ID })';
+        location.href = '@Url.Action("RestaurantsByCity", "Place", new { ID = Model.ID })';
     }
     function dosomething3() {
-        location.href = '@Url.Action("HotelByCity", "Place", new { cityId = Model.ID })';
+        location.href = '@Url.Action("HotelByCity", "Place", new { ID = Model.ID })';
      }
 </script>

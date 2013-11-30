@@ -48,7 +48,7 @@ TT.PAGE_HEIGHT = 500;
  * scrollbars will appear).
  * @type {number}
  */
-TT.PAGE_MIN_WIDTH = 1000;
+TT.PAGE_MIN_WIDTH = 836;
 
 
 /**
