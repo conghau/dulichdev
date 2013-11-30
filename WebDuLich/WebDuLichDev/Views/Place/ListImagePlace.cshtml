@@ -1,0 +1,24 @@
+﻿@model List<DuLichDLL.Model.DL_ImagePlace>
+@{
+   
+    ViewBag.Title = "ListImage";
+    Layout = "~/Views/Shared/_pureLayout.cshtml";
+}
+@{int i = 0;}
+@if (null != Model)
+{
+    
+    <div class="span6">
+        <ul class="thumbnails">
+            
+    @foreach (var item in Model)
+    {
+        <li class="span2">
+            <a class="thumbnail" href="#">
+                <img alt="" src="~/Data/Images/Place/@item.LinkImage">
+            </a>
+        </li>
+    }
+        </ul>
+    </div>
+}
