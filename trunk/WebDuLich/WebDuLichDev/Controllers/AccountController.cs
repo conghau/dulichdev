@@ -137,7 +137,7 @@ namespace WebDuLichDev.Controllers
                 }
             }
 
-            return RedirectToAction("Manage", new { Message = message });
+            return RedirectToAction("Changepassword", new { Message = message });
         }
 
         //
