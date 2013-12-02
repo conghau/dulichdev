@@ -1,4 +1,5 @@
 ﻿using DuLichDLL.BAL;
+using DuLichDLL.Model;
 using DuLichDLL.TOOLS;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,7 @@ namespace WebDuLichDev.Controllers
             //HotelInfo hotelinfo = new HotelInfo();
             DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
             //hotelinfo.dlPlace = dlPlaceBal.GetByID(ID);
-
+            var fileName_Status = ""; 
             var serserPath = Server.MapPath("~/Data/Avatar/Place/");
             if (System.IO.File.Exists(serserPath + dlPlaceBal.GetByID(ID).Avatar)) //Xóa file có trước nếu đã có trong csdl. Việc up là duy nhất
                 System.IO.File.Delete(serserPath + dlPlaceBal.GetByID(ID).Avatar);
@@ -60,25 +61,31 @@ namespace WebDuLichDev.Controllers
 
             if (null != fileUpload)
             {
-
                 foreach (var file in fileUpload)
                 {
                     fileOK = false;
                     fileOK = IsImage(file);
+                    if (false == fileOK)
+                        break;
                 }
             }
             if (true == fileOK)
             {
                 foreach (var file in fileUpload)
                 {
-                    // Some browsers send file names with full path. We only care about the file name.
-                    var fileName = Path.GetFileName(file.FileName);
 
+                    var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
                     var destinationPath = Path.Combine(serserPath, fileName);
-
                     file.SaveAs(destinationPath);
+                    // Some browsers send file names with full path. We only care about the file name.
+                    //var fileName = Path.GetFileName(file.FileName);
+
+                    //var destinationPath = Path.Combine(serserPath, fileName);
+
+                    //file.SaveAs(destinationPath);
+                    fileName_Status = fileName;
                 }
-                return Json(new { status = "OK" }, "text/plain");
+                return Json(new { status = fileName_Status }, "text/plain");
             }
             else
             {
@@ -101,6 +108,8 @@ namespace WebDuLichDev.Controllers
                 {
                     fileOK = false;
                     fileOK = IsImage(file);
+                    if (false == fileOK)
+                        break;
                 }
             }
             if (true == fileOK)
@@ -132,7 +141,53 @@ namespace WebDuLichDev.Controllers
             return Json(new { status = "OK" }, "text/plain");
 
         }
+        public ActionResult UploadAvatarCity(IEnumerable<HttpPostedFileBase> fileUpload, int cityId)
+        {
 
+            DL_City dlCity = new DL_City();
+            var serserPath = Server.MapPath("~/Data/Avatar/City/");
+            if (System.IO.File.Exists(serserPath + dlCity.Avatar)) //Xóa file có trước nếu đã có trong csdl. Việc up là duy nhất
+                System.IO.File.Delete(serserPath + fileUpload);
+            var fileName_Status = "";         
+
+            Boolean fileOK = false;
+
+            if (null != fileUpload)
+            {
+                foreach (var file in fileUpload)
+                {
+                    fileOK = false;
+                    fileOK = IsImage(file);
+                    if (false == fileOK)
+                        break;
+                }
+            }
+            if (true == fileOK)
+            {
+                foreach (var file in fileUpload)
+                {
+                    var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+                    var destinationPath = Path.Combine(serserPath, fileName);
+                    file.SaveAs(destinationPath);                    
+                    fileName_Status = fileName;
+                }
+                return Json(new { status = fileName_Status }, "text/plain");
+            }
+            else
+            {
+                return Json(new { status = "Fail: Not allow file have extension that" }, "text/plain");
+            }
+        }
+        public ActionResult RemoveAvatarCity(string fileNames, int cityId)
+        {
+            ProcessWithFiles processfile = new ProcessWithFiles();
+            var destinationPath = Path.Combine(Server.MapPath("~/Data/Avatar/City/"), fileNames);
+
+            processfile.DeleteFile(destinationPath);
+
+            return Json(new { status = "OK" }, "text/plain");
+
+        }
 
 
     }
