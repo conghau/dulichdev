@@ -276,4 +276,7 @@
   <data name="VN" xml:space="preserve">
     <value>VietNamese</value>
   </data>
+  <data name="SeeMore" xml:space="preserve">
+    <value>See more</value>
+  </data>
 </root>
