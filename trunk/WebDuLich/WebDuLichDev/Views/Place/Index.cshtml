@@ -4,7 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>LIST PLACE</h2>
+<div style="text-align:center">
+<h2>@Resources.Language.ListPlace</h2>
+</div>
 <form id="frmMain" method="post" action="#">
     <div class="form-inline">
         @Html.Partial("p_Search",new WebDuLichDev.Models.vm_Search())
