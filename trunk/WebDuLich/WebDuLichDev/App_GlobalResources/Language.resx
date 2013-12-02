@@ -309,6 +309,21 @@
   <data name="AddRestaurant" xml:space="preserve">
     <value>Thêm Địa Điểm Ăn Uống</value>
   </data>
+  <data name="CityName" xml:space="preserve">
+    <value>Tên Thành Phố</value>
+  </data>
+  <data name="Control" xml:space="preserve">
+    <value>Xử Lý</value>
+  </data>
+  <data name="CountryCode" xml:space="preserve">
+    <value>Mã Quốc Gia</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Hiệu chỉnh</value>
+  </data>
+  <data name="ListCity" xml:space="preserve">
+    <value>Danh Sách Thành Phố</value>
+  </data>
   <data name="ListHotel" xml:space="preserve">
     <value>Danh Sách Khách Sạn</value>
   </data>
@@ -320,6 +335,9 @@
   </data>
   <data name="Manager_Role" xml:space="preserve">
     <value>Quản Lý Quyền</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Tìm</value>
   </data>
   <data name="UpdateHotel" xml:space="preserve">
     <value>Cập Nhật Khách Sạn</value>

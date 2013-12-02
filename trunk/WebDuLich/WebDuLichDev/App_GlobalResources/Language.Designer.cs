@@ -187,6 +187,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tên Thành Phố.
+        /// </summary>
+        internal static string CityName {
+            get {
+                return ResourceManager.GetString("CityName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Đóng.
         /// </summary>
         internal static string Close {
@@ -214,6 +223,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Xử Lý.
+        /// </summary>
+        internal static string Control {
+            get {
+                return ResourceManager.GetString("Control", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mã Quốc Gia.
+        /// </summary>
+        internal static string CountryCode {
+            get {
+                return ResourceManager.GetString("CountryCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thông tin chi tiết.
         /// </summary>
         internal static string DetailInfo {
@@ -228,6 +255,15 @@ namespace Resources {
         internal static string Economy {
             get {
                 return ResourceManager.GetString("Economy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hiệu chỉnh.
+        /// </summary>
+        internal static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         
@@ -336,6 +372,15 @@ namespace Resources {
         internal static string Last {
             get {
                 return ResourceManager.GetString("Last", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Danh Sách Thành Phố.
+        /// </summary>
+        internal static string ListCity {
+            get {
+                return ResourceManager.GetString("ListCity", resourceCulture);
             }
         }
         
@@ -570,6 +615,15 @@ namespace Resources {
         internal static string Rows {
             get {
                 return ResourceManager.GetString("Rows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tìm.
+        /// </summary>
+        internal static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
             }
         }
         
