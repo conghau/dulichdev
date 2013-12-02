@@ -5,13 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>CityManager</h2>
+<div style="text-align:center">
+<h2 style="border-bottom: 2px solid #ff6a00">@Resources.Language.ListCity</h2>
+</div>
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
 <form id="frmMain" method="post" action="#">
-    <input type="text" name="city_search" class="input-medium search-query" placeholder="City By City Name...">
-    <button type="submit" class="btn" >Search</button>
+    <input type="text" name="city_search" class="input-medium search-query" placeholder="Tên Thành Phố...">
+    <button type="submit" class="btn" >@Resources.Language.Search</button>
     @if (null != Model)
     {
         var pageSize = int.Parse(ViewData[WebDuLichDev.Enum.PageInfo.PageSize.ToString()].ToString());
@@ -25,15 +27,15 @@
             <tr>
                 <th >#</th>
                 <th >
-                    @Html.DisplayNameFor(model => model.CountryCode)
+                    @Resources.Language.CountryCode
                 </th>
                 <th >
-                    @Html.DisplayNameFor(model => model.CityName)
+                    @Resources.Language.CityName
                 </th>
                 <th >
-                    @Html.DisplayNameFor(model => model.Avatar)
+                    @Resources.Language.Avatar
                 </th>
-                <th> >>Control>>
+                <th> >>@Resources.Language.Control>>
                 </th>
             </tr>
             @{int i = 0;}
@@ -54,7 +56,7 @@
                         <img src="../../Data/Avatar/City/@Html.DisplayFor(modelItem => item.Avatar)" alt="Image City..." class="img-polaroid" width="90" height="80" />
                     </td>
                     <td >
-                        <input class="btn btn-primary btn-large" id="btnEdit" type="button" value="Edit>>" onclick="location.href='@Url.Action("AddCity", "City", new { id = item.ID })    ' " />
+                        <input class="btn btn-primary btn-large" id="btnEdit" type="button" value="@Resources.Language.Edit>>" onclick="location.href='@Url.Action("AddCity", "City", new { id = item.ID })    ' " />
                     </td>
                 </tr>
                 i++;
