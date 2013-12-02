@@ -6,7 +6,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>UpdateRestaurant</h2>
+<div style="text-align:center">
+<h2 style="border-bottom: 2px solid #ff6a00">@Resources.Language.UpdateRestaurant</h2>
+</div>
+
 
 <form id="frmUpdateRestaurant" class="well form-horizontal" method="post" action="/Restaurant/UpdateRestaurant">
     <input name="restaurantinfo.dlPlace.ID" value="@Model.dlPlace.ID" type="hidden" />

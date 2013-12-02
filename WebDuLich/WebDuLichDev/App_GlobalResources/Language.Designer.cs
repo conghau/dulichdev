@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thêm Địa Điểm Ăn Uống.
+        /// </summary>
+        internal static string AddRestaurant {
+            get {
+                return ResourceManager.GetString("AddRestaurant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hành chính.
         /// </summary>
         internal static string Administrative {
@@ -345,6 +354,15 @@ namespace Resources {
         internal static string ListPlace {
             get {
                 return ResourceManager.GetString("ListPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Danh Sách Địa Điểm Ăn Uống.
+        /// </summary>
+        internal static string ListRestaurant {
+            get {
+                return ResourceManager.GetString("ListRestaurant", resourceCulture);
             }
         }
         
@@ -651,6 +669,15 @@ namespace Resources {
         internal static string UpdateNicePlace {
             get {
                 return ResourceManager.GetString("UpdateNicePlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cập Nhật Thông Tin Địa Điểm Ăn Uống.
+        /// </summary>
+        internal static string UpdateRestaurant {
+            get {
+                return ResourceManager.GetString("UpdateRestaurant", resourceCulture);
             }
         }
         

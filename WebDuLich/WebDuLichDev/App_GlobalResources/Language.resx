@@ -306,11 +306,17 @@
   <data name="AddPlace" xml:space="preserve">
     <value>Thêm Địa Điểm</value>
   </data>
+  <data name="AddRestaurant" xml:space="preserve">
+    <value>Thêm Địa Điểm Ăn Uống</value>
+  </data>
   <data name="ListHotel" xml:space="preserve">
     <value>Danh Sách Khách Sạn</value>
   </data>
   <data name="ListPlace" xml:space="preserve">
     <value>Danh Sách Địa Điểm</value>
+  </data>
+  <data name="ListRestaurant" xml:space="preserve">
+    <value>Danh Sách Địa Điểm Ăn Uống</value>
   </data>
   <data name="Manager_Role" xml:space="preserve">
     <value>Quản Lý Quyền</value>
@@ -320,5 +326,8 @@
   </data>
   <data name="UpdateNicePlace" xml:space="preserve">
     <value>Cập Nhật Thông Tin Địa Điểm</value>
+  </data>
+  <data name="UpdateRestaurant" xml:space="preserve">
+    <value>Cập Nhật Thông Tin Địa Điểm Ăn Uống</value>
   </data>
 </root>
