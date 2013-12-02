@@ -73,17 +73,17 @@
                 <section class="template-start-7 title-foreword page-1">
                     <div class="page">
                         <div class="page-title">
-                            <h2>Foreword to 20 Things</h2>
+                            <h2>CHỦ ĐỀ NĂM DU LỊCH QUỐC GIA 2014</h2>
                         </div>
                         <div class="image1">
                             <img src="" data-src="css/images/cloud01.png" />
                         </div>
                         <div class="left">
-                            <p class="drop-cap">Many of us these days depend on the World Wide Web to bring the world’s information to our fingertips, and put us in touch with people and events across the globe instantaneously.</p>
+                            <p class="drop-cap">Năm Du lịch Quốc gia 2014 với chủ đề “Đại ngàn Tây nguyên”
+    Theo Tổng Cục Du lịch Năm Du lịch Quốc gia 2014 sẽ được tổ chức tại tỉnh Lâm Đồng và các tỉnh, thành thuộc khu vực Tây Nguyên (Đắc Lắk, Đắc Nông, Gia Lai, Kon Tum) với tên gọi Năm Du lịch Quốc gia 2014 - Tây Nguyên - Đà Lạt mang chủ đề “Đại ngàn Tây Nguyên” và biểu trưng (logo) được đề xuất là Hoa dã quỳ, loài hoa có mặt ở khắp 5 tỉnh Tây Nguyên.Đây là sự kiện văn hóa-kinh tế-xã hội tiêu biểu, có quy mô quốc gia và quốc tế nhằm giới thiệu, quảng bá hình ảnh thiên nhiên và con người Tây Nguyên nói chung, Lâm Đồng – Đà Lạt nói riêng với bạn bè trong nước và quốc tế.
+    </p>
                         </div>
-                        <div class="right">
-                            <p class="continuation">These powerful online experiences are possible thanks to an open web that can be accessed by anyone through a web browser, on any Internet-connected device in the world.</p>
-                        </div>
+                        
                     </div>
                 </section>
             </article>
@@ -99,13 +99,15 @@
                             <h2>@Model[0].dlPlace.Name</h2>
                         </div>
                         <div class="right">
+                            <img src="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar" width="300" height="250" alt="" />
                             @if (Model[0].listImageCity != null)
                             {
-                                <a href="@Url.Action("ListImagePlace", "Place", new { placeId = Model[0].dlPlace.ID })" class="listImage fancybox.iframe"> list Images</a>
+                                <a href="@Url.Action("ListImagePlace", "Place", new { placeId = Model[0].dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
                             }
                         </div>
                         <div class="left">
-                            <p class="drop-cap">@HttpUtility.HtmlDecode(Model[0].dlNicePlaceInfoDetail.Info)</p>
+                             @Html.Raw(HttpUtility.HtmlDecode(Model[0].dlNicePlaceInfoDetail.Info))
+                            @*<p class="drop-cap">@HttpUtility.HtmlDecode.(Model[0].dlNicePlaceInfoDetail.Info)</p>*@
                         </div>
                     </div>
                 </section>
@@ -128,15 +130,14 @@
                                         <h2>@item.dlPlace.Name</h2>
                                     </div>
                                     <div class="right">
+                                        <img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" width="350" height="250" alt="" />
                             @if (item.listImageCity != null)
                             {
-                                <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe"> list Images</a>
-                                <input type="button" id="test" value="test" class="btn"/>
-                               
+                                <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>                               
                             }
                         </div>
                                     <div class="left">
-                                        <p class="drop-cap">@HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info)</p>
+                                        <p class="drop-cap">@Html.Raw(HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info))</p>
                                     </div>
                                 </div>
                             </section>
@@ -153,13 +154,14 @@
                                         <h2>@item.dlPlace.Name</h2>
                                     </div>
                                      <div class="right">
+                                         <img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" width="350" height="250" alt="" />
                             @if (item.listImageCity != null)
                             {
-                                <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe"> list Images</a>
+                                <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
                             }
                         </div>
                                     <div class="left">
-                                        <p class="drop-cap">@HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info)</p>
+                                        <p class="drop-cap">@Html.Raw(HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info))</p>
                                     </div>
                                 </div>
                             </section>
@@ -225,11 +227,37 @@
     <div class="bookmark" style="left: 674.5px; top: 340px; margin: 0px; display: none;"></div>
     <div class="print" style="display: none;"></div>
 </div>
-<div id="credits" style="left: 354.5px; top: 85px; margin: 0px;">
-    <div class="header"></div>
-    <div class="people"></div>
+<div id="credits">
+    <div class="header">
+        <h2><span>CREDITS</span></h2>
+        <hr>
+    </div>
+    <div class="people">
+        <ul>
+            <li>
+                <h3>Thiết Kế</h3>
+                <a href="#">Trương Công Hậu</a></li>
+            <li>
+                <h3>Nhóm tác giả</h3>
+                H.A Team</li>   
+            <li>
+                <h3>Xây dựng hệ thống</h3>
+                <a href="#" >Võ Tiến An</a>
+                <a href="#" >Trương Công Hậu</a>
+            </li>
+        </ul>
+        <h4>Very Special Thanks To</h4>
+        <p class="special-thanks">Cảm ơn các bạn đã đọc cuốn sách này của chúng tôi. Mọi ý kiến đóng góp xin gửi về hộp thư ...</p>
+    </div>
     <hr>
-    <div class="share"></div>
+    <div class="share">
+        <p>Share this book and what you've learned with friends and family;</p>
+        <ul>
+            <li class="facebook"><a href="http://www.facebook.com/sharer.php?u=http://20thingsilearned.com&amp;t=20%20Things%20I%20learned%20About%20Browsers%20and%20the%20Web" title="Facebook"><span class="icon"></span><span class="text">Share On</span></a></li>
+            <li class="twitter"><a href="http://twitter.com/share?original_referer=http://20thingsilearned.com&amp;text=20%20Things%20I%20learned%20About%20Browsers%20and%20the%20Web&amp;url=http://20thingsilearned.com" title="Twitter"><span class="icon"></span><span class="text">Share On</span></a></li>
+            <li class="gplus"></li>
+        </ul>
+    </div>
 </div>
 <div id="pagination-prev" class="inactive" style="top: 320px; left: 0px;">
     <a href="#">
