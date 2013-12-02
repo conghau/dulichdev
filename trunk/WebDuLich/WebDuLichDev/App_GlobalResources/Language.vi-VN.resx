@@ -129,6 +129,9 @@
   <data name="Administrative" xml:space="preserve">
     <value>Hành chính</value>
   </data>
+  <data name="AssignUserTo" xml:space="preserve">
+    <value>Gán quyền</value>
+  </data>
   <data name="Avatar" xml:space="preserve">
     <value>Ảnh đại diện</value>
   </data>
@@ -137,6 +140,12 @@
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Huỷ</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>Mã Xác Nhận</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Đổi mật khẩu</value>
   </data>
   <data name="ChooseCity" xml:space="preserve">
     <value>Chọn thành phố</value>
@@ -147,6 +156,9 @@
   <data name="Close" xml:space="preserve">
     <value>Đóng</value>
   </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Xác Nhận Mật Khẩu</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Liên hệ</value>
   </data>
@@ -155,6 +167,9 @@
   </data>
   <data name="Economy" xml:space="preserve">
     <value>Kinh tế</value>
+  </data>
+  <data name="EN" xml:space="preserve">
+    <value>Tiếng Anh</value>
   </data>
   <data name="ERR_Insert" xml:space="preserve">
     <value>Thêm mới thất bại</value>
@@ -183,8 +198,20 @@
   <data name="Introduce" xml:space="preserve">
     <value>Giới thiệu</value>
   </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Ngôn Ngữ</value>
+  </data>
   <data name="Last" xml:space="preserve">
     <value>Cuối</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Đăng nhập</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Đăng xuất</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Thực Đơn</value>
   </data>
   <data name="Nature" xml:space="preserve">
     <value>Tự nhiên</value>
@@ -198,6 +225,9 @@
   <data name="Open" xml:space="preserve">
     <value>Mở</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mật Khẩu</value>
+  </data>
   <data name="Place" xml:space="preserve">
     <value>Địa điểm</value>
   </data>
@@ -207,11 +237,26 @@
   <data name="Previous" xml:space="preserve">
     <value>Lùi</value>
   </data>
+  <data name="Register" xml:space="preserve">
+    <value>Đăng kí</value>
+  </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Nhà hàng</value>
+  </data>
+  <data name="RestaurantName" xml:space="preserve">
+    <value>Tên nhà hàng</value>
+  </data>
   <data name="Rows" xml:space="preserve">
     <value>Hàng</value>
   </data>
+  <data name="SeeMore" xml:space="preserve">
+    <value>Xem thêm</value>
+  </data>
   <data name="Services" xml:space="preserve">
     <value>Dịch vụ</value>
+  </data>
+  <data name="Showpassword" xml:space="preserve">
+    <value>Hiển thị mật khẩu</value>
   </data>
   <data name="Social" xml:space="preserve">
     <value>Xã hội</value>
@@ -231,47 +276,8 @@
   <data name="Travel" xml:space="preserve">
     <value>Du lịch</value>
   </data>
-  <data name="Menu" xml:space="preserve">
-    <value>Thực Đơn</value>
-  </data>
-  <data name="Restaurant" xml:space="preserve">
-    <value>Nhà hàng</value>
-  </data>
-  <data name="RestaurantName" xml:space="preserve">
-    <value>Tên nhà hàng</value>
-  </data>
-  <data name="ChangePassword" xml:space="preserve">
-    <value>Đổi mật khẩu</value>
-  </data>
-  <data name="Login" xml:space="preserve">
-    <value>Đăng nhập</value>
-  </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Đăng xuất</value>
-  </data>
-  <data name="ConfirmPassword" xml:space="preserve">
-    <value>Xác Nhận Mật Khẩu</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>Mật Khẩu</value>
-  </data>
   <data name="Username" xml:space="preserve">
     <value>Tên Tài Khoản</value>
-  </data>
-  <data name="Register" xml:space="preserve">
-    <value>Đăng kí</value>
-  </data>
-  <data name="Captcha" xml:space="preserve">
-    <value>Mã Xác Nhận</value>
-  </data>
-  <data name="Showpassword" xml:space="preserve">
-    <value>Hiển thị mật khẩu</value>
-  </data>
-  <data name="EN" xml:space="preserve">
-    <value>Tiếng Anh</value>
-  </data>
-  <data name="Languages" xml:space="preserve">
-    <value>Ngôn Ngữ</value>
   </data>
   <data name="VN" xml:space="preserve">
     <value>Tiếng Việt</value>
