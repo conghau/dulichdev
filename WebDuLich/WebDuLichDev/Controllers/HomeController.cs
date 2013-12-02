@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebDuLichDev.Models;
 using WebDuLichDev.WebUtility;
+using WebMatrix.WebData;
 using zingme_sdk;
 namespace WebDuLichDev.Controllers
 {
@@ -93,7 +94,9 @@ namespace WebDuLichDev.Controllers
                         }
                         else
                         {
+                            WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
                             ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
+                            OAuthWebSecurity.Login("ZingMe", user_id.ToString(), createPersistentCookie: false);
                         }
                     }
 
