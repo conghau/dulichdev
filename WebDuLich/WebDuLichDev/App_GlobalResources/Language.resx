@@ -279,11 +279,10 @@
   <data name="AssignUserTo" xml:space="preserve">
     <value>Gán quyền</value>
   </data>
-<<<<<<< .mine
+
   <data name="SeeMore" xml:space="preserve">
     <value>Xem thêm</value>
   </data>
-=======
   <data name="msg_CaptureFail" xml:space="preserve">
     <value>Sai giá trị của phép tính, vui lòng nhập lại!</value>
   </data>
@@ -305,5 +304,4 @@
   <data name="msg_Setpass_Success" xml:space="preserve">
     <value>Mật khẩu của bạn đã cài đặt!</value>
   </data>
->>>>>>> .r139
 </root>
