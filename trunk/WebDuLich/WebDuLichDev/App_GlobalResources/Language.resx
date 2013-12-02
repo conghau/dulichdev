@@ -279,7 +279,6 @@
   <data name="AssignUserTo" xml:space="preserve">
     <value>Gán quyền</value>
   </data>
-
   <data name="SeeMore" xml:space="preserve">
     <value>Xem thêm</value>
   </data>
@@ -303,5 +302,11 @@
   </data>
   <data name="msg_Setpass_Success" xml:space="preserve">
     <value>Mật khẩu của bạn đã cài đặt!</value>
+  </data>
+  <data name="ListHotel" xml:space="preserve">
+    <value>Danh Sách Khách Sạn</value>
+  </data>
+  <data name="UpdateHotel" xml:space="preserve">
+    <value>Cập Nhật Khách Sạn</value>
   </data>
 </root>
