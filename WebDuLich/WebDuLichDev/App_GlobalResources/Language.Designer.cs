@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thêm Địa Điểm.
+        /// </summary>
+        internal static string AddPlace {
+            get {
+                return ResourceManager.GetString("AddPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Địa chỉ.
         /// </summary>
         internal static string Address {
@@ -331,6 +340,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Danh Sách Địa Điểm.
+        /// </summary>
+        internal static string ListPlace {
+            get {
+                return ResourceManager.GetString("ListPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Đăng nhập.
         /// </summary>
         internal static string Login {
@@ -345,6 +363,15 @@ namespace Resources {
         internal static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quản Lý Quyền.
+        /// </summary>
+        internal static string Manager_Role {
+            get {
+                return ResourceManager.GetString("Manager_Role", resourceCulture);
             }
         }
         
@@ -615,6 +642,15 @@ namespace Resources {
         internal static string UpdateHotel {
             get {
                 return ResourceManager.GetString("UpdateHotel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cập Nhật Thông Tin Địa Điểm.
+        /// </summary>
+        internal static string UpdateNicePlace {
+            get {
+                return ResourceManager.GetString("UpdateNicePlace", resourceCulture);
             }
         }
         

@@ -303,10 +303,22 @@
   <data name="msg_Setpass_Success" xml:space="preserve">
     <value>Mật khẩu của bạn đã cài đặt!</value>
   </data>
+  <data name="AddPlace" xml:space="preserve">
+    <value>Thêm Địa Điểm</value>
+  </data>
   <data name="ListHotel" xml:space="preserve">
     <value>Danh Sách Khách Sạn</value>
   </data>
+  <data name="ListPlace" xml:space="preserve">
+    <value>Danh Sách Địa Điểm</value>
+  </data>
+  <data name="Manager_Role" xml:space="preserve">
+    <value>Quản Lý Quyền</value>
+  </data>
   <data name="UpdateHotel" xml:space="preserve">
     <value>Cập Nhật Khách Sạn</value>
+  </data>
+  <data name="UpdateNicePlace" xml:space="preserve">
+    <value>Cập Nhật Thông Tin Địa Điểm</value>
   </data>
 </root>
