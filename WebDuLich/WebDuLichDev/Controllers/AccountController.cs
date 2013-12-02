@@ -53,7 +53,8 @@ namespace WebDuLichDev.Controllers
             }
             
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("LoginErr", "The user name or password provided is incorrect.");
+            //ModelState.AddModelError("LoginErr", "The user name or password provided is incorrect.");
+            ModelState.AddModelError("LoginErr", @Resources.Language.msg_LoginFail);
             return View(model);
         }
 
@@ -88,7 +89,8 @@ namespace WebDuLichDev.Controllers
         {
             if (Session["Captcha"] == null || Session["Captcha"].ToString() != model.Captcha)
             {
-                ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
+                //ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
+                ModelState.AddModelError("Captcha", @Resources.Language.msg_CaptureFail);
                 //dispay error and generate a new captcha 
                 return View(model);
             }
@@ -146,9 +148,12 @@ namespace WebDuLichDev.Controllers
         public ActionResult Changepassword (ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+                //message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                message == ManageMessageId.ChangePasswordSuccess ? @Resources.Language.msg_Changepass_Success
+                //: message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                : message == ManageMessageId.SetPasswordSuccess ? @Resources.Language.msg_Setpass_Success
+                //: message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+                : message == ManageMessageId.RemoveLoginSuccess ? @Resources.Language.msg_Login_External_Remove
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.ReturnUrl = Url.Action("Changepassword");
@@ -187,7 +192,8 @@ namespace WebDuLichDev.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                        ModelState.AddModelError("", @Resources.Language.msg_Changepass_Fail);
+                        //ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
                     }
                 }
             }
@@ -210,7 +216,8 @@ namespace WebDuLichDev.Controllers
                     }
                     catch (Exception)
                     {
-                        ModelState.AddModelError("", String.Format("Unable to create local account. An account with the name \"{0}\" may already exist.", User.Identity.Name));
+                        //ModelState.AddModelError("", String.Format("Unable to create local account. An account with the name \"{0}\" may already exist.", User.Identity.Name));
+                        ModelState.AddModelError("", String.Format("Không thể tạo tài khoản. Tài khoản với tên: \"{0}\" đã tồn tại trong hệ thống.", User.Identity.Name));
                     }
                 }
             }
@@ -231,59 +238,8 @@ namespace WebDuLichDev.Controllers
             return new ExternalLoginResult(provider, Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
         }
 
-        //
+        //        
         // GET: /Account/ExternalLoginCallback
-        [AllowAnonymous]
-        public ActionResult ZingMeCallback()
-        {
-            var random = new Random();
-            long number_ran = random.Next(1, 100000);
-            string state = number_ran.ToString();
-            ZME_Authentication oauth = new ZME_Authentication(WebDuLichDev.RegisterAuthZing.config());
-            string url_old = "http://localhost:62688";
-            Uri uri_old = new Uri(url_old);
-            string uri_new = uri_old.ToString();
-            String url = oauth.getAuthorizedUrl(uri_new, "14103");
-            //oauth.getAccessTokenFromSignedRequest();
-            Response.Redirect(url,true);
-            Response.Flush();
-            if (!Response.IsRequestBeingRedirected)
-            {
-                return RedirectToAction("ZingMeGet");
-            }
-            else
-            {
-                return Content("Redirected");
-                //return RedirectToAction("ZingMeGet");
-                
-            }
-           
-
-           
-
-           
-
-        }
-        [AllowAnonymous]
-        public ActionResult ZingMeGet()
-        {
-            int expires = 0;            
-            string code = Request["code"];
-            ZME_Authentication oauth = new ZME_Authentication(WebDuLichDev.RegisterAuthZing.config());
-            //string code = "UN629rEmcoePHvuxDlVrKq4Vmpb4-QOeJHUGJXFy-7KVAznjNi3d0IDxXM4XqArk9JBTK5dRlJicDuiVJxULBZ9Uyq4Sii4bPbho5H-oc28tL_aKGRp5UrnMoq4tehnWB0hDDG6rkWybQCnGRS-aO7GpycCupFKW91R3Qlp9aJBCQFBCPcwnoY-pmyWdF-I9Ik30sbzZijTheitANdl9Za64t_nOSzdtMIO5J2nAQQVRVm%3D%3D";
-            string access_token = oauth.getAccessTokenFromCode(code, out expires);// cai code = null kia! 
-            //string sync = "Oi3DdT4FiHQTYYTY2Ir-4Man6_YmkrZ39CexI9MAy4I=.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4cGlyZXMiOjcyMDAsImlzc3VlZF9hdCI6MTM4NTQ0MDEwMCwiYWNjZXNzX3Rva2VuIjoiNjYzMjcwZGU2ZmFmNDE0OWFjNzNjYjVlNzczNzQ5MjQuTWpKa056QmxZamc9ZW5LcllnSHVZYmNYOGFfM3BkZ0xLU0d6S2xRX0hnU3JXRzRtcEF2cG5yeDdRckpGaE43NUlnaTdDd2RZU2llaGsxNTZaQ0wxSWRaU1J6dzFxLUdUM2pvRnd3b2RpYUxVbE8yTWh5RVlFR0JmV0JJd3BoZmpKaV9RY0NoR3Q2YkFZRko2cHBDdjA3TS1GUTVwIiwidWlkIjo2OTgxNjA4Mn0=";
-            ZME_Me me = new ZME_Me(WebDuLichDev.RegisterAuthZing.config());
-            
-            //var access_token = oauth.getAccessTokenFromSignedRequest(sync, out expires);
-            string id = "id";
-            string username = "username";
-            string gender = "gender";
-            string dob = "dob";
-            var username_data = me.getInfo(access_token, username);
-            var model = username_data;
-            return View(model);
-        }
         [AllowAnonymous]
         public ActionResult ExternalLoginCallback(string returnUrl)
         {           
@@ -348,16 +304,7 @@ namespace WebDuLichDev.Controllers
                     {
                         // Insert name into the profile table
                         UserProfile newUser = db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
-
-                        //db.ExternalUsers.Add(new ExternalUserInformation
-                        //{
-                        //    UserId = newUser.UserId,
-                        //    FullName = model.FullName,
-                        //    Link = model.Link
-                        //});
-                        // db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
                         db.SaveChanges();
-
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
                         OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
 
@@ -365,7 +312,8 @@ namespace WebDuLichDev.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
+                       // ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
+                        ModelState.AddModelError("UserName", @Resources.Language.msg_Login_External_Confirm_Fail);
                     }
                 }
             }
@@ -490,6 +438,8 @@ namespace WebDuLichDev.Controllers
         }
         #endregion
 
+        //
+        // Xác thực người dùng không phải là bot.
         [AllowAnonymous]
         public ActionResult CaptchaImage(string prefix, bool noisy = true) 
         { 

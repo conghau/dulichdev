@@ -279,4 +279,25 @@
   <data name="AssignUserTo" xml:space="preserve">
     <value>Gán quyền</value>
   </data>
+  <data name="msg_CaptureFail" xml:space="preserve">
+    <value>Sai giá trị của phép tính, vui lòng nhập lại!</value>
+  </data>
+  <data name="msg_Changepass_Fail" xml:space="preserve">
+    <value>Mật khẩu cũ không chính xác hoặc mật khẩu mới không hợp lệ!</value>
+  </data>
+  <data name="msg_Changepass_Success" xml:space="preserve">
+    <value>Mật khẩu của bạn đã được thay đổi!</value>
+  </data>
+  <data name="msg_LoginFail" xml:space="preserve">
+    <value>Tài khoản hoặc Mật khẩu không chính xác!</value>
+  </data>
+  <data name="msg_Login_External_Confirm_Fail" xml:space="preserve">
+    <value>Tài khoản này đã tồn tại, vui lòng nhập tên tài khoản khác.</value>
+  </data>
+  <data name="msg_Login_External_Remove" xml:space="preserve">
+    <value>Hủy thành công tài khoản đăng nhập bên ngoài!</value>
+  </data>
+  <data name="msg_Setpass_Success" xml:space="preserve">
+    <value>Mật khẩu của bạn đã cài đặt!</value>
+  </data>
 </root>

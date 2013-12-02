@@ -349,6 +349,69 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sai giá trị của phép tính, vui lòng nhập lại!.
+        /// </summary>
+        internal static string msg_CaptureFail {
+            get {
+                return ResourceManager.GetString("msg_CaptureFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mật khẩu cũ không chính xác hoặc mật khẩu mới không hợp lệ!.
+        /// </summary>
+        internal static string msg_Changepass_Fail {
+            get {
+                return ResourceManager.GetString("msg_Changepass_Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mật khẩu của bạn đã được thay đổi!.
+        /// </summary>
+        internal static string msg_Changepass_Success {
+            get {
+                return ResourceManager.GetString("msg_Changepass_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tài khoản hoặc Mật khẩu không chính xác!.
+        /// </summary>
+        internal static string msg_LoginFail {
+            get {
+                return ResourceManager.GetString("msg_LoginFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tài khoản này đã tồn tại, vui lòng nhập tên tài khoản khác..
+        /// </summary>
+        internal static string msg_Login_External_Confirm_Fail {
+            get {
+                return ResourceManager.GetString("msg_Login_External_Confirm_Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hủy thành công tài khoản đăng nhập bên ngoài!.
+        /// </summary>
+        internal static string msg_Login_External_Remove {
+            get {
+                return ResourceManager.GetString("msg_Login_External_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mật khẩu của bạn đã cài đặt!.
+        /// </summary>
+        internal static string msg_Setpass_Success {
+            get {
+                return ResourceManager.GetString("msg_Setpass_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tự nhiên.
         /// </summary>
         internal static string Nature {
