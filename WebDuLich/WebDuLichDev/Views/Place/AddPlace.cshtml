@@ -115,12 +115,24 @@
                                     <ul class="thumbnails">
                                         @if (null != Model && Model.listImageCity != null)
                                         {
+                                            int i = 0;
                                             foreach (var item in Model.listImageCity)
-                                            {     
-                                            @:<li class="span2 @item.LinkImage"><a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" alt='' /></a>
-<input id="@item.LinkImage" class="imagePlace" value="@item.LinkImage" type="hidden"/>
-                                              @:</li>
-                                                                                    }
+                                            {
+                                                var name = item.LinkImage.Replace(" ", "").Replace(".", "");
+                                            @:<li class="span3 @name">
+<div class="thumbnail">
+                                                     <div class="caption"><a  onclick="deleteImage('@name')"><img src="/Content/themes/custom/Image/Delete.png" 
+                                                          style="margin-top:-6px; margin-bottom:-6px"
+                                                            onmouseover="this.src='/Content/themes/custom/Image/Delete-highlight.png';"
+                                                            onmouseout="this.src='/Content/themes/custom/Image/Delete.png'" /></a></div>
+                                                
+                                                    <img src="/Data/Images/place/@item.LinkImage" alt='' /> 
+                                                    </div>
+                                            <input id="@name" class="listImagePlace" value="@item.LinkImage" type="hidden"/>                                   
+                                                @:</li>
+                                                                                        i++;
+
+                                            }
                                         }
                                     </ul>
                                 </div>
@@ -259,7 +271,7 @@
                 $.each(files, function () {
                     var name = files.dataname.toString();
                     var names = name.replace('.', '');
-                    var element = "<li class='span3 " + names + "'><div class=thumbnail ><div class=caption > <a  onclick=deleteImage('" + names + "')> <img src=/Content/themes/custom/Image/Delete.png ; onmouseout=this.src='@Url.Content("~/Content/themes/custom/Image/Delete.png")'; onmouseover=this.src='@Url.Content("~/Content/themes/custom/Image/Delete-highlight.png")'; /></a></div> <img src=/Data/Images/place/" + files.dataname + " /></div><input id=" + names + " name=listImageAddNew value=" + files.dataname + " type=hidden /></li>";
+                    var element = "<li class='span3 " + names + "'><div class=thumbnail ><div class=caption > <a  onclick=deleteImage('" + names + "')> <img src=/Content/themes/custom/Image/Delete.png ; onmouseout=this.src='@Url.Content("~/Content/themes/custom/Image/Delete.png")'; onmouseover=this.src='@Url.Content("~/Content/themes/custom/Image/Delete-highlight.png")'; /></a></div> <img src=/Data/Images/place/" + files.dataname + " /></div><input id=" + names + " name=listImagePlace value=" + files.dataname + " type=hidden /></li>";
                     $('#imgPhotoPlace> .row > .span8 > .thumbnails').append(element);
                     e.files[index].name = name;
                     index++;
