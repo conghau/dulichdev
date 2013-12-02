@@ -33,16 +33,10 @@ namespace WebDuLichDev
              
             //Zing Me SDK Config App ID       
             OAuthWebSecurity.RegisterClient(
-                new ZingController("663270de6faf4149ac73cb5e77374924", "ac2105d2856646e4b70b24db66b53f29", null), "ZingMe", null);
-          
-
-            //OpenAuth.AuthenticationClients.AddGoogle();
-            
+                new ZingController("663270de6faf4149ac73cb5e77374924", "ac2105d2856646e4b70b24db66b53f29", null), "ZingMe", null);     
         }
-
-        
-      
     }
+
     public static class RegisterAuthZing
         {
             private static ZME_Environment env = ZME_Environment.DEVELOPMENT;
