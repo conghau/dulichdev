@@ -227,23 +227,23 @@ namespace WebDuLichDev.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddPlace(NicePlace dataRequest, string[] imagePlace)
+        public ActionResult AddPlace(NicePlace dataRequest, string[] listImagePlace)
         {
             try
             {
                 bool result = false;
                 DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
-                List<DL_ImagePlace> listImagePlace = new List<DL_ImagePlace>();
-                if (null != imagePlace)
+                List<DL_ImagePlace> listDLImagePlace = new List<DL_ImagePlace>();
+                if (null != listImagePlace)
                 {
-                    for (int index = 0; index < imagePlace.Count(); index++)
+                    for (int index = 0; index < listImagePlace.Count(); index++)
                     {
                         DL_ImagePlace temp = new DL_ImagePlace();
-                        temp.LinkImage = imagePlace[index];
-                        listImagePlace.Add(temp);
+                        temp.LinkImage = listImagePlace[index];
+                        listDLImagePlace.Add(temp);
                     }
                 }
-                dataRequest.listImageCity = listImagePlace;
+                dataRequest.listImageCity = listDLImagePlace;
 
                 dataRequest.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
                 dataRequest.dlPlace.TotalPointRating = 0;
