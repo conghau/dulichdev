@@ -18,6 +18,7 @@
     @Styles.Render("~/Content/themes/20Thing/css/main.css")
     @Scripts.Render("~/Scripts/Lib/FancyBox/source/jquery.fancybox.js")
     @Styles.Render("~/Scripts/Lib/FancyBox/source/jquery.fancybox.css")
+
     <script type="text/javascript">
         document.write('<link rel="stylesheet" type="text/css" media="all" href="css/hideOnLoad.css" />');
 
@@ -45,7 +46,7 @@
         window.___gcfg = { lang: SERVER_VARIABLES.LANG };
     </script>
 </head>
-<body>
+<body class="normal">
     <div id="preloader">
         <div class="contents">
             <canvas class="animation"></canvas>
@@ -121,7 +122,7 @@
             $('.listImage').fancybox({
                 maxWidth: 600,
                 fitToView: false,
-                width: '600px',
+                width: '537px',
                 height: '530px',
                 autoSize: false,
                 closeClick: false,
