@@ -149,7 +149,7 @@ namespace WebDuLichDev.Controllers
                 hotelinfo.listImagePlace = listdlImangePlace;
                 hotelinfo.dlPlace.TotalPointRating = 0;
                 hotelinfo.dlPlace.TotalUserRating = 0;
-                dlPlaceBal.InsertHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, hotelinfo.listImagePlace);
+                result=dlPlaceBal.InsertHotel(hotelinfo.dlPlace, hotelinfo.dlHotelPlaceInfoDetail, hotelinfo.listImagePlace);
                 if (true == result)
                 {
                     TempData["Message"] = ResultMessage.SUC_Insert;
