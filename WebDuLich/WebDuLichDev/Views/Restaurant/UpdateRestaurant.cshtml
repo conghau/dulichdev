@@ -244,7 +244,7 @@
                     //saveUrl: "/Place/UploadAvatar",
                     //removeUrl: "/Place/RemoveAvatar",
                     saveUrl: '@Url.Action("UploadAvatarPlace", "File", new { ID = Model.dlPlace.ID })',
-                    removeUrl: '@Url.Action("RemoveAvatarPlace", "File", new { ID = Model.dlPlace.ID })',
+                    removeUrl: '@Url.Action("RemoveAvatarPlace", "File")',
                     autoUpload: false,
                     multiple: false,
                 },
@@ -378,22 +378,23 @@
         }
 
         function onUploadAvatarSuccess(e) {
-            var files = e.files;
-
             if (e.operation == "upload") {
+                var files = e.response;
                 $.each(files, function () {
-                    var name = this.name.replace(' ', '').replace('.', '');
-                    $('#Avatar').val(this.name);
-                    $('#imgPhotoAvatar > .row > .span8 > .thumbnails').append("<li class='span2' id=" + this.name + " ><a class=thumbnail><img src=/Data/Avatar/Place/" + this.name + " alt='' /></a></li>");
+                    var name = files.dataName.toString();
+                    var id = name.replace('.', '');
+                    $('#Avatar').val(name);
+                    $('#imgPhotoAvatar > .row > .span8 > .thumbnails').append("<li class=\"span2\" id=" + id + " ><a class=thumbnail><img src=/Data/Avatar/place/" + name + " alt='' /></a></li>");
                     //$('#uploadAvatar').data('kendoUpload').disable();
+                    e.files[0].name = name;
                 });
             }
 
             if (e.operation == "remove") {
-                $.each(files, function () {
+                $.each(e.files, function () {
                     $('#Avatar').val('');
-                    var name = this.name.replace(' ', '').replace('.', '');
-                    $('div#imgPhotoAvatar > .row > .span8 > .thumbnails > li').remove();
+                    var name = this.name.replace('.', '');
+                    $('div#imgPhotoAvatar > .row > .span8 > .thumbnails > li').remove('#' + name);
                     // $('#uploadAvatar').data('kendoUpload').enable();
                 });
             }

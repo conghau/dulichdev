@@ -207,8 +207,8 @@
                 async: {
                     //saveUrl: "/Place/UploadAvatar",
                     //removeUrl: "/Place/RemoveAvatar",
-                    saveUrl: '@Url.Action("UploadAvatarPlace", "File", new { ID = @ViewBag.NewPlaceID })',
-                    removeUrl: '@Url.Action("RemoveAvatarPlace", "File", new { ID = @ViewBag.NewPlaceID })',
+                    saveUrl: '@Url.Action("UploadAvatar", "File")',
+                    removeUrl: '@Url.Action("RemoveAvatarPlace", "File")',
                     autoUpload: false,
                     multiple: false,
                 },
@@ -296,10 +296,10 @@
             }
 
             if (e.operation == "remove") {
-                $.each(files, function () {
+                $.each(e.files, function () {
                     $('#Avatar').val('');
                     var name = this.name.replace(' ', '').replace('.', '');
-                    $('div#imgPhotoAvatar > .row > .span8 > .thumbnails > li').remove();
+                    $('div#imgPhotoAvatar > .row > .span8 > .thumbnails > li').remove('#' + name);
                     // $('#uploadAvatar').data('kendoUpload').enable();
                 });
             }
