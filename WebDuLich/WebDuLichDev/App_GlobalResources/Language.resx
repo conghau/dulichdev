@@ -348,4 +348,7 @@
   <data name="UpdateRestaurant" xml:space="preserve">
     <value>Cập Nhật Thông Tin Địa Điểm Ăn Uống</value>
   </data>
+  <data name="UpdateCity" xml:space="preserve">
+    <value>Cập Nhật Thông Tin Thành Phố</value>
+  </data>
 </root>

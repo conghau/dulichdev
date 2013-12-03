@@ -709,6 +709,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cập Nhật Thông Tin Thành Phố.
+        /// </summary>
+        internal static string UpdateCity {
+            get {
+                return ResourceManager.GetString("UpdateCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cập Nhật Khách Sạn.
         /// </summary>
         internal static string UpdateHotel {
