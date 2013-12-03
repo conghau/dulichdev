@@ -77,6 +77,7 @@
 
 html, body {
 	background-color: #eeeeee;
+    /*background: url("/Content/themes/custom/image/wood_inner.jpg") no-repeat scroll 100% 100% / cover  rgba(0, 0, 0, 0);*/
 	transition: background-color .4s linear;
 	-o-transition: background-color .4s linear;
 	-moz-transition: background-color .4s linear;
@@ -92,10 +93,9 @@ html, body {
 	-webkit-user-select: none;
 }
 
-body.cs-CZ,
-body.pl-PL {
-  font-family: 'Cantarell', Arial, sans-serif;
-}
+    body.normal {
+        background: url("/Content/themes/custom/image/wood_inner.jpg") no-repeat scroll 100% 100% / cover  rgba(0, 0, 0, 0);
+    }
 
 /**
  * Explicitly specify which elements that can be selected
@@ -540,31 +540,31 @@ header {
 			}
 	
 	header input[type="text"] { 
-		background-position: -405px -56px;
+		background-position: -406px -55px;
 		position: absolute;
 		display: block;
 		top: 9px;
 		right: 5px;
-		width: 204px;
+		width: 193px;
 		height: 32px;
 		border: none;
 		outline: none;
 		margin: 0;
-		padding: 0 0 0 26px;
+		padding: 0 4px 0 26px;
 		font-size: 11px;
 		-webkit-appearance: textfield;
 		-moz-appearance: textfield;
 		color: #888888;
 		z-index: 2001;
 	}		
-		header input:focus[type="text"] { 
+		/*header input:focus[type="text"] { 
 		background-position: -652px -56px;
 			color: #333333;
-		}
-    .cs-CZ header input[type="text"],
+		}*/
+    /*.cs-CZ header input[type="text"],
     .pl-PL header input[type="text"] { 
      font-size: 12px;
-    }
+    }*/
 
 /**
  * Language Selector
@@ -1451,7 +1451,7 @@ header {
 				display: block;
 				color: #ffffff;
 				font-weight: bold;
-				padding-top: 5px;
+				padding-top: 0px;
 				font-size: 10px;
 			}
 			
@@ -2246,7 +2246,7 @@ footer {
  * Page styles
  */
 #pages {
-	width: 1280px;
+	width: 1272px;
 	height: 520px;
 	position: absolute;
 	left: 32px;
@@ -2268,8 +2268,26 @@ footer {
 		width: 600px;
 		height: 440px;
 		position: absolute;
-		padding: 25px 45px 35px 45px;
+		padding: 25px 45px 35px 40px;
 	}
+
+    
+#pages section div.page span.pageNumber {
+    bottom: 5px;
+    color: #999999;
+    float: right;
+    font-family: DroidSerif,Times,serif;
+    font-size: 12px;
+    position: absolute;
+    right: 60px;
+}
+
+#pages section p.drop-cap:first-letter {
+    float: left;
+    font-size: 45px;
+    margin: 7px 5px 0 0;
+    vertical-align: text-top;
+}
 
 /**
  * Table of Contents view
