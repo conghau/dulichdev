@@ -115,8 +115,6 @@ namespace WebDuLichDev.Controllers
                         fileOK = false;
                         break;
                     }
-                    if (false == fileOK)
-                        break;
                 }
             }
             if (true == fileOK)
@@ -157,13 +155,12 @@ namespace WebDuLichDev.Controllers
                 System.IO.File.Delete(serserPath + fileUpload);
             var fileName_Status = "";         
 
-            Boolean fileOK = false;
+            Boolean fileOK = true;
 
             if (null != fileUpload)
             {
                 foreach (var file in fileUpload)
                 {
-                    fileOK = false;
                     fileOK = IsImage(file);
                     if (false == fileOK)
                         break;
