@@ -5,8 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div style="text-align:center">
-<h2>@Resources.Language.UpdateHotel</h2>
+<div style="text-align: center">
+    <h2>@Resources.Language.UpdateHotel</h2>
 </div>
 
 <form id="frmUpdateHotel" class="well form-horizontal" method="post" action="/Hotel/UpdateHotel">
@@ -179,7 +179,6 @@
                     <div class="controls">
                         <input id="uploadImage" name="fileUpload" type="file" />
                         <div id="imageName">
-                            
                         </div>
                         <div id="imgPhotoPlace">
                             <div class="row">
@@ -187,21 +186,21 @@
                                     <ul class="thumbnails">
                                         <li>
                                             <div id="container">
-                                            <span id="target" title="DoubleClick vào hình để chọn xóa hình!"></span>
+                                                <span id="target" title="DoubleClick vào hình để chọn xóa hình!"></span>
                                             </div>
-                                        </li>                                        
+                                        </li>
                                         @if (null != Model && Model.listImagePlace != null)
                                         {
                                             int i = 0;
                                             foreach (var item in Model.listImagePlace)
                                             {     
                                             @:<li class="span2" id="@i">
-                                            <a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" id="@i" alt='' ondblclick="onclickpicture(this.id)" onmousemove="onfocuspicture()" /></a>                           
+<a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" id="@i" alt='' ondblclick="onclickpicture(this.id)" onmousemove="onfocuspicture()" /></a>                           
                                             <input  name="hotelinfo.listImagePlace[@i].LinkImage" class="imagePlace" value="@item.LinkImage" type="hidden"/>
                                             <input  name="hotelinfo.listImagePlace[@i].ID" class="imagePlace" value="@item.ID" type="hidden"/>
                                             <input  name="hotelinfo.listImagePlace[@i].DL_PlaceID" class="imagePlace" value="@item.DL_PlaceID" type="hidden"/>
                                             @:</li>
-                                            i++;
+                                                                                    i++;
                                             }
                                         }
                                     </ul>
@@ -218,9 +217,9 @@
         <input class="btn" id="btnCancel" type="button" value="@Resources.Language.Cancel" />
     </div>
     <div id="dialog"></div>
-   
-    
-@*            <style scoped>
+
+
+    @*            <style scoped>
                 #example .k-timepicker {
                     vertical-align: middle;
                 }
@@ -242,9 +241,9 @@
                 }
                 
             </style>**@
-  
-          
-      
+
+
+
 
     <script>
 
@@ -282,7 +281,7 @@
                     //saveUrl: "/Place/UploadAvatar",
                     //removeUrl: "/Place/RemoveAvatar",
                     saveUrl: '@Url.Action("UploadAvatarPlace", "file", new { ID = Model.dlPlace.ID })',
-                    removeUrl: '@Url.Action("RemoveAvatarPlace", "file", new { ID = Model.dlPlace.ID })',
+                    removeUrl: '@Url.Action("RemoveAvatarPlace", "file")',
                     autoUpload: false,
                     multiple: false,
                 },
@@ -356,28 +355,26 @@
             //end.max("7:30 AM");
         });
         function onclickpicture(id) {
-            var r=confirm("Confirm: Delete this Image(?)");
-            if (r==true)
-            {      
+            var r = confirm("Confirm: Delete this Image(?)");
+            if (r == true) {
                 //$('div#imageName > input#' + id).hide();
                 //$('div#imgPhotoPlace > .row > .span8 > .thumbnails >.span2').addClass('#' + id) = "hidden";
                 $('div#imgPhotoPlace > .row > .span8 > .thumbnails >[id="' + id + '"]').hide();
                 $('div#imgPhotoPlace > .row > .span8 > .thumbnails >[id="' + id + '"]').append('<input  name="hotelinfo.listImagePlace[' + id + '].Status" class="imagePlace" value="1" type="hidden"/>');
                 //$('div#imgPhotoPlace > .row > .span8 > .thumbnails > .span2 >.thumbnail >.img').hide('#' + id);
-          
+
                 //$('img').visible('#'+id)='hidden';
             }
-            else
-            {
-            //user pressed cancel. Do nothing
+            else {
+                //user pressed cancel. Do nothing
             }
-           
-             
+
+
         }
         function onfocuspicture(e) {
-            var tooltip = $("#container").kendoTooltip({position: "center"}).data("kendoTooltip");
+            var tooltip = $("#container").kendoTooltip({ position: "center" }).data("kendoTooltip");
             tooltip.show($("#target"));
-            
+
         }
 
         function onSelect(e) {
@@ -416,22 +413,23 @@
         }
 
         function onUploadAvatarSuccess(e) {
-            var files = e.files;
-
             if (e.operation == "upload") {
+                var files = e.response;
                 $.each(files, function () {
-                    var name = this.name.replace(' ', '').replace('.', '');
-                    $('#Avatar').val(this.name);
-                    $('#imgPhotoAvatar > .row > .span8 > .thumbnails').append("<li class='span2' id=" + this.name + " ><a class=thumbnail><img src=/Data/Avatar/Place/" + this.name + " alt='' /></a></li>");
+                    var name = files.dataName.toString();
+                    var id = name.replace('.', '');
+                    $('#Avatar').val(name);
+                    $('#imgPhotoAvatar > .row > .span8 > .thumbnails').append("<li class=\"span2\" id=" + id + " ><a class=thumbnail><img src=/Data/Avatar/place/" + name + " alt='' /></a></li>");
                     //$('#uploadAvatar').data('kendoUpload').disable();
+                    e.files[0].name = name;
                 });
             }
 
             if (e.operation == "remove") {
-                $.each(files, function () {
+                $.each(e.files, function () {
                     $('#Avatar').val('');
-                    var name = this.name.replace(' ', '').replace('.', '');
-                    $('div#imgPhotoAvatar > .row > .span8 > .thumbnails > li').remove();
+                    var name = this.name.replace('.', '');
+                    $('div#imgPhotoAvatar > .row > .span8 > .thumbnails > li').remove('#' + name);
                     // $('#uploadAvatar').data('kendoUpload').enable();
                 });
             }
