@@ -22,7 +22,7 @@ namespace WebDuLichDev
         public static int pageSizeDefault = 10;
         //them vo day ne :P
         public static string countryCode = "VN";
-        private static SimpleMembershipInitializer _initializer;
+        //private static SimpleMembershipInitializer _initializer;
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -39,19 +39,19 @@ namespace WebDuLichDev
          
 
         }
-        public class SimpleMembershipInitializer
-        {
-            public SimpleMembershipInitializer()
-            {
-                using (var context = new UsersContext())
-                    context.UserProfiles.Find(1);
+        //public class SimpleMembershipInitializer
+        //{
+        //    public SimpleMembershipInitializer()
+        //    {
+        //        using (var context = new UsersContext())
+        //            context.UserProfiles.Find(1);
 
-                if (!WebSecurity.Initialized)
-                {
-                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
-                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "webpages_OAuthMembership", "UserId", "UserName", autoCreateTables: true);
-                }
-            }
-        }
+        //        if (!WebSecurity.Initialized)
+        //        {
+        //            WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+        //            WebSecurity.InitializeDatabaseConnection("DefaultConnection", "webpages_OAuthMembership", "UserId", "UserName", autoCreateTables: true);
+        //        }
+        //    }
+        //}
     }
 }

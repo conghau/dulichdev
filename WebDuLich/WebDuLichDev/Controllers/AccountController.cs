@@ -23,7 +23,7 @@ using zingme_sdk;
 namespace WebDuLichDev.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
+    //[InitializeSimpleMembership]
     public class AccountController : BaseController
     {
         //
