@@ -16,14 +16,18 @@ namespace WebDuLichDev.Controllers
 
         public ActionResult UploadAvatar(IEnumerable<HttpPostedFileBase> fileUpload)
         {
+            //string fileNameGuid = "";
+            string fileName="";
             foreach (var file in fileUpload)
             {
                 // Some browsers send file names with full path. We only care about the file name.
-                var fileName = Path.GetFileName(file.FileName);
+                fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+                //var fileName = Path.GetFileName(file.FileName);
 
                 var destinationPath = Path.Combine(Server.MapPath("~/Data/Avatar/Place/"), fileName);
+                file.SaveAs(destinationPath);
             }
-            return Json(new { status = "OK" }, "text/plain");
+            return Json(new { dataName = fileName }, "text/plain");
         }
         public ActionResult RemoveAvatarPlace(string fileNames)
         {
@@ -99,15 +103,18 @@ namespace WebDuLichDev.Controllers
         {
             //var serserPath = Server.MapPath("~/Data/Images/Place/");
             List<string> listfilenameGuid = new List<string>();
-            Boolean fileOK = false;
+            bool fileOK = true;
 
             if (null != fileUpload)
             {
 
                 foreach (var file in fileUpload)
                 {
-                    fileOK = false;
-                    fileOK = IsImage(file);
+                    if (false == IsImage(file))
+                    {
+                        fileOK = false;
+                        break;
+                    }
                     if (false == fileOK)
                         break;
                 }
