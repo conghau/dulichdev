@@ -351,4 +351,7 @@
   <data name="UpdateCity" xml:space="preserve">
     <value>Cập Nhật Thông Tin Thành Phố</value>
   </data>
+  <data name="SHAREBOOK" xml:space="preserve">
+    <value>CHIA SẺ</value>
+  </data>
 </root>
