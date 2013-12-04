@@ -83,6 +83,11 @@ namespace WebDuLichDev.Controllers
             try
             {
                 ViewBag.CityId = ID;
+
+                DL_CityBAL dlCityBal = new DL_CityBAL();
+                var city = dlCityBal.GetByID(ID);
+                ViewBag.Title = city.CityName;
+
                 vm_Pagination pagination = new vm_Pagination { OrderBy = DL_PlaceColumns.CreatedDate.ToString(), OrderDirection = "DESC" };
                 DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
                 DL_NicePlaceInfoDetailBAL dlNicePlaceInfoDetailBal = new DL_NicePlaceInfoDetailBAL();
@@ -141,6 +146,28 @@ namespace WebDuLichDev.Controllers
             return View(model);
         }
 
+        public ActionResult PlaceInfoDetail(long placeId)
+        {
+            try
+            {
+                DL_NicePlaceInfoDetailBAL dlNicePlaceInfoDetail = new DL_NicePlaceInfoDetailBAL();
+                var model = dlNicePlaceInfoDetail.GetByPlaceId(placeId);
+                return View(model);
+            }
+            catch (BusinessException bx)
+            {
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                //LogBAL.LogEx("BLM_ERR_Common", ex);
+                log.Error(ex.Message);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return RedirectToAction("Error", "Home");
+            }
+        }
 
 
         //[HttpPost]
@@ -217,6 +244,8 @@ namespace WebDuLichDev.Controllers
         //        return RedirectToAction("Error", "Home");
         //    }
         //}
+
+        #region Admin Control
 
         [Authorize]
         public ActionResult AddPlace()
@@ -414,8 +443,7 @@ namespace WebDuLichDev.Controllers
             }
 
         }
-        #region
-
         #endregion
+
     }
 }
