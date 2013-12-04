@@ -1,6 +1,6 @@
 ﻿@model List<WebDuLichDev.Models.NicePlace>
 @{
-    ViewBag.Title = "NicePlaceByCity";
+    ViewBag.Title = ViewBag.Title + " - " + Resources.Language.Place;
     Layout = "~/Views/Shared/_LayoutFilp.cshtml";
 }
 <div id="search-dropdown">
@@ -33,8 +33,8 @@
     </div>
     <div id="front-cover-bookmark">
         <div class="content">
-            <p>What’s a cookie? How do I protect myself on the web? And most importantly: What happens if a truck runs over my laptop?</p>
-            <p>For things you’ve always wanted to know about the web but were afraid to ask, read on.</p>
+            <p>@ViewBag.Title</p>
+            <p>Bạn không có điều kiện, thời gian để đi du lịch. Vậy thì hãy đọc cuốn sách này...</p>
             <a class="open-book" href="#">OPEN BOOK</a>
             <canvas id="flip-intro" width="89" height="69"></canvas>
         </div>
@@ -84,8 +84,7 @@
     </p>
                         </div>
                         <div>
-                               <a class="" name="zm_share" type="icnbig" title="Chia sẻ lên Zing Me"></a>
-                        </div>
+                                  </div>
                         
                     </div>
                 </section>
@@ -111,6 +110,7 @@
                         <div class="left">
                              @Html.Raw(HttpUtility.HtmlDecode(Model[0].dlNicePlaceInfoDetail.Info))
                             @*<p class="drop-cap">@HttpUtility.HtmlDecode.(Model[0].dlNicePlaceInfoDetail.Info)</p>*@
+                            <a href="@Url.Action("PlaceInfoDetail", "Place", new { placeId = Model[0].dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
                         </div>
                     </div>
                 </section>
@@ -141,6 +141,7 @@
                         </div>
                                     <div class="left">
                                         <p class="drop-cap">@Html.Raw(HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info))</p>
+                                         <a href="@Url.Action("PlaceInfoDetail", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
                                     </div>
                                 </div>
                             </section>
@@ -161,10 +162,12 @@
                             @if (item.listImageCity != null)
                             {
                                 <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
+                                
                             }
                         </div>
                                     <div class="left">
                                         <p class="drop-cap">@Html.Raw(HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info))</p>
+                                        <a href="@Url.Action("PlaceInfoDetail", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
                                     </div>
                                 </div>
                             </section>
