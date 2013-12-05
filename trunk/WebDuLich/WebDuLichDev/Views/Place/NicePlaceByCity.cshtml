@@ -180,6 +180,14 @@
 
 
             }
+              <article id="theend">
+                   <section class="title-theend page-1">
+                <div class="page">
+                <div class="page-title">
+                
+                </div>
+                </section>
+              </article>
         </div>
     </div>
     <div id="left-page">
@@ -278,3 +286,33 @@
     </a>
 
 </div>
+<div id="table-of-contents">
+			<div class="center">
+				<div class="header">
+					<a class="go-back" href="/">Go Back</a>
+					<h2><span>Table of Things</span></h2>
+					<hr>
+				</div>
+				<ul>
+                    @{ tmpChar = "";}
+        @foreach (var item in Model)
+        {
+            if (tmpChar != @item.dlPlace.FirstChar.ToUpper())
+            {
+            <li class="@item.dlPlace.FirstChar.ToUpper()">
+                <a href="#" class="cnItem" title="@item.dlPlace.FirstChar.ToUpper()" data-article="@item.dlPlace.FirstChar.ToUpper()">
+                    <div class="medium-book">
+                        <div class="illustration"></div>
+                        <p class="index">THING @item.dlPlace.FirstChar.ToUpper()</p>
+                    </div>
+                    <h3>@item.dlPlace.FirstChar.ToUpper()</h3>
+                    <p> Danh sách địa điểm bắt đầu bằng chữ @item.dlPlace.FirstChar.ToUpper() </p>
+                </a>
+            </li>
+                tmpChar = @item.dlPlace.FirstChar.ToUpper();
+            }
+
+        }            
+                </ul>
+                </div>
+    </div>
