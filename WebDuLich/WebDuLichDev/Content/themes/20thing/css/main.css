@@ -82,10 +82,10 @@ html, body {
 	-o-transition: background-color .4s linear;
 	-moz-transition: background-color .4s linear;
 	-webkit-transition: background-color .4s linear;
-	min-height: 650px;
+	min-height: 836px;
 	font-family: DroidSans, Arial, Helvetica, sans-serif;
 	color: #333333;
-	height: 836px;
+	width: 836px;
 	
 	user-select: none;
 	-o-user-select: none;
@@ -1824,9 +1824,28 @@ footer {
 				border-bottom: none;
 				border-top: none;
 			}
-	
-	footer div.sharing {
+
+    footer div.invite {
 		padding: 7px 18px 0;
+		margin-top: 1px;
+	}
+	    footer div.invite:hover {
+			color: #b41e21;
+			background-color: rgba(255,255,255,0.7);
+		}
+        footer div.invite ul li {
+				margin: -3px 0px 0 5px;
+				float: left;
+			}
+			
+			footer div.invite ul li a {
+				width: 72px;
+				height: 21px;
+				display: block;
+			}
+
+	footer div.sharing {
+		padding: 6px 34px 1px 1px;
 		margin-top: 1px;
 	}
 	
