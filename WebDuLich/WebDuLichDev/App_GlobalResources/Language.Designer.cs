@@ -286,6 +286,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Đã tồn tại.
+        /// </summary>
+        internal static string ERR_Exist {
+            get {
+                return ResourceManager.GetString("ERR_Exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thêm mới thất bại.
         /// </summary>
         internal static string ERR_Insert {
@@ -592,6 +601,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hãy nhập.
+        /// </summary>
+        internal static string PleaseInput {
+            get {
+                return ResourceManager.GetString("PleaseInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lùi.
         /// </summary>
         internal static string Previous {
@@ -633,6 +651,15 @@ namespace Resources {
         internal static string Role {
             get {
                 return ResourceManager.GetString("Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tên quyền.
+        /// </summary>
+        internal static string RoleName {
+            get {
+                return ResourceManager.GetString("RoleName", resourceCulture);
             }
         }
         
