@@ -354,4 +354,13 @@
   <data name="SHAREBOOK" xml:space="preserve">
     <value>CHIA SẺ</value>
   </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>Tạo mới</value>
+  </data>
+  <data name="NoFound" xml:space="preserve">
+    <value>Không tìm thấy</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Quyền</value>
+  </data>
 </root>
