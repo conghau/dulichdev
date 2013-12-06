@@ -241,6 +241,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tạo mới.
+        /// </summary>
+        internal static string CreateNew {
+            get {
+                return ResourceManager.GetString("CreateNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thông tin chi tiết.
         /// </summary>
         internal static string DetailInfo {
@@ -529,6 +538,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Không tìm thấy.
+        /// </summary>
+        internal static string NoFound {
+            get {
+                return ResourceManager.GetString("NoFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ghi chú.
         /// </summary>
         internal static string Note {
@@ -606,6 +624,15 @@ namespace Resources {
         internal static string RestaurantName {
             get {
                 return ResourceManager.GetString("RestaurantName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quyền.
+        /// </summary>
+        internal static string Role {
+            get {
+                return ResourceManager.GetString("Role", resourceCulture);
             }
         }
         
