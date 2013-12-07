@@ -372,4 +372,10 @@
   <data name="RoleName" xml:space="preserve">
     <value>Tên quyền</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Cập nhập</value>
+  </data>
 </root>
