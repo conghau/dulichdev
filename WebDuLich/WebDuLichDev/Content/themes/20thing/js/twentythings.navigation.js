@@ -159,11 +159,13 @@ TT.navigation.assignNavigationHandlers = function() {
   });
 
   // Bind the print overlay.
-  $('footer .print a').click(function() {
-    if (window.location.pathname.match('en-US')) {
+  $('footer .print a').click(function () {
       TT.overlay.showPrint();
       return false;
-    }
+    //if (window.location.pathname.match('en-US')) {
+    //  TT.overlay.showPrint();
+    //  return false;
+    //}
   });
 
   // Bind events for local links within the book contents.

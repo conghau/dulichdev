@@ -90,6 +90,7 @@ namespace WebDuLichDev.WebUtility
     public class WebDuLichSecurity
     {
         private static string _userId = "UserId";
+        private static string _userName = "UserName";
         private static string _menu = "Menu";
         private static string _languageCode = "LanguageCode";
         public static bool UserIsAdmin = false;
@@ -100,6 +101,15 @@ namespace WebDuLichDev.WebUtility
             {
                 long userId = Utility.ObjectToLong(HttpContext.Current.Session[_userId]);
                 return userId;
+            }
+        }
+
+        public static string UserName
+        {
+            get
+            {
+                string userName = Utility.ObjectToString(HttpContext.Current.Session[_userName]);
+                return userName;
             }
         }
         //Get main menu
@@ -122,6 +132,7 @@ namespace WebDuLichDev.WebUtility
                 UserProfileBAL useprofileBal = new UserProfileBAL();
                 var userProfile = useprofileBal.GetByUserName(userName);
                 HttpContext.Current.Session[_userId] = userProfile.UserId;
+                HttpContext.Current.Session[_userName] = userName;
                 return true;//return RedirectToLocal(returnUrl);
             }
             else

@@ -188,7 +188,7 @@ div.fullscreen.clone, div.fullscreen.clone a, .fullscreen.clone a span.icon, foo
 #search-dropdown div.background-top, #search-dropdown div.background-bottom, #spine div,
 #chapter-nav ul li, #chapter-nav a.over div.small-book, #table-of-contents ul li div.medium-book,
 #table-of-contents a.go-back, #pagination-prev div.arrow, #pagination-next div.arrow,
-#overlay div.bookmark, #overlay div.bookmark .content a.close, #overlay div.print, #overlay div.print a.close,
+#overlay div.bookmark, #overlay div.bookmark .content a.close, #overlay div.print,
 #overlay div.print p, #overlay div.print a.downloadPdf:hover, #overlay div.print a.printBook:hover, #credits div.people ul li h3,
 #credits div.share ul li span.icon, #front-cover-bookmark, #sharer div.background-top,
 #sharer div.background-bottom, #sharer div.content ul li a, #sharer div.content p.instruction span, #sharer div.content ul li.print
@@ -1203,7 +1203,7 @@ header {
 
 	#table-of-contents div.center {
 		position: relative;
-		width: 966px;
+		width: 836px;
 		height: 550px;
 		left: 50%;
 		top: 50%;
@@ -1436,7 +1436,7 @@ header {
 		#credits div.people ul li {
 			display: inline-block;
 			width: 184px;
-			height 65px;
+			height: 65px;
 			color: #666666;
 			margin: 0 13px 24px 13px;
 			font-size: 12px;
@@ -1585,7 +1585,7 @@ header {
 			color: #ffffff;
 		}
 			
-			#overlay div.bookmark .content a.close, #overlay div.print a.close {
+			#overlay div.bookmark .content a.close {
 				display: inline-block;
 				background: #fff;
 				font-size: 11px;
@@ -1673,9 +1673,9 @@ header {
 		margin: -74px 0 0 -352px;
 	}				
 		
-		#overlay div.print a.close {
-			color: #fff;
-			margin: 3px 0 0 323px;
+		/*#overlay div.print a.close {
+			/*color: #fff;
+			margin: 3px 0 0 -91px;
 			width: 45px;
 			height: 16px;
 			padding: 7px 0 0 12px;
@@ -1683,12 +1683,12 @@ header {
 			z-index: 5000;
 			opacity: 1;
 			background: #333;
-		}
+		}*/
 
-			#overlay div.print a.close:hover {
-				color: #333;
+			/*#overlay div.print a.closeprint:hover {
+				background: #666666;
 				background: #fff;
-			}
+			}*/
 		
 		#overlay div.print a.printBook,
 		#overlay div.print a.downloadPdf {
@@ -2284,7 +2284,7 @@ footer {
 	}
 	
 	#pages section div.page {
-		width: 600px;
+		width: 585px;
 		height: 440px;
 		position: absolute;
 		padding: 25px 45px 35px 40px;
@@ -2306,6 +2306,14 @@ footer {
     font-size: 45px;
     margin: 7px 5px 0 0;
     vertical-align: text-top;
+}
+
+#pages section.title-theend {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+#pages section.title-theend .pageNumber {
+    display: none;
 }
 
 /**

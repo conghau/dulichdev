@@ -100,10 +100,11 @@ TT.illustrations.update = function(currentPage) {
     //}
 
     //// 3D:
-    //else if (currentPage.hasClass('title-threed') &&
-    //    currentPage.hasClass('page-1')) {
-    //  TT.illustrations.threed.activate($('div.image1', currentPage));
-    //}
+      //else 
+    if (currentPage.hasClass('title-threed') &&
+        currentPage.hasClass('page-1')) {
+      TT.illustrations.threed.activate($('div.image1', currentPage));
+    }
 
   }
 };

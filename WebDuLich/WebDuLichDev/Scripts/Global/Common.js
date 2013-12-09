@@ -37,10 +37,11 @@
 $(function () {
 
     var currentURL = window.location.href.replace(/#[\w]*/g, '');
-    $('div.navbar-inner ul.nav li a[href="' + currentURL + '"]').parent().addClass('active');
-    if ($('div.navbar-inner ul.nav li a[href="' + currentURL + '"]').parent().hasClass('dropdown-item'))
+    var currertUrlAction = location.pathname;
+    $('div.navbar-inner ul.nav li ul li a[href="' + currertUrlAction + '"]').parent().addClass('active');
+    if ($('div.navbar-inner div.container ul.nav li ul li a[href="' + currertUrlAction + '"]').parent().hasClass('dropdown-item'))
     {
-        $('div.navbar-inner ul.nav li a[href="' + currentURL + '"]').parent().parent().parent().addClass('active');
+        $('div.navbar-inner div.container ul.nav li ul li a[href="' + currertUrlAction + '"]').parent().parent().parent().addClass('active');
     }
 
       //    if (!$(e.target).parent().hasClass('active')) {
@@ -150,6 +151,12 @@ $(function () {
     // active menu
    
 });
+
+function gethostname()
+{
+    var urlHost = window.location.protocol + '//' + window.location.host;
+    return urlHost
+}
 
 function formatConvert(format) {
     format = format.toLowerCase();

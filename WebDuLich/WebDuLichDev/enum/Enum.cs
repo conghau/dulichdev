@@ -26,6 +26,7 @@ namespace WebDuLichDev.Enum
         SUC_Update,
         ERR_Insert,
         ERR_Update,
+        ERR_Exist,
 
     }
 }

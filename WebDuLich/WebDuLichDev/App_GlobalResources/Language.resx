@@ -378,4 +378,7 @@
   <data name="Update" xml:space="preserve">
     <value>Cập nhập</value>
   </data>
+  <data name="NumberUser" xml:space="preserve">
+    <value>Số thành viên</value>
+  </data>
 </root>

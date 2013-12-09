@@ -23,6 +23,7 @@ namespace WebDuLichDev.Controllers
         // GET: /Place/
         private static List<DL_ImagePlace> listImagePlaceOld = new List<DL_ImagePlace>();
 
+        private static List<vm_NicePlace> nicePlaceBook = new List<vm_NicePlace>();
         [Authorize]
         public ActionResult ListNicePlace()
         {
@@ -43,7 +44,6 @@ namespace WebDuLichDev.Controllers
                 common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
                 ViewData["OrderBy"] = pagination.OrderBy;
                 ViewData["OrderDirection"] = pagination.OrderDirection;
-                log.Error("Shataskasd");
                 return View(model);
             }
             catch (BusinessException bx)
@@ -95,16 +95,17 @@ namespace WebDuLichDev.Controllers
                 var dlPlace = dlPlaceBal.GetListNicePlaceByCity(ID);
                 ViewData["OrderBy"] = pagination.OrderBy;
                 ViewData["OrderDirection"] = pagination.OrderDirection;
-                var nicePlacePage = new List<NicePlace>();
+                var nicePlacePage = new List<vm_NicePlace>();
                 for (int index = 0; index < dlPlace.Count(); index++)
                 {
-                    var tmp = new NicePlace();
+                    var tmp = new vm_NicePlace();
                     tmp.dlPlace = dlPlace[index];
                     tmp.dlNicePlaceInfoDetail = dlNicePlaceInfoDetailBal.GetByPlaceId(dlPlace[index].ID);
                     tmp.listImageCity = dlImagePlaceBal.GetByDLPlaceID(dlPlace[index].ID);
                     nicePlacePage.Add(tmp);
 
                 }
+                nicePlaceBook = nicePlacePage;
                 return View(nicePlacePage);
             }
             catch (BusinessException bx)
@@ -115,7 +116,6 @@ namespace WebDuLichDev.Controllers
             }
             catch (Exception ex)
             {
-                //LogBAL.LogEx("BLM_ERR_Common", ex);
                 log.Error(ex.Message);
                 TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
                 return RedirectToAction("Error", "Home");
@@ -138,6 +138,21 @@ namespace WebDuLichDev.Controllers
             return View();
         }
 
+        public ActionResult NicePlace(long ID) 
+        {
+            DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+            DL_NicePlaceInfoDetailBAL dlNicePlaceInfoDetailBal = new DL_NicePlaceInfoDetailBAL();
+            DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
+
+            var nicePlace = new vm_NicePlace();
+
+            //nicePlace = nicePlaceBook.Where(p => p.dlPlace.ID == ID).Single();
+            nicePlace.dlPlace = dlPlaceBal.GetByID(ID);
+            nicePlace.dlNicePlaceInfoDetail = dlNicePlaceInfoDetailBal.GetByPlaceId(ID);
+            nicePlace.listImageCity = dlImagePlaceBal.GetByDLPlaceID(ID);
+
+            return View(nicePlace);
+        }
 
         public ActionResult ListImagePlace(long placeId)
         {
@@ -250,13 +265,13 @@ namespace WebDuLichDev.Controllers
         [Authorize]
         public ActionResult AddPlace()
         {
-            NicePlace model = new NicePlace();
+            vm_NicePlace model = new vm_NicePlace();
             return View(model);
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddPlace(NicePlace dataRequest, string[] listImagePlace)
+        public ActionResult AddPlace(vm_NicePlace dataRequest, string[] listImagePlace)
         {
             try
             {
@@ -313,7 +328,7 @@ namespace WebDuLichDev.Controllers
                 DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
                 DL_NicePlaceInfoDetailBAL dlNicePlaceDetailBal = new DL_NicePlaceInfoDetailBAL();
                 DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
-                NicePlace model = new NicePlace();
+                vm_NicePlace model = new vm_NicePlace();
                 model.dlPlace = dlPlaceBal.GetByID(dlPlaceId);
                 model.listImageCity = dlImagePlaceBal.GetByDLPlaceID(dlPlaceId);
                 model.dlNicePlaceInfoDetail = dlNicePlaceDetailBal.GetByPlaceId(dlPlaceId);
@@ -337,7 +352,7 @@ namespace WebDuLichDev.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult UpdateNicePlace(NicePlace dataRequest, long[] listIdImagePresent, string[] listImageAddNew)
+        public ActionResult UpdateNicePlace(vm_NicePlace dataRequest, long[] listIdImagePresent, string[] listImageAddNew)
         {
             try
             {

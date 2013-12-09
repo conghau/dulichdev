@@ -46,8 +46,9 @@ namespace WebDuLichDev.Controllers
         {
             if (ModelState.IsValid && WebDuLichSecurity.Login(model.UserName, model.Password, model.RememberMe))
             {
-                webpages_UsersInRolesBAL userInRoleBal = new webpages_UsersInRolesBAL();
-                WebDuLichSecurity.UserIsAdmin = userInRoleBal.UserIsAdmin(WebDuLichSecurity.UserID);
+                //webpages_UsersInRolesBAL userInRoleBal = new webpages_UsersInRolesBAL();
+                //WebDuLichSecurity.UserIsAdmin = userInRoleBal.UserIsAdmin(WebDuLichSecurity.UserID);
+                WebDuLichSecurity.Menu = common.RenderMenu();
                 return RedirectToLocal(returnUrl);
                
             }
@@ -307,7 +308,7 @@ namespace WebDuLichDev.Controllers
                         db.SaveChanges();
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
                         OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
-
+                        WebDuLichSecurity.Menu = common.RenderMenu();
                         return RedirectToLocal(returnUrl);
                     }
                     else

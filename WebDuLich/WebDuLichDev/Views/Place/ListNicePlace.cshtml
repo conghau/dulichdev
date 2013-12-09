@@ -60,18 +60,18 @@
                         <td>
                             @item.AvgRating
                         </td>
-                        <td style="text-align: center; width: 30px">
+                        <td style="text-align: center; width: 32px">
                             @*<a href="@Url.Action("UpdateNicePlace", "Place", new { dlPlaceId = item.ID })"><i class="icon-search"></i></a>*@
                             <a href="@Url.Action("UpdateNicePlace", "Place", new { dlPlaceId = item.ID })" >
                                 <img src="/Content/themes/custom/Image/Edit-Light.png" width="24" height="24" alt="Chinh sua"
                                     onmouseover="this.src='/Content/themes/custom/Image/Edit-Dark.png';"
                                     onmouseout="this.src='/Content/themes/custom/Image/Edit-Light.png'" /></a>
                         </td>
-                        <td style="text-align: center; width: 30px">
+                        <td style="text-align: center; width: 32px">
                            <a href="#" class="delete" id="@item.ID" >
-                                <img src="/Content/themes/custom/Image/Delete-Light.png" width="24" height="24"
-                                    onmouseover="this.src='/Content/themes/custom/Image/Delete-Dark.png';"
-                                    onmouseout="this.src='/Content/themes/custom/Image/Delete-Light.png'" /></a>
+                                <img src="/Content/themes/custom/Image/Edit-Light.png" width="24" height="24" alt="Chinh sua"
+                                    onmouseover="this.src='/Content/themes/custom/Image/Edit-Dark.png';"
+                                    onmouseout="this.src='/Content/themes/custom/Image/Edit-Light.png'" /></a>
                         </td>
                     </tr>
                     i++;
