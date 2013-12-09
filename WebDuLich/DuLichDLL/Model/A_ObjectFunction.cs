@@ -73,6 +73,7 @@ namespace DuLichDLL.Model
         p_A_ObjectFunction_Update,
         p_A_ObjectFunction_Get_List,
         p_A_ObjectFunction_Get_ByID,
+        p_A_ObjectFunction_Get_ByRoleID,
 
     }
 }

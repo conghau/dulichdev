@@ -104,6 +104,64 @@ namespace DuLichDLL.DAL
                 cnn.Close();
             }
         }
+
+        public List<A_Object> GetListParent()
+        {
+            SqlConnection cnn = null;
+            try
+            {
+                cnn = DataProvider.OpenConnection();
+                SqlCommand cmd = new SqlCommand(A_ObjectProcedure.p_A_Object_Get_ListParent.ToString(), cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dt);
+                var results = GetDataObject(dt);
+                return results;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_A_ObjectDAL: GetListParent"));
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+
+        public List<A_Object> GetListByParentId(long parentId)
+        {
+            SqlConnection cnn = null;
+            try
+            {
+                cnn = DataProvider.OpenConnection();
+                SqlCommand cmd = new SqlCommand(A_ObjectProcedure.p_A_Object_Get_ByParentID.ToString(), cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@ParentID", SqlDbType.BigInt).Value = parentId;
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dt);
+                var results = GetDataObject(dt);
+                return results;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_A_ObjectDAL: GetListByParentId"));
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+
         public long Insert(A_Object a_Object)
         {
             long id = 0;

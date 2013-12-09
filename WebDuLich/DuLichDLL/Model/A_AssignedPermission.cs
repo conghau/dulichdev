@@ -54,6 +54,20 @@ namespace DuLichDLL.Model
             get { return _status; }
             set { _status = value; }
         }
+        private long _a_FunctionId;
+
+        public long A_FunctionId
+        {
+            get { return _a_FunctionId; }
+            set { _a_FunctionId = value; }
+        }
+        private long _a_ObjectId;
+
+        public long A_ObjectId
+        {
+            get { return _a_ObjectId; }
+            set { _a_ObjectId = value; }
+        }
     }
     public enum A_AssignedPermissionColumns
     {
@@ -65,6 +79,8 @@ namespace DuLichDLL.Model
         UpdatedBy,
         UpdatedDate,
         Status,
+        A_FunctionId,
+        A_ObjectId,
     }
     public enum A_AssignedPermissionProcedure
     {
@@ -73,6 +89,11 @@ namespace DuLichDLL.Model
         p_A_AssignedPermission_Update,
         p_A_AssignedPermission_Get_List,
         p_A_AssignedPermission_Get_ByID,
+        p_A_AssignedPermission_Get_ListByRoleId,
+        p_A_AssignedPermission_DeleteAdv,
+        p_A_AssignedPermission_InsertAdv,
+        p_A_AssignedPermission_HasPermission,
+        p_A_AssignedPermission_Get_ListByRoleName,
 
     }
 }
