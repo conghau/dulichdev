@@ -119,7 +119,7 @@ TT.overlay.showPrint = function() {
   TT.overlay.print.siblings().hide();
   TT.overlay.print.stop().fadeIn('fast');
 
-  $('a.close', TT.overlay.print).click(function() {
+  $('a.closeprint', TT.overlay.print).click(function() {
     TT.overlay.hide();
 
     return false;

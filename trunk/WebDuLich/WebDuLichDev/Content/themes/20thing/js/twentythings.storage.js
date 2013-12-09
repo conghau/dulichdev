@@ -277,24 +277,24 @@ TT.storage.getArticlesFromStorage = function() {
  */
 TT.storage.routeDataRequest = function() {
 
-  if (!TT.storage.supportsLocalStorage()) {
+  //if (!TT.storage.supportsLocalStorage()) {
 
     TT.storage.getArticlesFromServer();
 
-  } else {
+  //} else {
 
-    TT.log('Version on server is: ' + SERVER_VARIABLES.SITE_VERSION);
+  //  TT.log('Version on server is: ' + SERVER_VARIABLES.SITE_VERSION);
 
-    if (SERVER_VARIABLES.SITE_VERSION != localStorage.version ||
-        SERVER_VARIABLES.LANG != localStorage.lang) {
-      localStorage.version = SERVER_VARIABLES.SITE_VERSION;
-      localStorage.lang = SERVER_VARIABLES.LANG;
-      TT.storage.getArticlesFromServer();
-    } else {
-      TT.storage.getArticlesFromStorage();
-    }
+  //  if (SERVER_VARIABLES.SITE_VERSION != localStorage.version ||
+  //      SERVER_VARIABLES.LANG != localStorage.lang) {
+  //    localStorage.version = SERVER_VARIABLES.SITE_VERSION;
+  //    localStorage.lang = SERVER_VARIABLES.LANG;
+  //    TT.storage.getArticlesFromServer();
+  //  } else {
+  //    //TT.storage.getArticlesFromStorage();
+  //  }
 
-  }
+  //}
 };
 
 

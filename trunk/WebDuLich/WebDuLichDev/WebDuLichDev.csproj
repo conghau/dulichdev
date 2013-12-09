@@ -56,6 +56,9 @@
       <HintPath>DLL\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.WindowsAzure.StorageClient">
+      <HintPath>..\packages\WindowsAzure.StorageClient.Library.1.6\lib\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json.Net35">
       <HintPath>..\packages\Newtonsoft.Json.4.0.2\lib\net35\Newtonsoft.Json.Net35.dll</HintPath>
     </Reference>
@@ -191,25 +194,28 @@
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
-    <Compile Include="Controllers\ManagerUserRoleController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\PlaceController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\SystemManagerController.cs" />
     <Compile Include="Controllers\ZingController.cs" />
     <Compile Include="enum\Enum.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Filters\permission.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\NicePlace.cs" />
+    <Compile Include="Models\vm_Place.cs" />
     <Compile Include="Models\vm_pagination.cs" />
+    <Compile Include="Models\vm_Role.cs" />
     <Compile Include="Models\vm_Search.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebUtility\BaseController.cs" />
     <Compile Include="WebUtility\common.cs" />
+    <Compile Include="WebUtility\enum.cs" />
     <Compile Include="WebUtility\HtmlHelper.cs" />
     <Compile Include="WebUtility\WebDLData.cs" />
     <Compile Include="WebUtility\ZingClient.cs" />
@@ -381,6 +387,7 @@
     <Content Include="Content\themes\MoleskineNotebook\images\right_bg.jpg" />
     <Content Include="Content\themes\MoleskineNotebook\images\wood.jpg" />
     <Content Include="Content\themes\MoleskineNotebook\index.html" />
+    <Content Include="Content\themes\Role.css" />
     <Content Include="Data\Avatar\City\Globe.ico" />
     <Content Include="Data\Avatar\City\quocky.jpeg" />
     <Content Include="Data\Images\city\1186241_322684017877104_803392449_n.jpg" />
@@ -695,11 +702,17 @@
     <Content Include="Views\Restaurant\UpdateRestaurant.cshtml" />
     <Content Include="Views\Restaurant\ListRestaurant.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\ManagerUserRole\Edit.cshtml" />
-    <Content Include="Views\ManagerUserRole\Manage.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\Manage.cshtml" />
     <Content Include="Views\Shared\_pureLayout.cshtml" />
     <Content Include="Views\Account\ZingMeGet.cshtml" />
     <Content Include="Views\Place\ListImagePlace.cshtml" />
+    <Content Include="Views\Place\PlaceInfoDetail.cshtml" />
+    <Content Include="Views\Shared\_ImageSliderLayout.cshtml" />
+    <Content Include="Views\Place\NicePlace.cshtml" />
+    <Content Include="Views\Shared\_PageDefault.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\UpdateRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

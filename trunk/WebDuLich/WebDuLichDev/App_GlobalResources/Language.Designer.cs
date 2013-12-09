@@ -565,6 +565,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Số thành viên.
+        /// </summary>
+        internal static string NumberUser {
+            get {
+                return ResourceManager.GetString("NumberUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mở.
         /// </summary>
         internal static string Open {

@@ -12,28 +12,12 @@
         @if (Request.IsAuthenticated)
         {
             
-            <div class="container">
+           <div class="container">
                 <ul class="nav nav-tabs">
-                    <li class="item"><a title="Home" class="nav-icon" href="http://localhost:62688"><i class="icon-home"></i>Home</a></li>
-                    <li class="item"><a href="http://localhost:62688/place/ListNicePlace" title="niceplace">NicePlace</a></li>
-                    <li class="item"><a href="http://localhost:62688/Hotel/ListHotel" title="Hotel">Hotel</a></li>
-                    <li class="item"><a href="http://localhost:62688/Restaurant/ListRestaurant" title="Restaurant">Restaurant</a></li>
-                    @if(User.IsInRole("admin")){//WebDuLichSecurity.UserIsAdmin){
-                    <li class="dropdown item">
-                        <a class="dropdown-toggle"
-                            data-toggle="dropdown"
-                            href="#">Setting
-                    <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-item"><a href="http://localhost:62688/place/ListNicePlace" title="niceplace">NicePlace</a></li>
-                            <li class="dropdown-item"><a href="http://localhost:62688/Hotel/ListHotel" title="Hotel">Hotel</a></li>
-                            <li class="dropdown-item"><a href="http://localhost:62688/Restaurant/ListRestaurant" title="Restaurant">Restaurant</a>
-                        </ul>
-                    </li>
-                    }
+                    <li class="item"><a title="Home" class="nav-icon" href="javascript:document.location.href=gethostname()"><i class="icon-home"></i>Home</a></li>
+                    @Html.Raw(WebDuLichSecurity.Menu)
                 </ul>
-            </div>    
+            </div>
         }
     </div>
 </div>
