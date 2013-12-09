@@ -52,6 +52,49 @@ namespace DuLichDLL.BAL
                 throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_A_ObjectBAL: GetList"));
             }
         }
+
+        public List<A_Object> GetListParent()
+        {
+            try
+            {
+                A_ObjectDAL a_ObjectDAL = new A_ObjectDAL();
+                return a_ObjectDAL.GetListParent();
+            }
+            catch (DataAccessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (BusinessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_A_ObjectBAL: GetListParent"));
+            }
+        }
+
+        public List<A_Object> GetListByParentId(long parentId)
+        {
+            try
+            {
+                A_ObjectDAL a_ObjectDAL = new A_ObjectDAL();
+                return a_ObjectDAL.GetListByParentId(parentId);
+            }
+            catch (DataAccessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (BusinessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_A_ObjectBAL: GetListByParentId"));
+            }
+        }
+
         public long Insert(A_Object a_Object)
         {
             try

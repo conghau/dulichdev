@@ -72,6 +72,8 @@ namespace DuLichDLL.Model
             get { return _status; }
             set { _status = value; }
         }
+
+        public List<A_Function> ListFunction { get; set; }
     }
     public enum A_ObjectColumns
     {
@@ -94,6 +96,7 @@ namespace DuLichDLL.Model
         p_A_Object_Update,
         p_A_Object_Get_List,
         p_A_Object_Get_ByID,
-
+        p_A_Object_Get_ListParent,
+        p_A_Object_Get_ByParentID,
     }
 }

@@ -52,12 +52,12 @@ namespace DuLichDLL.BAL
                 throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_webpages_RolesBAL: GetList"));
             }
         }
-        public List<webpages_Roles> GetListWithCountNumberUser()
+        public List<webpages_Roles> GetListWithCountNumberUser(int page, int pageSize, string orderBy, string orderDirection, out long totalRecords)
         {
             try
             {
                 webpages_RolesDAL webpages_RolesDAL = new webpages_RolesDAL();
-                return webpages_RolesDAL.GetListWithCountNumberUser();
+                return webpages_RolesDAL.GetListWithCountNumberUser(page, pageSize, orderBy, orderDirection, out totalRecords);
             }
             catch (DataAccessException ex)
             {

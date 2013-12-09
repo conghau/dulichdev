@@ -121,7 +121,7 @@ namespace DuLichDLL.DAL
             }
         }
 
-        public List<webpages_Roles> GetListWithCountNumberUser()
+        public List<webpages_Roles> GetListWithCountNumberUser(int page, int pageSize, string orderBy, string orderDirection, out long totalRecords)
         {
             SqlConnection cnn = null;
             try
@@ -129,10 +129,18 @@ namespace DuLichDLL.DAL
                 cnn = DataProvider.OpenConnection();
                 SqlCommand cmd = new SqlCommand(webpages_RolesProcedure.p_webpages_Roles_CountNumberUser.ToString(), cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@OrderBy", SqlDbType.NVarChar).Value = orderBy ?? string.Empty;
+                cmd.Parameters.Add("@OrderDirection", SqlDbType.NVarChar).Value = orderDirection ?? string.Empty;
+                cmd.Parameters.Add("@Page", SqlDbType.BigInt).Value = page;
+                cmd.Parameters.Add("@PageSize", SqlDbType.BigInt).Value = pageSize;
+                SqlParameter totalRecord = cmd.Parameters.Add("@TotalRecords", SqlDbType.BigInt);
+                totalRecord.Direction = ParameterDirection.Output;
+
                 DataTable dt = new DataTable();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
                 var results = GetDataObjectWithNumberUser(dt);
+                totalRecords = Utility.Utility.ObjectToLong(totalRecord.Value);
                 return results;
             }
             catch (DataAccessException ex)

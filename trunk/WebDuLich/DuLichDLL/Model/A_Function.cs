@@ -48,6 +48,8 @@ namespace DuLichDLL.Model
             get { return _status; }
             set { _status = value; }
         }
+
+        public bool? isHasPermission { get; set; }
     }
     public enum A_FunctionColumns
     {
@@ -66,6 +68,16 @@ namespace DuLichDLL.Model
         p_A_Function_Update,
         p_A_Function_Get_List,
         p_A_Function_Get_ByID,
+        p_A_Function_Get_ByObjectID,
+        p_A_Function_Get_ByObjectIDAndRoleId,
 
+    }
+
+    public enum A_FunctionName
+    {
+        View,
+        Insert,
+        Delete,
+        Asign,
     }
 }

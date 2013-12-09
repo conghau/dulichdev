@@ -52,6 +52,28 @@ namespace DuLichDLL.BAL
                 throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_A_ObjectFunctionBAL: GetList"));
             }
         }
+
+        public List<A_ObjectFunction> GetListByRoleId(long roleId)
+        {
+            try
+            {
+                A_ObjectFunctionDAL a_ObjectFunctionDAL = new A_ObjectFunctionDAL();
+                return a_ObjectFunctionDAL.GetListByRoleId(roleId);
+            }
+            catch (DataAccessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (BusinessException ex)
+            {
+                throw new BusinessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException(ExceptionMessage.throwEx(ex, "ERROR_A_ObjectFunctionBAL: GetListByRoleId"));
+            }
+        }
+
         public long Insert(A_ObjectFunction a_ObjectFunction)
         {
             try

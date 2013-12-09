@@ -100,6 +100,66 @@ namespace DuLichDLL.DAL
                 cnn.Close();
             }
         }
+
+        public List<A_Function> GetListFunctionByObjectId(long objectId)
+        {
+            SqlConnection cnn = null;
+            try
+            {
+                cnn = DataProvider.OpenConnection();
+                SqlCommand cmd = new SqlCommand(A_FunctionProcedure.p_A_Function_Get_ByObjectID.ToString(), cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@ObjectID", SqlDbType.BigInt).Value = objectId;
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dt);
+                var results = GetDataObject(dt);
+                return results;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_A_FunctionDAL: GetListFunctionByObjectId"));
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+
+        public List<A_Function> GetListFunctionByObjectIdAndRoleId(long objectId,long roleId)
+        {
+            SqlConnection cnn = null;
+            try
+            {
+                cnn = DataProvider.OpenConnection();
+                SqlCommand cmd = new SqlCommand(A_FunctionProcedure.p_A_Function_Get_ByObjectIDAndRoleId.ToString(), cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@ObjectID", SqlDbType.BigInt).Value = objectId;
+                cmd.Parameters.Add("@RoleId", SqlDbType.BigInt).Value = roleId;
+                DataTable dt = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dt);
+                var results = GetDataObject(dt);
+                return results;
+            }
+            catch (DataAccessException ex)
+            {
+                throw new DataAccessException(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ExceptionMessage.throwEx(ex, "ERROR_A_FunctionDAL: GetListFunctionByObjectIdAndRoleId"));
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+
         public long Insert(A_Function a_Function)
         {
             long id = 0;
