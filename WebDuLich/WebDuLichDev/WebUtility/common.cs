@@ -68,13 +68,10 @@ namespace WebDuLichDev.WebUtility
                 List<A_Object> listParent = new List<A_Object>();
                 listParent = objectBal.GetListParent().OrderBy(m=>m.Order).ToList();
                 listObject.RemoveAll(m => m.ParentID == 0);
-                //menu = "<div class=\"container\"><ul class=\"nav nav-tabs\"> ";
-                //menu= menu + "<li class=\"item\"><a title=\"Home\" class=\"nav-icon\" href=\"http:\/\/localhost:62688\"><i class=\"icon-home\"></i>Home</a></li>";
                 foreach (A_Object item in listParent)
                 {
                     menu = menu + BuildChildNode(item, listObject, listPermission);
                 }
-                //menu = menu + " </ul></div>";
                 return menu;
             }
             catch (Exception)
