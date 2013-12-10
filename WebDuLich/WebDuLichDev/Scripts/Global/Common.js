@@ -44,30 +44,7 @@ $(function () {
         $('div.navbar-inner div.container ul.nav li ul li a[href="' + currertUrlAction + '"]').parent().parent().parent().addClass('active');
     }
 
-      //    if (!$(e.target).parent().hasClass('active')) {
-
-    //        //$('ul.nav').each(this, function () {
-    //        //    $(this).removeClass('active')
-    //        //})
-    //        $(e.target).parent().removeClass('normal')
-    //        $(e.target).parent().addClass('active')
-    //    }
-    //$(".DDL").kendoDropDownList();
-    //$(".CBB").kendoComboBox();
-
-    //$(".DateTime").filter_inputDateTime(DateTimeFormat);
-    //$(".DateTimeKendo").filter_inputDateTime(DateTimeFormat); //DateTimeFormat get from session and set in master page
-    //$(".DateTimeKendo").kendoDatePicker({
-    //    format: DateTimeFormat
-    //});
-    //$(".Numberic").kendoNumericTextBox();
-    //$(".NumbericINT").kendoNumericTextBox({
-    //    format: "#",
-    //    decimals: 0
-    //});
-
-   // var message = @DuLichDLL.Utility.Utility.ObjectToString(ViewData[WebDuLichDev.Enum.PageInfo.Message.ToString()]);
-    var message = $('#messageBoxCode').val();
+   var message = $('#messageBoxCode').val();
     if (message != '') {
         if (message.indexOf('ERR') >= 0 || message.indexOf('VAL') >= 0) {
             $('#messageBox').addClass('alert-error');
