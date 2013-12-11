@@ -163,7 +163,7 @@ namespace WebDuLichDev.WebUtility
         {
             get
             {
-                String fontFile = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Fonts/"), "ARIALUNI.TTF");
+                String fontFile = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Fonts/"), "times.ttf");
                 BaseFont baseFont = BaseFont.CreateFont(fontFile, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
                 Font font = new Font(baseFont,7);
                 return font;
@@ -173,7 +173,7 @@ namespace WebDuLichDev.WebUtility
         {
             get
             {
-                 String fontFile = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Fonts/"), "ARIALUNI.TTF");
+                String fontFile = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Fonts/"), "times.ttf");
                 BaseFont baseFont = BaseFont.CreateFont(fontFile, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
                 Font font = new Font(baseFont,TEXTSIZE);
                 return font;
@@ -185,7 +185,7 @@ namespace WebDuLichDev.WebUtility
         {
             get
             {
-                return BaseFont.CreateFont(Path.Combine(HttpContext.Current.Server.MapPath("/Content/Fonts/"), "ARIALUNI.TTF"), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                return BaseFont.CreateFont(Path.Combine(HttpContext.Current.Server.MapPath("/Content/Fonts/"), "times.ttf"), BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             }
         }
 
