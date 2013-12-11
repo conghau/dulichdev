@@ -51,16 +51,19 @@
     <Reference Include="Facebook">
       <HintPath>..\packages\Facebook.6.4.2\lib\net40-client\Facebook.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.4.1.2\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.WindowsAzure.StorageClient">
-      <HintPath>..\packages\WindowsAzure.StorageClient.Library.1.6\lib\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json.Net35">
       <HintPath>..\packages\Newtonsoft.Json.4.0.2\lib\net35\Newtonsoft.Json.Net35.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorPDF">
+      <HintPath>..\packages\RazorPDF.1.0.0\lib\net40\RazorPDF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -194,6 +197,7 @@
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
+    <Compile Include="Controllers\RazorPDFController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\PlaceController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
@@ -201,15 +205,14 @@
     <Compile Include="Controllers\ZingController.cs" />
     <Compile Include="enum\Enum.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
-    <Compile Include="Filters\permission.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\vm_Place.cs" />
     <Compile Include="Models\vm_pagination.cs" />
+    <Compile Include="Models\vm_Place.cs" />
     <Compile Include="Models\vm_Role.cs" />
     <Compile Include="Models\vm_Search.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -217,6 +220,7 @@
     <Compile Include="WebUtility\common.cs" />
     <Compile Include="WebUtility\enum.cs" />
     <Compile Include="WebUtility\HtmlHelper.cs" />
+    <Compile Include="WebUtility\PDF.cs" />
     <Compile Include="WebUtility\WebDLData.cs" />
     <Compile Include="WebUtility\ZingClient.cs" />
   </ItemGroup>
@@ -713,6 +717,7 @@
     <Content Include="Views\Shared\_PageDefault.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Role\UpdateRole.cshtml" />
+    <Content Include="Views\RazorPDF\Pdf.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
