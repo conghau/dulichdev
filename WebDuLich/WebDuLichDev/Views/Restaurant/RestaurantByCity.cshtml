@@ -1,6 +1,6 @@
-﻿@model List<WebDuLichDev.Models.vm_NicePlace>
+﻿@model List<WebDuLichDev.Models.RestaurantInfo>
 @{
-    ViewBag.Title = ViewBag.Title + " - " + Resources.Language.Place;
+    ViewBag.Title = ViewBag.Title + " - " + Resources.Language.Restaurant;
     Layout = "~/Views/Shared/_LayoutFilp.cshtml";
 }
 <div id="search-dropdown">
@@ -89,42 +89,33 @@
                     </div>
                 </section>
             </article>
-
-            @{int i = 1;
-              int index = 0;
-              string tempChar = "";
-            }
-            <article id="@Model[0].dlPlace.FirstChar.ToUpper()">
-                <section class="title-@Model[0].dlPlace.FirstChar.ToUpper() page-1">
+@{int i = 1;
+    int index = 0;
+    string tempChar = "";
+}
+@if (null == Model)
+{
+    @:<article id="@Model[0].dlPlace.FirstChar.ToUpper()">
+                @:<section class="title-@Model[0].dlPlace.FirstChar.ToUpper() page-1">
                     <div class="page">
                         <div class="page-title">
                             <h2>@Model[0].dlPlace.Name</h2>
-                            <a href="javascript:notepad.loadpad('mynotepad2')">Load mynotepad2 via link</a>
-                            <a href="#" class="test">hehe</a>
-                            <p><a href="http://en.wikipedia.org/wiki/Thailand" data-tooltip="sticky1">Thailand</a></p>
-                            <a href="@Url.Action("NicePlace", "Place", new { ID = Model[0].dlPlace.ID })">zem ...</a>
                         </div>
-                        	<div id="mystickytooltip" class="stickytooltip">
-2	<div id="sticky1" class="atip" style="width:200px"><img src="http://img121.imageshack.us/img121/746/thailand.jpg" /><br />Thailand boasts some of the most popular and luxurious resorts in Asia.</div>
 3	</div>
                         <div class="right">
                             <img src="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar" width="300" height="250" alt="" />
-                            @if (Model[0].listImagePlace != null)
-                            {
-                                <a href="@Url.Action("ListImagePlace", "Place", new { placeId = Model[0].dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
-                            }
                         </div>
                         <div class="left">
-                             @Html.Raw(HttpUtility.HtmlDecode(Model[0].dlNicePlaceInfoDetail.Info))
+                             @Html.Raw(HttpUtility.HtmlDecode(Model[0].dlRestaurantInfoDetail.Info))
                             @*<p class="drop-cap">@HttpUtility.HtmlDecode.(Model[0].dlNicePlaceInfoDetail.Info)</p>*@
                             <a href="@Url.Action("PlaceInfoDetail", "Place", new { placeId = Model[0].dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
                         </div>
-                    </div>
-                </section>
-            @{tempChar = Model[0].dlPlace.FirstChar.ToUpper();}
+                    @:</div>
+                @:</section>
+            tempChar = Model[0].dlPlace.FirstChar.ToUpper();
 
 
-            @foreach (var item in Model)
+            foreach (var item in Model)
             {
 
                 if (index != 0)
@@ -141,13 +132,9 @@
                                     </div>
                                     <div class="right">
                                         <img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" width="350" height="250" alt="" />
-                            @if (item.listImagePlace != null)
-                            {
-                                <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>                               
-                            }
                         </div>
                                     <div class="left">
-                                        <p class="drop-cap">@Html.Raw(HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info))</p>
+                                        <p class="drop-cap">@Html.Raw(HttpUtility.HtmlDecode(item.dlRestaurantInfoDetail.Info))</p>
                                          <a href="@Url.Action("PlaceInfoDetail", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
                                     </div>
                                 </div>
@@ -166,14 +153,9 @@
                                     </div>
                                      <div class="right">
                                          <img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" width="350" height="250" alt="" />
-                            @if (item.listImagePlace != null)
-                            {
-                                <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
-                                
-                            }
                         </div>
                                     <div class="left">
-                                        <p class="drop-cap">@Html.Raw(HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info))</p>
+                                        <p class="drop-cap">@Html.Raw(HttpUtility.HtmlDecode(item.dlRestaurantInfoDetail.Info))</p>
                                         <a href="@Url.Action("PlaceInfoDetail", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
                                     </div>
                                 </div>
@@ -187,6 +169,9 @@
 
 
             }
+}
+           
+            
               <article id="theend">
                    <section class="title-theend page-1">
                 <div class="page">
@@ -215,6 +200,8 @@
     </div>
 </div>
 <nav id="chapter-nav">
+    @if(null != Model)
+    {
     <ul>
         @{string tmpChar = "";}
         @foreach (var item in Model)
@@ -243,6 +230,7 @@
         }
 
     </ul>
+    }
 </nav>
 <div id="overlay" style="display: none;">
     <div class="bookmark"></div>
@@ -310,26 +298,29 @@
 					<h2><span>Table of Things</span></h2>
 					<hr>
 				</div>
-				<ul>
-                    @{ tmpChar = "";}
-        @foreach (var item in Model)
+                @if(null != Model)
+                {
+                    <ul>
+                        @{string tmpChar = "";}
+                        @foreach (var item in Model)
         {
             if (tmpChar != @item.dlPlace.FirstChar.ToUpper())
             {
-            <li class="@item.dlPlace.FirstChar.ToUpper()">
-                <a href="#" class="cnItem" title="@item.dlPlace.FirstChar.ToUpper()" data-article="@item.dlPlace.FirstChar.ToUpper()">
-                    <div class="medium-book">
-                        <div class="illustration"></div>
-                        <p class="index">THING @item.dlPlace.FirstChar.ToUpper()</p>
-                    </div>
-                    <h3>@item.dlPlace.FirstChar.ToUpper()</h3>
-                    <p> Danh sách địa điểm bắt đầu bằng chữ @item.dlPlace.FirstChar.ToUpper() </p>
-                </a>
-            </li>
+                            <li class="@item.dlPlace.FirstChar.ToUpper()">
+                                <a href="#" class="cnItem" title="@item.dlPlace.FirstChar.ToUpper()" data-article="@item.dlPlace.FirstChar.ToUpper()">
+                                    <div class="medium-book">
+                                        <div class="illustration"></div>
+                                        <p class="index">THING @item.dlPlace.FirstChar.ToUpper()</p>
+                                    </div>
+                                    <h3>@item.dlPlace.FirstChar.ToUpper()</h3>
+                                    <p>Danh sách địa điểm bắt đầu bằng chữ @item.dlPlace.FirstChar.ToUpper() </p>
+                                </a>
+                            </li>
                 tmpChar = @item.dlPlace.FirstChar.ToUpper();
             }
 
-        }            
-                </ul>
+        }
+                    </ul>
+                }
                 </div>
     </div>

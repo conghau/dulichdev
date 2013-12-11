@@ -11,7 +11,7 @@ namespace WebDuLichDev.Models
     {
         public DL_Place dlPlace { get; set; }
         public DL_NicePlaceInfoDetail dlNicePlaceInfoDetail { get; set; }
-        public List<DL_ImagePlace> listImageCity { get; set; }
+        public List<DL_ImagePlace> listImagePlace { get; set; }
     }
     public class CityInfo
     {
