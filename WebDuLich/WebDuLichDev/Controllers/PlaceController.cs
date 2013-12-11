@@ -101,7 +101,7 @@ namespace WebDuLichDev.Controllers
                     var tmp = new vm_NicePlace();
                     tmp.dlPlace = dlPlace[index];
                     tmp.dlNicePlaceInfoDetail = dlNicePlaceInfoDetailBal.GetByPlaceId(dlPlace[index].ID);
-                    tmp.listImageCity = dlImagePlaceBal.GetByDLPlaceID(dlPlace[index].ID);
+                    tmp.listImagePlace = dlImagePlaceBal.GetByDLPlaceID(dlPlace[index].ID);
                     nicePlacePage.Add(tmp);
 
                 }
@@ -131,12 +131,12 @@ namespace WebDuLichDev.Controllers
             return View(model);
         }
 
-        public ActionResult RestaurantsByCity(long cityId)
-        {
-            DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
-            var model = dlPlaceBal.GetListRestaurantsPlaceByCity(cityId);
-            return View();
-        }
+        //public ActionResult RestaurantsByCity(long cityId)
+        //{
+        //    DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+        //    var model = dlPlaceBal.GetListRestaurantsPlaceByCity(cityId);
+        //    return View();
+        //}
 
         public ActionResult NicePlace(long ID) 
         {
@@ -149,7 +149,7 @@ namespace WebDuLichDev.Controllers
             //nicePlace = nicePlaceBook.Where(p => p.dlPlace.ID == ID).Single();
             nicePlace.dlPlace = dlPlaceBal.GetByID(ID);
             nicePlace.dlNicePlaceInfoDetail = dlNicePlaceInfoDetailBal.GetByPlaceId(ID);
-            nicePlace.listImageCity = dlImagePlaceBal.GetByDLPlaceID(ID);
+            nicePlace.listImagePlace = dlImagePlaceBal.GetByDLPlaceID(ID);
 
             return View(nicePlace);
         }
@@ -287,12 +287,12 @@ namespace WebDuLichDev.Controllers
                         listDLImagePlace.Add(temp);
                     }
                 }
-                dataRequest.listImageCity = listDLImagePlace;
+                dataRequest.listImagePlace = listDLImagePlace;
 
                 dataRequest.dlPlace.DL_PlaceTypeId = (long)DL_PlaceTypeId.Places;
                 dataRequest.dlPlace.TotalPointRating = 0;
                 dataRequest.dlPlace.TotalUserRating = 0;
-                result = dlPlaceBal.InsertNicePlace(dataRequest.dlPlace, dataRequest.dlNicePlaceInfoDetail, dataRequest.listImageCity);
+                result = dlPlaceBal.InsertNicePlace(dataRequest.dlPlace, dataRequest.dlNicePlaceInfoDetail, dataRequest.listImagePlace);
                 //dlPlaceBal.Insert(dataRequest);           
                 if (true == result)
                 {
@@ -330,9 +330,9 @@ namespace WebDuLichDev.Controllers
                 DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
                 vm_NicePlace model = new vm_NicePlace();
                 model.dlPlace = dlPlaceBal.GetByID(dlPlaceId);
-                model.listImageCity = dlImagePlaceBal.GetByDLPlaceID(dlPlaceId);
+                model.listImagePlace = dlImagePlaceBal.GetByDLPlaceID(dlPlaceId);
                 model.dlNicePlaceInfoDetail = dlNicePlaceDetailBal.GetByPlaceId(dlPlaceId);
-                listImagePlaceOld = model.listImageCity;
+                listImagePlaceOld = model.listImagePlace;
                 return View(model);
             }
             catch (BusinessException bx)

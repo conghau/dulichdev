@@ -243,7 +243,6 @@ imap5custom.initUserMap({
           "strokeDasharray":"none"
         },
         "link": "\/City\/Detail\/2",
-        "link_target": "_parent",
         "infobox":"Quảng Ngãi"
       },
       "12":{

@@ -205,6 +205,7 @@
     <Compile Include="Controllers\ZingController.cs" />
     <Compile Include="enum\Enum.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Filters\permission.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -718,6 +719,8 @@
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Role\UpdateRole.cshtml" />
     <Content Include="Views\RazorPDF\Pdf.cshtml" />
+    <Content Include="Views\Restaurant\RestaurantByCity.cshtml" />
+    <Content Include="Views\Shared\_BookShow2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

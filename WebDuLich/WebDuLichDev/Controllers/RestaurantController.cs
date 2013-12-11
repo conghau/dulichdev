@@ -15,22 +15,26 @@ using DuLichDLL.ExceptionType;
 
 namespace WebDuLichDev.Controllers
 {
-    public class RestaurantController : BaseController
+    public class RestaurantController : Controller
     {
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(RestaurantController).Name);
         string version = "Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString() + " ";
-        
+
         //
         // GET: /Restaurant/
+        private static List<RestaurantInfo> RestaunantBook = new List<RestaurantInfo>();
 
         public ActionResult Index()
         {
             return View();
         }
+
+        #region admin
+
         public ActionResult AddRestaurant()
         {
-           
+
             return View();
         }
 
@@ -131,7 +135,7 @@ namespace WebDuLichDev.Controllers
                 }
                 else
                 {
-                    TempData["Message"] = ResultMessage.ERR_Insert ;
+                    TempData["Message"] = ResultMessage.ERR_Insert;
                     return RedirectToAction("ListRestaurant");
                 }
             }
@@ -278,6 +282,54 @@ namespace WebDuLichDev.Controllers
             }
 
         }
- 
+        #endregion
+
+        #region book flip
+
+        public ActionResult RestaurantByCity(long ID)
+        {
+            try
+            {
+                ViewBag.CityId = ID;
+                DL_CityBAL dlCityBal = new DL_CityBAL();
+                var city = dlCityBal.GetByID(ID);
+                ViewBag.Title = city.CityName;
+
+                //vm_Pagination pagination = new vm_Pagination { OrderBy = DL_PlaceColumns.CreatedDate.ToString(), OrderDirection = "DESC" };
+                DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+                DL_RestaurantInfoDetailBAL dlRestaurantInfoDetailBal = new DL_RestaurantInfoDetailBAL();
+                DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
+                var dlRestaurantPlace = dlPlaceBal.GetListRestaurantsPlaceByCity(ID);
+                //ViewData["OrderBy"] = pagination.OrderBy;
+                //ViewData["OrderDirection"] = pagination.OrderDirection;
+                var restaurantPlacePage = new List<RestaurantInfo>();
+                for (int index = 0; index < dlRestaurantPlace.Count(); index++)
+                {
+                    var tmp = new RestaurantInfo();
+                    tmp.dlPlace = dlRestaurantPlace[index];
+                    tmp.dlRestaurantInfoDetail = dlRestaurantInfoDetailBal.GetByDLPlaceID(dlRestaurantPlace[index].ID);
+                    //tmp.listImageCity = dlImagePlaceBal.GetByDLPlaceID(dlRestaurantPlace[index].ID);
+                    restaurantPlacePage.Add(tmp);
+
+                }
+                RestaunantBook = restaurantPlacePage;
+                return View(restaurantPlacePage);
+            }
+            catch (BusinessException bx)
+            {
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return RedirectToAction("Error", "Home");
+            }
+        }
+
+        #endregion
+
     }
 }

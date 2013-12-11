@@ -12,7 +12,6 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using zingme_sdk;
-using RazorPDF;
 using DuLichDLL.BAL;
 using WebDuLichDev.Models;
 using iTextSharp.text;
@@ -46,7 +45,7 @@ namespace WebDuLichDev.Controllers
             var tmp = new vm_NicePlace();
             tmp.dlPlace = dlPlaceBal.GetByID(ID);
             tmp.dlNicePlaceInfoDetail = dlNicePlaceInfoDetailBal.GetByPlaceId(tmp.dlPlace.ID);
-            tmp.listImageCity = dlImagePlaceBal.GetByDLPlaceID(tmp.dlPlace.ID);
+            tmp.listImagePlace = dlImagePlaceBal.GetByDLPlaceID(tmp.dlPlace.ID);
 
             return View(tmp);
 
