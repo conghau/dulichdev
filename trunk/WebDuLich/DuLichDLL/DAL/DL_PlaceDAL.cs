@@ -264,6 +264,8 @@ namespace DuLichDLL.DAL
                 cnn.Close();
             }
         }
+
+
         public long Insert(DL_Place dL_Place)
         {
             long id = 0;
