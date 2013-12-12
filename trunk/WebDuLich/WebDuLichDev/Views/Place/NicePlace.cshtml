@@ -14,9 +14,9 @@
             </div>
             <div class="right">
                 <img src="~/Data/Avatar/Place/@Model.dlPlace.Avatar" width="350" height="250" alt="@Model.dlPlace.Name" />
-                @if (Model.listImageCity != null)
+                @if (Model.listImagePlace != null)
                 {
-                    foreach (var item in Model.listImageCity)
+                    foreach (var item in Model.listImagePlace)
                     {
                         <img src="~/Data/Avatar/Place/@item.LinkImage" width="350" height="250" alt="@Model.dlPlace.Name" />   
                     }                           

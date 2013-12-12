@@ -158,7 +158,8 @@ namespace WebDuLichDev.Controllers
         {
             DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
             var model = dlImagePlaceBal.GetByDLPlaceID(placeId);
-            return View(model);
+            return Json(new { data = model }, JsonRequestBehavior.AllowGet);
+            //return View(model);
         }
 
         public ActionResult PlaceInfoDetail(long placeId)
@@ -184,6 +185,11 @@ namespace WebDuLichDev.Controllers
             }
         }
 
+        public ActionResult PrintBook(long cityId)
+        {
+            var model = nicePlaceBook;
+            return View(model);
+        }
 
         //[HttpPost]
         //public ActionResult reLoadPage(long cityId, vm_Pagination pagination)

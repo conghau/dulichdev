@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <title>@ViewBag.Title</title>   
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Scripts/Lib/bootstrap/css/bootstrap.css")
     @Scripts.Render("~/bundles/modernizr")
@@ -155,6 +154,33 @@
                 padding: 10,
                 //afterClose: function () { location.reload(false); }
             });
+
+            $(".fancybox")
+    .attr('rel', 'gallery')
+    .fancybox({
+        beforeShow: function () {
+            if (this.title) {
+                // New line
+                this.title += '<br />';
+
+                // Add tweet button
+                this.title += '<a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-url="' + this.href + '">Tweet</a> ';
+
+                // Add FaceBook like button
+                this.title += '<iframe src="//www.facebook.com/plugins/like.php?href=' + this.href + '&amp;layout=button_count&amp;show_faces=true&amp;width=500&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:23px;" allowTransparency="true"></iframe>';
+            }
+        },
+        afterShow: function () {
+            // Render tweet button
+            twttr.widgets.load();
+        },
+        helpers: {
+            title: {
+                type: 'inside'
+            }
+        }
+    });
+
         });
         $(document).ready(function () {
             $('.test').click(function () { alert('kk')});

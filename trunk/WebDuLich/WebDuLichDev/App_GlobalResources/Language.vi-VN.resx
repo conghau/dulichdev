@@ -123,8 +123,14 @@
   <data name="AddHotel" xml:space="preserve">
     <value>Thêm Khách Sạn</value>
   </data>
+  <data name="AddPlace" xml:space="preserve">
+    <value>Thêm Địa Điểm</value>
+  </data>
   <data name="Address" xml:space="preserve">
     <value>Địa chỉ</value>
+  </data>
+  <data name="AddRestaurant" xml:space="preserve">
+    <value>Thêm Địa Điểm Ăn Uống</value>
   </data>
   <data name="Administrative" xml:space="preserve">
     <value>Hành chính</value>
@@ -153,6 +159,9 @@
   <data name="City" xml:space="preserve">
     <value>Thành phố</value>
   </data>
+  <data name="CityName" xml:space="preserve">
+    <value>Tên Thành Phố</value>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>Đóng</value>
   </data>
@@ -162,14 +171,29 @@
   <data name="Contact" xml:space="preserve">
     <value>Liên hệ</value>
   </data>
+  <data name="Control" xml:space="preserve">
+    <value>Xử Lý</value>
+  </data>
+  <data name="CountryCode" xml:space="preserve">
+    <value>Mã Quốc Gia</value>
+  </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>Tạo mới</value>
+  </data>
   <data name="DetailInfo" xml:space="preserve">
     <value>Thông tin chi tiết</value>
   </data>
   <data name="Economy" xml:space="preserve">
     <value>Kinh tế</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Hiệu chỉnh</value>
+  </data>
   <data name="EN" xml:space="preserve">
     <value>Tiếng Anh</value>
+  </data>
+  <data name="ERR_Exist" xml:space="preserve">
+    <value>Đã tồn tại</value>
   </data>
   <data name="ERR_Insert" xml:space="preserve">
     <value>Thêm mới thất bại</value>
@@ -204,14 +228,50 @@
   <data name="Last" xml:space="preserve">
     <value>Cuối</value>
   </data>
+  <data name="ListCity" xml:space="preserve">
+    <value>Danh Sách Thành Phố</value>
+  </data>
+  <data name="ListHotel" xml:space="preserve">
+    <value>Danh Sách Khách Sạn</value>
+  </data>
+  <data name="ListPlace" xml:space="preserve">
+    <value>Danh Sách Địa Điểm</value>
+  </data>
+  <data name="ListRestaurant" xml:space="preserve">
+    <value>Danh Sách Địa Điểm Ăn Uống</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Đăng nhập</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Đăng xuất</value>
   </data>
+  <data name="Manager_Role" xml:space="preserve">
+    <value>Quản Lý Quyền</value>
+  </data>
   <data name="Menu" xml:space="preserve">
     <value>Thực Đơn</value>
+  </data>
+  <data name="msg_CaptureFail" xml:space="preserve">
+    <value>Sai giá trị của phép tính, vui lòng nhập lại!</value>
+  </data>
+  <data name="msg_Changepass_Fail" xml:space="preserve">
+    <value>Mật khẩu cũ không chính xác hoặc mật khẩu mới không hợp lệ!</value>
+  </data>
+  <data name="msg_Changepass_Success" xml:space="preserve">
+    <value>Mật khẩu của bạn đã được thay đổi!</value>
+  </data>
+  <data name="msg_LoginFail" xml:space="preserve">
+    <value>Tài khoản hoặc Mật khẩu không chính xác!</value>
+  </data>
+  <data name="msg_Login_External_Confirm_Fail" xml:space="preserve">
+    <value>Tài khoản này đã tồn tại, vui lòng nhập tên tài khoản khác.</value>
+  </data>
+  <data name="msg_Login_External_Remove" xml:space="preserve">
+    <value>Hủy thành công tài khoản đăng nhập bên ngoài!</value>
+  </data>
+  <data name="msg_Setpass_Success" xml:space="preserve">
+    <value>Mật khẩu của bạn đã cài đặt!</value>
   </data>
   <data name="Nature" xml:space="preserve">
     <value>Tự nhiên</value>
@@ -219,8 +279,14 @@
   <data name="Next" xml:space="preserve">
     <value>Tiếp</value>
   </data>
+  <data name="NoFound" xml:space="preserve">
+    <value>Không tìm thấy</value>
+  </data>
   <data name="Note" xml:space="preserve">
     <value>Ghi chú</value>
+  </data>
+  <data name="NumberUser" xml:space="preserve">
+    <value>Số thành viên</value>
   </data>
   <data name="Open" xml:space="preserve">
     <value>Mở</value>
@@ -234,6 +300,9 @@
   <data name="PlaceName" xml:space="preserve">
     <value>Tên địa điểm</value>
   </data>
+  <data name="PleaseInput" xml:space="preserve">
+    <value>Hãy nhập</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Lùi</value>
   </data>
@@ -246,14 +315,29 @@
   <data name="RestaurantName" xml:space="preserve">
     <value>Tên nhà hàng</value>
   </data>
+  <data name="Role" xml:space="preserve">
+    <value>Quyền</value>
+  </data>
+  <data name="RoleName" xml:space="preserve">
+    <value>Tên quyền</value>
+  </data>
   <data name="Rows" xml:space="preserve">
     <value>Hàng</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Tìm</value>
   </data>
   <data name="SeeMore" xml:space="preserve">
     <value>Xem thêm</value>
   </data>
   <data name="Services" xml:space="preserve">
     <value>Dịch vụ</value>
+  </data>
+  <data name="SHAREBOOK" xml:space="preserve">
+    <value>CHIA SẺ</value>
   </data>
   <data name="Showpassword" xml:space="preserve">
     <value>Hiển thị mật khẩu</value>
@@ -275,6 +359,21 @@
   </data>
   <data name="Travel" xml:space="preserve">
     <value>Du lịch</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Cập nhập</value>
+  </data>
+  <data name="UpdateCity" xml:space="preserve">
+    <value>Cập Nhật Thông Tin Thành Phố</value>
+  </data>
+  <data name="UpdateHotel" xml:space="preserve">
+    <value>Cập Nhật Khách Sạn</value>
+  </data>
+  <data name="UpdateNicePlace" xml:space="preserve">
+    <value>Cập Nhật Thông Tin Địa Điểm</value>
+  </data>
+  <data name="UpdateRestaurant" xml:space="preserve">
+    <value>Cập Nhật Thông Tin Địa Điểm Ăn Uống</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Tên Tài Khoản</value>

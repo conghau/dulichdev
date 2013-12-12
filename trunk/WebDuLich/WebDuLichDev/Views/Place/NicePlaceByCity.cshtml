@@ -43,7 +43,7 @@
         <div class="background-top"></div>
         <div class="background-bottom"></div>
         <div class="content">
-            <ul>
+            <ul type="none">
                 <li class="facebook">
                     <a title="Facebook" href="#"></a>
                 </li>
@@ -99,16 +99,10 @@
                     <div class="page">
                         <div class="page-title">
                             <h2>@Model[0].dlPlace.Name</h2>
-                            <a href="javascript:notepad.loadpad('mynotepad2')">Load mynotepad2 via link</a>
-                            <a href="#" class="test">hehe</a>
-                            <p><a href="http://en.wikipedia.org/wiki/Thailand" data-tooltip="sticky1">Thailand</a></p>
-                            <a href="@Url.Action("NicePlace", "Place", new { ID = Model[0].dlPlace.ID })">zem ...</a>
                         </div>
-                        	<div id="mystickytooltip" class="stickytooltip">
-2	<div id="sticky1" class="atip" style="width:200px"><img src="http://img121.imageshack.us/img121/746/thailand.jpg" /><br />Thailand boasts some of the most popular and luxurious resorts in Asia.</div>
-3	</div>
                         <div class="right">
-                            <img src="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar" width="300" height="250" alt="" />
+                            <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar"><img src="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar" alt=""/></a>
+                            <img src="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar" width="300" height="250" alt=""  class="fancybox"/>
                             @if (Model[0].listImagePlace != null)
                             {
                                 <a href="@Url.Action("ListImagePlace", "Place", new { placeId = Model[0].dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
@@ -248,7 +242,7 @@
     <div class="bookmark"></div>
     <div class="print">
         <a class="closeprint fancybox-close" href="#" title="@Resources.Language.Close"></a>
-        <a class="printBook" href="/en-US/all/print" target="_blank">
+        <a class="printBook" href="@Url.Action("PrintBook", "Place", new { cityId = @ViewBag.cityId})" target="_blank">
             <h2>Print Book</h2>
             <p>Print the book (in Letter or A4 size only)</p>
         </a>
