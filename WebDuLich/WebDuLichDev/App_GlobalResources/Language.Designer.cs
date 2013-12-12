@@ -628,6 +628,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In sách.
+        /// </summary>
+        internal static string PrintBook {
+            get {
+                return ResourceManager.GetString("PrintBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Đăng kí.
         /// </summary>
         internal static string Register {

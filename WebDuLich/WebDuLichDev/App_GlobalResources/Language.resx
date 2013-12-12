@@ -381,4 +381,7 @@
   <data name="NumberUser" xml:space="preserve">
     <value>Số thành viên</value>
   </data>
+  <data name="PrintBook" xml:space="preserve">
+    <value>In sách</value>
+  </data>
 </root>

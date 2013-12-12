@@ -409,6 +409,28 @@
     <Content Include="DLL\log4net.dll" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Content\Fonts\times.ttf" />
+    <Content Include="Content\themes\20thing\css\fonts\droidsans-bold-webfont.eot" />
+    <Content Include="Content\themes\20thing\css\fonts\droidsans-bold-webfont.ttf" />
+    <Content Include="Content\themes\20thing\css\fonts\droidsans-bold-webfont.woff" />
+    <Content Include="Content\themes\20thing\css\fonts\droidsans-webfont.eot" />
+    <Content Include="Content\themes\20thing\css\fonts\droidsans-webfont.ttf" />
+    <Content Include="Content\themes\20thing\css\fonts\droidsans-webfont.woff" />
+    <Content Include="Content\themes\20thing\css\fonts\droidserif-bold-webfont.eot" />
+    <Content Include="Content\themes\20thing\css\fonts\droidserif-bold-webfont.ttf" />
+    <Content Include="Content\themes\20thing\css\fonts\droidserif-bold-webfont.woff" />
+    <Content Include="Content\themes\20thing\css\fonts\droidserif-bolditalic-webfont.eot" />
+    <Content Include="Content\themes\20thing\css\fonts\droidserif-bolditalic-webfont.ttf" />
+    <Content Include="Content\themes\20thing\css\fonts\droidserif-bolditalic-webfont.woff" />
+    <Content Include="Content\themes\20thing\css\fonts\droidserif-italic-webfont.eot" />
+    <Content Include="Content\themes\20thing\css\fonts\droidserif-italic-webfont.ttf" />
+    <Content Include="Content\themes\20thing\css\fonts\droidserif-italic-webfont.woff" />
+    <Content Include="Content\themes\20thing\css\fonts\droidserif-webfont.eot" />
+    <Content Include="Content\themes\20thing\css\fonts\droidserif-webfont.ttf" />
+    <Content Include="Content\themes\20thing\css\fonts\droidserif-webfont.woff" />
+    <Content Include="Content\themes\20thing\css\fonts\molengo-regular-webfont.eot" />
+    <Content Include="Content\themes\20thing\css\fonts\molengo-regular-webfont.ttf" />
+    <Content Include="Content\themes\20thing\css\fonts\molengo-regular-webfont.woff" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\Global\Common.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -721,6 +743,8 @@
     <Content Include="Views\RazorPDF\Pdf.cshtml" />
     <Content Include="Views\Restaurant\RestaurantByCity.cshtml" />
     <Content Include="Views\Shared\_BookShow2.cshtml" />
+    <Content Include="Views\Place\PrintBook.cshtml" />
+    <Content Include="Views\Shared\_printLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
