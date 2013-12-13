@@ -12,10 +12,11 @@ using WebDuLichDev.WebUtility;
 using DuLichDLL.ExceptionType;
 using WebDuLichDev.Enum;
 using System.Text;
+using WebMatrix.WebData;
 
 namespace WebDuLichDev.Controllers
 {
-    public class PlaceController : BaseController
+    public class PlaceController : Controller
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(PlaceController).Name);
         string version = "Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString() + " ";
@@ -138,7 +139,7 @@ namespace WebDuLichDev.Controllers
         //    return View();
         //}
 
-        public ActionResult NicePlace(long ID) 
+        public ActionResult NicePlace(long ID)
         {
             DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
             DL_NicePlaceInfoDetailBAL dlNicePlaceInfoDetailBal = new DL_NicePlaceInfoDetailBAL();
@@ -158,8 +159,8 @@ namespace WebDuLichDev.Controllers
         {
             DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
             var model = dlImagePlaceBal.GetByDLPlaceID(placeId);
-            return Json(new { data = model }, JsonRequestBehavior.AllowGet);
-            //return View(model);
+            //return Json(new { data = model }, JsonRequestBehavior.AllowGet);
+            return View(model);
         }
 
         public ActionResult PlaceInfoDetail(long placeId)
@@ -189,6 +190,52 @@ namespace WebDuLichDev.Controllers
         {
             var model = nicePlaceBook;
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Rating(long placeId, int rate)
+        {
+
+            try
+            {
+                long userId = WebSecurity.CurrentUserId; // WebSecurity.CurrentUserId;
+                bool success = false;
+                string error = "";
+                float avg = 0;
+                long total = 0;
+                //DL_CommentCityBAL dlCommentCityBal = new DL_CommentCityBAL();
+                var dlPlaceBal = new DL_PlaceBAL();
+
+                var dlPlace = new DL_Place();
+                dlPlace = dlPlaceBal.GetByID(placeId);
+                dlPlace.TotalPointRating = dlPlace.TotalPointRating + rate;
+                dlPlace.TotalUserRating = dlPlace.TotalUserRating + 1;
+                avg = dlPlace.TotalPointRating / dlPlace.TotalUserRating;
+                dlPlace.AvgRating = (int)avg;
+
+                if (dlPlaceBal.Update(dlPlace) > 0)
+                    success = true;
+                //success = db.RegisterProductVote(userId, id, rate);
+                total = dlPlace.TotalUserRating;
+                ViewBag.AVG = avg;
+
+                return Json(new { success = success, Avg = avg });
+            }
+            catch (BusinessException bx)
+            {
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
+                return null;
+            }
+            catch (Exception ex)
+            {
+                //LogBAL.LogEx("BLM_ERR_Common", ex);
+                log.Error(ex.Message);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return null;
+            }
+
+
         }
 
         //[HttpPost]

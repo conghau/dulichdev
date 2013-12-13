@@ -35,7 +35,7 @@
         <div class="content">
             <p>@ViewBag.Title</p>
             <p>Bạn không có điều kiện, thời gian để đi du lịch. Vậy thì hãy đọc cuốn sách này...</p>
-            <a class="open-book" href="#">OPEN BOOK</a>
+            <a class="open-book" href="#">@Resources.Language.openBook</a>
             <canvas id="flip-intro" width="89" height="69"></canvas>
         </div>
     </div>
@@ -76,7 +76,7 @@
                             <h2>CHỦ ĐỀ NĂM DU LỊCH QUỐC GIA 2014</h2>
                         </div>
                         <div class="image1">
-                            <img src="" data-src="css/images/cloud01.png" />
+                            <img src="/data/logo/2013/logodulich.jpg" data-src="/data/logo/2013/logodulich.jpg" />
                         </div>
                         <div class="left">
                             <p class="drop-cap">Năm Du lịch Quốc gia 2014 với chủ đề “Đại ngàn Tây nguyên”
@@ -99,20 +99,20 @@
                     <div class="page">
                         <div class="page-title">
                             <h2>@Model[0].dlPlace.Name</h2>
+                            @Html.Partial("p_rating",Model[0].dlPlace)
                         </div>
                         <div class="right">
                             <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar"><img src="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar" alt=""/></a>
-                            <img src="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar" width="300" height="250" alt=""  class="fancybox"/>
+                            @*<img src="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar" width="300" height="250" alt=""  class="fancybox" title="title"/>*@
                             @if (Model[0].listImagePlace != null)
                             {
                                 <a href="@Url.Action("ListImagePlace", "Place", new { placeId = Model[0].dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
                             }
                         </div>
-                        <div class="left">
-                             @Html.Raw(HttpUtility.HtmlDecode(Model[0].dlNicePlaceInfoDetail.Info))
-                            @*<p class="drop-cap">@HttpUtility.HtmlDecode.(Model[0].dlNicePlaceInfoDetail.Info)</p>*@
-                            <a href="@Url.Action("PlaceInfoDetail", "Place", new { placeId = Model[0].dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
+                        <div class="box">
+                             @Html.Raw(HttpUtility.HtmlDecode(Model[0].dlNicePlaceInfoDetail.Info))                           
                         </div>
+                        <div class="seemore"><a href="@Url.Action("PlaceInfoDetail", "Place", new { placeId = Model[0].dlPlace.ID })" class="ptext fancybox.iframe">@Resources.Language.SeeMore ...</a></div>
                     </div>
                 </section>
             @{tempChar = Model[0].dlPlace.FirstChar.ToUpper();}
@@ -132,6 +132,7 @@
                                 <div class="page">
                                     <div class="page-title">
                                         <h2>@item.dlPlace.Name</h2>
+                                        @Html.Partial("p_rating",item.dlPlace)
                                     </div>
                                     <div class="right">
                                         <img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" width="350" height="250" alt="" />
@@ -157,6 +158,7 @@
                                 <div class="page">
                                     <div class="page-title">
                                         <h2>@item.dlPlace.Name</h2>
+                                        @Html.Partial("p_rating",item.dlPlace)
                                     </div>
                                      <div class="right">
                                          <img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" width="350" height="250" alt="" />

@@ -583,6 +583,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MỞ SÁCH.
+        /// </summary>
+        internal static string openBook {
+            get {
+                return ResourceManager.GetString("openBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mật Khẩu.
         /// </summary>
         internal static string Password {
