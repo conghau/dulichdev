@@ -384,4 +384,7 @@
   <data name="PrintBook" xml:space="preserve">
     <value>In sách</value>
   </data>
+  <data name="openBook" xml:space="preserve">
+    <value>MỞ SÁCH</value>
+  </data>
 </root>

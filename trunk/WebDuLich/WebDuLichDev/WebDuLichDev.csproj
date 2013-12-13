@@ -402,6 +402,7 @@
     <Content Include="Data\Images\city\Emotion 2.JPG" />
     <Content Include="Data\Images\city\Emotion 5.JPG" />
     <Content Include="Data\Images\place\Emotion 2.JPG" />
+    <Content Include="Data\Logo\2013\logodulich.jpg" />
     <Content Include="DLL\Excel.dll" />
     <Content Include="DLL\ExcelPackage.dll" />
     <Content Include="DLL\HtmlAgilityPack.dll" />
@@ -518,6 +519,13 @@
     <Content Include="Scripts\Lib\fotorama\__MACOSX\example\i\thumbs\._09.jpg" />
     <Content Include="Scripts\Lib\fotorama\__MACOSX\example\i\thumbs\._10.jpg" />
     <Content Include="Scripts\Lib\jquery.raty.js" />
+    <Content Include="Scripts\Lib\jRating\jquery\icons\bg_jRatingInfos.png" />
+    <Content Include="Scripts\Lib\jRating\jquery\icons\small.png" />
+    <Content Include="Scripts\Lib\jRating\jquery\icons\stars.png" />
+    <Content Include="Scripts\Lib\jRating\jquery\jquery.js" />
+    <Content Include="Scripts\Lib\jRating\jquery\jRating.jquery.css" />
+    <Content Include="Scripts\Lib\jRating\jquery\jRating.jquery.js" />
+    <Content Include="Scripts\Lib\jRating\jquery\jRating.jquery.min.js" />
     <Content Include="Scripts\Lib\star-half.png" />
     <Content Include="Scripts\Lib\star-off.png" />
     <Content Include="Scripts\Lib\star-on.png" />
@@ -745,6 +753,10 @@
     <Content Include="Views\Shared\_BookShow2.cshtml" />
     <Content Include="Views\Place\PrintBook.cshtml" />
     <Content Include="Views\Shared\_printLayout.cshtml" />
+    <Content Include="Views\Shared\p_rating.cshtml" />
+    <Content Include="Scripts\Lib\jRating\index.php" />
+    <Content Include="Scripts\Lib\jRating\LICENSE" />
+    <Content Include="Scripts\Lib\jRating\php\jRating.php" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

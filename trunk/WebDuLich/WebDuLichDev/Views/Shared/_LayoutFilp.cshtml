@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title</title>   
+    <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Scripts/Lib/bootstrap/css/bootstrap.css")
     @Scripts.Render("~/bundles/modernizr")
@@ -11,13 +11,16 @@
     @Scripts.Render("~/Scripts/jquery-1.8.2.min.js")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/base")
-       @RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)
     <script src="@Url.Content("~/Scripts/jquery.min.js")"></script>
     @Styles.Render("~/Content/themes/20Thing/css/main.css")
     @Scripts.Render("~/Scripts/Lib/FancyBox/source/jquery.fancybox.js")
     @Styles.Render("~/Scripts/Lib/FancyBox/source/jquery.fancybox.css")
     @Styles.Render("~/Scripts/Lib/notepad/html5notepad.css")
     @Scripts.Render("~/Scripts/Lib/notepad/html5notepad.js")
+    <link rel="stylesheet" type="text/css" href="~/Scripts/Lib/jRating/jquery/jRating.jquery.css" media="screen" />
+    <!-- jQuery files -->
+    <script type="text/javascript" src="Scripts/Lib/jRating/jquery/jquery.js"></script>
 
     <script type="text/javascript">
         document.write('<link rel="stylesheet" type="text/css" media="all" href="css/hideOnLoad.css" />');
@@ -85,7 +88,7 @@
         <div class="right-side">
             <div class="divider"></div>
             <div class="invite">
-                
+
                 <ul>
                     <li>
                         <div id="zme-root"></div>
@@ -137,12 +140,14 @@
     <script type="text/javascript">
 
         jQuery(function ($) { //on document.ready
-            notepad.loadpad('mynotepad1') //load "mynotepad1" when document loads
+            //notepad.loadpad('mynotepad1') //load "mynotepad1" when document loads
+            //$(".basic").jRating();
         })
 
         $(function () {
-            //$('#test').click(function () { alert('huhu'); });
-            $('.listImage').fancybox({
+            //$(".basic").jRating();
+            
+            $('.ptext').fancybox({
                 maxWidth: 600,
                 fitToView: false,
                 width: '537px',
@@ -155,35 +160,51 @@
                 //afterClose: function () { location.reload(false); }
             });
 
-            $(".fancybox")
-    .attr('rel', 'gallery')
-    .fancybox({
-        beforeShow: function () {
-            if (this.title) {
-                // New line
-                this.title += '<br />';
+            $('.listImage').fancybox({   
+                maxWidth: 600,
+                fitToView: false,
+                width: '537px',
+                height: '530px',
+                autoSize: false,
+                closeClick: false,
+                openEffect: 'fadeIn',
+                closeEffect: 'none',
+                padding: 10,
+                //afterClose: function () { location.reload(false); }
+            });
 
-                // Add tweet button
-                this.title += '<a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-url="' + this.href + '">Tweet</a> ';
+            //        $(".fancybox")
+            //.attr('rel', 'gallery')
+            //.fancybox({
+            //    beforeShow: function () {
+            //        if (this.title) {
+            //            // New line
+            //            this.title += '<br />';
 
-                // Add FaceBook like button
-                this.title += '<iframe src="//www.facebook.com/plugins/like.php?href=' + this.href + '&amp;layout=button_count&amp;show_faces=true&amp;width=500&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:23px;" allowTransparency="true"></iframe>';
-            }
-        },
-        afterShow: function () {
-            // Render tweet button
-            twttr.widgets.load();
-        },
-        helpers: {
-            title: {
-                type: 'inside'
-            }
-        }
-    });
+            //            // Add tweet button
+            //            this.title += '<a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-url="' + this.href + '">Tweet</a> ';
+
+            //            // Add FaceBook like button
+            //            this.title += '<iframe src="//www.facebook.com/plugins/like.php?href=' + this.href + '&amp;layout=button_count&amp;show_faces=true&amp;width=500&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:23px;" allowTransparency="true"></iframe>';
+            //        }
+            //    },
+            //    afterShow: function () {
+            //        // Render tweet button
+            //        twttr.widgets.load();
+            //    },
+            //    helpers: {
+            //        title: {
+            //            type: 'inside'
+            //        }
+            //    }
+            //});
 
         });
         $(document).ready(function () {
-            $('.test').click(function () { alert('kk')});
+            //$('.test').click(function () { alert('kk') });
+
+            
+
         });
     </script>
     <script src="/Content/themes/20Thing/js/twentythings.js"></script>
@@ -202,8 +223,46 @@
     <script src="/Content/themes/20Thing/js/twentythings.overlay.js"></script>
     <script src="/Content/themes/20Thing/js/twentythings.tableofthings.js"></script>
     <script src="/Content/themes/20Thing/js/twentythings.flipintro.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/Lib/jRating/jquery/jRating.jquery.js"></script>
     <script type="text/javascript">
-        TT.initialize();
+        $(document).ready(function () {
+            //$('.test').click(function () { alert('kk') });
+            TT.initialize();
+
+            $(".basic").jRating({
+                onClick: function (element, rate, idBox, widthColorOneStar) {
+                    alert('ID: ' + idBox + "\nscore: " + rate);
+                    $.ajax({
+                        url: '@Url.Action("Rating","Place")',
+                        type: "Post",
+                        data: { rate: rate, placeId: idBox },
+                        dataType: "json",
+                        success: function (data) {
+
+                            if (data.success) {
+
+                                $(element).attr('data-average', data.Avg);
+                                
+                                $(element).find('.jRatingAverage').css('width', '0px')
+                                $(element).find('.jRatingColor').css('width', widthColorOneStar*data.Avg)
+                                //alert($(element).jRating());
+                            }
+                            else
+                                alert("that bai");
+                        },
+                    });
+                }
+                //onSuccess: function (element, rate) {
+                //    alert('Success : your rate has been saved :)');
+                //},
+                //onError : function(){
+                //    jError('Error : please retry');
+                //}
+            });
+
+        });
+        
     </script>
 </body>
 </html>
