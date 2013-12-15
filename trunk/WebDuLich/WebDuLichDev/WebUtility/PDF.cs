@@ -53,9 +53,9 @@ namespace WebDuLichDev.WebUtility
             StringReader reader = new StringReader(tempPostContent);
 
             htmlWorker.Parse(reader);
-            doc.AddSubject("PDF");
-            doc.AddKeywords("CompanyACB");
-            doc.AddCreator("DCM");
+            doc.AddSubject("PDF-DuLichVietNam");
+            doc.AddKeywords("KhoaLuanTotNghiep");
+            doc.AddCreator("An-Hau Team @2013-2014");
 
         }
         public static string getImage(string input)
