@@ -3,6 +3,14 @@
     float:left;
 }
 
+    .leftpanel .avatarcity {
+        height:345px;
+    }
+
 .rightpanel {
     float:right;
+}
+
+h2 {
+    text-align: center
 }

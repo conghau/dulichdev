@@ -1,15 +1,9 @@
-﻿<!DOCTYPE html>
-<html lang="en" class="no-js">
-	<head>
-	<title>@ViewBag.Title</title>
-    <link rel="shortcut icon" href="../favicon.ico">
+﻿
     @Styles.Render("~/Content/themes/3DBookShowcase/js/modernizr.custom.js")
 
     @Styles.Render("~/Content/themes/3DBookShowcase/css/default.css.css")
     @Styles.Render("~/Content/themes/3DBookShowcase/css/component.css")
-	</head>
-	<body>
-		<div class="container">				
+		<div class="span6">				
 			<div class="main">
 				<ul id="bk-list" class="bk-list clearfix">
 					<li>
@@ -33,7 +27,7 @@
 							</div>
 							<div class="bk-top"></div>
 							<div class="bk-bottom"></div>
-						</div>z
+						</div>
 						<div class="bk-info">
 							<button class="bk-bookback">Xoay</button>
 						</div>
@@ -99,11 +93,6 @@
 			$(function() {
 
 				Books.init();
-
-
 			});	
 			
 		</script>
-
-	</body>
-</html>

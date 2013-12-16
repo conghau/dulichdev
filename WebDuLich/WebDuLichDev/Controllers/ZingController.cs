@@ -32,6 +32,8 @@ namespace WebDuLichDev.Controllers
         {
             ZME_Config zme_config = RegisterAuthZing.config();
             ZME_Me zmeMe = new ZME_Me(zme_config);
+            if(null == ZingClient.access_token)
+                return Json(new {result = false});
             Hashtable me_info = zmeMe.getInfo(ZingClient.access_token, "id,username");
             ZME_Social zmeSocial = new ZME_Social(zme_config);
             string title = me_info["username"].ToString() + "rating for " + placeName + "is " + rate.ToString();
