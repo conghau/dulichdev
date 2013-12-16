@@ -2342,6 +2342,10 @@ footer ul li {
             padding: 25px 45px 35px 40px;
         }
 
+            #pages section div.page .page-title {
+                text-align: center;
+            }
+
             #pages section div.page .right {
                 padding: 5px;
             }
@@ -2349,26 +2353,65 @@ footer ul li {
             #pages section div.page .box {
                 padding: 5px;
                 overflow: hidden;
-                height: 178px;
-            }
-            #pages section div.page .seemore {
-                margin-bottom:10px;
+                height: 151px;
             }
 
-                #pages section div.page .box:after {
+            #pages section div.page .seemore {
+                margin-top: 14px;
+                margin-right: 50px;
+                float: right;
+            }
+
+            #pages section div.page .box:after {
+                position: absolute;
+                background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.73) 22%, rgba(255,255,255,0.73) 23%, rgba(255,255,255,1) 91%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(22%,rgba(255,255,255,0.73)), color-stop(23%,rgba(255,255,255,0.73)), color-stop(91%,rgba(255,255,255,1)));
+                background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.73) 22%,rgba(255,255,255,0.73) 23%,rgba(255,255,255,1) 91%);
+                background: -o-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.73) 22%,rgba(255,255,255,0.73) 23%,rgba(255,255,255,1) 91%);
+                background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.73) 22%,rgba(255,255,255,0.73) 23%,rgba(255,255,255,1) 91%);
+                background: linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.73) 22%,rgba(255,255,255,0.73) 23%,rgba(255,255,255,1) 91%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );
+                height: 34px;
+                bottom: 67px;
+                left: 42px;
+                right: 56px;
+                content: '';
+            }
+
+            #pages section div.page .comment {
+                height: 32px;
+                margin-left: 40%;
+                margin-top: 30px;
+            }
+
+                #pages section div.page .comment .zingme,
+                #pages section div.page .comment .facebook,
+                #pages section div.page .comment .googleplus {
+                    margin-bottom: 10px;
+                    background: transparent url('images/socialicons.png') no-repeat top left;
+                }
+
+                #pages section div.page .comment a {
+                    display: inline-block;
+                    height: 25px;
+                    width: 28px;
+                }
+
+                #pages section div.page .comment p {
+                    margin-left: -78px;
                     position: absolute;
-                    background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.73) 22%, rgba(255,255,255,0.73) 23%, rgba(255,255,255,1) 91%);
-                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(22%,rgba(255,255,255,0.73)), color-stop(23%,rgba(255,255,255,0.73)), color-stop(91%,rgba(255,255,255,1)));
-                    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.73) 22%,rgba(255,255,255,0.73) 23%,rgba(255,255,255,1) 91%);
-                    background: -o-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.73) 22%,rgba(255,255,255,0.73) 23%,rgba(255,255,255,1) 91%);
-                    background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.73) 22%,rgba(255,255,255,0.73) 23%,rgba(255,255,255,1) 91%);
-                    background: linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.73) 22%,rgba(255,255,255,0.73) 23%,rgba(255,255,255,1) 91%);
-                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );
-                    height: 34px;
-                    bottom: 40px;
-                    left: 42px;
-                    right: 56px;
-                    content: '';
+                }
+
+                #pages section div.page .comment .zingme {
+                    background-position: 0px 0px;
+                }
+
+                #pages section div.page .comment .facebook {
+                    background-position: -26px 0px;
+                }
+
+                #pages section div.page .comment .googleplus {
+                    background-position: -83px 0px;
                 }
 
 
