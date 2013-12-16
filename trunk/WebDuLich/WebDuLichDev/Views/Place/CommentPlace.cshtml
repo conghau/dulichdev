@@ -2,8 +2,11 @@
     ViewBag.Title = "CommentPlace";
     Layout = "~/Views/Shared/_pureLayout.cshtml";
 }
-
-<h2>@Resources.Language.Comment</h2>
+<h2 style="color: #DC143C; background-color: #f9f9f9; margin-top: 0px;
+    height: 54px; line-height: 1.8em; margin-bottom: 0px; width:538px">
+        <img src="~/Content/themes/custom/Image/Message-Add.png" width="32" />
+        <span>@Resources.Language.Comment</span> @*<b style="color:#DC143C"> @ViewBag.RoleName</b>*@
+</h2>
 @{var url = "http://dulich.azurewebsites.net/place/niceplace/";
   url = url + ViewBag.placeId;
    }

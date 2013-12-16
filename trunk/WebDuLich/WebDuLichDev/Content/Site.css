@@ -30,7 +30,14 @@ header .content-wrapper {
 /* Body- Margin defaul: 150px*/
 
 #body {
-    margin-top: 0px;
+    margin: 0 auto;
+}
+
+    #body .rightpanel p.drop-cap:first-letter {
+    float: left;
+    font-size: 45px;
+    margin: 7px 5px 0 0;
+    vertical-align: text-top;
 }
 
 footer {

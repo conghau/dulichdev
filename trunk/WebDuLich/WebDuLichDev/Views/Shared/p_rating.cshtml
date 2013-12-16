@@ -4,13 +4,13 @@
     
 }
 <!-- basic exemple -->
-<div class="rating" style="width:60%">
+<div class="rating" style="display:table-row">
 
     <!-- in this exemple, 12 is the average and 1 is the id of the line to update in DB -->
     <div class="basic" data-average="@Model.AvgRating" data-id="@Model.ID" data-name="@Model.Name" style="float:left">
         
     </div>
-    <p class="text" style="float:right">Current Rate : @Model.AvgRating by @Model.TotalUserRating people</p>
+    <p class="text" style="float:right;margin-left: 19px;">Current Rate : @Model.AvgRating by @Model.TotalUserRating people</p>
 
 </div>
 
