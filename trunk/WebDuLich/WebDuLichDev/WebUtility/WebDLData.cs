@@ -22,7 +22,7 @@ namespace WebDuLichDev.WebUtility
                 DL_CityBAL dlCityBal = new DL_CityBAL();
                 List<SelectListItem> listCity = new List<SelectListItem>();
 
-                listCity.Add(new SelectListItem { Text = Resources.Language.ChooseCity +"...", Value = "-1" });
+                listCity.Add(new SelectListItem { Text = Resources.Language.ChooseCity + "...", Value = "-1" });
 
                 var dlCity = dlCityBal.GetList();
 
@@ -70,7 +70,7 @@ namespace WebDuLichDev.WebUtility
                 webpages_RolesBAL roleBal = new webpages_RolesBAL();
                 List<SelectListItem> listrole = new List<SelectListItem>();
 
-                listrole.Add(new SelectListItem { Text ="...", Value = "-1" });
+                listrole.Add(new SelectListItem { Text = "...", Value = "-1" });
 
                 var role = roleBal.GetList();
 
@@ -94,6 +94,18 @@ namespace WebDuLichDev.WebUtility
         private static string _menu = "Menu";
         private static string _languageCode = "LanguageCode";
         public static bool UserIsAdmin = false;
+        private static string accessTokenZingMe = "";
+
+
+        public static string _accessTokenZingMe = "";
+        
+        public static string AccessTokenZingMe
+        {
+            get { string accessToken = Utility.ObjectToString(HttpContext.Current.Session[_accessTokenZingMe]); 
+                return accessToken; 
+            }
+            //set { WebDuLichSecurity.accessTokenZingMe = value; }
+        }
 
         public static long UserID
         {
@@ -182,5 +194,5 @@ namespace WebDuLichDev.WebUtility
 
         }
     }
-    
+
 }

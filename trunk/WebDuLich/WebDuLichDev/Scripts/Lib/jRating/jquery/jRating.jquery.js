@@ -60,6 +60,7 @@
 
 			var average = parseFloat($(this).attr('data-average')), // get the average of all rates
 			idBox = parseInt($(this).attr('data-id')), // get the id of the box
+            nameBox = $(this).attr('data-name'), // get name of the box
 			widthRatingContainer = starWidth*opts.length, // Width of the Container
 			widthColor = average/opts.rateMax*widthRatingContainer, // Width of the color Container
 
@@ -160,7 +161,7 @@
 						//$('.serverResponse p').html('<strong>Loading...</strong>');
 					/** END ONLY FOR THE DEMO **/
 
-					if (opts.onClick) opts.onClick(element, rate, idBox, widthColorOneStar);
+					if (opts.onClick) opts.onClick(element, rate, idBox,nameBox, widthColorOneStar);
 
 					//if (opts.onSuccess) opts.onSuccess(element, rate);
 					//if (opts.sendRequest) {

@@ -173,6 +173,19 @@
                 //afterClose: function () { location.reload(false); }
             });
 
+            $('.fancyboxCmt').fancybox({
+                maxWidth: 600,
+                fitToView: false,
+                width: '537px',
+                height: '530px',
+                autoSize: false,
+                closeClick: false,
+                openEffect: 'fadeIn',
+                closeEffect: 'none',
+                padding: 10,
+                //afterClose: function () { location.reload(false); }
+            });
+
             //        $(".fancybox")
             //.attr('rel', 'gallery')
             //.fancybox({
@@ -231,7 +244,7 @@
             TT.initialize();
 
             $(".basic").jRating({
-                onClick: function (element, rate, idBox, widthColorOneStar) {
+                onClick: function (element, rate, idBox,nameBox, widthColorOneStar) {
                     alert('ID: ' + idBox + "\nscore: " + rate);
                     $.ajax({
                         url: '@Url.Action("Rating","Place")',
@@ -242,23 +255,30 @@
 
                             if (data.success) {
 
-                                $(element).attr('data-average', data.Avg);
-                                
+                                $(element).attr('data-average', data.Avg);                                
                                 $(element).find('.jRatingAverage').css('width', '0px')
-                                $(element).find('.jRatingColor').css('width', widthColorOneStar*data.Avg)
-                                //alert($(element).jRating());
+                                $(element).find('.jRatingColor').css('width', widthColorOneStar * data.Avg)
+
+                                $(element).parent().children().last().replaceWith('<p class=\"text\" style=\"float:right\">Current Rate : ' + data.Avg + ' by ' + data.TotalUser + ' people </p>')
+                                $.ajax({
+                                    url: '@Url.Action("PostNoticeRate","Zing")',
+                                    type:"Post",
+                                    data:{rate: rate, placeName:nameBox},
+                                    dataType :'json',
+                                    success: function (result)
+                                    {
+                                        if (result.result)
+                                            alert('OK');
+                                        else
+                                            alert('NO');
+                                    }
+                                });
                             }
                             else
                                 alert("that bai");
                         },
                     });
                 }
-                //onSuccess: function (element, rate) {
-                //    alert('Success : your rate has been saved :)');
-                //},
-                //onError : function(){
-                //    jError('Error : please retry');
-                //}
             });
 
         });

@@ -219,7 +219,7 @@ namespace WebDuLichDev.Controllers
                 total = dlPlace.TotalUserRating;
                 ViewBag.AVG = avg;
 
-                return Json(new { success = success, Avg = avg });
+                return Json(new { success = success, Avg = avg, TotalUser = total});
             }
             catch (BusinessException bx)
             {
@@ -236,6 +236,13 @@ namespace WebDuLichDev.Controllers
             }
 
 
+        }
+
+        public ActionResult CommentPlace(long placeId, string type)
+        {
+            ViewBag.placeId = placeId;
+            ViewBag.type = type.Trim().ToLower();
+            return View();
         }
 
         //[HttpPost]

@@ -173,9 +173,9 @@ namespace WebDuLichDev.Controllers
         public ActionResult Pdf_Post()
         {
             var client = new WebClient();
-            string contents = client.DownloadString("http://localhost:62688/RazorPDF/pdf/24");
+            string contents = client.DownloadString("http://localhost:62688/RazorPDF/pdf/54");
            
-            string url="http://localhost:62688/RazorPDF/pdf/24";
+            string url="http://localhost:62688/RazorPDF/pdf/54";
             HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(url);
             WebResponse myResponse = myRequest.GetResponse();
             StreamReader sr = new StreamReader(myResponse.GetResponseStream(), System.Text.Encoding.UTF8);

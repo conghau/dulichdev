@@ -19,7 +19,7 @@ namespace WebDuLichDev.Controllers
         string version = "Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString() + " ";
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            //ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
             try
             {
                 if (!String.IsNullOrEmpty(Request.QueryString["code"]))
@@ -33,20 +33,17 @@ namespace WebDuLichDev.Controllers
                     string gender = "gender";
                     string dob = "dob";
                     var code = Request.QueryString["code"];
-                    var access_token = oauth.getAccessTokenFromCode(code, out expires);
+                    var access_token1 = oauth.getAccessTokenFromCode(code, out expires);
+                    ZingClient.access_token = access_token1;
+      
 
-                    //string signedRequestParam = Request.Params["signed_request"];
-                    //NameValueCollection pColl = context.Request.Params;
-                    //pColl.GetValue("signed_request");
-                    //pColl.GetKey(10);        
-
-                    var user_data_id = me.getInfo(access_token, id); //default id vs username
-                    Hashtable me_info = me.getInfo(access_token, "id,username,displayname,tinyurl,profile_url,gender,dob");//all
-                    var user_data_username = me.getInfo(access_token, username);
+                    var user_data_id = me.getInfo(access_token1, id); //default id vs username
+                    Hashtable me_info = me.getInfo(access_token1, "id,username,displayname,tinyurl,profile_url,gender,dob");//all
+                    var user_data_username = me.getInfo(access_token1, username);
                     string user_name = (string)user_data_username[username];
 
                     long user_id = (long)user_data_id[id];
-                    var me_friend = me.getFriends(access_token);
+                    var me_friend = me.getFriends(access_token1);
                     using (UsersContext db = new UsersContext())
                     {
                         UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == user_name);
@@ -81,14 +78,15 @@ namespace WebDuLichDev.Controllers
                         string gender = "gender";
                         string dob = "dob";
                         string signedRequestParam = Request.Params["signed_request"];
-                        var access_token = oauth.getAccessTokenFromSignedRequest(signedRequestParam, out expires);
-                        var user_data_id = me.getInfo(access_token, id); //default id vs username
-                        Hashtable me_info = me.getInfo(access_token, "id,username,displayname,tinyurl,profile_url,gender,dob");//all
-                        var user_data_username = me.getInfo(access_token, username);
+                        var access_token1 = oauth.getAccessTokenFromSignedRequest(signedRequestParam, out expires);
+                        ZingClient.access_token = access_token1;
+                        var user_data_id = me.getInfo(access_token1, id); //default id vs username
+                        Hashtable me_info = me.getInfo(access_token1, "id,username,displayname,tinyurl,profile_url,gender,dob");//all
+                        var user_data_username = me.getInfo(access_token1, username);
                         string user_name = (string)user_data_username[username];
 
                         long user_id = (long)user_data_id[id];
-                        var me_friend = me.getFriends(access_token);
+                        var me_friend = me.getFriends(access_token1);
                         using (UsersContext db = new UsersContext())
                         {
                             UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == user_name);
