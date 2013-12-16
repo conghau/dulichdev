@@ -27,6 +27,18 @@ namespace WebDuLichDev.Controllers
             // zmeSocial.invite();
             return View();
         }
+        [HttpPost]
+        public ActionResult PostNoticeRate(int rate, string placeName)
+        {
+            ZME_Config zme_config = RegisterAuthZing.config();
+            ZME_Me zmeMe = new ZME_Me(zme_config);
+            Hashtable me_info = zmeMe.getInfo(ZingClient.access_token, "id,username");
+            ZME_Social zmeSocial = new ZME_Social(zme_config);
+            string title = me_info["username"].ToString() + "rating for " + placeName + "is " + rate.ToString();
+            ZME_Feed zmeFeed = new ZME_Feed(me_info["username"].ToString(),title, null,null,null,null);
+            zmeSocial.post(ZingClient.access_token, zmeFeed, false);
+            return Json(new { result = true});
+        }
     }
     
     

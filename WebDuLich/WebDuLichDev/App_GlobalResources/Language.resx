@@ -387,4 +387,7 @@
   <data name="openBook" xml:space="preserve">
     <value>MỞ SÁCH</value>
   </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Cảm nhận</value>
+  </data>
 </root>
