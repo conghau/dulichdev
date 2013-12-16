@@ -236,6 +236,7 @@
     <Content Include="Content\map2\imap5custom_right.html" />
     <Content Include="Content\rating.css" />
     <Content Include="Content\themes\20thing\css\hideOnLoad.css" />
+    <Content Include="Content\themes\20thing\css\ie6.css" />
     <Content Include="Content\themes\20thing\css\images\3d01_clouds.png" />
     <Content Include="Content\themes\20thing\css\images\back-cover-flipped.jpg" />
     <Content Include="Content\themes\20thing\css\images\back-cover.jpg" />
@@ -249,7 +250,11 @@
     <Content Include="Content\themes\20thing\css\images\right-page-paper.jpg" />
     <Content Include="Content\themes\20thing\css\images\right-page.jpg" />
     <Content Include="Content\themes\20thing\css\images\sprites.png" />
+    <Content Include="Content\themes\20thing\css\layouts.css" />
     <Content Include="Content\themes\20thing\css\main.css" />
+    <Content Include="Content\themes\20thing\css\print-preview.css" />
+    <Content Include="Content\themes\20thing\css\print.css" />
+    <Content Include="Content\themes\20thing\css\reset.css" />
     <Content Include="Content\themes\20thing\css\style.css" />
     <Content Include="Content\themes\20thing\css\twentythings.css" />
     <Content Include="Content\themes\20thing\css\twentythings.min.css" />
@@ -757,6 +762,7 @@
     <Content Include="Scripts\Lib\jRating\index.php" />
     <Content Include="Scripts\Lib\jRating\LICENSE" />
     <Content Include="Scripts\Lib\jRating\php\jRating.php" />
+    <Content Include="Views\Place\CommentPlace.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
