@@ -14,21 +14,6 @@ namespace WebDuLichDev.Models
         public List<A_ObjectFunction> ListObjectFunction { get; set; }
         public List<A_AssignedPermission> ListAssignPermission { get; set; }
     }
-
-    //public class vm_Function
-    //{
-    //    public long ID { get; set; }
-    //    public long FnName { get; set; }
-    //    public bool isChecked { get; set; }
-    //}
-
-    //public class vm_Object
-    //{
-    //    public long ID { get; set; }
-    //    public string ObName { get; set; }
-    //    public List<vm_Function> ListFunction { get; set; }
-    //}
-
     public class ObjectParent
     {
         public string ObjectParentName { get; set; }
@@ -40,5 +25,12 @@ namespace WebDuLichDev.Models
         public long FunctionId { get; set; }
         public long ObjectId { get; set; }
         public bool Checked { get; set; }
+    }
+    public class ManagerUserRole
+    {
+
+        public List<webpages_UsersInRoles> listwpUserInRoles { get; set; }
+        public List<DLUserProfile> listUserProfile { get; set; }
+        public List<DLUserProfile> listUserProfileNotInRole { get; set; }
     }
 }

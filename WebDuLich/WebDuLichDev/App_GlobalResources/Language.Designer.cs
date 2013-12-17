@@ -259,6 +259,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tác giả.
+        /// </summary>
+        internal static string Credit {
+            get {
+                return ResourceManager.GetString("Credit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thông tin chi tiết.
         /// </summary>
         internal static string DetailInfo {
@@ -322,7 +331,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Đầu.
+        ///   Looks up a localized string similar to Đầu tiên.
         /// </summary>
         internal static string First {
             get {
@@ -795,6 +804,15 @@ namespace Resources {
         internal static string SUC_Update {
             get {
                 return ResourceManager.GetString("SUC_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xem dạng bảng.
+        /// </summary>
+        internal static string TableOfIndex {
+            get {
+                return ResourceManager.GetString("TableOfIndex", resourceCulture);
             }
         }
         

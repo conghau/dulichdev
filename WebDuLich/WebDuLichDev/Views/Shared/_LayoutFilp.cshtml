@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/themes/20Thing/css/reset.css")
     @Styles.Render("~/Scripts/Lib/bootstrap/css/bootstrap.css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/rating.css")
@@ -61,11 +62,12 @@
     <header>
         <nav>
             <ul>
-                <li class="table-of-things"><a href="/table-of-things">TABLE OF THINGS</a></li>
+                <li ><a class="back" href="/City/Detail/@ViewBag.CityId">BACK</a></li>
+                <li class="table-of-things"><a href="/table-of-things">@Resources.Language.TableOfIndex.ToUpper()</a></li>
                 <li class="divider1"></li>
-                <li class="about"><a href="#">FIRST</a></li>
+                <li class="about"><a href="#">@Resources.Language.First.ToUpper()</a></li>
                 <li class="divider2"></li>
-                <li class="credits"><a href="#">CREDITS</a></li>
+                <li class="credits"><a href="#">@Resources.Language.Credit.ToUpper()</a></li>
                 <li class="divider2"></li>
             </ul>
         </nav>
@@ -138,12 +140,6 @@
         </div>
     </footer>
     <script type="text/javascript">
-
-        jQuery(function ($) { //on document.ready
-            //notepad.loadpad('mynotepad1') //load "mynotepad1" when document loads
-            //$(".basic").jRating();
-        })
-
         $(function () {
             //$(".basic").jRating();
             

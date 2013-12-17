@@ -20,7 +20,7 @@ namespace WebDuLichDev.Controllers
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(HotelController).Name);
         string version = "Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString() + " ";
 
-
+        private static List<HotelInfo> HotelBookTemp = new List<HotelInfo>();
         //
         // GET: /Hotel/
 
@@ -28,6 +28,7 @@ namespace WebDuLichDev.Controllers
         {
             return View();
         }
+        #region admin
 
         public ActionResult ListHotel()
         {
@@ -97,31 +98,6 @@ namespace WebDuLichDev.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
-
-
-        public ActionResult HotelByCity(long cityId)
-        {
-            vm_Pagination pagination = new vm_Pagination
-            {
-                Page = MvcApplication.pageDefault,
-                PageSize = MvcApplication.pageSizeDefault,
-                OrderBy = DL_PlaceColumns.CreatedDate.ToString(),
-                OrderDirection = "DESC",
-
-            };
-            long totalRecords = 0;
-
-            DL_PlaceBAL dlPlaceBAL = new DL_PlaceBAL();
-            var model = dlPlaceBAL.GetListWithFilter(cityId, "", "", (long)DL_PlaceTypeId.Hotels, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
-
-            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
-            ViewData["OrderBy"] = pagination.OrderBy;
-            ViewData["OrderDirection"] = pagination.OrderDirection;
-
-            return View(model);
-        }
-
-
         public ActionResult AddHotel()
         {
             //ViewBag.NewPlaceID = ID;
@@ -307,5 +283,80 @@ namespace WebDuLichDev.Controllers
             }
 
         }
+        #endregion
+
+        #region book flip
+        public ActionResult HotelByCity(long ID)
+        {
+            try
+            {
+                ViewBag.CityId = ID;
+                DL_CityBAL dlCityBal = new DL_CityBAL();
+                var city = dlCityBal.GetByID(ID);
+                ViewBag.Title = city.CityName;
+
+                DL_PlaceBAL dlPlaceBal = new DL_PlaceBAL();
+                DL_HotelPlaceInfoDetailBAL dlHotelDetailBal = new DL_HotelPlaceInfoDetailBAL();
+                DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
+                var dlHotelPlace = dlPlaceBal.GetListHotelByCity(ID);
+                var HotelBook = new List<HotelInfo>();
+                for (int index = 0; index < dlHotelPlace.Count(); index++)
+                {
+                    var tmp = new HotelInfo();
+                    tmp.dlPlace = dlHotelPlace[index];
+                    tmp.dlHotelPlaceInfoDetail = dlHotelDetailBal.GetByDLPlaceID(dlHotelPlace[index].ID);
+                    //tmp.listImageCity = dlImagePlaceBal.GetByDLPlaceID(dlRestaurantPlace[index].ID);
+                    HotelBook.Add(tmp);
+
+                }
+                HotelBookTemp = HotelBook;
+                return View(HotelBook);
+            }
+            catch (BusinessException bx)
+            {
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return RedirectToAction("Error", "Home");
+            }
+        }
+
+        public ActionResult HotelInfoDetail(long placeId)
+        {
+            try
+            {
+                //DL_NicePlaceInfoDetailBAL dlNicePlaceInfoDetail = new DL_NicePlaceInfoDetailBAL();
+                //var model = dlNicePlaceInfoDetail.GetByPlaceId(placeId);
+                var model = new DL_HotelPlaceInfoDetail();
+                for (int index = 0; index < HotelBookTemp.Count; index++)
+                {
+                    if (HotelBookTemp[index].dlHotelPlaceInfoDetail.DL_PlaceId == placeId)
+                    {
+                        model = HotelBookTemp[index].dlHotelPlaceInfoDetail;
+                    }
+                }
+                return View(model);
+            }
+            catch (BusinessException bx)
+            {
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                //LogBAL.LogEx("BLM_ERR_Common", ex);
+                log.Error(ex.Message);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return RedirectToAction("Error", "Home");
+            }
+        }
+        #endregion
     }
+        
 }

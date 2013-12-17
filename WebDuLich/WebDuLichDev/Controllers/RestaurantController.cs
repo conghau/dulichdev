@@ -23,7 +23,7 @@ namespace WebDuLichDev.Controllers
 
         //
         // GET: /Restaurant/
-        private static List<RestaurantInfo> RestaunantBook = new List<RestaurantInfo>();
+        private static List<RestaurantInfo> RestaunantBookTemp = new List<RestaurantInfo>();
 
         public ActionResult Index()
         {
@@ -302,18 +302,18 @@ namespace WebDuLichDev.Controllers
                 var dlRestaurantPlace = dlPlaceBal.GetListRestaurantsPlaceByCity(ID);
                 //ViewData["OrderBy"] = pagination.OrderBy;
                 //ViewData["OrderDirection"] = pagination.OrderDirection;
-                var restaurantPlacePage = new List<RestaurantInfo>();
+                var restaurantBook = new List<RestaurantInfo>();
                 for (int index = 0; index < dlRestaurantPlace.Count(); index++)
                 {
                     var tmp = new RestaurantInfo();
                     tmp.dlPlace = dlRestaurantPlace[index];
                     tmp.dlRestaurantInfoDetail = dlRestaurantInfoDetailBal.GetByDLPlaceID(dlRestaurantPlace[index].ID);
                     //tmp.listImageCity = dlImagePlaceBal.GetByDLPlaceID(dlRestaurantPlace[index].ID);
-                    restaurantPlacePage.Add(tmp);
+                    restaurantBook.Add(tmp);
 
                 }
-                RestaunantBook = restaurantPlacePage;
-                return View(restaurantPlacePage);
+                RestaunantBookTemp = restaurantBook;
+                return View(restaurantBook);
             }
             catch (BusinessException bx)
             {
@@ -323,6 +323,37 @@ namespace WebDuLichDev.Controllers
             }
             catch (Exception ex)
             {
+                log.Error(ex.Message);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return RedirectToAction("Error", "Home");
+            }
+        }
+
+        public ActionResult RestaurantInfoDetail(long placeId)
+        {
+            try
+            {
+                //DL_NicePlaceInfoDetailBAL dlNicePlaceInfoDetail = new DL_NicePlaceInfoDetailBAL();
+                //var model = dlNicePlaceInfoDetail.GetByPlaceId(placeId);
+                var model = new DL_RestaurantInfoDetail();
+                for (int index = 0; index < RestaunantBookTemp.Count; index++)
+                {
+                    if (RestaunantBookTemp[index].dlRestaurantInfoDetail.DL_PlaceId == placeId)
+                    {
+                        model = RestaunantBookTemp[index].dlRestaurantInfoDetail;
+                    }
+                }
+                return View(model);
+            }
+            catch (BusinessException bx)
+            {
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                //LogBAL.LogEx("BLM_ERR_Common", ex);
                 log.Error(ex.Message);
                 TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
                 return RedirectToAction("Error", "Home");

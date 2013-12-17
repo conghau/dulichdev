@@ -33,12 +33,6 @@ namespace WebDuLichDev.Models
         public DL_RestaurantInfoDetail dlRestaurantInfoDetail { get; set; }
         public List<DL_ImagePlace> listImagePlace { get; set; }
     }
-    public class ManagerUserRole
-    {
-        
-        public List<webpages_UsersInRoles> listwpUserInRoles { get; set; }
-        public List<DLUserProfile> listUserProfile { get; set; }
-        public List<DLUserProfile> listUserProfileNotInRole { get; set; }
-    }
+
 
 }

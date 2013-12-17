@@ -181,11 +181,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Language.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\Language.en-US.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Language.en-US.resx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -262,8 +257,6 @@
     <Content Include="Content\themes\20thing\css\twentythings.min.css" />
     <Content Include="Content\themes\20thing\css\twentythings2.css" />
     <Content Include="Content\themes\20thing\index.html" />
-    <Content Include="Content\themes\20thing\js\pageflip.js" />
-    <Content Include="Content\themes\20thing\js\pageflip.pageflip.js" />
     <Content Include="Content\themes\20thing\js\twentythings.cache.js" />
     <Content Include="Content\themes\20thing\js\twentythings.chapternav.js" />
     <Content Include="Content\themes\20thing\js\twentythings.flipintro.js" />
@@ -726,6 +719,7 @@
     <Content Include="Scripts\Lib\jRating\LICENSE" />
     <Content Include="Scripts\Lib\jRating\php\jRating.php" />
     <Content Include="Views\Place\CommentPlace.cshtml" />
+    <Content Include="Views\Hotel\HotelByCity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -743,12 +737,6 @@
     <Content Include="App_GlobalResources\Language.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Language.Designer.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\Language.en-US.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Language.en-US.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

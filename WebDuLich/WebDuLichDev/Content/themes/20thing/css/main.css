@@ -179,7 +179,7 @@ a, a:hover, a:active {
 /**
  * Applies the background to all sprites.
  */
-header, header a.logo, header nav ul li.table-of-things a, header input[type="text"],
+header, header a.logo, header nav ul a.back, header nav ul li.table-of-things a, header input[type="text"],
 footer, footer div.sharing a, footer div.print a span.icon, footer div.lights a, .lights a span.icon,
 div.lights.clone, div.lights.clone a, .lights.clone a span.icon, .fullscreen a span.icon,
 div.fullscreen.clone, div.fullscreen.clone a, .fullscreen.clone a span.icon, footer div.fullscreen a,
@@ -535,22 +535,17 @@ header nav a {
     padding: 4px;
 }
 
-.cs-CZ header nav a,
-.pl-PL header nav a {
-    font-size: 13px;
-}
 
 header nav ul li.table-of-things a {
     background-position: -174px -64px;
     padding-left: 42px;
 }
 
-.cs-CZ header nav ul li.table-of-things a,
-.pl-PL header nav ul li.table-of-things a {
-    background-position: -174px -60px;
-    padding-left: 42px;
-}
+header nav ul a.back {
+    padding-left: 21px;
+    background-position: -236px -306px;
 
+}
 
 header nav a:hover {
     color: #b41e21;
@@ -574,14 +569,13 @@ header input[type="text"] {
     color: #888888;
     z-index: 2001;
 }
+
+        
 /*header input:focus[type="text"] { 
 		background-position: -652px -56px;
 			color: #333333;
 		}*/
-/*.cs-CZ header input[type="text"],
-    .pl-PL header input[type="text"] { 
-     font-size: 12px;
-    }*/
+
 
 /**
  * Language Selector
@@ -593,7 +587,7 @@ header input[type="text"] {
 #language-selector-title {
     display: inline-block;
     font-size: 11px;
-    margin-top: 14px;
+    margin-top: 10px;
     width: 100%;
     cursor: pointer;
     /* background: #ddd;
@@ -639,11 +633,6 @@ header input[type="text"] {
         background-position: 100% -59px;
     }
 
-.cs-CZ #language-selector a,
-.pl-PL #language-selector a {
-    font-size: 12px;
-}
-
 
 #language-selector-list {
     font-size: 11px;
@@ -661,8 +650,9 @@ header input[type="text"] {
         display: block;
     }
 
-    #language-selector-list ul li {
-    }
+    #language-selector-list ul{
+            margin:0;
+        }
 
         #language-selector-list ul li a {
             display: block;

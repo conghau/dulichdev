@@ -75,143 +75,107 @@
                         <div class="page-title">
                             <h2>CHỦ ĐỀ NĂM DU LỊCH QUỐC GIA 2014</h2>
                         </div>
-                        <div class="image1">
+                        <p style="text-align: center">
                             <img src="/data/logo/2013/logodulich.jpg" data-src="/data/logo/2013/logodulich.jpg" />
-                        </div>
-                        <div class="left">
-                            <p class="drop-cap">Năm Du lịch Quốc gia 2014 với chủ đề “Đại ngàn Tây nguyên”
+                        </p>
+                        <p class="drop-cap">
+                            Năm Du lịch Quốc gia 2014 với chủ đề “Đại ngàn Tây nguyên”
     Theo Tổng Cục Du lịch Năm Du lịch Quốc gia 2014 sẽ được tổ chức tại tỉnh Lâm Đồng và các tỉnh, thành thuộc khu vực Tây Nguyên (Đắc Lắk, Đắc Nông, Gia Lai, Kon Tum) với tên gọi Năm Du lịch Quốc gia 2014 - Tây Nguyên - Đà Lạt mang chủ đề “Đại ngàn Tây Nguyên” và biểu trưng (logo) được đề xuất là Hoa dã quỳ, loài hoa có mặt ở khắp 5 tỉnh Tây Nguyên.Đây là sự kiện văn hóa-kinh tế-xã hội tiêu biểu, có quy mô quốc gia và quốc tế nhằm giới thiệu, quảng bá hình ảnh thiên nhiên và con người Tây Nguyên nói chung, Lâm Đồng – Đà Lạt nói riêng với bạn bè trong nước và quốc tế.
-    </p>
-                        </div>
-                        <div>
-                                  </div>
-                        
+                        </p>
                     </div>
                 </section>
             </article>
 
-            @{int i = 1;
-              int index = 0;
+            @{int i = 0;
+              //int index = 0;
               string tempChar = "";
             }
-            <article id="@Model[0].dlPlace.FirstChar.ToUpper()">
-                <section class="title-@Model[0].dlPlace.FirstChar.ToUpper() page-1">
-                    <div class="page">
-                        <div class="page-title">
-                            <h2>@Model[0].dlPlace.Name</h2>
-                            </div>
-                            @Html.Partial("p_rating",Model[0].dlPlace)
-                        
-                        <div class="right">
-                            <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar"><img src="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar" alt="" width="233" height="120"/></a>
-                            <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar"><img src="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar" alt="" width="233" height="120"/></a>
-                            @*<img src="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar" width="300" height="250" alt=""  class="fancybox" title="title"/>*@
-                            @if (Model[0].listImagePlace != null)
-                            {
-                                <a href="@Url.Action("ListImagePlace", "Place", new { placeId = Model[0].dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
-                            }
-                        </div>
-                        <div class="box">
-                             @Html.Raw(HttpUtility.HtmlDecode(Model[0].dlNicePlaceInfoDetail.Info))                           
-                        </div>
-                        <div class="seemore"><a href="@Url.Action("PlaceInfoDetail", "Place", new { placeId = Model[0].dlPlace.ID })" class="ptext fancybox.iframe">@Resources.Language.SeeMore ...</a></div>
-                        <div class="comment">
-                            <p>@Resources.Language.Comment:</p>
-                            <a href="@Url.Action("CommentPlace", "Place", new { placeId = Model[0].dlPlace.ID, type= "zingme" })" class="zingme fancyboxCmt fancybox.iframe" title="Bình luận trên zingme"></a>
-                            <a href="@Url.Action("CommentPlace", "Place", new { placeId = Model[0].dlPlace.ID, type= "facebook" })" class="facebook fancyboxCmt fancybox.iframe" title="Bình luận trên facebook"></a>
-                            <a href="@Url.Action("CommentPlace", "Place", new { placeId = Model[0].dlPlace.ID, type= "googleplus" })" class="googleplus fancyboxCmt fancybox.iframe" title="Bình luận trên GooglePlus"></a>
-                        </div>
-                    </div>
-                </section>
-            @{tempChar = Model[0].dlPlace.FirstChar.ToUpper();}
-
-
+    @if (null != Model && Model.Count > 0)
+    {
+        tempChar = Model[0].dlPlace.FirstChar.ToUpper();
+        <article id="@tempChar">
             @foreach (var item in Model)
             {
-
-                if (index != 0)
+                if (tempChar == item.dlPlace.FirstChar.ToUpper())
                 {
-                    if (tempChar != item.dlPlace.FirstChar.ToUpper() && tempChar != "")
-                    {
-                        i = 1;
-                        @:</article>
-                        @:<article id="@item.dlPlace.FirstChar.ToUpper()">
-                            <section class="title-@item.dlPlace.FirstChar.ToUpper() page-@i">
-                                <div class="page">
-                                    <div class="page-title">
-                                        <h2>@item.dlPlace.Name</h2>
-                                        @Html.Partial("p_rating",item.dlPlace)
-                                    </div>
-                                    <div class="right">
-                                        <img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" width="233" height="120" alt="" />
-                            @if (item.listImagePlace != null)
-                            {
-                                <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>                               
-                            }
-                        </div>
-                        <div class="box">
-                             @Html.Raw(HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info))                           
-                        </div>
-                        <div class="seemore"><a href="@Url.Action("PlaceInfoDetail", "Place", new { placeId = item.dlPlace.ID })" class="ptext fancybox.iframe">@Resources.Language.SeeMore ...</a></div>
-                        <div class="comment">
-                            <p>@Resources.Language.Comment:</p>
-                            <a href="@Url.Action("CommentPlace", "Place", new { placeId = item.dlPlace.ID, type = "zingme" })" class="zingme fancyboxCmt fancybox.iframe" title="Bình luận trên zingme"></a>
-                            <a href="@Url.Action("CommentPlace", "Place", new { placeId = item.dlPlace.ID, type = "facebook" })" class="facebook fancyboxCmt fancybox.iframe" title="Bình luận trên facebook"></a>
-                            <a href="@Url.Action("CommentPlace", "Place", new { placeId = item.dlPlace.ID, type = "googleplus" })" class="googleplus fancyboxCmt fancybox.iframe" title="Bình luận trên GooglePlus"></a>
-                        </div>
-
+                    i++;
+                    <section class="title-@item.dlPlace.FirstChar.ToUpper() page-@i">
+                        <div class="page">
+                            <div class="page-title">
+                                <h2>@item.dlPlace.Name</h2>
                                 </div>
-                            </section>
-                            tempChar = @item.dlPlace.FirstChar.ToUpper();
-
-
-                    }
-                    else
-                    {
-                        i++;
+                                @Html.Partial("p_rating", item.dlPlace)
+                        
+                            <div class="right">
+                                <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@item.dlPlace.Avatar"><img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" alt="" width="233" height="120"/></a>
+                                <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@item.dlPlace.Avatar"><img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" alt="" width="233" height="120"/></a>
+                                @*<img src="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar" width="300" height="250" alt=""  class="fancybox" title="title"/>*@
+                                @if (item.listImagePlace != null)
+                                {
+                                    <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
+                                }
+                            </div>
+                            <div class="box">
+                                 @Html.Raw(HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info))                           
+                            </div>
+                            <div class="seemore"><a href="@Url.Action("PlaceInfoDetail", "Place", new { placeId = item.dlPlace.ID })" class="ptext fancybox.iframe">@Resources.Language.SeeMore ...</a></div>
+                            <div class="comment">
+                                <p>@Resources.Language.Comment:</p>
+                                <a href="@Url.Action("CommentPlace", "Place", new { placeId = item.dlPlace.ID, type = "zingme" })" class="zingme fancyboxCmt fancybox.iframe" title="Bình luận trên zingme"></a>
+                                <a href="@Url.Action("CommentPlace", "Place", new { placeId = item.dlPlace.ID, type = "facebook" })" class="facebook fancyboxCmt fancybox.iframe" title="Bình luận trên facebook"></a>
+                                <a href="@Url.Action("CommentPlace", "Place", new { placeId = item.dlPlace.ID, type = "googleplus" })" class="googleplus fancyboxCmt fancybox.iframe" title="Bình luận trên GooglePlus"></a>
+                            </div>
+                        </div>
+                    </section>
+                }
+                else
+                {
+                    i = 1;
+                    @:</article>
+                    @:<article id="@item.dlPlace.FirstChar.ToUpper()">
                         <section class="title-@item.dlPlace.FirstChar.ToUpper() page-@i">
-                                <div class="page">
-                                    <div class="page-title">
-                                        <h2>@item.dlPlace.Name</h2>
-                                        @Html.Partial("p_rating",item.dlPlace)
-                                    </div>
-                                     <div class="right">
-                                         <img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" width="233" height="120" alt="" />
-                            @if (item.listImagePlace != null)
-                            {
-                                <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
-                                
-                            }
-                        </div>
-                        <div class="box">
-                             @Html.Raw(HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info))                           
-                        </div>
-                        <div class="seemore"><a href="@Url.Action("PlaceInfoDetail", "Place", new { placeId = item.dlPlace.ID })" class="ptext fancybox.iframe">@Resources.Language.SeeMore ...</a></div>
-                        <div class="comment">
-                            <p>@Resources.Language.Comment:</p>
-                            <a href="@Url.Action("CommentPlace", "Place", new { placeId = item.dlPlace.ID, type = "zingme" })" class="zingme fancyboxCmt fancybox.iframe" title="Bình luận trên zingme"></a>
-                            <a href="@Url.Action("CommentPlace", "Place", new { placeId = item.dlPlace.ID, type = "facebook" })" class="facebook fancyboxCmt fancybox.iframe" title="Bình luận trên facebook"></a>
-                            <a href="@Url.Action("CommentPlace", "Place", new { placeId = item.dlPlace.ID, type = "googleplus" })" class="googleplus fancyboxCmt fancybox.iframe" title="Bình luận trên GooglePlus"></a>
-                        </div>
+                            <div class="page">
+                                <div class="page-title">
+                                    <h2>@item.dlPlace.Name</h2>
+                                    @Html.Partial("p_rating", item.dlPlace)
                                 </div>
-                            </section>
-                    }
+                                <div class="right">
+                                    <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@item.dlPlace.Avatar"><img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" alt="" width="233" height="120"/></a>
+                                    <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@item.dlPlace.Avatar"><img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" alt="" width="233" height="120"/></a>
+                                @if (item.listImagePlace != null)
+                                {
+                                    <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
+                                }
+                            </div>
+                                
+                    <div class="box">
+                            @Html.Raw(HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Info))                           
+                    </div>
+                    <div class="seemore"><a href="@Url.Action("PlaceInfoDetail", "Place", new { placeId = item.dlPlace.ID })" class="ptext fancybox.iframe">@Resources.Language.SeeMore ...</a></div>
+                    <div class="comment">
+                        <p>@Resources.Language.Comment:</p>
+                        <a href="@Url.Action("CommentPlace", "Place", new { placeId = item.dlPlace.ID, type = "zingme" })" class="zingme fancyboxCmt fancybox.iframe" title="Bình luận trên zingme"></a>
+                        <a href="@Url.Action("CommentPlace", "Place", new { placeId = item.dlPlace.ID, type = "facebook" })" class="facebook fancyboxCmt fancybox.iframe" title="Bình luận trên facebook"></a>
+                        <a href="@Url.Action("CommentPlace", "Place", new { placeId = item.dlPlace.ID, type = "googleplus" })" class="googleplus fancyboxCmt fancybox.iframe" title="Bình luận trên GooglePlus"></a>
+                    </div>
 
+                            </div>
+                        </section>
+                        tempChar = item.dlPlace.FirstChar.ToUpper();
                 }
 
-                if (index == 0)
-                { index++; }
-
-
             }
-              <article id="theend">
-                   <section class="title-theend page-1">
-                <div class="page">
-                <div class="page-title">
+        </article>
+    }            
+
+    <article id="theend">
+        <section class="title-theend page-1">
+    <div class="page"></div>
+    <div class="page-title">
                 
-                </div>
-                </section>
-              </article>
+    </div>
+    </section>
+    </article>
         </div>
     </div>
     <div id="left-page">
@@ -246,11 +210,11 @@
                 <a class="over" href="#">
                     <div class="description">
                         <p class="title">@item.dlPlace.FirstChar</p>
-                        <p class="pagenumber">
+                        <p class="pagenumber"></p>
                     </div>
                     <div class="small-book">
                         <div class="illustration"></div>
-                        <p class="index">1</p>
+                        <p class="index"></p>
                     </div>
                 </a>
             </li>
@@ -265,7 +229,7 @@
     <div class="bookmark"></div>
     <div class="print">
         <a class="closeprint fancybox-close" href="#" title="@Resources.Language.Close"></a>
-        <a class="printBook" href="@Url.Action("PrintBook", "Place", new { cityId = @ViewBag.cityId})" target="_blank">
+        <a class="printBook" href="@Url.Action("PrintBook", "Place", new { cityId = @ViewBag.cityId })" target="_blank">
             <h2>Print Book</h2>
             <p>Print the book (in Letter or A4 size only)</p>
         </a>
@@ -277,7 +241,7 @@
 </div>
 <div id="credits">
     <div class="header">
-        <h2><span>CREDITS</span></h2>
+        <h2><span>@Resources.Language.Credit.ToUpper()</span></h2>
         <hr>
     </div>
     <div class="people">
