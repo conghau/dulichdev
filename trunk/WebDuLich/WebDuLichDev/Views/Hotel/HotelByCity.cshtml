@@ -1,6 +1,6 @@
-﻿@model List<WebDuLichDev.Models.RestaurantInfo>
+﻿@model List<WebDuLichDev.Models.HotelInfo>
 @{
-    ViewBag.Title = ViewBag.Title + " - " + Resources.Language.Restaurant;
+    ViewBag.Title = ViewBag.Title + " - " + Resources.Language.Hotel;
     Layout = "~/Views/Shared/_LayoutFilp.cshtml";
 }
 <div id="search-dropdown">
@@ -35,7 +35,7 @@
         <div class="content">
             <p>@ViewBag.Title</p>
             <p>Bạn không có điều kiện, thời gian để đi du lịch. Vậy thì hãy đọc cuốn sách này...</p>
-            <a class="open-book" href="#">OPEN BOOK</a>
+            <a class="open-book" href="#">@Resources.Language.openBook</a>
             <canvas id="flip-intro" width="89" height="69"></canvas>
         </div>
     </div>
@@ -60,7 +60,7 @@
         </div>
     </div>
     <div id="front-cover">
-        <img src="/Content/themes/20Thing/css/images/coverRestaurant.png" width="664" height="520" />
+        <img src="/Content/themes/20Thing/css/images/cover-hotel.png" width="664" height="520" />
     </div>
     <div id="back-cover">
         <img src="/Content/themes/20Thing/css/images/back-cover.jpg" data-src-flipped="/Content/themes/20Thing/css/images/back-cover-flipped.jpg" width="664" height="520" />
@@ -69,7 +69,7 @@
 
     <div id="pages">
         <div>
-               <article id="foreword">
+            <article id="foreword">
                 <section class="template-start-7 title-foreword page-1">
                     <div class="page">
                         <div class="page-title">
@@ -90,7 +90,7 @@
               //int index = 0;
               string tempChar = "";
             }
-    @if (null != Model && Model.Count >0)
+    @if (null != Model && Model.Count > 0)
     {
         tempChar = Model[0].dlPlace.FirstChar.ToUpper();
         <article id="@tempChar">
@@ -109,15 +109,16 @@
                             <div class="right">
                                 <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@item.dlPlace.Avatar"><img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" alt="" width="233" height="120"/></a>
                                 <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@item.dlPlace.Avatar"><img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" alt="" width="233" height="120"/></a>
+                                @*<img src="~/Data/Avatar/Place/@Model[0].dlPlace.Avatar" width="300" height="250" alt=""  class="fancybox" title="title"/>*@
                                 @if (item.listImagePlace != null)
                                 {
                                     <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
                                 }
                             </div>
                             <div class="box">
-                                 @Html.Raw(HttpUtility.HtmlDecode(item.dlRestaurantInfoDetail.Info))                           
+                                 @Html.Raw(HttpUtility.HtmlDecode(item.dlHotelPlaceInfoDetail.Info))                           
                             </div>
-                            <div class="seemore"><a href="@Url.Action("RestaurantInfoDetail", "Restaurant", new { placeId = item.dlPlace.ID })" class="ptext fancybox.iframe">@Resources.Language.SeeMore ...</a></div>
+                            <div class="seemore"><a href="@Url.Action("PlaceInfoDetail", "Place", new { placeId = item.dlPlace.ID })" class="ptext fancybox.iframe">@Resources.Language.SeeMore ...</a></div>
                             <div class="comment">
                                 <p>@Resources.Language.Comment:</p>
                                 <a href="@Url.Action("CommentPlace", "Place", new { placeId = item.dlPlace.ID, type = "zingme" })" class="zingme fancyboxCmt fancybox.iframe" title="Bình luận trên zingme"></a>
@@ -139,18 +140,18 @@
                                     @Html.Partial("p_rating", item.dlPlace)
                                 </div>
                                 <div class="right">
-                                     <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@item.dlPlace.Avatar"><img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" alt="" width="233" height="120"/></a>
-                                <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@item.dlPlace.Avatar"><img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" alt="" width="233" height="120"/></a>
+                                    <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@item.dlPlace.Avatar"><img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" alt="" width="233" height="120"/></a>
+                                    <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@item.dlPlace.Avatar"><img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" alt="" width="233" height="120"/></a>
+                                @if (item.listImagePlace != null)
+                                {
+                                    <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>
+                                }
+                            </div>
                                 
-                        @if (item.listImagePlace != null)
-                        {
-                            <a href="@Url.Action("ListImagePlace", "Place", new { placeId = item.dlPlace.ID })" class="listImage fancybox.iframe">@Resources.Language.SeeMore ...</a>                               
-                        }
-                    </div>
                     <div class="box">
-                            @Html.Raw(HttpUtility.HtmlDecode(item.dlRestaurantInfoDetail.Info))                           
+                            @Html.Raw(HttpUtility.HtmlDecode(item.dlHotelPlaceInfoDetail.Info))                           
                     </div>
-                    <div class="seemore"><a href="@Url.Action("PlaceInfoDetail", "Place", new { placeId = item.dlPlace.ID })" class="ptext fancybox.iframe">@Resources.Language.SeeMore ...</a></div>
+                    <div class="seemore"><a href="@Url.Action("HotelInfoDetail", "Hotel", new { placeId = item.dlPlace.ID })" class="ptext fancybox.iframe">@Resources.Language.SeeMore ...</a></div>
                     <div class="comment">
                         <p>@Resources.Language.Comment:</p>
                         <a href="@Url.Action("CommentPlace", "Place", new { placeId = item.dlPlace.ID, type = "zingme" })" class="zingme fancyboxCmt fancybox.iframe" title="Bình luận trên zingme"></a>
@@ -167,13 +168,14 @@
         </article>
     }            
 
-            <article id="theend">
-                <section class="title-theend page-1">
-                    <div class="page"></div>
-                        <div class="page-title">
-                        </div>
-                </section>
-            </article>
+    <article id="theend">
+        <section class="title-theend page-1">
+    <div class="page"></div>
+    <div class="page-title">
+                
+    </div>
+    </section>
+    </article>
         </div>
     </div>
     <div id="left-page">
@@ -194,55 +196,52 @@
     </div>
 </div>
 <nav id="chapter-nav">
-    @if (null != Model)
-    {
-        <ul>
-            @{string tmpChar = "";}
-            @foreach (var item in Model)
+    <ul>
+        @{string tmpChar = "";}
+        @foreach (var item in Model)
+        {
+            if (tmpChar != @item.dlPlace.FirstChar.ToUpper())
             {
-                if (tmpChar != @item.dlPlace.FirstChar.ToUpper())
-                {
-                <li class="@item.dlPlace.FirstChar.ToUpper()">
-                    <a href="#" class="cnItem" title="@item.dlPlace.FirstChar" data-title="@item.dlPlace.FirstChar" data-subtitle="" data-article="@item.dlPlace.FirstChar.ToUpper()" data-globalstartpage="" data-globalendpage="" data-numberofpages="">
+            <li class="@item.dlPlace.FirstChar.ToUpper()">
+                <a href="#" class="cnItem" title="@item.dlPlace.FirstChar" data-title="@item.dlPlace.FirstChar" data-subtitle="" data-article="@item.dlPlace.FirstChar.ToUpper()" data-globalstartpage="" data-globalendpage="" data-numberofpages="">
+                    <div class="illustration"></div>
+                    <span>1</span>
+                </a>
+                <a class="over" href="#">
+                    <div class="description">
+                        <p class="title">@item.dlPlace.FirstChar</p>
+                        <p class="pagenumber"></p>
+                    </div>
+                    <div class="small-book">
                         <div class="illustration"></div>
-                        <span>1</span>
-                    </a>
-                    <a class="over" href="#">
-                        <div class="description">
-                            <p class="title">@item.dlPlace.FirstChar</p>
-                            <p class="pagenumber">
-                        </div>
-                        <div class="small-book">
-                            <div class="illustration"></div>
-                            <p class="index">1</p>
-                        </div>
-                    </a>
-                </li>
-                    tmpChar = @item.dlPlace.FirstChar.ToUpper();
-                }
-
+                        <p class="index"></p>
+                    </div>
+                </a>
+            </li>
+                tmpChar = @item.dlPlace.FirstChar.ToUpper();
             }
 
-        </ul>
-    }
+        }
+
+    </ul>
 </nav>
 <div id="overlay" style="display: none;">
     <div class="bookmark"></div>
     <div class="print">
         <a class="closeprint fancybox-close" href="#" title="@Resources.Language.Close"></a>
-        <a class="printBook" href="/en-US/all/print" target="_blank">
-            <h2>Print Book</h2>
-            <p>Print the book (in Letter or A4 size only)</p>
+        <a class="printBook" href="@Url.Action("PrintBook", "Place", new { cityId = @ViewBag.cityId })" target="_blank">
+            <h2>@Resources.Language.PrintBook</h2>
+            <p>In cuốn sách theo chuẩn A4</p>
         </a>
         <a class="downloadPdf" target="_blank" href="/media/20ThingsILearnedaboutBrowsersandtheWeb.pdf">
             <h2>Download PDF</h2>
-
+            
         </a>
     </div>
 </div>
 <div id="credits">
     <div class="header">
-        <h2><span>CREDITS</span></h2>
+        <h2><span>@Resources.Language.Credit.ToUpper()</span></h2>
         <hr>
     </div>
     <div class="people">
@@ -252,11 +251,11 @@
                 <a href="#">Trương Công Hậu</a></li>
             <li>
                 <h3>Nhóm tác giả</h3>
-                H.A Team</li>
+                H.A Team</li>   
             <li>
                 <h3>Xây dựng hệ thống</h3>
-                <a href="#">Võ Tiến An</a>
-                <a href="#">Trương Công Hậu</a>
+                <a href="#" >Võ Tiến An</a>
+                <a href="#" >Trương Công Hậu</a>
             </li>
         </ul>
         <h4>Very Special Thanks To</h4>
@@ -286,35 +285,32 @@
 
 </div>
 <div id="table-of-contents">
-    <div class="center">
-        <div class="header">
-            <a class="go-back" href="/">Go Back</a>
-            <h2><span>Table of Things</span></h2>
-            <hr>
-        </div>
-        @if (null != Model)
+			<div class="center">
+				<div class="header">
+					<a class="go-back" href="/">Go Back</a>
+					<h2><span>Table of Things</span></h2>
+					<hr>
+				</div>
+				<ul>
+                    @{ tmpChar = "";}
+        @foreach (var item in Model)
         {
-            <ul>
-                @{string tmpChar = "";}
-                @foreach (var item in Model)
-                {
-                    if (tmpChar != @item.dlPlace.FirstChar.ToUpper())
-                    {
-                    <li class="@item.dlPlace.FirstChar.ToUpper()">
-                        <a href="#" class="cnItem" title="@item.dlPlace.FirstChar.ToUpper()" data-article="@item.dlPlace.FirstChar.ToUpper()">
-                            <div class="medium-book">
-                                <div class="illustration"></div>
-                                <p class="index">THING @item.dlPlace.FirstChar.ToUpper()</p>
-                            </div>
-                            <h3>@item.dlPlace.FirstChar.ToUpper()</h3>
-                            <p>Danh sách địa điểm bắt đầu bằng chữ @item.dlPlace.FirstChar.ToUpper() </p>
-                        </a>
-                    </li>
-                        tmpChar = @item.dlPlace.FirstChar.ToUpper();
-                    }
+            if (tmpChar != @item.dlPlace.FirstChar.ToUpper())
+            {
+            <li class="@item.dlPlace.FirstChar.ToUpper()">
+                <a href="#" class="cnItem" title="@item.dlPlace.FirstChar.ToUpper()" data-article="@item.dlPlace.FirstChar.ToUpper()">
+                    <div class="medium-book">
+                        <div class="illustration"></div>
+                        <p class="index">THING @item.dlPlace.FirstChar.ToUpper()</p>
+                    </div>
+                    <h3>@item.dlPlace.FirstChar.ToUpper()</h3>
+                    <p> Danh sách địa điểm bắt đầu bằng chữ @item.dlPlace.FirstChar.ToUpper() </p>
+                </a>
+            </li>
+                tmpChar = @item.dlPlace.FirstChar.ToUpper();
+            }
 
-                }
-            </ul>
-        }
+        }            
+                </ul>
+                </div>
     </div>
-</div>
