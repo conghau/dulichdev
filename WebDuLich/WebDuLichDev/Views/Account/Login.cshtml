@@ -33,7 +33,7 @@
             @Html.PasswordFor(m=>m.Password,new { placeholder=@Resources.Language.Password, @class="showpassword"})
         </p>
         <p class="clearfix">
-            <a href="@Url.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })" class="log-twitter">Log in with Social</a>
+            <a href="@Url.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })" class="log-twitter">@Resources.Language.LoginWithSocial</a>
             <input type="submit" name="submit" value="@Resources.Language.Login">
         </p>
     }    ​​
