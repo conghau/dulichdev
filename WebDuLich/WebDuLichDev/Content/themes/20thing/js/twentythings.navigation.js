@@ -623,6 +623,7 @@ TT.navigation.goToCredits = function(fromHistoryChange) {
 
     $('#page-shadow-overlay').hide();
     $('#front-cover').hide();
+    $('#back-cover').show();
     $('#front-cover-bookmark').hide();
     $('#front-cover-arrow').hide();
 

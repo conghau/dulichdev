@@ -2376,7 +2376,7 @@ footer ul li {
 
                 #pages section div.page .comment .zingme,
                 #pages section div.page .comment .facebook,
-                #pages section div.page .comment .googleplus {
+                #pages section div.page .comment .twitter {
                     margin-bottom: 10px;
                     background: transparent url('images/socialicons.png') no-repeat top left;
                 }
@@ -2400,8 +2400,8 @@ footer ul li {
                     background-position: -26px 0px;
                 }
 
-                #pages section div.page .comment .googleplus {
-                    background-position: -83px 0px;
+                #pages section div.page .comment .twitter {
+                    background-position: -108px 0px;
                 }
 
 
