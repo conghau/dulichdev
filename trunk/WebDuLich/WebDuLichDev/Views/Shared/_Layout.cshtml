@@ -17,6 +17,7 @@
     <script src="@Url.Content("~/Scripts/KendoJS/kendo.all.min.js")"></script>
     @Scripts.Render("~/Scripts/Lib/FancyBox/source/jquery.fancybox.js")
     @Styles.Render("~/Scripts/Lib/FancyBox/source/jquery.fancybox.css")
+    
 </head>
 <body>
     <div id="header">
@@ -35,5 +36,22 @@
             </div>
         </div>
     </footer>
+    <script type="text/javascript" src="http://static.me.zing.vn/v3/js/zm.xcall-1.01.js"></script>
+    <script>
+        $(function () {
+            if (window.parent.parent.zmXCall) {
+                window.parent.parent.zmXCall.resizeParent("dulich",null);
+            }
+            
+        });
+        //$(document).ready(function () {
+        //    var height = $(document).height();
+        //    alert(height);
+
+        //    var height2 = $(window).height();
+        //    alert(height2);
+
+        //});
+    </script>
 </body>
 </html>
