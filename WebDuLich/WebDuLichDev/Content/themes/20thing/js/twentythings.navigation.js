@@ -309,6 +309,13 @@ TT.navigation.classToArticle = function(theClass) {
   return theClass ? theClass.match(/title-([a-zA-Z-0-9]+)/)[1] : null;
 };
 
+/**
+Get Place ID
+**/
+
+TT.navigation.getPlaceId = function(theClass){
+    return theClass ? theClass.match(/place-([a-zA-Z-0-9]+)/)[1] : null;
+}
 
 /**
  * Get article page number from section className.e.
