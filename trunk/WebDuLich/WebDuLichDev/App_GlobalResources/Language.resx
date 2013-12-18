@@ -396,4 +396,19 @@
   <data name="TableOfIndex" xml:space="preserve">
     <value>Xem dạng bảng</value>
   </data>
+  <data name="LoginWithSocial" xml:space="preserve">
+    <value>Đăng nhập Mạng Xã Hội</value>
+  </data>
+  <data name="msg_LoginWith" xml:space="preserve">
+    <value>Bạn đang đăng nhập với tên tài khoản:</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Mật Khẩu Mới</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Mật khẩu Hiện Tại</value>
+  </data>
+  <data name="SetPassword" xml:space="preserve">
+    <value>Cài Đặt Mật Khẩu</value>
+  </data>
 </root>
