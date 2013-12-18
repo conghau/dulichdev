@@ -21,6 +21,7 @@ using System.Web.Mvc.Html;
 using System.Net.Mail;
 using iTextSharp.text.html.simpleparser;
 using System.Web.UI;
+using System.Globalization;
 namespace WebDuLichDev.Controllers
 {
 
@@ -43,7 +44,20 @@ namespace WebDuLichDev.Controllers
             return View(tmp);
           
         }
-        
+        public static String RemoveDiacritics(String s)
+        {
+            String normalizedString = s.Normalize(NormalizationForm.FormD);
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (int i = 0; i < normalizedString.Length; i++)
+            {
+                Char c = normalizedString[i];
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                    stringBuilder.Append(c);
+            }
+
+            return stringBuilder.ToString();
+        }
         
         public ActionResult Pdf_Post(long ID, string urlBase)
         {
@@ -54,13 +68,11 @@ namespace WebDuLichDev.Controllers
             string result = sr.ReadToEnd();
             sr.Close();
             myResponse.Close();
-
-            PDFFactory.GeneratePDF(result, placeName + DateTime.Now.ToShortDateString());
+            var placeName_nonSpecail =RemoveDiacritics(placeName);
+            PDFFactory.GeneratePDF(result, placeName_nonSpecail + DateTime.Now.ToShortDateString());
           
             return View();
 
         }
     }
 }
-
-    
