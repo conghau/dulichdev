@@ -415,7 +415,7 @@
         function onUploadAvatarSuccess(e) {
             if (e.operation == "upload") {
                 var files = e.response;
-                $.each(files, function () {
+                $.each(files, function () {                  
                     var name = files.dataName.toString();
                     var id = name.replace('.', '');
                     $('#Avatar').val(name);
