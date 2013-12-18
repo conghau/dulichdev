@@ -23,8 +23,11 @@
             + @Resources.Language.City: @city_pdf_text
             <br />
         </td>
+        @if(!String.IsNullOrEmpty(Model.dlPlace.Avatar))
+        {
         <td>
             <img width="200" src="/Data/Avatar/Place/@Model.dlPlace.Avatar"/></td>
+        }
     </tr>
 </table>
 
@@ -37,7 +40,7 @@
 
 <h3>@Resources.Language.ImagePlace</h3>
 
-@if (null != Model.listImagePlace)
+@if ((null != Model.listImagePlace)&&(0!=Model.listImagePlace.Count))
 {
     <table style="text-align: center">
         <tr>
