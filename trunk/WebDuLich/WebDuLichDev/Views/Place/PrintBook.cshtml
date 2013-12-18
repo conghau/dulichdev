@@ -15,7 +15,8 @@
                     <img src="~/Data/Logo/2013/logodulich.jpg" data-src="~/Data/Logo/2013/logodulich.jpg" />
                 </div>
                 <div class="left">
-                    <p class="drop-cap">Năm Du lịch Quốc gia 2014 với chủ đề “Đại ngàn Tây nguyên” Theo Tổng Cục Du lịch Năm Du lịch Quốc gia 2014 sẽ được tổ chức tại tỉnh Lâm Đồng và các tỉnh, thành thuộc khu vực Tây Nguyên (Đắc Lắk, Đắc Nông, Gia Lai, Kon Tum) với tên gọi Năm Du lịch Quốc gia 2014 - Tây Nguyên - Đà Lạt mang chủ đề “Đại ngàn Tây Nguyên” và biểu trưng (logo) được đề xuất là Hoa dã quỳ, loài hoa có mặt ở khắp 5 tỉnh Tây Nguyên.Đây là sự kiện văn hóa-kinh tế-xã hội tiêu biểu, có quy mô quốc gia và quốc tế nhằm giới thiệu, quảng bá hình ảnh thiên nhiên và con người Tây Nguyên nói chung, Lâm Đồng – Đà Lạt nói riêng với bạn bè trong nước và quốc tế.
+                    <p class="drop-cap">
+                        Năm Du lịch Quốc gia 2014 với chủ đề “Đại ngàn Tây nguyên” Theo Tổng Cục Du lịch Năm Du lịch Quốc gia 2014 sẽ được tổ chức tại tỉnh Lâm Đồng và các tỉnh, thành thuộc khu vực Tây Nguyên (Đắc Lắk, Đắc Nông, Gia Lai, Kon Tum) với tên gọi Năm Du lịch Quốc gia 2014 - Tây Nguyên - Đà Lạt mang chủ đề “Đại ngàn Tây Nguyên” và biểu trưng (logo) được đề xuất là Hoa dã quỳ, loài hoa có mặt ở khắp 5 tỉnh Tây Nguyên.Đây là sự kiện văn hóa-kinh tế-xã hội tiêu biểu, có quy mô quốc gia và quốc tế nhằm giới thiệu, quảng bá hình ảnh thiên nhiên và con người Tây Nguyên nói chung, Lâm Đồng – Đà Lạt nói riêng với bạn bè trong nước và quốc tế.
                     </p>
                 </div>
                 <div>
@@ -46,6 +47,16 @@
                         @Html.Raw(HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.OpenCloseTime))
                         @Html.Raw(HttpUtility.HtmlDecode(item.dlNicePlaceInfoDetail.Note))
 
+                    </div>
+                    <div>
+                        <p>Hinh anh lien quan</p>
+                        @if (null != item.listImagePlace && item.listImagePlace.Count > 0)
+                        {
+                            foreach (var img in item.listImagePlace)
+                            {
+                                <img src="~/Data/Images/Place/@img.LinkImage" width="300" height="250"/>
+                            }
+                        }
                     </div>
                 </div>
             </section>

@@ -48,7 +48,7 @@ var l = window.location;
 /**
  * Full location string.
  */
-TT.sharing.BASE_URL = l.protocol + '//' + l.hostname;
+TT.sharing.BASE_URL = l.protocol + '//' + l.host;
 
 
 /**
@@ -72,25 +72,25 @@ TT.sharing.PLUSONE_SHARER = 'http://localhost:62688/Place/NicePlaceByCity?cityId
 /**
  * Initialize sharing class.
  */
-TT.sharing.initialize = function() {
-  
-  // Attach click handlers.
-  $('footer div.sharing .facebook, #credits div.share .facebook')
-      .click(TT.sharing.shareBookOnFacebook);
-  $('footer div.sharing .twitter, #credits div.share .twitter')
-      .click(TT.sharing.shareBookOnTwitter);
-  $('footer div.sharing .url').click(TT.sharing.openClipboardNotification);
-  $('#sharer div.content ul li.facebook')
-      .click(TT.sharing.shareChapterOnFacebook);
-  $('#sharer div.content ul li.twitter')
-      .click(TT.sharing.shareChapterOnTwitter);
-  $('#sharer div.content ul li.print').click(TT.sharing.printThing);
-  
-  // Create global (book) +1 buttons (footer and creits).
-  TT.sharing.updateGlobalGplusBtn();
+TT.sharing.initialize = function () {
 
-  // Mousedown handler.
-  $(document).mousedown(TT.sharing.documentMouseDownHandler);
+    // Attach click handlers.
+    $('footer div.sharing .facebook, #credits div.share .facebook')
+        .click(TT.sharing.shareBookOnFacebook);
+    $('footer div.sharing .twitter, #credits div.share .twitter')
+        .click(TT.sharing.shareBookOnTwitter);
+    $('footer div.sharing .url').click(TT.sharing.openClipboardNotification);
+    $('#sharer div.content ul li.facebook')
+        .click(TT.sharing.shareChapterOnFacebook);
+    $('#sharer div.content ul li.twitter')
+        .click(TT.sharing.shareChapterOnTwitter);
+    $('#sharer div.content ul li.print').click(TT.sharing.printThing);
+
+    // Create global (book) +1 buttons (footer and creits).
+    TT.sharing.updateGlobalGplusBtn();
+
+    // Mousedown handler.
+    $(document).mousedown(TT.sharing.documentMouseDownHandler);
 };
 
 
@@ -99,59 +99,66 @@ TT.sharing.initialize = function() {
  * in. The share should only be visible inside of the book.
  * @param {boolean} hide Whether to hide.
  */
-TT.sharing.updateSharer = function(hide) {
-  var articleId = TT.navigation.classToArticle($('#pages section.current')
-      .attr('class'));
+TT.sharing.updateSharer = function (hide) {
+    var articleId = TT.navigation.classToArticle($('#pages section.current')
+        .attr('class'));
 
-  $('#sharer div.content ul li.print a').attr('href', '/' +
-      SERVER_VARIABLES.LANG + '/' + articleId + '/print');
+    //var placeId = TT.navigation.getPlaceId($('#pages section.current').attr('class'));
 
-  if (TT.navigation.isHomePage() || TT.navigation.isCreditsPage() ||
-      TT.navigation.isLastPage() || TT.navigation.isForeword() || hide) {
-    $('#sharer').stop(true, true);
-    $('#sharer').fadeOut(150);
-  }
-  else {
-    if (TT.navigation.currentThing != articleId) {
-      TT.navigation.currentThing = articleId;
-      TT.sharing.updateChapterGplusBtn();
+    //$('#sharer div.content ul li.print a').attr('href', TT.sharing.BASE_URL + '/RazorPdf/Pdf_Post' + '/' + placeId + '?urlBase=' + TT.sharing.BASE_URL);
+
+    if (TT.navigation.isHomePage() || TT.navigation.isCreditsPage() ||
+        TT.navigation.isLastPage() || TT.navigation.isForeword() || hide) {
+        $('#sharer').stop(true, true);
+        $('#sharer').fadeOut(150);
     }
-    $('#sharer').stop(true, true).delay(150).fadeIn(150);
-  }
+    else {
+        if (TT.navigation.currentThing != articleId) {
+            TT.navigation.currentThing = articleId;
+            //TT.sharing.updateChapterGplusBtn();
+        }
+        $('#sharer').stop(true, true).delay(150).fadeIn(150);
+    }
 };
 
 
 /**
  * Updates the +1 button for per-chapter sharing.
  */
-TT.sharing.updateChapterGplusBtn = function() {
-  var li = $('#sharer li.gplus').html('');
-  var url = TT.sharing.PLUSONE_SHARER + '/' + TT.navigation.getCurrentArticleId();
-  var newBtn = '<g:plusone size="small" count="false" href="' + url +
-      '"></g:plusone>';
-  li.append(newBtn);
-  //gapi.plusone.go(li[0]);
+TT.sharing.UpdatePlaceId = function () {
+    var placeId = TT.navigation.getPlaceId($('#pages section.current').attr('class'));
+    $('#sharer div.content ul li.print a').attr('href', TT.sharing.BASE_URL + '/RazorPdf/Pdf_Post' + '/' + placeId + '?urlBase=' + TT.sharing.BASE_URL);
+}
+
+
+TT.sharing.updateChapterGplusBtn = function () {
+    var li = $('#sharer li.gplus').html('');
+    var url = TT.sharing.PLUSONE_SHARER + '/' + TT.navigation.getCurrentArticleId();
+    var newBtn = '<g:plusone size="small" count="false" href="' + url +
+        '"></g:plusone>';
+    li.append(newBtn);
+    //gapi.plusone.go(li[0]);
 };
 
 
 /**
  * Updates the +1 button for global (book) sharing.
  */
-TT.sharing.updateGlobalGplusBtn = function() {
-  var url = TT.sharing.PLUSONE_SHARER;
+TT.sharing.updateGlobalGplusBtn = function () {
+    var url = TT.sharing.PLUSONE_SHARER;
 
-  // Footer +1 button.
-  var footerLi = $('footer .sharing li.gplus');
-  var footerBtn = '<g:plusone size="small" count="false" href="' + url +
-      '"></g:plusone>';
-  footerLi.append(footerBtn);
-  //gapi.plusone.go(footerLi[0]);
+    // Footer +1 button.
+    var footerLi = $('footer .sharing li.gplus');
+    var footerBtn = '<g:plusone size="small" count="false" href="' + url +
+        '"></g:plusone>';
+    footerLi.append(footerBtn);
+    //gapi.plusone.go(footerLi[0]);
 
-  // Credits +1 button.
-  var creditsLi = $('#credits .share li.gplus');
-  var creditsBtn = '<g:plusone count="false" href="' + url + '"></g:plusone>';
-  creditsLi.append(creditsBtn);
-  //gapi.plusone.go(creditsLi[0]);
+    // Credits +1 button.
+    var creditsLi = $('#credits .share li.gplus');
+    var creditsBtn = '<g:plusone count="false" href="' + url + '"></g:plusone>';
+    creditsLi.append(creditsBtn);
+    //gapi.plusone.go(creditsLi[0]);
 };
 
 
@@ -159,41 +166,42 @@ TT.sharing.updateGlobalGplusBtn = function() {
  * Updates the index which is displayed in the sharer component.
  * @param {number} index Sharer index.
  */
-TT.sharing.updateSharerIndex = function(index) {
-  if (index != 0) {
+TT.sharing.updateSharerIndex = function (index) {
+    if (index != 0) {
 
-    // Don't update the index if this number is already written in the DOM.
-    if (index != $('#sharer div.content p.index span').text()) {
+        // Don't update the index if this number is already written in the DOM.
+        TT.sharing.UpdatePlaceId();
+        if (index != $('#sharer div.content p.index span').text()) {
 
-      // If we are moving ahead quickly, there is a chance of multiple spans
-      // stacking up - limit the number of simultaneous spans to two.
-      $('#sharer div.content p.index span').each(function(i) {
-        if (i > 1) {
-          $(this).remove();
+            // If we are moving ahead quickly, there is a chance of multiple spans
+            // stacking up - limit the number of simultaneous spans to two.
+            $('#sharer div.content p.index span').each(function (i) {
+                if (i > 1) {
+                    $(this).remove();
+                }
+            });
+
+            // Fade out and remove the previous number.
+            $('#sharer div.content p.index span').delay(300).fadeOut(200, function () {
+                $(this).remove();
+            });
+
+            // Construct a new span with the current index.
+            var span = $('<span>' + index + '</span>');
+
+            // Create a show animation for the span.
+            span.hide().delay(300).fadeIn(200);
+
+            // Append the span to the "Thing #" paragraph.
+            $('#sharer div.content p.index').append(span);
+
+            // Ensure that the visibility of the sharer component is up to date.
+            TT.sharing.updateSharer();
         }
-      });
-
-      // Fade out and remove the previous number.
-      $('#sharer div.content p.index span').delay(300).fadeOut(200, function() {
-        $(this).remove();
-      });
-
-      // Construct a new span with the current index.
-      var span = $('<span>' + index + '</span>');
-
-      // Create a show animation for the span.
-      span.hide().delay(300).fadeIn(200);
-
-      // Append the span to the "Thing #" paragraph.
-      $('#sharer div.content p.index').append(span);
-
-      // Ensure that the visibility of the sharer component is up to date.
-      TT.sharing.updateSharer();
     }
-  }
-  else {
-    $('#sharer').fadeOut();
-  }
+    else {
+        $('#sharer').fadeOut();
+    }
 };
 
 
@@ -202,10 +210,10 @@ TT.sharing.updateSharerIndex = function(index) {
  * the user can immediately copy.
  * @return {boolean} Return false.
  */
-TT.sharing.openClipboardNotification = function() {
-  $('footer .clipboard-notification').show().focus().select();
+TT.sharing.openClipboardNotification = function () {
+    $('footer .clipboard-notification').show().focus().select();
 
-  return false;
+    return false;
 };
 
 
@@ -215,14 +223,14 @@ TT.sharing.openClipboardNotification = function() {
  * @param {Object} event Event object.
  * @return {boolean} Return false.
  */
-TT.sharing.documentMouseDownHandler = function(event) {
-  if (event && event.target === $('footer .clipboard-notification')[0]) {
-    $('footer .clipboard-notification').focus().select();
-    return false;
-  }
-  else {
-    $('footer .clipboard-notification').fadeOut(200);
-  }
+TT.sharing.documentMouseDownHandler = function (event) {
+    if (event && event.target === $('footer .clipboard-notification')[0]) {
+        $('footer .clipboard-notification').focus().select();
+        return false;
+    }
+    else {
+        $('footer .clipboard-notification').fadeOut(200);
+    }
 };
 
 
@@ -230,13 +238,13 @@ TT.sharing.documentMouseDownHandler = function(event) {
  * Shares the full book on Facebook.
  * @return {boolean} Return false.
  */
-TT.sharing.shareBookOnFacebook = function() {
-  var url = TT.sharing.BASE_URL;
-  var title = SERVER_VARIABLES['FACEBOOK_MESSAGE'];
+TT.sharing.shareBookOnFacebook = function () {
+    var url = TT.sharing.BASE_URL;
+    var title = SERVER_VARIABLES['FACEBOOK_MESSAGE'];
 
-  TT.sharing.shareOnFacebook(url, title);
+    TT.sharing.shareOnFacebook(url, title);
 
-  return false;
+    return false;
 };
 
 
@@ -244,13 +252,13 @@ TT.sharing.shareBookOnFacebook = function() {
  * Shares the full book on Twitter.
  * @return {boolean} Return false.
  */
-TT.sharing.shareBookOnTwitter = function() {
-  var url = TT.sharing.BASE_URL;
-  var title = SERVER_VARIABLES['TWITTER_MESSAGE'];
+TT.sharing.shareBookOnTwitter = function () {
+    var url = TT.sharing.BASE_URL;
+    var title = SERVER_VARIABLES['TWITTER_MESSAGE'];
 
-  TT.sharing.shareOnTwitter(url, title);
+    TT.sharing.shareOnTwitter(url, title);
 
-  return false;
+    return false;
 };
 
 
@@ -258,13 +266,13 @@ TT.sharing.shareBookOnTwitter = function() {
  * Shares the current chapter on Facebook.
  * @return {boolean} Return false.
  */
-TT.sharing.shareChapterOnFacebook = function() {
-  var url = TT.sharing.BASE_URL + '/' + TT.navigation.getCurrentArticleId();
-  var title = SERVER_VARIABLES['FACEBOOK_MESSAGE_SINGLE'];
+TT.sharing.shareChapterOnFacebook = function () {
+    var url = TT.sharing.BASE_URL + '/' + TT.navigation.getCurrentArticleId();
+    var title = SERVER_VARIABLES['FACEBOOK_MESSAGE_SINGLE'];
 
-  TT.sharing.shareOnFacebook(url, title);
+    TT.sharing.shareOnFacebook(url, title);
 
-  return false;
+    return false;
 };
 
 
@@ -272,13 +280,13 @@ TT.sharing.shareChapterOnFacebook = function() {
  * Shares the current chapter on Twitter.
  * @return {boolean} Return false.
  */
-TT.sharing.shareChapterOnTwitter = function() {
-  var url = TT.sharing.BASE_URL + '/' + TT.navigation.getCurrentArticleId();
-  var title = SERVER_VARIABLES['TWITTER_MESSAGE_SINGLE'];
+TT.sharing.shareChapterOnTwitter = function () {
+    var url = TT.sharing.BASE_URL + '/' + TT.navigation.getCurrentArticleId();
+    var title = SERVER_VARIABLES['TWITTER_MESSAGE_SINGLE'];
 
-  TT.sharing.shareOnTwitter(url, title);
+    TT.sharing.shareOnTwitter(url, title);
 
-  return false;
+    return false;
 };
 
 
@@ -287,13 +295,13 @@ TT.sharing.shareChapterOnTwitter = function() {
  * @param {string} url URL.
  * @param {string} title Title.
  */
-TT.sharing.shareOnFacebook = function(url, title) {
-  var shareURL = TT.sharing.FACEBOOK_SHARER;
-  shareURL += '?u=' + encodeURIComponent(url);
-  shareURL += '&t=' + encodeURIComponent(title);
+TT.sharing.shareOnFacebook = function (url, title) {
+    var shareURL = TT.sharing.FACEBOOK_SHARER;
+    shareURL += '?u=' + encodeURIComponent(url);
+    shareURL += '&t=' + encodeURIComponent(title);
 
-  window.open(shareURL, 'Facebook',
-      'toolbar=0,status=0,width=726,location=no,menubar=no,height=436');
+    window.open(shareURL, 'Facebook',
+        'toolbar=0,status=0,width=726,location=no,menubar=no,height=436');
 };
 
 
@@ -302,12 +310,12 @@ TT.sharing.shareOnFacebook = function(url, title) {
  * @param {string} url URL.
  * @param {string} title Title.
  */
-TT.sharing.shareOnTwitter = function(url, title) {
-  var shareURL = TT.sharing.TWITTER_SHARER;
-  shareURL += '?original_referer=' + encodeURIComponent(url);
-  shareURL += '&text=' + encodeURIComponent(title);
-  shareURL += '&url=' + encodeURIComponent(url);
+TT.sharing.shareOnTwitter = function (url, title) {
+    var shareURL = TT.sharing.TWITTER_SHARER;
+    shareURL += '?original_referer=' + encodeURIComponent(url);
+    shareURL += '&text=' + encodeURIComponent(title);
+    shareURL += '&url=' + encodeURIComponent(url);
 
-  window.open(shareURL, 'Twitter',
-      'toolbar=0,status=0,width=726,location=no,menubar=no,height=436');
+    window.open(shareURL, 'Twitter',
+        'toolbar=0,status=0,width=726,location=no,menubar=no,height=436');
 };

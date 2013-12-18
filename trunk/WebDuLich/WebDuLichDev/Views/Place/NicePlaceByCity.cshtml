@@ -99,7 +99,7 @@
                 if (tempChar == item.dlPlace.FirstChar.ToUpper())
                 {
                     i++;
-                    <section class="title-@item.dlPlace.FirstChar.ToUpper() page-@i">
+                    <section class="title-@item.dlPlace.FirstChar.ToUpper() place-@item.dlPlace.ID page-@i">
                         <div class="page">
                             <div class="page-title">
                                 <h2>@item.dlPlace.Name</h2>
@@ -133,7 +133,7 @@
                     i = 1;
                     @:</article>
                     @:<article id="@item.dlPlace.FirstChar.ToUpper()">
-                        <section class="title-@item.dlPlace.FirstChar.ToUpper() page-@i">
+                        <section class="title-@item.dlPlace.FirstChar.ToUpper() place-@item.dlPlace.ID page-@i">
                             <div class="page">
                                 <div class="page-title">
                                     <h2>@item.dlPlace.Name</h2>

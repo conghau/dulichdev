@@ -180,6 +180,12 @@ namespace WebDuLichDev.Controllers
 
         public ActionResult PrintBook(long cityId)
         {
+           DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
+            if(null != nicePlaceBookTemp && nicePlaceBookTemp.Count !=0)
+               for (int index = 0; index < nicePlaceBookTemp.Count; index++)
+               {
+                   nicePlaceBookTemp[index].listImagePlace = dlImagePlaceBal.GetByDLPlaceID(nicePlaceBookTemp[index].dlPlace.ID);
+               }
             var model = nicePlaceBookTemp;
             return View(model);
         }
