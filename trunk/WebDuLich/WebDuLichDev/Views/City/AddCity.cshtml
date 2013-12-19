@@ -5,10 +5,7 @@
    
 }
 
-
-
-
-<h2>AddCity</h2>
+<h2>@Resources.Language.Add @Resources.Language.City</h2>
 
 @using (Html.BeginForm("AddCity", "City", FormMethod.Post, new { @class = "Add_City ", @id = "frmAddCity" }))
 {
@@ -307,116 +304,8 @@
         });
     }
 </script>
-
-
-
-
-
-@*<script> 
-    $(document).ready(function () {
-
-        var data = [
-            { text: "An Giang", value: "1" },
-            { text: "Bà Rịa - Vũng Tàu", value: "2" },
-            { text: "Bắc Giang", value: "3" },
-            { text: "Bắc Kạn", value: "4" },
-            { text: "Bạc Liêu", value: "5" },
-            { text: "Bắc Ninh", value: "6" },
-            { text: "Bến Tre", value: "7" },
-            { text: "Bình Định", value: "8" },
-            { text: "Bình Dương", value: "9" },
-            { text: "Bình Phước", value: "10" },
-            { text: "Bình Thuận", value: "11" },
-            { text: "Cà Mau", value: "12" },
-            { text: "Cao Bằng", value: "13" },
-            { text: "Đắk Lắk", value: "14" },
-            { text: "Đắk Nông", value: "15" },
-            { text: "Điện Biên", value: "16" },
-            { text: "Đồng Nai", value: "17" },
-            { text: "Đồng Tháp", value: "18" },
-            { text: "Gia Lai", value: "19" },
-            { text: "Hà Giang", value: "20" },
-            { text: "Hà Nam", value: "21" },
-            { text: "Hà Tĩnh", value: "22" },
-            { text: "Hải Dương", value: "23" },
-            { text: "Hậu Giang", value: "" },
-            { text: "Hòa Bình", value: "" },
-            { text: "Hưng Yên", value: "" },
-            { text: "Khánh Hòa", value: "" },
-            { text: "Kiên Giang", value: "" },
-            { text: "Kon Tum", value: "" },
-            { text: "Lai Châu", value: "" },
-            { text: "Lâm Đồng", value: "" },
-            { text: "Lạng Sơn", value: "" },
-            { text: "Lào Cai", value: "" },
-            { text: "Long An", value: "" },
-            { text: "Nam Định", value: "" },
-            { text: "Nghệ An", value: "" },
-            { text: "Ninh Bình", value: "" },
-            { text: "Ninh Thuận", value: "" },
-            { text: "Phú Thọ", value: "" },
-            { text: "Quảng Bình", value: "" },
-            { text: "Quảng Nam", value: "" },
-            { text: "Quảng Ngãi", value: "" },
-            { text: "Quảng Ninh", value: "" },
-            { text: "Quảng Trị", value: "" },
-            { text: "Sóc Trăng", value: "" },
-            { text: "Sơn La", value: "" },
-            { text: "Tây Ninh", value: "" },
-            { text: "Thái Bình", value: "" },
-            { text: "Thái Nguyên", value: "" },
-            { text: "Thanh Hóa", value: "" },
-            { text: "Thừa Thiên - Huế", value: "" },
-            { text: "Tiền Giang", value: "" },
-            { text: "Trà Vinh", value: "" },
-            { text: "Tuyên Quang", value: "" },
-            { text: "Vĩnh Long", value: "" },
-
-            { text: "Vĩnh Phúc", value: "" },
-            { text: "Yên Bái", value: "" },
-            { text: "Phú Yên", value: "" },
-            { text: "Cần Thơ", value: "" },
-            { text: "Đà Nẵng", value: "" },
-            { text: "Hải Phòng", value: "" },
-            { text: "Hà Nội", value: "" },
-            { text: "TP Hồ Chí Minh", value: "" },
-
-        ];
-
-        $("#select").kendoMultiSelect({
-            dataTextField: "text",
-            dataValueField: "value",
-            dataSource: data,
-            placeholder: "Select City...",
-            //dataBound: onDataBound,
-            select: onSelectCity,
-            //change: onChangeCity,
-            close: onCloseCity,
-            //open: onOpen,
-            maxSelectedItems: 1
-        });
-    });
-    function onSelectCity(e) {
-        var dataItem = this.dataSource.view()[e.item.index()];
-        $.ajax({
-            url: '@Url.Content("/City/SetCityID")',
-            data: { cityID: dataItem.value },
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                alert("Da set");
-                // ...
-            },
-            error: function () {
-                // ...
-            }
-        });
-       
-        //alert("City" + dataItem.text + " " + dataItem.value);
-    }
-    function onCloseCity(e) {
-        //var dataItem = this.dataSource.view()[e.item.index()];
-
-       // alert("City change to");
-    }
-</script>*@
+@section resiseIframe{
+    <script>
+        zmXCall.resizeParent("dulich", null);
+    </script>
+}
