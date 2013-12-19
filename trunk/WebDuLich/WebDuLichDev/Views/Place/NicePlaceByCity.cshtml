@@ -103,9 +103,12 @@
                         <div class="page">
                             <div class="page-title">
                                 <h2>@item.dlPlace.Name</h2>
-                                </div>
+                            </div>
+                            <div style="height: 26px;">
                                 @Html.Partial("p_rating", item.dlPlace)
-                        
+                               @Html.Partial("p_likesocial",item.dlPlace.ID)
+
+                            </div>
                             <div class="right">
                                 <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@item.dlPlace.Avatar"><img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" alt="" width="233" height="120"/></a>
                                 <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@item.dlPlace.Avatar"><img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" alt="" width="233" height="120"/></a>
@@ -137,7 +140,11 @@
                             <div class="page">
                                 <div class="page-title">
                                     <h2>@item.dlPlace.Name</h2>
+
+                                </div>
+                                <div style="height: 26px;">
                                     @Html.Partial("p_rating", item.dlPlace)
+                                    @Html.Partial("p_likesocial",item.dlPlace.ID)
                                 </div>
                                 <div class="right">
                                     <a title="1st title" class="fancybox fancybox.iframe" href="~/Data/Avatar/Place/@item.dlPlace.Avatar"><img src="~/Data/Avatar/Place/@item.dlPlace.Avatar" alt="" width="233" height="120"/></a>
@@ -161,7 +168,7 @@
 
                             </div>
                         </section>
-                        tempChar = item.dlPlace.FirstChar.ToUpper();
+                                tempChar = item.dlPlace.FirstChar.ToUpper();
                 }
 
             }
