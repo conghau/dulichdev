@@ -61,7 +61,7 @@ namespace WebDuLichDev.WebUtility
             {
                 List<A_Object> listObject = objectBal.GetList();
 
-                var listRolesForUser = Roles.GetRolesForUser(WebDuLichSecurity.UserName);
+                var listRolesForUser = Roles.GetRolesForUser(WebSecurity.CurrentUserName);
                 string roleName = listRolesForUser[0];
                 List<A_AssignedPermission> listPermission = assignedpermissionBal.GetList(roleName);
 

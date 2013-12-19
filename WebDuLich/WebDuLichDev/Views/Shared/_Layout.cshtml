@@ -17,18 +17,19 @@
     <script src="@Url.Content("~/Scripts/KendoJS/kendo.all.min.js")"></script>
     @Scripts.Render("~/Scripts/Lib/FancyBox/source/jquery.fancybox.js")
     @Styles.Render("~/Scripts/Lib/FancyBox/source/jquery.fancybox.css")
-    
+    <script type="text/javascript" src="http://static.me.zing.vn/v3/js/zm.xcall-1.01.js"></script>
 </head>
 <body>
     <div id="header">
         @Html.Partial("p_Header")
     </div>
     <div id="body">
-        @RenderSection("featured", required: false)
+        @*@RenderSection("featured", required: false)*@
         <section>
             @RenderBody()
         </section>
     </div>
+    <hr />
     <footer>
         <div class="content-wrapper">
             <div class="float-left">
@@ -36,22 +37,6 @@
             </div>
         </div>
     </footer>
-    <script type="text/javascript" src="http://static.me.zing.vn/v3/js/zm.xcall-1.01.js"></script>
-    <script>
-        $(function () {
-            if (window.parent.parent.zmXCall) {
-                window.parent.parent.zmXCall.resizeParent("dulich",null);
-            }
-            
-        });
-        //$(document).ready(function () {
-        //    var height = $(document).height();
-        //    alert(height);
-
-        //    var height2 = $(window).height();
-        //    alert(height2);
-
-        //});
-    </script>
+    @RenderSection("resiseIframe", false)
 </body>
 </html>

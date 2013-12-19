@@ -36,6 +36,11 @@
 
 $(function () {
 
+    var windowheight = $(window).height();
+    var docummentheight = $(document).height();
+    var minheight = Math.min(windowheight, docummentheight) - $('footer').height() - $('#header').height() - 70;
+    $('#body').css('min-height', minheight);
+
     var currentURL = window.location.href.replace(/#[\w]*/g, '');
     var currertUrlAction = location.pathname;
     $('div.navbar-inner ul.nav li ul li a[href="' + currertUrlAction + '"]').parent().addClass('active');
@@ -59,29 +64,6 @@ $(function () {
         $('#messageBox').css('display', 'none');
     }
     $(this).find('.itranparent_child').hide();
-    $('.dropdown li').hover(
-        function () {
-            $('ul, img', this).show();
-            $(this).find('.itranparent_child').show();
-        },
-        function () {
-            $('ul, img', this).hide();
-            $(this).find('.itranparent_child').hide();
-        }
-    );
-
-    // active menu
-    var currentLocation = $(location).attr('pathname');
-    $("li.mainnav").each(function (i) {
-        var submenu = $(this).children('ul.submenu');
-        submenu.children('li').each(function (i) {
-            var url = $(this).children('a').attr('href');
-            if (currentLocation == url) {
-                $(this).parent().parent('li.mainnav').children('a').first().addClass('ActiveMenu');
-                return false;
-            }
-        });
-    });
 
     $(".TableGrid th").click(function () {
         if ($(this).parent().parent().parent().attr("group") == 'Exception')
@@ -181,41 +163,5 @@ function mergeForms() {
         }
     });
     $('#frmMain').submit();
-}
-
-function sizeIViewer() {
-    /*BEGIN fixed position invoice image*/
-    //    $('.bor_img').css('height', $(window).height() * 0.84);
-    //    $('.bor_img').css('width', $(window).width() * 0.575);
-    $('.bor_img').css('height', $(window).height() * 0.84);
-    $('.bor_img').css('width', $(window).width() * 0.525);
-    var windw = $(window);
-    $.fn.followTo = function (pos) {
-        var $this = this,
-				$window = $(windw);
-
-        $window.scroll(function (e) {
-
-            if ($window.scrollTop() > pos) {
-                $this.css({
-                    position: '',
-                    top: pos
-                });
-            } else {
-                if ($window.scrollTop() > ($(window).height() * 0.15)) {
-                    $this.css({
-                        position: 'relative',
-                        top: $window.scrollTop() - ($(window).height() * 0.15)
-                    });
-                } else {
-                    $this.css({
-                        position: ''
-                    });
-                }
-            }
-        });
-    };
-    $('.wrap_invimg').followTo($(window).height() * 100);
-    /*END fixed position invoice image*/
 }
 

@@ -109,6 +109,7 @@ namespace WebDuLichDev.Controllers
 
                     }
                 }
+                WebDuLichSecurity.Menu = common.RenderMenu();
                 return View();
             }
             catch (BusinessException bx)

@@ -69,36 +69,14 @@
                         </td>
                         <td style="text-align: center; width: 32px">
                            <a href="#" class="delete" id="@item.ID" >
-                                <img src="/Content/themes/custom/Image/Edit-Light.png" width="24" height="24" alt="Chinh sua"
-                                    onmouseover="this.src='/Content/themes/custom/Image/Edit-Dark.png';"
-                                    onmouseout="this.src='/Content/themes/custom/Image/Edit-Light.png'" /></a>
+                                <img src="/Content/themes/custom/Image/Delete-Light.png" width="24" height="24" alt="Chinh sua"
+                                    onmouseover="this.src='/Content/themes/custom/Image/Delete-Dark.png';"
+                                    onmouseout="this.src='/Content/themes/custom/Image/Delete-Light.png'" /></a>
                         </td>
                     </tr>
                     i++;
                 }
             </table>
-            @*        @foreach (var item in Model)
-        { 
-            <div class="row-fluid">
-                <div class="span10">
-                        <ul class="thumbnails">   
-                            @if(null == item.Avatar || string.IsNullOrWhiteSpace(item.Avatar))
-                            {   <li class="span4" id="">
-                                    <a class=thumbnail><img src="/Data/Avatar/place/@WebDuLichData.PathAvatarDefault" alt='' /></a>
-                                </li>
-                            }
-                            else
-                            {
-                              <li class="span4" id=""><a class=thumbnail><img src="/Data/Avatar/place/@item.Avatar" alt='' /></a></li>
-                            }
-                        </ul>
-                </div>
-                <div class="span2">
-                    <button class="btn">Edit</button>
-                </div>
-            </div>
-            
-        }*@
         </div>
         <div class="form-inline">@Html.Partial("p_Pagination", null, ViewData)</div>
                
@@ -159,3 +137,8 @@
         });
     </script>
 </form>
+@section resiseIframe{
+    <script>
+        zmXCall.resizeParent("dulich", null);
+    </script>
+}
