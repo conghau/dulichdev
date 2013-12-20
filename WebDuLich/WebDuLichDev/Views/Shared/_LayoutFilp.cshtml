@@ -220,11 +220,11 @@
                                 $(element).find('.jRatingAverage').css('width', '0px')
                                 $(element).find('.jRatingColor').css('width', widthColorOneStar * data.Avg)
 
-                                $(element).parent().children().last().replaceWith('<p class=\"text\" style=\"float:right;margin-left: 19px;\">Current Rate : ' + data.Avg + ' by ' + data.TotalUser + ' people </p>')
+                                $(element).parent().children().last().replaceWith('<p class=\"text\" style=\"float:right\">Current Rate : ' + data.Avg + ' by ' + data.TotalUser + ' people </p>')
                                 $.ajax({
                                     url: '@Url.Action("PostNoticeRate","Zing")',
                                     type:"Post",
-                                    data:{rate: rate, placeName:nameBox},
+                                    data:{rate: rate, placeName:nameBox, ID:idBox},
                                     dataType :'json',
                                     success: function (result)
                                     {

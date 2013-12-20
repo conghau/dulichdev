@@ -16,10 +16,9 @@
     @Styles.Render("~/Content/themes/20Thing/css/main.css")
 </head>
 <body>
-    <header>
+    <header class="navbar navbar-fixed-top">
         <nav>
             <ul>
-                <li class="table-of-things"><a href="/table-of-things">TABLE OF THINGS</a></li>
                 <li class="divider1"></li>
                 <li class="about"><a href="#">FIRST</a></li>
                 <li class="divider2"></li>
@@ -41,7 +40,7 @@
         <input id="search-field" type="text" value="Search Book">
     </header>
     @RenderBody()
-    <footer>
+    <footer class="navbar navbar-fixed-bottom">
         <span class="curator"><a href="#">Hau Team. ©,2013</a></span>
         <div class="right-side">
             <div class="divider"></div>
