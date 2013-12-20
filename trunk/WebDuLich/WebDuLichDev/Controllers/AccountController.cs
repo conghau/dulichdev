@@ -67,7 +67,7 @@ namespace WebDuLichDev.Controllers
         public ActionResult LogOff()
         {
             WebSecurity.Logout();
-            WebDuLichSecurity.UserIsAdmin = false;
+            WebDuLichSecurity.ClearSession();
             return RedirectToAction("Index", "Home");
         }
 
