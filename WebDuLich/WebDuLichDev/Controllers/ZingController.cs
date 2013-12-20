@@ -28,23 +28,25 @@ namespace WebDuLichDev.Controllers
             // zmeSocial.invite();
             return View();
         }
+
+        [Authorize]
         [HttpPost]
         public ActionResult PostNoticeRate(int rate, string placeName, long ID)
         {
-            if (null == ZingClient.access_token)
+            if (null == WebDuLichSecurity.AccessTokenZingMe)
                 return Json(new { result = false });
 
             string hostname = ConfigurationManager.AppSettings["Path"].ToString();
 
             ZME_Config zme_config = RegisterAuthZing.config();
             ZME_Me zmeMe = new ZME_Me(zme_config);
-            Hashtable me_info = zmeMe.getInfo(ZingClient.access_token, "id,username");
+            Hashtable me_info = zmeMe.getInfo(WebDuLichSecurity.AccessTokenZingMe, "id,username");
             ZME_Social zmeSocial = new ZME_Social(zme_config);
             string username = me_info["username"].ToString();
             //string rate= rate.ToString();
             string title = username + " vừa đánh giá cho " + placeName + " được " + rate.ToString() + " điểm trên tổng số 20";
             ZME_Feed zmeFeed = new ZME_Feed(placeName, title, "dia diem", hostname +"Data/Avatar/Place/images.jpg", hostname+"place/niceplace/"+ID, hostname);
-            zmeSocial.post(ZingClient.access_token, zmeFeed, false);
+            zmeSocial.post(WebDuLichSecurity.AccessTokenZingMe, zmeFeed, false);
             return Json(new { result = true});
         }
     }
