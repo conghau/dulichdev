@@ -143,7 +143,6 @@ namespace WebDuLichDev.Controllers
         {
             DL_ImagePlaceBAL dlImagePlaceBal = new DL_ImagePlaceBAL();
             var model = dlImagePlaceBal.GetByDLPlaceID(placeId);
-            //return Json(new { data = model }, JsonRequestBehavior.AllowGet);
             return View(model);
         }
 
