@@ -544,7 +544,6 @@ header nav ul li.table-of-things a {
 header nav ul a.back {
     padding-left: 21px;
     background-position: -236px -306px;
-
 }
 
 header nav a:hover {
@@ -570,7 +569,7 @@ header input[type="text"] {
     z-index: 2001;
 }
 
-        
+
 /*header input:focus[type="text"] { 
 		background-position: -652px -56px;
 			color: #333333;
@@ -650,9 +649,9 @@ header input[type="text"] {
         display: block;
     }
 
-    #language-selector-list ul{
-            margin:0;
-        }
+    #language-selector-list ul {
+        margin: 0;
+    }
 
         #language-selector-list ul li a {
             display: block;
@@ -2338,18 +2337,23 @@ footer ul li {
 
             #pages section div.page .right {
                 padding: 5px;
+                position: absolute;
             }
 
             #pages section div.page .box {
+                width: 582px;
                 padding: 5px;
+                top: 267px;
                 overflow: hidden;
                 height: 151px;
+                position: absolute;
             }
 
             #pages section div.page .seemore {
                 margin-top: 14px;
-                margin-right: 50px;
-                float: right;
+                top: 419px;
+                margin-left: 70%;
+                position: absolute;
             }
 
             #pages section div.page .box:after {
@@ -2361,17 +2365,18 @@ footer ul li {
                 background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.73) 22%,rgba(255,255,255,0.73) 23%,rgba(255,255,255,1) 91%);
                 background: linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.73) 22%,rgba(255,255,255,0.73) 23%,rgba(255,255,255,1) 91%);
                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );
-                height: 34px;
-                bottom: 67px;
-                left: 42px;
-                right: 56px;
-                content: '';
+                bottom: -16px;
+                content: "";
+                height: 53px;
+                left: 4px;
+                right: 0;
             }
 
             #pages section div.page .comment {
                 height: 32px;
                 margin-left: 40%;
-                margin-top: 30px;
+                position: absolute;
+                top: 468px;
             }
 
                 #pages section div.page .comment .zingme,
