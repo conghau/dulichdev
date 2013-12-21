@@ -101,10 +101,11 @@ namespace WebDuLichDev.WebUtility
         
         public static string AccessTokenZingMe
         {
-            get { string accessToken = Utility.ObjectToString(HttpContext.Current.Session[_accessTokenZingMe]); 
-                return accessToken; 
+            get { return Utility.ObjectToString(HttpContext.Current.Session[_accessTokenZingMe]); }
+            set
+            {
+                HttpContext.Current.Session[_accessTokenZingMe] = value;
             }
-            //set { WebDuLichSecurity.accessTokenZingMe = value; }
         }
 
         public static long UserID
@@ -149,6 +150,11 @@ namespace WebDuLichDev.WebUtility
             }
             else
                 return false;
+        }
+
+        public static void ClearSession()
+        {
+            HttpContext.Current.Session.Clear();
         }
 
         public static string LanguageCode
