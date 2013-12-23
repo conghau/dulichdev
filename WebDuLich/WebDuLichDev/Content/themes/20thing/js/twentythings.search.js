@@ -236,7 +236,7 @@ TT.search.searchFor = function(term) {
           var postSnippet = elResults[i].substr(0, 10).replace(/</, '&lt;');
 
           result.articleId = elBeingSearched.parents('section').eq(0)
-              .attr('class').match(/title-([a-z-0-9]+)/)[1];
+              .attr('class').match(/title-([a-zA-Z0-9]+)/)[1];
           term = term.replace(/</, '&lt;');
           result.snippet = anteSnippet + '<strong>' + term + '</strong>' +
               postSnippet;
