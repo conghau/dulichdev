@@ -94,10 +94,8 @@ namespace WebDuLichDev.WebUtility
         private static string _menu = "Menu";
         private static string _languageCode = "LanguageCode";
         public static bool UserIsAdmin = false;
-        private static string accessTokenZingMe = "";
 
-
-        public static string _accessTokenZingMe = "";
+        private static string _accessTokenZingMe = "";
         
         public static string AccessTokenZingMe
         {
