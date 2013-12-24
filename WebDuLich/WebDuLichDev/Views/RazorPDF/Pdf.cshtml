@@ -23,10 +23,14 @@
             + @Resources.Language.City: @city_pdf_text
             <br />
         </td>
-        @if(!String.IsNullOrEmpty(Model.dlPlace.Avatar))
+        @if (!String.IsNullOrEmpty(Model.dlPlace.Avatar))
         {
-        <td>
-            <img width="200" src="/Data/Avatar/Place/@Model.dlPlace.Avatar"/></td>
+            string filePath = Request.MapPath("~/Data/Avatar/Place/" + Model.dlPlace.Avatar);
+            if (System.IO.File.Exists(filePath))
+            {
+            <td>
+                <img width="200" src="/Data/Avatar/Place/@Model.dlPlace.Avatar"/></td>
+            }
         }
     </tr>
 </table>
@@ -41,7 +45,7 @@
 <h3>********************************************************* @Resources.Language.ImagePlace *************************************************</h3>
 <br />
 
-@if ((null != Model.listImagePlace)&&(0!=Model.listImagePlace.Count))
+@if ((null != Model.listImagePlace) && (0 != Model.listImagePlace.Count))
 {
     <table style="text-align: center">
         <tr>
@@ -51,9 +55,13 @@
         <tr>
             @foreach (var pic in Model.listImagePlace)
             {
+                string filePath = Request.MapPath("~/Data/Images/Place/" + pic.LinkImage);
+                if (System.IO.File.Exists(filePath))
+                {
                 <td>
                     <img width="300" src="/Data/Images/Place/@pic.LinkImage"/>
                 </td>
+                }
             }
         </tr>
 
