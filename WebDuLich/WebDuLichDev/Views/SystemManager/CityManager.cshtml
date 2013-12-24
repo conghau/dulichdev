@@ -56,7 +56,7 @@
                         <img src="../../Data/Avatar/City/@Html.DisplayFor(modelItem => item.Avatar)" alt="Image City..." class="img-polaroid" width="90" height="80" />
                     </td>
                     <td >
-                        <input class="btn btn-primary btn-large" id="btnEdit" type="button" value="@Resources.Language.Edit>>" onclick="location.href='@Url.Action("AddCity", "City", new { id = item.ID })    ' " />
+                        <input class="btn btn-primary btn-large" id="btnEdit" type="button" value="@Resources.Language.Edit>>" onclick="location.href='@Url.Action("EditCity", "City", new { id = item.ID })    ' " />
                     </td>
                 </tr>
                 i++;
