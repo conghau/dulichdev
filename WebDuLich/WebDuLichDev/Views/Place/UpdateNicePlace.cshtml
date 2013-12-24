@@ -168,7 +168,7 @@
     </div>
     <div class="form-actions">
         <input class="btn btn-primary" id="btnSubmit" type="button" value="@Resources.Language.Submit" />
-        <input class="btn" id="btnCancel" type="button" value="@Resources.Language.Cancel" />
+        <input class="btn" id="btnList" type="button" value="@Resources.Language.ListNicePlace" />
     </div>
     <script>
 
@@ -229,7 +229,7 @@
 
             });
 
-            $('#btnCancel').click(function () {
+            $('#btnList').click(function () {
                 document.location = '@Url.Action("ListNicePlace", "Place")';
 
             });
