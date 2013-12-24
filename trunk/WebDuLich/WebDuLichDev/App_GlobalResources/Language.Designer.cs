@@ -430,6 +430,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Danh Sách Địa Điểm Nên Đến.
+        /// </summary>
+        internal static string ListNicePlace {
+            get {
+                return ResourceManager.GetString("ListNicePlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Danh Sách Địa Điểm.
         /// </summary>
         internal static string ListPlace {

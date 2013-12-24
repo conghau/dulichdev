@@ -411,4 +411,7 @@
   <data name="SetPassword" xml:space="preserve">
     <value>Cài Đặt Mật Khẩu</value>
   </data>
+  <data name="ListNicePlace" xml:space="preserve">
+    <value>Danh Sách Địa Điểm Nên Đến</value>
+  </data>
 </root>
