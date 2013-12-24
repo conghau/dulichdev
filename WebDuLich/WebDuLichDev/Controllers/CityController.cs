@@ -104,7 +104,7 @@ namespace WebDuLichDev.Controllers
 
 
 
-        public ActionResult AddCity(long id)
+        public ActionResult EditCity(long id)
         {
             DL_CityBAL dlCityBal = new DL_CityBAL();
             DL_CityInfoDetailBAL dlCityInfoBAL = new DL_CityInfoDetailBAL();
@@ -119,7 +119,7 @@ namespace WebDuLichDev.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult AddCity(CityInfo cityinfo)
+        public ActionResult EditCity(CityInfo cityinfo)
         {
             DL_CityBAL dlCityBal = new DL_CityBAL();
 
