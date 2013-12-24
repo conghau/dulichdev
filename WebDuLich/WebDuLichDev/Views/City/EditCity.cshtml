@@ -1,19 +1,19 @@
 ﻿@model WebDuLichDev.Models.CityInfo
 @{
-    ViewBag.Title = "AddCity";
+    ViewBag.Title = "EditCity";
     Layout = "~/Views/Shared/_Layout.cshtml";
    
 }
-
-<h2>@Resources.Language.Add @Resources.Language.City</h2>
-
-@using (Html.BeginForm("AddCity", "City", FormMethod.Post, new { @class = "Add_City ", @id = "frmAddCity" }))
+<div style="text-align:center" >
+<h2 style="border-bottom: 2px solid #ff6a00">@Resources.Language.Edit @Resources.Language.City</h2>
+</div>
+@using (Html.BeginForm("EditCity", "City", FormMethod.Post, new { @class = "Edit_City ", @id = "frmEditCity" }))
 {
     <input name="dlCity.ID" value="@Model.dlCity.ID" type="hidden" />
     <div class="control-group" style="width: 50%">
         <label class="control-label" for="input01">@Resources.Language.City</label>
         <div class="controls">
-            @Html.TextBoxFor(m => m.dlCity.CityName,new { @readonly = true })
+            @Html.TextBoxFor(m => m.dlCity.CityName, new { @readonly = true })
         </div>
     </div>
   
@@ -33,7 +33,7 @@
                                         <ul class="thumbnails">
                                             @if (null != Model && Model.dlCity != null)
                                             {      
-                                                @:<li class="span2" id="@Model.dlCity.Avatar"><a class=thumbnail><img src="/Data/Avatar/City/@Model.dlCity.Avatar" alt='' /></a></li>
+                                                @:<li class="span2" id="@Model.dlCity.Avatar"  style="margin-left:50px"><a class=thumbnail><img src="/Data/Avatar/City/@Model.dlCity.Avatar" alt='' /></a></li>
                                             }
                                         </ul>
                                     </div>
@@ -66,28 +66,28 @@
                     <div>
                         <div class="k-content">
                             <textarea class="editor" id="History" name="dlCityInfoDetail.History" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                   @HttpUtility.HtmlDecode(Model.dlCityInfoDetail.History   )   
+                   @HttpUtility.HtmlDecode(Model.dlCityInfoDetail.History)   
                 </textarea>
                         </div>
                     </div>
                     <div>
                         <div class="k-content">
                             <textarea class="editor" id="Nature" name="dlCityInfoDetail.Nature" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                    @HttpUtility.HtmlDecode(Model.dlCityInfoDetail.Nature   )  
+                    @HttpUtility.HtmlDecode(Model.dlCityInfoDetail.Nature)  
                 </textarea>
                         </div>
                     </div>
                     <div>
                         <div class="k-content">
                             <textarea class="editor" id="Social" name="dlCityInfoDetail.Social" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                   @HttpUtility.HtmlDecode(Model.dlCityInfoDetail.Social )    
+                   @HttpUtility.HtmlDecode(Model.dlCityInfoDetail.Social)    
                 </textarea>
                         </div>
                     </div>
                     <div>
                         <div class="k-content">
                             <textarea class="editor" id="Administrative" name="dlCityInfoDetail.Administrative" rows="5" cols="20" style="width: 100%; height: 400px">                  
-                     @HttpUtility.HtmlDecode(Model.dlCityInfoDetail.Administrative   )   
+                     @HttpUtility.HtmlDecode(Model.dlCityInfoDetail.Administrative)   
                 </textarea>
                         </div>
                     </div>
@@ -126,18 +126,18 @@
 
         // create Editor from textarea HTML element with default set of tools
         $(".editor").kendoEditor({
-           
-            encoded:true,
+
+            encoded: true,
             tools: ["bold", "italic", "underline", "justifyLeft", "justifyCenter", "justifyRight",
                 "justifyFull", "insertUnorderedList", "insertOrderedList", "indent", "outdent", "viewHtml"
             ],
-           
-            
+
+
         });
         $("#editor").kendoEditor({
 
             encoded: true,
-            
+
             tools: ["bold", "italic", "underline", "justifyLeft", "justifyCenter", "justifyRight",
                 "justifyFull", "insertUnorderedList", "insertOrderedList", "indent", "outdent", "viewHtml", "insertHtml"
             ],
@@ -157,7 +157,7 @@
                 }
 
             }
-            
+
         });
 
         $("#tabstrip").kendoTabStrip({
@@ -165,11 +165,11 @@
                 open: {
                     effects: ["expandVertical ", "fadeIn"]
                 }
-                
+
             }
 
         });
-      
+
         var validator = $("#panelbar").kendoValidator().data("kendoValidator");
 
         $('#btnSubmit').click(function () {
@@ -179,9 +179,9 @@
             //alert(editor.encodedValue());
             //alert(e1.encodedValue() + " ed 2" + e2.encodedValue());
             if (validator.validate()) {
-                $('#frmAddCity').submit();
-                
-               
+                $('#frmEditCity').submit();
+
+
             } else {
                 alert("Oops! There is invalid data in the form.");
             }
@@ -194,7 +194,7 @@
 
 
 <script>
-   
+
     function htmlEncode(value) {
         if (value) {
             return jQuery('<div />').text(value).html();
@@ -209,10 +209,10 @@
             return '';
         }
     }
-     // logs "<p>foo</p>"
+    // logs "<p>foo</p>"
     $('#btnBack').click(function () {
-        location.href='@Url.Action("CityManager", "SystemManager")';      
-        
+        location.href = '@Url.Action("CityManager", "SystemManager")';
+
 
     });
 </script>
@@ -231,8 +231,8 @@
             multiple: false,
             async: {
                 autoUpload: false,
-                saveUrl: '@Url.Action("UploadAvatarCity","File",new {cityId=Model.dlCity.ID})',
-                removeUrl: '@Url.Action("RemoveAvatarCity","File")'
+                saveUrl: '@Url.Action("UploadAvatarCity", "File", new { cityId = Model.dlCity.ID })',
+                removeUrl: '@Url.Action("RemoveAvatarCity", "File")'
             },
             select: function () {
                 // The upload button will be created after the event is triggered
