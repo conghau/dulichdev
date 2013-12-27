@@ -207,6 +207,7 @@
     <Compile Include="Models\AccountModels.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\vm_CityInfo.cs" />
     <Compile Include="Models\vm_pagination.cs" />
     <Compile Include="Models\vm_Place.cs" />
     <Compile Include="Models\vm_Role.cs" />
@@ -365,6 +366,7 @@
     <Content Include="Content\themes\custom\Image\wood_outer.jpg" />
     <Content Include="Content\themes\footer_beta.png" />
     <Content Include="Content\themes\Home.css" />
+    <Content Include="Content\themes\pageDefault.css" />
     <Content Include="Content\themes\Role.css" />
     <Content Include="Data\Avatar\City\Globe.ico" />
     <Content Include="Data\Avatar\City\quocky.jpeg" />
@@ -697,6 +699,8 @@
     <Content Include="Views\Place\CommentPlace.cshtml" />
     <Content Include="Views\Hotel\HotelByCity.cshtml" />
     <Content Include="Views\Shared\p_likesocial.cshtml" />
+    <Content Include="Views\City\CityInfoDetail.cshtml" />
+    <Content Include="Views\City\EditCity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
