@@ -22,9 +22,7 @@ namespace WebDuLichDev.Controllers
         }
         public ActionResult CityManager()
         {
-            //DL_CityBAL dlcityBal=new DL_CityBAL();
-            //var model = dlcityBal.GetList();
-            //return View(model);
+
             vm_Pagination pagination = new vm_Pagination
             {
                 Page = MvcApplication.pageDefault,
