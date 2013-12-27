@@ -18,7 +18,7 @@
         {
             <tr>
                 <td>
-                    <img src="@ViewBag.pathAvatarCity/@item.Avatar" width ="25px" height="25px"/>
+                    <img src="@DataHelpper.PATH_AVATAR_CITY/@item.Avatar" width ="25px" height="25px"/>
                 </td>
                 <td>
                     <a href="@Url.Action("Detail", "City", new { ID = item.ID })">@item.CityName</a>
