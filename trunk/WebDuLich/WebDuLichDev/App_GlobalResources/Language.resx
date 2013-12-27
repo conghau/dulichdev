@@ -414,4 +414,7 @@
   <data name="ListNicePlace" xml:space="preserve">
     <value>Danh Sách Địa Điểm Nên Đến</value>
   </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>Chưa có thông tin</value>
+  </data>
 </root>
