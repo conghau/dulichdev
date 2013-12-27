@@ -9,34 +9,76 @@ using System.IO;
 using DuLichDLL.TOOLS;
 using WebDuLichDev.Models;
 using WebDuLichDev.WebUtility;
+using DuLichDLL.ExceptionType;
+using WebDuLichDev.Enum;
 
 namespace WebDuLichDev.Controllers
 {
     public class CityController : BaseController
     {
-        //
-        // GET: /City/
-        static string pathAvatarCity = "";
-        static string pathImageCity = "";
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(CityController).Name);
+        string version = "Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString() + " ";
 
-        private void SetPath()
-        {
-            M_SystemSetting_Config mSystemSetting = new M_SystemSetting_Config();
-            M_SystemSettingBAL mSystemSettingBal = new M_SystemSettingBAL();
-            mSystemSetting = mSystemSettingBal.GetSystemSetting();
-            pathAvatarCity = mSystemSetting.PATH_AVATAR_CITY;
-            pathImageCity = mSystemSetting.PATH_IMAGE_CITY;
-        }
+
         public ActionResult Index()
         {
-            DL_CityBAL dlCityBal = new DL_CityBAL();
+            try
+            {
+                DL_CityBAL dlCityBal = new DL_CityBAL();
+                var model = dlCityBal.GetList();
+                return View(model);
+            }
+            catch (BusinessException bx)
+            {
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return RedirectToAction("Error", "Home");
+            }
+        }
 
-            SetPath();
+        public ActionResult CityManager()
+        {
 
-            ViewBag.pathAvatarCity = pathAvatarCity;
-            ViewBag.pathImageCity = pathImageCity;
+            vm_Pagination pagination = new vm_Pagination
+            {
+                Page = MvcApplication.pageDefault,
+                PageSize = MvcApplication.pageSizeDefault,
+                OrderBy = DL_CityColumns.ID.ToString(), // Thi de tam theo thu tu thoi, it bua dat ten ngon lanh thi theo ten
+                OrderDirection = "ASC",
 
-            var model = dlCityBal.GetList();
+            };
+            long totalRecords = 0;
+
+            DL_CityBAL dlCityBAL = new DL_CityBAL();
+            var model = dlCityBAL.GetListWithFilter("", "", pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
+
+            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
+            ViewData["OrderBy"] = pagination.OrderBy;
+            ViewData["OrderDirection"] = pagination.OrderDirection;
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public ActionResult CityManager(vm_Pagination pagination, string city_search)
+        {
+
+            long totalRecords = 0;
+
+            DL_CityBAL dlCityBAL = new DL_CityBAL();
+            var model = dlCityBAL.GetListWithFilter("", city_search, pagination.Page.Value, pagination.PageSize.Value, pagination.OrderBy, pagination.OrderDirection, out totalRecords);
+
+            common.LoadPagingData(this, pagination.Page ?? MvcApplication.pageDefault, pagination.PageSize ?? MvcApplication.pageSizeDefault, totalRecords);
+            ViewData["OrderBy"] = pagination.OrderBy;
+            ViewData["OrderDirection"] = pagination.OrderDirection;
+
             return View(model);
         }
 
@@ -91,43 +133,106 @@ namespace WebDuLichDev.Controllers
 
         public ActionResult Detail(long ID)
         {
-            DL_CityBAL dlCityBal = new DL_CityBAL();
-
-            SetPath();
-            ViewBag.pathAvatarCity = pathAvatarCity;
-            ViewBag.pathImageCity = pathImageCity;
-           
-            var model = dlCityBal.GetByID(ID);
-            ViewBag.City = model.CityName;
-            return View(model);
+            try
+            {
+                DL_CityBAL dlCityBal = new DL_CityBAL();
+                var model = dlCityBal.GetByID(ID);
+                //ViewBag.City = model.CityName;
+                return View(model);
+            }
+            catch (BusinessException bx)
+            {
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return RedirectToAction("Error", "Home");
+            }
         }
 
-
+        //[HttpPost]
+        public ActionResult CityInfoDetail(long ID, string summary)
+        {
+            try
+            {
+                DL_CityInfoDetailBAL dl_CityInfoDetailBal = new DL_CityInfoDetailBAL();
+                var model = new vm_CityInfo();
+                model.cityInfoDetail = dl_CityInfoDetailBal.GetByCityID(ID);
+                model.summary = summary;
+                return View(model);
+            }
+            catch (BusinessException bx)
+            {
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return RedirectToAction("Error", "Home");
+            }
+        }
 
         public ActionResult EditCity(long id)
         {
-            DL_CityBAL dlCityBal = new DL_CityBAL();
-            DL_CityInfoDetailBAL dlCityInfoBAL = new DL_CityInfoDetailBAL();
-            CityInfo model = new CityInfo();
+            try
+            {
+                DL_CityBAL dlCityBal = new DL_CityBAL();
+                DL_CityInfoDetailBAL dlCityInfoBAL = new DL_CityInfoDetailBAL();
+                CityInfo model = new CityInfo();
 
 
-            model.dlCity = dlCityBal.GetByID(id);
+                model.dlCity = dlCityBal.GetByID(id);
 
-            model.dlCityInfoDetail = dlCityInfoBAL.GetByCityID(id);
-            //model.dlCityInfoDetail.Economy = HttpUtility.HtmlDecode(model.dlCityInfoDetail.Economy);
+                model.dlCityInfoDetail = dlCityInfoBAL.GetByCityID(id);
+                //model.dlCityInfoDetail.Economy = HttpUtility.HtmlDecode(model.dlCityInfoDetail.Economy);
 
-            return View(model);
+                return View(model);
+            }
+            catch (BusinessException bx)
+            {
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return RedirectToAction("Error", "Home");
+            }
         }
         [HttpPost]
         public ActionResult EditCity(CityInfo cityinfo)
         {
-            DL_CityBAL dlCityBal = new DL_CityBAL();
+            try
+            {
+                DL_CityBAL dlCityBal = new DL_CityBAL();
 
-            cityinfo.dlCityInfoDetail.DL_CityId = cityinfo.dlCity.ID;
+                cityinfo.dlCityInfoDetail.DL_CityId = cityinfo.dlCity.ID;
 
-            dlCityBal.UpdateCity(cityinfo.dlCity, cityinfo.dlCityInfoDetail);
+                dlCityBal.UpdateCity(cityinfo.dlCity, cityinfo.dlCityInfoDetail);
 
-            return RedirectToAction("CityManager", "SystemManager");
+                return RedirectToAction("CityManager", "City");
+            }
+            catch (BusinessException bx)
+            {
+                log.Error(bx.Message);
+                TempData[PageInfo.Message.ToString()] = bx.Message;
+                return RedirectToAction("Error", "Home");
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                TempData[PageInfo.Message.ToString()] = "BLM_ERR_Common";
+                return RedirectToAction("Error", "Home");
+            }
         }
         public ActionResult SetCityID(long cityID)
         {
