@@ -261,7 +261,7 @@ namespace WebDuLichDev.WebUtility
             para.Add(Environment.NewLine);
             para.Add("Võ Tiến An - Trương Công Hậu");
             para.Add(Environment.NewLine);
-            para.Add("@2013 - PDF Document");
+            para.Add("@2013 - PDF Document by iTextSharp 4.1.2");
             PdfPCell cell = new PdfPCell(para);
             cell.Border = Rectangle.TOP_BORDER;
             cell.BorderWidthTop = .5f;

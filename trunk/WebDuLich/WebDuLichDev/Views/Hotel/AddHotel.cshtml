@@ -30,6 +30,13 @@
                             </div>
                         </div>
                         <div class="control-group">
+                        <label class="control-label" for="input01">@Resources.Language.Co_ordinate</label>
+                        <div class="controls">
+                            @Html.TextBox("hotelinfo.dlPlace.Co_ordinate")
+                            <a href="@Url.Action("DirectionGetLatLong","Map")" class="direction fancybox.iframe"> Hướng dẫn lấy tọa độ</a>
+                        </div>
+                    </div>
+                        <div class="control-group">
                             <label class="control-label" for="input01">@Resources.Language.City</label>
                             <div class="controls">                            
                             @Html.DropDownList("hotelinfo.dlPlace.DL_CityId", WebDuLichDev.WebUtility.WebDuLichData.ListCity, new { id = "drop_CityList", @class = "DLL kendoDropDownList city" })
