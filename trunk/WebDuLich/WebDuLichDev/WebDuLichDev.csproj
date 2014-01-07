@@ -192,6 +192,7 @@
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
+    <Compile Include="Controllers\mapController.cs" />
     <Compile Include="Controllers\RazorPDFController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\PlaceController.cs" />
@@ -208,6 +209,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\vm_CityInfo.cs" />
+    <Compile Include="Models\vm_map.cs" />
     <Compile Include="Models\vm_pagination.cs" />
     <Compile Include="Models\vm_Place.cs" />
     <Compile Include="Models\vm_Role.cs" />
@@ -370,6 +372,8 @@
     <Content Include="Content\themes\Role.css" />
     <Content Include="Data\Avatar\City\Globe.ico" />
     <Content Include="Data\Avatar\City\quocky.jpeg" />
+    <Content Include="Data\Huongdan\hinh1.gif" />
+    <Content Include="Data\Huongdan\hinh2.gif" />
     <Content Include="Data\Images\city\1186241_322684017877104_803392449_n.jpg" />
     <Content Include="Data\Images\city\999314_622842027740960_1937081188_n.jpg" />
     <Content Include="Data\Images\city\Emotion 1.JPG" />
@@ -701,6 +705,8 @@
     <Content Include="Views\Shared\p_likesocial.cshtml" />
     <Content Include="Views\City\CityInfoDetail.cshtml" />
     <Content Include="Views\City\EditCity.cshtml" />
+    <Content Include="Views\map\DirectionGetLatLong.cshtml" />
+    <Content Include="Views\map\Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
