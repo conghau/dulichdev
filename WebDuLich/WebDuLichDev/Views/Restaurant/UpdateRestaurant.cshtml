@@ -1,13 +1,12 @@
-﻿
-@model WebDuLichDev.Models.RestaurantInfo
+﻿@model WebDuLichDev.Models.RestaurantInfo
 
 @{
     ViewBag.Title = "UpdateRestaurant";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div style="text-align:center">
-<h2 style="border-bottom: 2px solid #ff6a00">@Resources.Language.UpdateRestaurant</h2>
+<div style="text-align: center">
+    <h2 style="border-bottom: 2px solid #ff6a00">@Resources.Language.UpdateRestaurant</h2>
 </div>
 
 
@@ -35,6 +34,13 @@
                         <div class="control-group">
                             <label class="control-label" for="input01">@Resources.Language.Address</label>
                             <div class="controls">@Html.TextBoxFor(model => model.dlPlace.Address, new { id = "Address", placeholder = "Address...", required = "", validationMessage = "Please enter {0}", Name = "restaurantinfo.dlPlace.Address" })</div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="input01">@Resources.Language.Co_ordinate</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(m => m.dlPlace.Co_ordinate, new { Name = "restaurantinfo.dlPlace.Co_ordinate" })
+                                <a href="@Url.Action("DirectionGetLatLong", "Map")" class="direction fancybox.iframe">Hướng dẫn lấy tọa độ</a>
+                            </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="input01">@Resources.Language.City</label>
@@ -84,7 +90,7 @@
                     <ul>
                         <li class="k-state-active">@Resources.Language.Menu</li>
                         <li>@Resources.Language.Contact</li>
-                    </ul>                    
+                    </ul>
                     <div>
                         <div class="k-content">
                             <textarea class="editor" name="restaurantinfo.dlRestaurantInfoDetail.Menu" rows="5" cols="20" style="width: 100%; height: 400px">                  
@@ -141,7 +147,6 @@
                     <div class="controls">
                         <input id="uploadImage" name="fileUpload" type="file" />
                         <div id="imageName">
-                            
                         </div>
                         <div id="imgPhotoPlace">
                             <div class="row">
@@ -149,21 +154,22 @@
                                     <ul class="thumbnails">
                                         <li>
                                             <div id="container">
-                                            <span id="target" title="DoubleClick vào hình để chọn xóa hình!"></span>
+                                                <span id="target" title="DoubleClick vào hình để chọn xóa hình!"></span>
                                             </div>
-                                        </li>                                        
+                                        </li>
                                         @if (null != Model && Model.listImagePlace != null)
                                         {
                                             int i = 0;
                                             foreach (var item in Model.listImagePlace)
                                             {     
                                             @:<li class="span2" id="@i">
-                                            <a class=thumbnail><img src="/Data/Images/place/@item.LinkImage" id="@i" alt='' ondblclick="onclickpicture(this.id)" onmousemove="onfocuspicture()" /></a>                           
+<a class=thumbnail><img src="/Data/Images/place/
+@item.LinkImage" id="@i" alt='' ondblclick="onclickpicture(this.id)" onmousemove="onfocuspicture()" /></a>                           
                                             <input  name="restaurantinfo.listImagePlace[@i].LinkImage" class="imagePlace" value="@item.LinkImage" type="hidden"/>
                                             <input  name="restaurantinfo.listImagePlace[@i].ID" class="imagePlace" value="@item.ID" type="hidden"/>
                                             <input  name="restaurantinfo.listImagePlace[@i].DL_PlaceID" class="imagePlace" value="@item.DL_PlaceID" type="hidden"/>
                                             @:</li>
-                                            i++;
+                                                                                                                            i++;
                                             }
                                         }
                                     </ul>
@@ -180,9 +186,9 @@
         <input class="btn" id="btnCancel" type="button" value="@Resources.Language.Cancel" />
     </div>
     <div id="dialog"></div>
-   
-    
-@*            <style scoped>
+
+
+    @*            <style scoped>
                 #example .k-timepicker {
                     vertical-align: middle;
                 }
@@ -204,9 +210,9 @@
                 }
                 
             </style>**@
-  
-          
-      
+
+
+
 
     <script>
 
@@ -229,7 +235,7 @@
             });
 
             $(".editor").kendoEditor({
-                
+
                 tools: ["bold", "italic", "underline", "justifyLeft", "justifyCenter", "justifyRight",
                     "justifyFull", "insertUnorderedList", "insertOrderedList", "indent", "outdent", "viewHtml"],
 
@@ -318,28 +324,26 @@
             //end.max("7:30 AM");
         });
         function onclickpicture(id) {
-            var r=confirm("Confirm: Delete this Image(?)");
-            if (r==true)
-            {      
+            var r = confirm("Confirm: Delete this Image(?)");
+            if (r == true) {
                 //$('div#imageName > input#' + id).hide();
                 //$('div#imgPhotoPlace > .row > .span8 > .thumbnails >.span2').addClass('#' + id) = "hidden";
                 $('div#imgPhotoPlace > .row > .span8 > .thumbnails >[id="' + id + '"]').hide();
                 $('div#imgPhotoPlace > .row > .span8 > .thumbnails >[id="' + id + '"]').append('<input  name="restaurantinfo.listImagePlace[' + id + '].Status" class="imagePlace" value="1" type="hidden"/>');
                 //$('div#imgPhotoPlace > .row > .span8 > .thumbnails > .span2 >.thumbnail >.img').hide('#' + id);
-          
+
                 //$('img').visible('#'+id)='hidden';
             }
-            else
-            {
-            //user pressed cancel. Do nothing
+            else {
+                //user pressed cancel. Do nothing
             }
-           
-             
+
+
         }
         function onfocuspicture(e) {
-            var tooltip = $("#container").kendoTooltip({position: "center"}).data("kendoTooltip");
+            var tooltip = $("#container").kendoTooltip({ position: "center" }).data("kendoTooltip");
             tooltip.show($("#target"));
-            
+
         }
 
         function onSelect(e) {
@@ -401,7 +405,7 @@
         }
 
         function onUploadSuccess(e) {
-            
+
             var index = 0;
             if (e.operation == "upload") {
                 var files = e.response;

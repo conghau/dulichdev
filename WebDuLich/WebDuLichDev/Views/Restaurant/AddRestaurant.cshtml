@@ -3,8 +3,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div style="text-align:center">
-<h2 style="border-bottom: 2px solid #ff6a00">@Resources.Language.AddRestaurant</h2>
+<div style="text-align: center">
+    <h2 style="border-bottom: 2px solid #ff6a00">@Resources.Language.AddRestaurant</h2>
 </div>
 
 <form id="frmAddRestaurant" class="well form-horizontal" method="post" action="/Restaurant/AddRestaurant">
@@ -32,6 +32,13 @@
                             </div>
                         </div>
                         <div class="control-group">
+                            <label class="control-label" for="input01">@Resources.Language.Co_ordinate</label>
+                            <div class="controls">
+                                @Html.TextBox("restaurantinfo.dlPlace.Co_ordinate")
+                                <a href="@Url.Action("DirectionGetLatLong", "Map")" class="direction fancybox.iframe">Hướng dẫn lấy tọa độ</a>
+                            </div>
+                        </div>
+                        <div class="control-group">
                             <label class="control-label" for="input01">@Resources.Language.City</label>
                             <div class="controls">
                                 @Html.DropDownList("restaurantinfo.dlPlace.DL_CityId", WebDuLichDev.WebUtility.WebDuLichData.ListCity, new { id = "drop_CityList", @class = "DLL kendoDropDownList city" })
@@ -53,7 +60,7 @@
                             </div>
                         </div>
                     </div>
-                     <div>
+                    <div>
                         <div class="k-content">
 
                             <textarea class="editor" name="restaurantinfo.dlRestaurantInfoDetail.Info" rows="5" cols="20" style="width: 100%; height: 400px">&lt;p&gt;Please input Note about this Restaurant:&lt;/p&gt;</textarea>
@@ -77,7 +84,7 @@
                     <ul>
                         <li class="k-state-active">@Resources.Language.Menu</li>
                         <li>@Resources.Language.Contact</li>
-                    </ul>                   
+                    </ul>
                     <div>
                         <div class="k-content">
                             <textarea class="editor" name="restaurantinfo.dlRestaurantInfoDetail.Menu" rows="5" cols="20" style="width: 100%; height: 400px">                  
